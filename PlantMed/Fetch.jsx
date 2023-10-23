@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import PlantItem from './Components/PlantItem';
+import {apiUrl} from './Common/const';
 
 const Fetch = () => {
   const [isLoading, setLoading] = useState(true);
@@ -8,7 +9,7 @@ const Fetch = () => {
 
   const getPlant = async () => {
     try {
-      const response = await fetch('https://plantmed.jsprod.fr/api/plante');
+      const response = await fetch(apiUrl);
       const json = await response.json();
       setData(json);
     } catch (error) {
@@ -17,8 +18,6 @@ const Fetch = () => {
       setLoading(false);
     }
   };
-
-
 
   const getByCat = () => {};
 

@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Fetch} />
         <Stack.Screen name="PlanteDetail" component={PlantDetail} />
       </Stack.Navigator>
