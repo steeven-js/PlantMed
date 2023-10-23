@@ -1,10 +1,10 @@
 import { View, Text, ActivityIndicator, Button } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { getOnePlant } from './Common/api';
-import { useNavigation } from '@react-navigation/native'; // Importez useNavigation depuis React Navigation
+import { useNavigation } from '@react-navigation/native';
 
 const PlantDetail = ({ route }) => {
-  const navigation = useNavigation(); // Initialisez la navigation
+  const navigation = useNavigation();
 
   console.log(route);
 
@@ -28,7 +28,7 @@ const PlantDetail = ({ route }) => {
   }, []);
 
   const handleGoBack = () => {
-    navigation.goBack(); // Utilisez la fonction goBack pour revenir en arrière
+    navigation.goBack();
   };
 
   return (
