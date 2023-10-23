@@ -18,6 +18,10 @@ const Fetch = () => {
     }
   };
 
+
+
+  const getByCat = () => {};
+
   useEffect(() => {
     getPlant();
   }, []);
