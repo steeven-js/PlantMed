@@ -3,6 +3,7 @@ import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import PlantItem from './Components/PlantItem';
 import {apiUrl} from './Common/const';
 import Header from './Header';
+import SearchBar from './Components/SearchBar';
 
 const Fetch = () => {
   const [isLoading, setLoading] = useState(true);
@@ -31,10 +32,10 @@ const Fetch = () => {
       <View>
         <Header />
       </View>
+      <View>
+        <SearchBar/>
+      </View>
       <View style={{alignItems:'center'}}>
-        <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 24}}>
-          Texte
-        </Text>
         {isLoading ? (
           <ActivityIndicator />
         ) : (
@@ -43,6 +44,7 @@ const Fetch = () => {
             keyExtractor={({id}) => id}
             renderItem={({item}) => <PlantItem item={item} />}
             numColumns={2}
+            showsHorizontalScrollIndicator={false}
           />
         )}
       </View>

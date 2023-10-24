@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <View
       style={{
-        paddingHorizontal: Spacing * 2,
+        padding: Spacing * 2,
       }}>
       <View
         style={{
