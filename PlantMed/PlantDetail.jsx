@@ -1,9 +1,10 @@
-import { View, Text, ActivityIndicator, Button } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { getOnePlant } from './Common/api';
-import { useNavigation } from '@react-navigation/native';
+import {View, Text, ActivityIndicator, Button} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {getOnePlant} from './Common/api';
+import {useNavigation} from '@react-navigation/native';
+import Spacing from './constants/Spacing';
 
-const PlantDetail = ({ route }) => {
+const PlantDetail = ({route}) => {
   const navigation = useNavigation();
 
   console.log(route);
@@ -11,7 +12,7 @@ const PlantDetail = ({ route }) => {
   const [isLoading, setLoading] = useState(true);
   const [plant, setPlant] = useState();
 
-  const { id } = route.params;
+  const {id} = route.params;
 
   const loadApi = async () => {
     if (id !== 0) {
@@ -32,7 +33,13 @@ const PlantDetail = ({ route }) => {
   };
 
   return (
-    <View>
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: Spacing * 2,
+      }}>
       <Button title="Go Back" onPress={handleGoBack} />
       {isLoading ? <ActivityIndicator /> : <Text>{plant?.name}</Text>}
     </View>
