@@ -43,7 +43,7 @@ const PlantDetail = ({route}) => {
   };
 
   return (
-    <View>
+    <View style={{flex:1}}>
       <TouchableOpacity
         onPress={handleGoBack}
         style={{flexDirection: 'row', alignItems: 'center', padding: 10}}>
@@ -52,11 +52,11 @@ const PlantDetail = ({route}) => {
         </Text>
         <Text style={{marginLeft: 10}}>Back</Text>
       </TouchableOpacity>
-      <View style={{paddingHorizontal: 20}}>
+      <View style={{flex: 1, paddingHorizontal: 20}}>
         {isLoading ? (
           <ActivityIndicator />
         ) : (
-          <View style={{padding: 10}}>
+          <View style={{flex: 1, padding: 10}}>
             {plant?.media?.url ? (
               <Image
                 source={{uri: plant.media.url}}

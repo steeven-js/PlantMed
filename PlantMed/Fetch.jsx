@@ -28,14 +28,14 @@ const Fetch = () => {
   }, []);
 
   return (
-    <View>
+    <View style={{flex:1}}>
       <View>
         <Header />
       </View>
       <View>
         <SearchBar/>
       </View>
-      <View style={{alignItems:'center'}}>
+      <View style={{flex: 1, alignItems:'center'}}>
         {isLoading ? (
           <ActivityIndicator />
         ) : (
@@ -44,7 +44,6 @@ const Fetch = () => {
             keyExtractor={({id}) => id}
             renderItem={({item}) => <PlantItem item={item} />}
             numColumns={2}
-            showsHorizontalScrollIndicator={false}
           />
         )}
       </View>
