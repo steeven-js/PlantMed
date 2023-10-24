@@ -8,7 +8,7 @@ const yellow = "#FFD747";
 export default {
   darkText: black,
   text: dark,
-  background: white,
+  light: white,
   primary: green,
   onPrimary: white,
   border: gray,

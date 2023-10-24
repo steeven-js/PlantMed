@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import Spacing from './constants/Spacing';
-import Colors from './constants/Colors';
+import colors from './constants/Colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Header = () => {
@@ -20,14 +20,16 @@ const Header = () => {
             flexDirection: 'row',
             alignItems: 'center',
           }}>
-          <Image
+          {/* <Image
             source={require('./assets/images/user/avatar.png')}
             style={{ width: Spacing * 4, height: Spacing * 4 }}
-          />
+          /> */}
           <Text
             style={{
               fontSize: Spacing * 2,
               marginLeft: Spacing,
+              color: colors.primary,
+              fontWeight: 'bold',
             }}>
             App Plant
           </Text>

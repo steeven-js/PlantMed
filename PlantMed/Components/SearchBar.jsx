@@ -1,4 +1,4 @@
-import {View, Text, TextInput} from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import React from 'react';
 import SPACING from '../constants/Spacing';
 import colors from '../constants/Colors';
@@ -16,15 +16,15 @@ const SearchBar = () => {
         paddingHorizontal: SPACING * 1.5,
         borderRadius: SPACING,
       }}>
-      <Icon name="search" color={colors.gray} size={SPACING * 2.7} />
+      <Icon name="search" color={colors.primary} size={SPACING * 2.7} /> 
       <TextInput
         placeholder="Quelle plante cherchez-vous?"
-        placeholderTextColor={colors.gray}
+        placeholderTextColor={colors.primary}
         style={{
-          color: colors.gray,
+          color: colors.primary,
           fontSize: SPACING * 2,
           marginLeft: SPACING,
-          borderColor: '#000',
+          borderColor: colors.darkText,
           borderWidth: 1,
           borderRadius: SPACING,
         }}
