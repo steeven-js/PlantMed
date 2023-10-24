@@ -1,26 +1,35 @@
-import {View, Text, ActivityIndicator, Button} from 'react-native';
 import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  Button,
+} from 'react-native';
 import {getOnePlant} from './Common/api';
 import {useNavigation} from '@react-navigation/native';
-import Spacing from './constants/Spacing';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const PlantDetail = ({route}) => {
   const navigation = useNavigation();
 
-  console.log(route);
-
   const [isLoading, setLoading] = useState(true);
-  const [plant, setPlant] = useState();
+  const [plant, setPlant] = useState(null);
 
   const {id} = route.params;
 
   const loadApi = async () => {
     if (id !== 0) {
-      const dataPlant = await getOnePlant(id);
-      setPlant(dataPlant);
-
-      console.log(dataPlant);
-      setLoading(false);
+      try {
+        const dataPlant = await getOnePlant(id);
+        setPlant(dataPlant);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error loading plant data:', error);
+        setLoading(false);
+      }
     }
   };
 
@@ -33,15 +42,31 @@ const PlantDetail = ({route}) => {
   };
 
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: Spacing * 2,
-      }}>
-      <Button title="Go Back" onPress={handleGoBack} />
-      {isLoading ? <ActivityIndicator /> : <Text>{plant?.name}</Text>}
+    <View>
+      <TouchableOpacity
+        onPress={handleGoBack}
+        style={{flexDirection: 'row', alignItems: 'center', padding: 10}}>
+        <Text>
+          <Icon name="arrow-left" size={30} color="#000" />
+        </Text>
+        <Text style={{marginLeft: 10}}>Back</Text>
+      </TouchableOpacity>
+      <View style={{paddingHorizontal: 20}}>
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <View>
+            {plant?.media?.url ? (
+              <Image
+                source={{uri: plant.media.url}}
+                style={{width: 200, height: 200}}
+              />
+            ) : null}
+            <Text>{plant?.name}</Text>
+            <Text>{plant?.notes}</Text>
+          </View>
+        )}
+      </View>
     </View>
   );
 };
