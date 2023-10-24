@@ -11,6 +11,7 @@ import {
 import {getOnePlant} from './Common/api';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import PlantUsage from './Components/PlantUsage';
 
 const PlantDetail = ({route}) => {
   const navigation = useNavigation();
@@ -55,15 +56,20 @@ const PlantDetail = ({route}) => {
         {isLoading ? (
           <ActivityIndicator />
         ) : (
-          <View>
+          <View style={{padding: 10}}>
             {plant?.media?.url ? (
               <Image
                 source={{uri: plant.media.url}}
                 style={{width: 200, height: 200}}
               />
             ) : null}
-            <Text>{plant?.name}</Text>
+            <Text style={{paddingVertical: 10 ,fontWeight: 'bold'}}>{plant?.name}</Text>
             <Text>{plant?.notes}</Text>
+            <FlatList
+              data={plant?.usages}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({item}) => <PlantUsage item={item} />}
+            />
           </View>
         )}
       </View>
