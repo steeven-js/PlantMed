@@ -12,6 +12,7 @@ import {getOnePlant} from './Common/api';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import PlantUsage from './Components/PlantUsage';
+import Colors from './constants/Colors';
 
 const PlantDetail = ({route}) => {
   const navigation = useNavigation();
@@ -48,9 +49,9 @@ const PlantDetail = ({route}) => {
         onPress={handleGoBack}
         style={{flexDirection: 'row', alignItems: 'center', padding: 10}}>
         <Text>
-          <Icon name="arrow-left" size={30} color="#000" />
+          <Icon name="arrow-left" size={30} color={Colors.primary} />
         </Text>
-        <Text style={{marginLeft: 10}}>Back</Text>
+        <Text style={{marginLeft: 10, fontWeight: 'bold'}}>Back</Text>
       </TouchableOpacity>
       <View style={{flex: 1, paddingHorizontal: 20}}>
         {isLoading ? (

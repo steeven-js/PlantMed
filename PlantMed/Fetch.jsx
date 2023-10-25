@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -7,9 +7,10 @@ import {
   View,
 } from 'react-native';
 import PlantItem from './Components/PlantItem';
-import {apiUrl} from './Common/const';
+import { apiUrl } from './Common/const';
 import Header from './Header';
 import SearchBar from './Components/SearchBar';
+import colors from './constants/Colors';
 
 const Fetch = () => {
   const [isLoading, setLoading] = useState(true);
@@ -45,28 +46,28 @@ const Fetch = () => {
     }
   };
 
-  const getByCat = () => {};
+  const getByCat = () => { };
 
   useEffect(() => {
     getPlant();
   }, []);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <View>
         <Header />
       </View>
       <View>
         <SearchBar />
       </View>
-      <View style={{flex: 1, alignItems: 'center'}}>
+      <View style={{ flex: 1, alignItems: 'center' }}>
         {isLoading ? (
           <ActivityIndicator />
         ) : (
           <FlatList
             data={data}
-            keyExtractor={({id}) => id}
-            renderItem={({item}) => <PlantItem item={item} />}
+            keyExtractor={({ id }) => id}
+            renderItem={({ item }) => <PlantItem item={item} />}
             numColumns={2}
           />
         )}
@@ -79,16 +80,16 @@ const Fetch = () => {
           justifyContent: 'flex-end',
         }}>
         {prevPageUrl ? (
-          <TouchableOpacity style={{padding: 10}} onPress={goToPrev}>
-            <Text style={{padding: 10}}>Prev</Text>
+          <TouchableOpacity style={{ padding: 10 }} onPress={goToPrev}>
+            <Text style={{ padding: 10, color: colors.primary, fontWeight: 'bold' }}>Prev</Text>
           </TouchableOpacity>
-        ) : null}
+        ) : <Text style={{ padding: 20 }}>Prev</Text>}
 
         {nextPageUrl ? (
-          <TouchableOpacity style={{padding: 10}} onPress={goToNext}>
-            <Text style={{padding: 10}}>Next</Text>
+          <TouchableOpacity style={{ padding: 10 }} onPress={goToNext}>
+            <Text style={{ padding: 10, color: colors.primary, fontWeight: 'bold' }}>Next</Text>
           </TouchableOpacity>
-        ) : null}
+        ) : <Text style={{ padding: 20 }}>Next</Text>}
       </View>
     </View>
   );
