@@ -8,8 +8,6 @@ import {
 } from 'react-native';
 import PlantItem from './Components/PlantItem';
 import { apiUrl } from './Common/const';
-import Header from './Header';
-import SearchBar from './Components/SearchBar';
 import colors from './constants/Colors';
 
 const Fetch = () => {
@@ -54,12 +52,6 @@ const Fetch = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <View>
-        <Header />
-      </View>
-      <View>
-        <SearchBar />
-      </View>
       <View style={{ flex: 1, alignItems: 'center' }}>
         {isLoading ? (
           <ActivityIndicator />

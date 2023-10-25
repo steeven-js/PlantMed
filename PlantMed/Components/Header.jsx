@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-import Spacing from './constants/Spacing';
-import colors from './constants/Colors';
+import Spacing from '../constants/Spacing';
+import colors from '../constants/Colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Header = () => {
