@@ -9,13 +9,10 @@ import {
   Button,
 } from 'react-native';
 import {getOnePlant} from './Common/api';
-import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import PlantUsage from './Components/PlantUsage';
-import Colors from './constants/Colors';
+import Back from './Components/Back';
 
 const PlantDetail = ({route}) => {
-  const navigation = useNavigation();
 
   const [isLoading, setLoading] = useState(true);
   const [plant, setPlant] = useState(null);
@@ -39,20 +36,9 @@ const PlantDetail = ({route}) => {
     loadApi();
   }, []);
 
-  const handleGoBack = () => {
-    navigation.goBack();
-  };
-
   return (
     <View style={{flex:1}}>
-      <TouchableOpacity
-        onPress={handleGoBack}
-        style={{flexDirection: 'row', alignItems: 'center', padding: 10}}>
-        <Text>
-          <Icon name="arrow-left" size={30} color={Colors.primary} />
-        </Text>
-        <Text style={{marginLeft: 10, fontWeight: 'bold'}}>Back</Text>
-      </TouchableOpacity>
+      <Back />
       <View style={{flex: 1, paddingHorizontal: 20}}>
         {isLoading ? (
           <ActivityIndicator />

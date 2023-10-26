@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, SafeAreaView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { preparationApiUrl } from './Common/const';
+import { View, Text, ActivityIndicator, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import Colors from './constants/Colors';
+import { preparationApiUrl } from './Common/const';
 import PreparationItem from './Components/PreparationItem';
+import Back from './Components/Back';
 
 const Preparation = () => {
-    const navigation = useNavigation();
+
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
@@ -27,34 +26,32 @@ const Preparation = () => {
         }
     };
 
-    const handleGoBack = () => {
-        navigation.goBack();
-    };
-
     return (
-        <View style={{ flex: 1 }}>
-            <TouchableOpacity
-                onPress={handleGoBack}
-                style={{ flexDirection: 'row', alignItems: 'center', padding: 10 }}>
-                <Text>
-                    <Icon name="arrow-left" size={30} color={Colors.primary} />
-                </Text>
-                <Text style={{ marginLeft: 10, fontWeight: 'bold' }}>Back</Text>
-            </TouchableOpacity>
+        <ScrollView>
+            <View>
+                <Back />
 
-            <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
-                {isLoading ? (
-                    <ActivityIndicator />
-                ) : (
-                    <FlatList
-                        data={data}
-                        keyExtractor={(item) => item.id.toString()}
-                        renderItem={({ item }) => <PreparationItem item={item} />}
-                        numColumns={2}
-                    />
-                )}
-            </SafeAreaView>
-        </View>
+                <View>
+                    {isLoading ? (
+                        <ActivityIndicator />
+                    ) : (
+                        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                            {data.map((item) => (
+                                <PreparationItem key={item.id} item={item} />
+                            ))}
+                        </View>
+                    )}
+                </View>
+            </View>
+
+            <ScrollView>
+                <View style={{ height: 50, backgroundColor: Colors.primary }}>
+                    <Text style={{ textAlign: 'center', color: '#fff', fontSize: 20, fontWeight: 'bold' }}>
+                        Preparation
+                    </Text>
+                </View>
+            </ScrollView>
+        </ScrollView >
     );
 };
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Fetch from './PlantMed/Fetch';
+import Plant from './PlantMed/Plant';
 import Home from './PlantMed/Home';
 import Preparation from './PlantMed/Preparation';
 import PreparationDetail from './PlantMed/PreparationDetail';
@@ -15,7 +15,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Fetch" component={Fetch} />
+        <Stack.Screen name="Plant" component={Plant} />
         <Stack.Screen name="PlanteDetail" component={PlantDetail} />
         <Stack.Screen name="Preparation" component={Preparation} />
         <Stack.Screen name="PreparationDetail" component={PreparationDetail} />

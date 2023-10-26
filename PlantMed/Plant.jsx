@@ -10,7 +10,7 @@ import PlantItem from './Components/PlantItem';
 import { apiUrl } from './Common/const';
 import colors from './constants/Colors';
 
-const Fetch = () => {
+const Plant = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [prevPageUrl, setPrevPageUrl] = useState(null);
@@ -87,4 +87,4 @@ const Fetch = () => {
   );
 };
 
-export default Fetch;
+export default Plant;

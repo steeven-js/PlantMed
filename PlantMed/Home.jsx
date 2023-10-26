@@ -3,7 +3,7 @@ import React from 'react'
 import Header from './Components/Header'
 import SearchBar from './Components/SearchBar';
 import { useNavigation } from '@react-navigation/native';
-import Fetch from './Fetch'
+import Plant from './Plant'
 
 const Home = () => {
 
@@ -45,7 +45,7 @@ const Home = () => {
           <Text>Préparations</Text>
         </TouchableOpacity>
       </View>
-      <Fetch />
+      <Plant />
     </View>
   )
 }
