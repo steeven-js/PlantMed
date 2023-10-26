@@ -2,9 +2,17 @@ import { TouchableOpacity, View, Text } from 'react-native'
 import React from 'react'
 import Header from './Components/Header'
 import SearchBar from './Components/SearchBar';
+import { useNavigation } from '@react-navigation/native';
 import Fetch from './Fetch'
 
 const Home = () => {
+
+  const navigation = useNavigation();
+
+  const goToPrepa = () => {
+    navigation.navigate('Preparation')
+  }
+
   return (
     <View style={{ flex: 1, padding: 10 }}>
       <View>
@@ -31,7 +39,9 @@ const Home = () => {
           backgroundColor: 'lightgray',
           justifyContent: 'center',
           alignItems: 'center',
-        }}>
+        }}
+          onPress={goToPrepa}
+        >
           <Text>Préparations</Text>
         </TouchableOpacity>
       </View>

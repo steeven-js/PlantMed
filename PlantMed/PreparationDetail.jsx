@@ -16,7 +16,7 @@ const PreparationDetail = ({ route }) => {
             try {
                 const dataPrepa = await getOnePrepa(id);
                 // console.log('dataPrepa', dataPrepa);
-                setPreparation(dataPrepa); // Assuming dataPrepa is an object with a "plantes" property
+                setPreparation(dataPrepa);
                 setLoading(false);
             } catch (error) {
                 console.error('Error loading Prepa data:', error);
