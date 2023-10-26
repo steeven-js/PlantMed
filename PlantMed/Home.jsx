@@ -21,6 +21,9 @@ const Home = () => {
       <View>
         <SearchBar />
       </View>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Les plantes médicinale dans toutes leurs aspects</Text>
+        </View>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
         <TouchableOpacity style={{
           width: 150,
@@ -44,6 +47,9 @@ const Home = () => {
         >
           <Text>Préparations</Text>
         </TouchableOpacity>
+      </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Parcourir les plantes médicinales</Text>
       </View>
       <Plant />
     </View>

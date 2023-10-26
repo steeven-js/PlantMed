@@ -12,7 +12,7 @@ const SearchBar = () => {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.light,
-        marginVertical: SPACING * 3,
+        marginVertical: SPACING * 2,
         paddingHorizontal: SPACING * 1.5,
         borderRadius: SPACING,
       }}>

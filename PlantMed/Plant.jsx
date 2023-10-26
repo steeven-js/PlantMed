@@ -51,17 +51,16 @@ const Plant = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ flex: 1, alignItems: 'center' }}>
+    <View>
+      <View>
         {isLoading ? (
           <ActivityIndicator />
         ) : (
-          <FlatList
-            data={data}
-            keyExtractor={({ id }) => id}
-            renderItem={({ item }) => <PlantItem item={item} />}
-            numColumns={2}
-          />
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {data.map((item) => (
+              <PlantItem key={item.id} item={item} />
+            ))}
+          </View>
         )}
       </View>
       <View
