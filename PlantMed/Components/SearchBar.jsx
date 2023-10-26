@@ -27,6 +27,7 @@ const SearchBar = () => {
           borderColor: colors.darkText,
           borderWidth: 1,
           borderRadius: SPACING,
+          height: SPACING * 4,
         }}
       />
     </View>

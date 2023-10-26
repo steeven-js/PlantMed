@@ -22,7 +22,7 @@ const Home = () => {
         <SearchBar />
       </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Les plantes médicinale dans toutes leurs aspects</Text>
+          <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 18 }}>Les plantes médicinale dans toutes leurs aspects</Text>
         </View>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
         <TouchableOpacity style={{
