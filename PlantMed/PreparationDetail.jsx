@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text, FlatList } from 'react-native'
+import { TouchableOpacity, View, Text, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { getOnePrepa } from './Common/api';
@@ -14,7 +14,6 @@ const PreparationDetail = ({ route }) => {
         if (id !== 0) {
             try {
                 const dataPrepa = await getOnePrepa(id);
-                // console.log('dataPrepa', dataPrepa);
                 setPreparation(dataPrepa);
                 setLoading(false);
             } catch (error) {
@@ -32,28 +31,26 @@ const PreparationDetail = ({ route }) => {
         navigation.goBack();
     };
 
-    const renderPlanteItem = ({ item }) => {
-        return (
-            <View>
-                <Text>{item.name}</Text>
-                {/* <Text>{item.notes}</Text> */}
-            </View>
-        );
-    }
-
     return (
         <View>
             <Back />
-            {preparation && <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 24}}>{preparation.name}</Text>}
-            {preparation && preparation.plantes && (
-                <FlatList
-                    data={preparation.plantes}
-                    renderItem={renderPlanteItem}
-                    keyExtractor={(item) => item.id.toString()}
-                />
-            )}
+            <View>
+                {preparation && <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 24 }}>{preparation.name}</Text>}
+                {preparation && preparation.plantes && preparation.plantes.map((plante) => (
+                    <View key={plante.id}>
+                        <Text>{plante.name}</Text>
+                        {plante.media && (
+                            <Image
+                                source={{ uri: plante.media.url }}
+                                style={{ width: 200, height: 200 }}
+                            />
+                        )}
+                        {/* <Text>{plante.notes}</Text> */}
+                    </View>
+                ))}
+            </View>
         </View>
-    )
+    );
 }
 
 export default PreparationDetail;

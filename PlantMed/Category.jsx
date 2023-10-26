@@ -25,13 +25,21 @@ const Category = () => {
 
   return (
     <ScrollView>
-      <View>
-        <Back />
+      <Back />
+
+      <View style={{ padding: 10 }}>
+
+        <View>
+          <Text>
+            Découvrez comment les plantes médicinales peuvent être ciblées pour répondre à des besoins spécifiques de votre corps. De la gestion des affections respiratoires à la prise en charge des problèmes hépatiques, notre application vous guide à travers une variété de spécialisations.
+          </Text>
+        </View>
+
         <View>
           {isLoading ? (
             <ActivityIndicator />
           ) : (
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-around' }}>
               {data.map((item) => (
                 <CategoryItem key={item.id} item={item} />
               ))}
