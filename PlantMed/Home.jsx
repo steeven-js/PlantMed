@@ -13,6 +13,10 @@ const Home = () => {
     navigation.navigate('Preparation')
   }
 
+  const goToCategory = () => {
+    navigation.navigate('Category')
+  }
+
   return (
     <View style={{ flex: 1, padding: 10 }}>
       <View>
@@ -21,9 +25,9 @@ const Home = () => {
       <View>
         <SearchBar />
       </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 18 }}>Les plantes médicinale dans toutes leurs aspects</Text>
-        </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 18 }}>Les plantes médicinale dans toutes leurs aspects</Text>
+      </View>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
         <TouchableOpacity style={{
           width: 150,
@@ -32,7 +36,9 @@ const Home = () => {
           backgroundColor: 'lightgray',
           justifyContent: 'center',
           alignItems: 'center',
-        }}>
+        }}
+          onPress={goToCategory}
+        >
           <Text>Spécialités</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{

@@ -16,9 +16,9 @@ const Plant = () => {
   const [prevPageUrl, setPrevPageUrl] = useState(null);
   const [nextPageUrl, setNextPageUrl] = useState(null);
 
-  const getPlant = async url => {
+  const getPlant = async () => {
     try {
-      const response = await fetch(url || apiUrl);
+      const response = await fetch(apiUrl);
       const json = await response.json();
       setData(json.plantes);
       setPrevPageUrl(json.prev_page_url);

@@ -7,6 +7,8 @@ import Home from './PlantMed/Home';
 import Preparation from './PlantMed/Preparation';
 import PreparationDetail from './PlantMed/PreparationDetail';
 import PlantDetail from './PlantMed/PlantDetail';
+import Category from './PlantMed/Category';
+import CategoryDetail from './PlantMed/CategoryDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +19,8 @@ function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Plant" component={Plant} />
         <Stack.Screen name="PlanteDetail" component={PlantDetail} />
+        <Stack.Screen name="Category" component={Category} />
+        <Stack.Screen name="CategoryDetail" component={CategoryDetail} />
         <Stack.Screen name="Preparation" component={Preparation} />
         <Stack.Screen name="PreparationDetail" component={PreparationDetail} />
       </Stack.Navigator>

@@ -1,9 +1,8 @@
 import { TouchableOpacity, View, Text, FlatList } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import React, { useEffect, useState } from 'react';
 import { getOnePrepa } from './Common/api';
-import Colors from './constants/Colors';
+import Back from './Components/Back';
 
 const PreparationDetail = ({ route }) => {
     const navigation = useNavigation();
@@ -44,14 +43,7 @@ const PreparationDetail = ({ route }) => {
 
     return (
         <View>
-            <TouchableOpacity
-                onPress={handleGoBack}
-                style={{ flexDirection: 'row', alignItems: 'center', padding: 10 }}>
-                <Text>
-                    <Icon name="arrow-left" size={30} color={Colors.primary} />
-                </Text>
-                <Text style={{ marginLeft: 10, fontWeight: 'bold' }}>Back</Text>
-            </TouchableOpacity>
+            <Back />
             {preparation && <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 24}}>{preparation.name}</Text>}
             {preparation && preparation.plantes && (
                 <FlatList

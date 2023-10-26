@@ -16,7 +16,7 @@ const Back = () => {
             <Text>
                 <Icon name="arrow-left" size={30} color={Colors.primary} />
             </Text>
-            <Text style={{ marginLeft: 10, fontWeight: 'bold' }}>Back</Text>
+            <Text style={{ marginLeft: 10, fontWeight: 'bold' }}>Retour</Text>
         </TouchableOpacity>
     )
 }
