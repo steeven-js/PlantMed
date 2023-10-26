@@ -32,14 +32,14 @@ const Plant = () => {
 
   const goToPrev = () => {
     if (prevPageUrl) {
-      console.log('prevPageUrl', prevPageUrl);
+      // console.log('prevPageUrl', prevPageUrl);
       getPlant(prevPageUrl);
     }
   };
 
   const goToNext = () => {
     if (nextPageUrl) {
-      console.log('nextPageUrl', nextPageUrl);
+      // console.log('nextPageUrl', nextPageUrl);
       getPlant(nextPageUrl);
     }
   };

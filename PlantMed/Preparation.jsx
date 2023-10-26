@@ -35,7 +35,7 @@ const Preparation = () => {
                     {isLoading ? (
                         <ActivityIndicator />
                     ) : (
-                        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
                             {data.map((item) => (
                                 <PreparationItem key={item.id} item={item} />
                             ))}
@@ -44,13 +44,13 @@ const Preparation = () => {
                 </View>
             </View>
 
-            <ScrollView>
-                <View style={{ height: 50, backgroundColor: Colors.primary }}>
-                    <Text style={{ textAlign: 'center', color: '#fff', fontSize: 20, fontWeight: 'bold' }}>
-                        Preparation
-                    </Text>
-                </View>
-            </ScrollView>
+
+            <View style={{ height: 50, backgroundColor: Colors.primary }}>
+                <Text style={{ textAlign: 'center', color: '#fff', fontSize: 20, fontWeight: 'bold' }}>
+                    Preparation
+                </Text>
+            </View>
+
         </ScrollView >
     );
 };
