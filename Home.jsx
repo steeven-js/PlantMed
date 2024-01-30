@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import HomeDrawer from './src/navigation/drawer/HomeDrawer';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setUser, clearUser } from './src/redux/reducer/auth';
 import { firebase } from '@react-native-firebase/auth';
 

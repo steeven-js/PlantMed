@@ -67,14 +67,6 @@ const Favoris = ({ route, navigation }) => {
 
     useEffect(() => {
         favorisStateChange()
-        // const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
-        //     setUser(authUser);
-        //     if (authUser && initialLoad.current) {
-        //         loadFavorites(authUser.uid);
-        //         initialLoad.current = false;
-        //     }
-        // });
-        // return unsubscribe;
     }, []);
 
     const renderItem = ({ item }) => {
