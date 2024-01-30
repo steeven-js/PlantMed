@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import { firebase } from '@react-native-firebase/auth';
-import useFetchPlants from '../../hook/useFetchPlants';
+import useFetchPlants from '../../../hook/useFetchPlants';
 import Question from '../../components/paragraphs/Question';
 import Link from '../../components/links/Link';
 import * as Animatable from 'react-native-animatable';
@@ -22,6 +22,7 @@ import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 
 const Favoris = ({ route, navigation }) => {
     const [favorites, setFavorites] = useState([]);
+    const initialLoad = useRef(true);
     const { data: plantsData, isLoading, error, refetch } = useFetchPlants();
     const uid = useSelector(state => state.auth.uid)
     const dispatch = useDispatch();

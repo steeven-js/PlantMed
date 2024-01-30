@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity, Text, ActivityIndicator, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import useFetchSymptoms from '../../hook/useFetchSymptoms';
+import useFetchSymptoms from '../../../hook/useFetchSymptoms';
 import { icons } from '../../constants';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';

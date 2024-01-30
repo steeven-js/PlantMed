@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import useFetchPlants from '../../hook/useFetchPlants';
+import useFetchPlants from '../../../hook/useFetchPlants';
 import firestore from '@react-native-firebase/firestore';
 import { useSelector, useDispatch } from 'react-redux'
 import StarIcon from 'react-native-vector-icons/FontAwesome6';
