@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   TouchableOpacity,
@@ -10,36 +10,15 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useFetchPlants from '../../../hook/useFetchPlants';
 import firestore from '@react-native-firebase/firestore';
-import { firebase } from '@react-native-firebase/auth';
+import { useSelector, useDispatch } from 'react-redux'
 import StarIcon from 'react-native-vector-icons/FontAwesome6';
 
 import styles from './styles';
 
 const Plantes = ({ navigation }) => {
-  const [user, setUser] = useState(null);
   const [favorites, setFavorites] = useState([]);
-  const initialLoad = useRef(true);
   const { data, isLoading, error, refetch } = useFetchPlants();
-
-  if (!data) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#2c5c2d" />
-      </View>
-    );
-  }
-
-  useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
-      setUser(authUser);
-      if (authUser && initialLoad.current) {
-        loadFavorites(authUser.uid);
-        initialLoad.current = false;
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
+  const uid = useSelector(state => state.auth.uid)
 
   const loadFavorites = async (userId) => {
     try {
@@ -52,11 +31,23 @@ const Plantes = ({ navigation }) => {
         id: doc.id,
         ...doc.data(),
       }));
-      // setFavorites(favoritePlants);
+      setFavorites(favoritePlants);
     } catch (error) {
       console.error('Error loading favorites:', error);
     }
   };
+
+  useEffect(() => {
+    loadFavorites(uid);
+  }, []);
+
+  if (!data) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#2c5c2d" />
+      </View>
+    );
+  }
 
   const getPlantItemStyle = (item) => {
     const isFavorite = favorites.some((favorite) => favorite.plantId === item.id);

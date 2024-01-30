@@ -20,7 +20,6 @@ import Button from '../../components/buttons/Button';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 
 const Favoris = ({ route, navigation }) => {
-    const [user, setUser] = useState(null);
     const [favorites, setFavorites] = useState([]);
     const initialLoad = useRef(true);
     const { data: plantsData, isLoading, error, refetch } = useFetchPlants();
@@ -68,19 +67,15 @@ const Favoris = ({ route, navigation }) => {
     };
 
     useEffect(() => {
-        const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
-            setUser(authUser);
-            if (authUser && initialLoad.current) {
-                loadFavorites(authUser.uid);
-                initialLoad.current = false;
-            }
-        });
-
         favorisStateChange()
-
-        console.log('uid', uid)
-
-        return unsubscribe;
+        // const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
+        //     setUser(authUser);
+        //     if (authUser && initialLoad.current) {
+        //         loadFavorites(authUser.uid);
+        //         initialLoad.current = false;
+        //     }
+        // });
+        // return unsubscribe;
     }, []);
 
     const renderItem = ({ item }) => {
