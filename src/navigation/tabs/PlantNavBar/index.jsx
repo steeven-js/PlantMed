@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { firebase } from '@react-native-firebase/firestore';
+import { firebase } from '@react-native-firebase/auth';
 import BackIcon from 'react-native-vector-icons/Ionicons';
 import StarIcon from 'react-native-vector-icons/FontAwesome6';
 import NavIcon from 'react-native-vector-icons/FontAwesome6';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import styles from './styles';
 
 const Colors = {
@@ -16,7 +16,8 @@ const Colors = {
 const PlantNavBar = ({ data, plantId }) => {
     const navigation = useNavigation();
     const route = useRoute();
-    const [isFavorite, setIsFavorite] = useState(false);
+    const [user, setUser] = useState(null);
+    const [isFavorite, setIsFavorite] = useState(false); 
     const uid = useSelector(state => state.auth.uid)
 
     const navigateToScreen = (screenName) => {
@@ -42,35 +43,6 @@ const PlantNavBar = ({ data, plantId }) => {
                 return isActiveScreen(screenName) ? '#f00' : Colors.inactive;
             default:
                 return Colors.inactive;
-        }
-    };
-
-    const backSymptomeDetail = () => {
-        navigation.navigate('SymptomeDetail', {
-            symptomeId: route.params?.symptomeId,
-            symptomeName: route.params?.symptomeName
-        });
-    };
-
-    const backPlantDetail = () => {
-        navigation.navigate('Plantes médicinales');
-    };
-
-    const backFavoris = () => {
-        navigation.navigate('Favoris');
-    };
-
-    const backToOriginRoute = () => {
-        const { originRoute } = route.params;
-        switch (originRoute) {
-            case 'SymptomeDetail':
-                return backSymptomeDetail();
-            case 'Plantes médicinales':
-                return backPlantDetail();
-            case 'Favoris':
-                return backFavoris();
-            default:
-                return navigation.navigate('Plantes médicinales');
         }
     };
 
@@ -109,6 +81,50 @@ const PlantNavBar = ({ data, plantId }) => {
         }
     };
 
+    const backSymptomeDetail = () => {
+        navigation.navigate('SymptomeDetail', {
+            symptomeId: route.params?.symptomeId,
+            symptomeName: route.params?.symptomeName
+        });
+    };
+
+    const backPlantDetail = () => {
+        navigation.navigate('Plantes médicinales');
+    };
+
+    const backFavoris = () => {
+        navigation.navigate('Favoris');
+    };
+
+    const backToOriginRoute = () => {
+        const { originRoute } = route.params;
+        switch (originRoute) {
+            case 'SymptomeDetail':
+                return backSymptomeDetail();
+            case 'Plantes médicinales':
+                return backPlantDetail();
+            case 'Favoris':
+                return backFavoris();
+            default:
+                return navigation.navigate('Plantes médicinales');
+        }
+    };
+
+    useEffect(() => {
+        const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
+            setUser(authUser);
+            if (authUser) {
+                checkIsFavorite(authUser.uid);
+            } else {
+                setIsFavorite(false);
+            }
+        });
+
+        console.log('uid', uid)
+
+        return () => unsubscribe();
+    }, []);
+
     const checkIsFavorite = async (userId) => {
         try {
             const existingFavoriteQuery = await firebase.firestore().collection('favoris')
@@ -124,10 +140,6 @@ const PlantNavBar = ({ data, plantId }) => {
 
     const hasMedia = data.media && data.media.length > 0;
     const imageUrl = hasMedia ? data.media[0]?.original_url : null;
-
-    useEffect(() => {
-        checkIsFavorite(uid)
-    }, []);
 
     return (
         <View>

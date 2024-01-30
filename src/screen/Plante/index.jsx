@@ -10,7 +10,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import useFetchPlants from '../../hook/useFetchPlants';
 import firestore from '@react-native-firebase/firestore';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import StarIcon from 'react-native-vector-icons/FontAwesome6';
 
 import styles from './styles';
