@@ -37,18 +37,34 @@ const Favoris = ({ route, navigation }) => {
                         console.log('change', change.type)
                         if (change.type === 'added') {
                             console.log('New favoris: ', change.doc.data());
-                        } else if (change.type === 'modified') {
-                            console.log('Updated favoris: ', change.doc.data());
+                            loadFavorites(uid);
                         } else if (change.type === 'removed') {
                             console.log('Removed favoris: ', change.doc.data());
+                            favorites.filter((item) => item.plantId !== change.doc.id)
+                            console.log('favoris data: ', favorites)
+                            setFavorites(favorites)
                         }
                     });
                 });
-    
             return subscriber;
         }
-    
         return null;
+    };
+
+    const loadFavorites = async (userId) => {
+        try {
+            const favoritesSnapshot = await firestore()
+                .collection('favoris')
+                .where('userId', '==', userId)
+                .get();
+            const favoritePlants = favoritesSnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setFavorites(favoritePlants);
+        } catch (error) {
+            console.error('Error loading favorites:', error);
+        }
     };
 
     useEffect(() => {
@@ -66,22 +82,6 @@ const Favoris = ({ route, navigation }) => {
 
         return unsubscribe;
     }, []);
-
-    const loadFavorites = async (userId) => {
-        try {
-            const favoritesSnapshot = await firestore()
-                .collection('favoris')
-                .where('userId', '==', userId)
-                .get();
-            const favoritePlants = favoritesSnapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setFavorites(favoritePlants);
-        } catch (error) {
-            console.error('Error loading favorites:', error);
-        }
-    };
 
     const renderItem = ({ item }) => {
         const plant = plantsData.find((p) => p.id === item.plantId) || {};
@@ -128,7 +128,6 @@ const Favoris = ({ route, navigation }) => {
             </View>
         );
     }
-
 
     if (!uid) {
         return (
