@@ -18,7 +18,8 @@ import styles from './styles';
 const Plantes = ({ navigation }) => {
   const [favorites, setFavorites] = useState([]);
   const { data, isLoading, error, refetch } = useFetchPlants();
-  const uid = useSelector(state => state.auth.uid)
+  const uid = useSelector(state => state.auth.uid);
+  const favoris = useSelector(state => state.favoris)
 
   const loadFavorites = async (userId) => {
     try {
@@ -39,6 +40,7 @@ const Plantes = ({ navigation }) => {
 
   useEffect(() => {
     loadFavorites(uid);
+    setFavorites(favorites)
   }, []);
 
   if (!data) {
@@ -49,21 +51,14 @@ const Plantes = ({ navigation }) => {
     );
   }
 
-  const getPlantItemStyle = (item) => {
-    const isFavorite = favorites.some((favorite) => favorite.plantId === item.id);
-    return isFavorite ? styles.favoritePlant : styles.plant;
-  };
-
   const renderPlantItem = ({ item }) => {
     const hasMedia = item.media && item.media.length > 0;
     const imageUrl = hasMedia ? item.media[0]?.original_url : null;
+    const isFavorite = favorites.some((favorite) => favorite.plantId === item.id);
 
     return (
       <TouchableOpacity
-        style={[
-          getPlantItemStyle(item),
-          styles.spacing,
-        ]}
+        style={[styles.plant, styles.spacing]}
         onPress={() => {
           navigation.navigate('PlanteStack', {
             screen: 'Info',
@@ -78,7 +73,9 @@ const Plantes = ({ navigation }) => {
           source={imageUrl ? { uri: imageUrl } : require('../../assets/images/plante/no-image.png')}
           style={styles.plantImage}
         />
-        <StarIcon name="star" size={30} color="#fff" style={styles.icon} onPress={() => { console.log('hello') }} />
+        {isFavorite ? (
+          <StarIcon name="star" size={30} color="#fff" style={styles.icon} onPress={() => { console.log('hello') }} />
+        ) : null}
         <View style={styles.plantInfoContainer}>
           <Text style={styles.plantName}>{item.name}</Text>
         </View>

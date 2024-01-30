@@ -14,6 +14,7 @@ import Question from '../../components/paragraphs/Question';
 import Link from '../../components/links/Link';
 import * as Animatable from 'react-native-animatable';
 import { useSelector, useDispatch } from 'react-redux'
+import { add } from '../../redux/reducer/favoris';
 
 import styles from './styles';
 import Button from '../../components/buttons/Button';
@@ -23,6 +24,7 @@ const Favoris = ({ route, navigation }) => {
     const [favorites, setFavorites] = useState([]);
     const { data: plantsData, isLoading, error, refetch } = useFetchPlants();
     const uid = useSelector(state => state.auth.uid)
+    const dispatch = useDispatch();
 
     const favorisStateChange = () => {
         if (uid) {
@@ -36,6 +38,7 @@ const Favoris = ({ route, navigation }) => {
                         if (change.type === 'added') {
                             console.log('New favoris: ', change.doc.data());
                             loadFavorites(uid);
+                            dispatch(add({id:change.doc.id, ...change.doc.data()}))
                         } else if (change.type === 'removed') {
                             console.log('Removed favoris: ', change.doc.data());
                             favorites.filter((item) => item.plantId !== change.doc.id)

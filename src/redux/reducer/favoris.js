@@ -25,20 +25,24 @@ export const favorisSlice = createSlice({
         },
         add: (state, action) => {
             console.log('add');
-            const { payload: { plantId, uid } } = action;
+            console.log('add', action.payload)
 
-            // Check if the plant is already in the favorites
-            const existingPlant = state.value.find((fav) => fav.plantId === plantId);
+            // state.value = {...action.payload, ...state.value}
+            state.value.push(action.payload)
+            // const { payload: { plantId, uid } } = action;
 
-            if (!existingPlant) {
-                // If not, add it to the favorites
-                state.value.push({
-                    id: 'new', 
-                    plantId,
-                    uid,
-                    // Add other properties as needed
-                });
-            }
+            // // Check if the plant is already in the favorites
+            // const existingPlant = state.value.find((fav) => fav.plantId === plantId);
+
+            // if (!existingPlant) {
+            //     // If not, add it to the favorites
+            //     state.value.push({
+            //         id: 'new', 
+            //         plantId,
+            //         uid,
+            //         // Add other properties as needed
+            //     });
+            // }
         },
         remove: (state, action) => {
             console.log('remove');
