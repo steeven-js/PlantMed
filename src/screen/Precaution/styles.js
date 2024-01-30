@@ -3,40 +3,44 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     background: {
         flex: 1,
+        backgroundColor: '#fff',
     },
     container: {
-        backgroundColor: '#f1e3c6',
+        // backgroundColor: '#f1e3c6',
         borderRadius: 10,
-        borderColor: 'red',
-        borderWidth: 3,
+        // borderColor: 'lightblue',
+        // borderWidth: 3,
         margin: 20,
-        marginTop: 30,
+    },
+    verticalSpacer: {
+        marginVertical: 10 * 1.5,
     },
     content: {
-        padding: 10,
+        paddingHorizontal: 10,
     },
     title: {
-        fontFamily: 'Dosis-Medium',
-        color: 'black',
-        fontSize: 15,
-        textAlign: 'center',
-        marginBottom: 10,
+        fontSize: 22,
+        fontFamily: 'Dosis-Bold',
+        textAlign: 'left',
+        color: '#283828',
     },
     soustitre: {
-        fontFamily: 'Dosis-Medium',
-        color: 'black',
-        textAlign: 'center',
-        marginTop: 10,
-        paddingBottom: 5,
-    },
-    borderBottom: {
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
+        fontSize: 20,
+        fontFamily: 'Dosis-Bold',
+        textAlign: 'left',
+        marginBottom: 10,
+        color: '#283828',
     },
     loadingContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    text: {
+        fontFamily: 'Dosis-Medium',
+        color: '#283828',
+        fontSize: 16,
+        marginBottom: 10,
     },
 });
 

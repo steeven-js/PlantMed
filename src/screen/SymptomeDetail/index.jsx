@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import BackIcon from 'react-native-vector-icons/Ionicons';
 import useFetchSymptom from '../../../hook/useFetchSymptom';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
 import styles from './styles';
 
 const SymptomeDetail = ({ route, navigation }) => {
@@ -15,15 +15,7 @@ const SymptomeDetail = ({ route, navigation }) => {
 
         return (
             <TouchableOpacity
-                style={[styles.favorite, styles.spacing]}
-                // onPress={() => {
-                //     navigation.navigate('Info', {
-                //         plantId: item.id,
-                //         symptomeId: symptomeId,
-                //         symptomeName: symptomeName,
-                //         originRoute: 'SymptomeDetail',
-                //     });
-                // }}
+                style={[styles.plant, styles.spacing]}
                 onPress={() => {
                     navigation.navigate('PlanteStack', {
                         screen: 'Info',
@@ -40,8 +32,8 @@ const SymptomeDetail = ({ route, navigation }) => {
                     source={imageUrl ? { uri: imageUrl } : require('../../assets/images/plante/no-image.png')}
                     style={styles.plantImage}
                 />
-                <View style={styles.favoriteInfoContainer}>
-                    <Text style={styles.favoriteName}>{item.name}</Text>
+                <View style={styles.plantInfoContainer}>
+                    <Text style={styles.plantName}>{item.name}</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -49,37 +41,29 @@ const SymptomeDetail = ({ route, navigation }) => {
 
     return (
         <View style={styles.background}>
-            <LinearGradient
-                colors={['#2e6a30', '#439a46']}
-                locations={[0, 0.65]}
-                useAngle
-                angle={180}
-                style={styles.header}
-            >
-                <View style={styles.TopNavBar}>
-                    <BackIcon
-                        name="arrow-back"
-                        size={30}
-                        color="#fff"
-                        onPress={() => navigation.goBack()}
-                    />
-                    <Text style={styles.textTopNavBar}>{symptomeName}</Text>
-                    {isLoading ? (
-                        <ActivityIndicator size="small" color="#00ff00" />
-                    ) : error ? (
-                        <Text>Error loading plants. Please try again.</Text>
-                    ) : (
-                        <Text style={styles.textTopNavBar}>
-                            {symptomePlants?.plants_count}
-                        </Text>
-                    )}
-                </View>
-            </LinearGradient>
+            <View style={styles.TopNavBar}>
+                <BackIcon
+                    name="arrow-back"
+                    size={STANDARD_VECTOR_ICON_SIZE}
+                    color="#fff"
+                    onPress={() => navigation.goBack()}
+                />
+                <Text style={styles.textTopNavBar}>{symptomeName}</Text>
+                {isLoading ? (
+                    <ActivityIndicator size="large" color="#2c5c2d" />
+                ) : error ? (
+                    <Text>Error loading plants. Please try again.</Text>
+                ) : (
+                    <Text style={styles.textTopNavBar}>
+                        {symptomePlants?.plants_count}
+                    </Text>
+                )}
+            </View>
 
             <View style={styles.overlay}>
                 {isLoading ? (
                     <View style={styles.loadingContainer}>
-                        <ActivityIndicator size="large" color="#00ff00" />
+                        <ActivityIndicator size="large" color="#2c5c2d" />
                     </View>
                 ) : error ? (
                     <Text>Error loading plants. Please try again.</Text>

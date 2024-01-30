@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-community/cli-doctor": "^13.5.1",
     "@react-native-firebase/app": "^18.7.3",
     "@react-native-firebase/auth": "^18.7.3",
     "@react-native-firebase/firestore": "^18.7.3",
@@ -25,6 +26,7 @@
     "react-native": "0.72.7",
     "react-native-animatable": "^1.4.0",
     "react-native-gesture-handler": "^2.14.0",
+    "react-native-heroicons": "^4.0.0",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-pager-view": "^6.2.3",
     "react-native-reanimated": "^3.6.1",

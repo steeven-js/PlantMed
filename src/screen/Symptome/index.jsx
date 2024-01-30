@@ -17,12 +17,6 @@ const Symptomes = () => {
         return (
             <TouchableOpacity
                 style={styles.symptomeItem}
-                // onPress={() => {
-                //     navigation.navigate('SymptomeDetail', {
-                //         symptomeId: item.id,
-                //         symptomeName: item.name,
-                //     });
-                // }}
                 onPress={() => {
                     navigation.navigate('SymptomeStack', {
                         screen: 'SymptomeDetail',
@@ -35,11 +29,15 @@ const Symptomes = () => {
             >
                 <View style={styles.rowContainer}>
                     <View style={styles.left}>
-                        <Image
-                            source={imageUrl ? { uri: imageUrl } : icons.soin}
-                            style={styles.icon}
-                        />
-                        <Text style={styles.symptomeName}>{item.name}</Text>
+                        <View style={styles.imageBackground}>
+                            <Image
+                                source={imageUrl ? { uri: imageUrl } : icons.soin}
+                                style={styles.icon}
+                            />
+                        </View>
+                        <Text style={[styles.symptomeName, { fontSize: item.name.length >= 20 ? 22 : 28 }]}>
+                            {item.name}
+                        </Text>
                     </View>
                     <View style={styles.right}>
                         <Image source={icons.feuille} style={styles.icon} />
@@ -54,7 +52,7 @@ const Symptomes = () => {
             <View style={styles.overlay}>
                 {isLoading ? (
                     <View style={styles.loadingContainer}>
-                        <ActivityIndicator size="large" color="#00ff00" />
+                        <ActivityIndicator size="large" color="#2c5c2d" />
                     </View>
                 ) : error ? (
                     <View style={styles.errorContainer}>

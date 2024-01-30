@@ -6,6 +6,9 @@ const COLORS = {
     accentLightest: '#5881571A',
     textHighContrast: '#344E41',
     textLowContrast: '#888BA4',
+    white: '#FFFFFF',
+    black: '#000000',
+    blackBackground: 'rgba(0, 0, 0, 0.7)',
 };
 
 // Defining independent colors
@@ -14,3 +17,4 @@ const IndependentColors = {
   };
 
 export { COLORS, IndependentColors };
+// 2c5c2d

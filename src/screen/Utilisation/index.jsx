@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
 import PlantNavBar from '../../navigation/tabs/PlantNavBar';
 import useFetchPlant from '../../../hook/useFetchPlant';
 import styles from './styles';
@@ -11,7 +11,7 @@ const Utilisation = ({ route }) => {
     if (!data) {
         return (
             <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#00ff00" />
+                <ActivityIndicator size="large" color="#2c5c2d" />
             </View>
         );
     }
@@ -20,7 +20,7 @@ const Utilisation = ({ route }) => {
         <View style={styles.background}>
             {isLoading ? (
                 <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#00ff00" />
+                    <ActivityIndicator size="large" color="#2c5c2d" />
                 </View>
             ) : error ? (
                 <Text>Something went wrong</Text>
@@ -31,11 +31,15 @@ const Utilisation = ({ route }) => {
             ) : (
                 <>
                     <PlantNavBar data={data} plantId={plantId} originRoute={originRoute} symptomeId={symptomeId} symptomeName={symptomeName} />
-                    <View style={styles.container}>
+                    <ScrollView style={styles.container}>
                         <View style={styles.content}>
                             <View style={styles.section}>
                                 <Text style={styles.title}>Utilisations</Text>
                             </View>
+
+                            {/* Vertical spacer */}
+                            <View style={styles.verticalSpacer} />
+
                             <View style={[styles.section, styles.borderBottom]}>
                                 <Text style={styles.soustitre}>Usage Interne</Text>
                                 {data.utilisations.filter(item => item.type === 'interne').map((utilisationItem) => (
@@ -43,6 +47,10 @@ const Utilisation = ({ route }) => {
                                         {utilisationItem.value}
                                     </Text>
                                 ))}
+
+                                {/* Vertical spacer */}
+                                <View style={styles.verticalSpacer} />
+
                             </View>
                             <View style={styles.section}>
                                 <Text style={styles.soustitre}>Usage Externe</Text>
@@ -51,9 +59,13 @@ const Utilisation = ({ route }) => {
                                         {utilisationItem.value}
                                     </Text>
                                 ))}
+
+                                {/* Vertical spacer */}
+                                <View style={styles.verticalSpacer} />
+
                             </View>
                         </View>
-                    </View>
+                    </ScrollView>
                 </>
             )}
         </View>

@@ -4,6 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { firebase } from '@react-native-firebase/auth';
 import BackIcon from 'react-native-vector-icons/Ionicons';
 import StarIcon from 'react-native-vector-icons/FontAwesome6';
+import NavIcon from 'react-native-vector-icons/FontAwesome6';
 import styles from './styles';
 
 import { icons } from '../../../constants';
@@ -172,7 +173,8 @@ const PlantNavBar = ({ data, plantId }) => {
                             },
                         ]}
                     >
-                        <Image source={icons.info} style={styles.icon} />
+                        <NavIcon name="circle-info" size={22} color="#fff" />
+                        {/* <Image source={icons.info} style={styles.icon} /> */}
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => navigateToScreen('Propriete')}
@@ -184,7 +186,8 @@ const PlantNavBar = ({ data, plantId }) => {
                             },
                         ]}
                     >
-                        <Image source={icons.propriete} style={styles.icon} />
+                        <NavIcon name="clipboard-list" size={22} color="#fff" />
+                        {/* <Image source={icons.propriete} style={styles.icon} /> */}
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => navigateToScreen('Utilisation')}
@@ -196,7 +199,8 @@ const PlantNavBar = ({ data, plantId }) => {
                             },
                         ]}
                     >
-                        <Image source={icons.usage} style={styles.icon} />
+                        <NavIcon name="heart-circle-check" size={22} color="#fff" />
+                        {/* <Image source={icons.usage} style={styles.icon} /> */}
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => navigateToScreen('Precaution')}
@@ -208,7 +212,8 @@ const PlantNavBar = ({ data, plantId }) => {
                             },
                         ]}
                     >
-                        <Image source={icons.caution} style={styles.icon} />
+                        <NavIcon name="circle-exclamation" size={22} color="#fff" />
+                        {/* <Image source={icons.caution} style={styles.icon} /> */}
                     </TouchableOpacity>
                 </View>
             </View>

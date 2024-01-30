@@ -1,13 +1,16 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../../config/Colors';
 
 const styles = StyleSheet.create({
+    topNav: {
+        backgroundColor: COLORS.accent,
+    },
     header: {
-        flexDirection: 'column', // Ajuster la direction du dégradé
+        flexDirection: 'column', 
     },
     icon: {
         padding: 10,
-        width: 30,
-        height: 30,
+        marginTop: 10,
     },
     TopNavBar: {
         padding: 10,
@@ -16,9 +19,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textTopNavBar: {
-        fontSize: 18,
-        color: 'white',
-        fontFamily: 'Dosis-Regular',
+        fontSize: 22,
+        color: COLORS.white,
+        fontFamily: 'Dosis-Medium',
     },
     container: {
         flexDirection: 'row',
@@ -32,20 +35,14 @@ const styles = StyleSheet.create({
         borderBottomColor: 'transparent',
         textAlign: 'center',
     },
-    tabText: {
-        paddingVertical: 10,
-        fontSize: 16,
-        alignItems: 'center',
-        color: 'black',
-    },
     activeTab1: {
-        borderBottomColor: 'red',
+        borderBottomColor: COLORS.white,
     },
     activeTab2: {
-        borderBottomColor: 'green',
+        borderBottomColor: COLORS.white,
     },
     activeTab3: {
-        borderBottomColor: 'yellow',
+        borderBottomColor: COLORS.white,
     },
 });
 

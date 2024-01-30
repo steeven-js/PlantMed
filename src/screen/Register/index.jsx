@@ -20,6 +20,7 @@ import Question from '../../components/paragraphs/Question';
 import Link from '../../components/links/Link';
 import Button from '../../components/buttons/Button';
 import OrDivider from '../../components/dividers/OrDivider';
+import TopNavBar from '../../components/topNavBar';
 
 const Register = ({ navigation }) => {
     GoogleSignin.configure({
@@ -126,19 +127,11 @@ const Register = ({ navigation }) => {
 
     return (
         <View style={[styles.mainWrapper, { backgroundColor: COLORS.accent }]}>
-            <LinearGradient
-                colors={['#2e6a30', '#439a46']}
-                locations={[0, 0.65]}
-                useAngle
-                angle={180}
-                style={styles.header}
-            >
-                <MenuIcon name="menu" size={30} color="#fff" onPress={() => navigation.openDrawer()} />
-                <Text style={styles.textTopNavBar}>S'inscrire</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Plantes médicinales')}>
-                    <Image source={icons.plante} style={styles.icon} />
-                </TouchableOpacity>
-            </LinearGradient>
+
+            {/* Top navigation bar */}
+            <TopNavBar
+                title="S'inscrire"
+            />
 
             <Animatable.View
                 animation="fadeInUp"
@@ -202,7 +195,7 @@ const Register = ({ navigation }) => {
                                 <View style={styles.verticalSpacer} />
 
                                 <Animatable.View animation="fadeInUp" delay={1500}>
-                                    <OrDivider label="or login with" />
+                                    <OrDivider label="Ou se connecté avec : " />
                                 </Animatable.View>
 
                                 <View style={styles.socialMediaIconsWrapper}>

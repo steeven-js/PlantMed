@@ -3,7 +3,6 @@ import {
     View,
     Text,
     TouchableOpacity,
-    Button,
     Image,
     FlatList,
     ActivityIndicator,
@@ -16,6 +15,8 @@ import Link from '../../components/links/Link';
 import * as Animatable from 'react-native-animatable';
 
 import styles from './styles';
+import Button from '../../components/buttons/Button';
+import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 
 const Favoris = ({ route, navigation }) => {
     const [user, setUser] = useState(null);
@@ -87,74 +88,85 @@ const Favoris = ({ route, navigation }) => {
         );
     };
 
-    return (
-        <View style={styles.background}>
-            {!isLoading && !user && (
-                <View style={styles.loginButtonContainer}>
+    if (isLoading) {
+        return (
+            <View style={user ? styles.background : styles.backgroundLogOut}>
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator size="large" color="#2c5c2d" />
+                </View>
+            </View>
+        );
+    }
+
+
+    if (!user) {
+        return (
+            <View style={styles.backgroundLogOut}>
+
+                <Animatable.View animation="fadeInUp" delay={250}>
+                    {/* <ScreenInfo label="Vous devez être connecté pour accéder à vos favoris" /> */}
+                    <ScreenInfo info="Vous devez être connecté pour accéder à vos favoris" />
+                </Animatable.View>
+
+                <View style={styles.verticalSpacer} />
+
+                <Animatable.View animation="fadeInUp" delay={500}>
                     <Button
-                        title="Se connecter"
+                        label="Se connecter"
                         onPress={() => {
                             navigation.navigate('Se connecter')
                         }}
                         disabled={isLoading}
                     />
-                </View>
-            )}
-            <View style={styles.overlay}>
-                {isLoading && (
-                    <View style={styles.loadingContainer}>
-                        <ActivityIndicator size="large" color="#00ff00" />
-                    </View>
-                )}
+                </Animatable.View>
 
-                {error && (
-                    <Text style={styles.errorText}>
-                        Une erreur s'est produite : {error.message}
-                    </Text>
-                )}
-
-                {!isLoading && !error && plantsData && user && (
-                    <>
-                        {favorites.length === 0 ? (
-                            <View style={styles.noFavorite}>
-                                <Animatable.View
-                                    animation="fadeInUp"
-                                    delay={100}
-                                    style={styles.questionAndLinkWrapper}>
-
-                                    {/* Question component */}
-                                    <Question question="Vous n'avez pas de plante dans vos favoris" />
-                                </Animatable.View>
-                                <Animatable.View
-                                    animation="fadeInUp"
-                                    delay={300}
-                                    style={styles.questionAndLinkWrapper}>
-
-                                    {/* Link component */}
-                                    <Link
-                                        label="Découvrir nos plantes médicinales"
-                                        onPress={() => navigation.navigate('Home', {
-                                            screen: 'Plantes médicinales',
-                                        })}
-                                    />
-                                </Animatable.View>
-                            </View>
-                        ) : (
-                            <FlatList
-                                data={favorites}
-                                keyExtractor={(item) => item.id}
-                                renderItem={renderItem}
-                                numColumns={2}
-                                refreshing={isLoading}
-                                showsVerticalScrollIndicator={false}
-                                onRefresh={refetch}
-                            />
-                        )}
-                    </>
-                )}
             </View>
-        </View>
-    );
+        );
+    }
+
+    if (!error && plantsData && user) {
+        return (
+            <View style={styles.background}>
+                <View style={styles.overlay}>
+                    {favorites.length === 0 ? (
+                        <View style={styles.noFavorite}>
+                            <Animatable.View
+                                animation="fadeInUp"
+                                delay={100}
+                                style={styles.questionAndLinkWrapper}>
+
+                                <Question question="Vous n'avez pas de plante dans vos favoris" />
+                            </Animatable.View>
+                            <Animatable.View
+                                animation="fadeInUp"
+                                delay={300}
+                                style={styles.questionAndLinkWrapper}>
+
+                                <Link
+                                    label="Découvrir nos plantes médicinales"
+                                    onPress={() => navigation.navigate('Home', {
+                                        screen: 'Plantes médicinales',
+                                    })}
+                                />
+                            </Animatable.View>
+                        </View>
+                    ) : (
+                        <FlatList
+                            data={favorites}
+                            keyExtractor={(item) => item.id}
+                            renderItem={renderItem}
+                            numColumns={2}
+                            refreshing={isLoading}
+                            showsVerticalScrollIndicator={false}
+                            onRefresh={refetch}
+                        />
+                    )}
+                </View>
+            </View>
+        );
+    }
+
+    return null;
 };
 
 export default Favoris;

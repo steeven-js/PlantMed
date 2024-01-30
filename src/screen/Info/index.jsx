@@ -11,7 +11,7 @@ const Info = ({ route }) => {
     if (!data) {
         return (
             <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#00ff00" />
+                <ActivityIndicator size="large" color="#2c5c2d" />
             </View>
         );
     }
@@ -20,7 +20,7 @@ const Info = ({ route }) => {
         <View style={styles.background}>
             {isLoading ? (
                 <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#00ff00" />
+                    <ActivityIndicator size="large" color="#2c5c2d" />
                 </View>
             ) : error ? (
                 <Text>Something went wrong</Text>
@@ -36,26 +36,29 @@ const Info = ({ route }) => {
                             <View style={[styles.section, styles.borderBottom]}>
                                 <Text>
                                     <Text style={styles.bold}>N.Scient:{' '}</Text>
-                                    {data.nscient}
+                                    <Text style={styles.text}>{data.nscient}</Text>
                                 </Text>
                                 <Text>
                                     <Text style={styles.bold}>Famille:{' '}</Text>
-                                    {data.famille}
+                                    <Text style={styles.text}>{data.famille}</Text>
                                 </Text>
                                 <Text>
                                     <Text style={styles.bold}>Genre:{' '}</Text>
-                                    {data.genre}
+                                    <Text style={styles.text}>{data.genre}</Text>
                                 </Text>
                             </View>
 
+                            {/* Vertical spacer */}
+                            <View style={styles.verticalSpacer} />
+
                             <View style={[styles.section, styles.borderBottom]}>
                                 <Text style={styles.soustitre}>Description</Text>
-                                <Text>{data.description}</Text>
+                                <Text style={styles.text}>{data.description}</Text>
                             </View>
 
                             <View style={[styles.section, styles.borderBottom]}>
                                 <Text style={styles.soustitre}>Habitat</Text>
-                                <Text>{data.habitat}</Text>
+                                <Text style={styles.text}>{data.habitat}</Text>
                             </View>
                         </View>
                     </View>

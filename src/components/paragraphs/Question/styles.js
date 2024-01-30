@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import {
-    FONT_SIZE_XS,
+    FONT_SIZE_SM,
     DOSIS_REGULAR,
     STANDARD_SPACING,
 } from '../../../config/Constants';
@@ -9,7 +9,7 @@ import {
 export default StyleSheet.create({
     question: {
         fontFamily: DOSIS_REGULAR,
-        fontSize: FONT_SIZE_XS,
+        fontSize: FONT_SIZE_SM,
         marginEnd: STANDARD_SPACING,
     },
 });

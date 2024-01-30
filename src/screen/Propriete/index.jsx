@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
 import PlantNavBar from '../../navigation/tabs/PlantNavBar';
 import useFetchPlant from '../../../hook/useFetchPlant';
 import styles from './styles';
@@ -11,7 +11,7 @@ const Propriete = ({ route }) => {
     if (!data) {
         return (
             <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#00ff00" />
+                <ActivityIndicator size="large" color="#2c5c2d" />
             </View>
         );
     }
@@ -19,10 +19,10 @@ const Propriete = ({ route }) => {
     const { proprietes } = data;
 
     return (
-        <View style={styles.background}>
+        <ScrollView style={styles.background}>
             {isLoading ? (
                 <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#00ff00" />
+                    <ActivityIndicator size="large" color="#2c5c2d" />
                 </View>
             ) : error ? (
                 <Text>Something went wrong</Text>
@@ -37,7 +37,7 @@ const Propriete = ({ route }) => {
                             {proprietes && proprietes.length > 0 ? (
                                 proprietes.map((proprietesItem) => (
                                     <View key={proprietesItem.id} style={styles.text}>
-                                        <Text>{'.'} {proprietesItem.value}</Text>
+                                        <Text style={styles.text}>{'.'} {proprietesItem.value}</Text>
                                     </View>
                                 ))
                             ) : (
@@ -47,7 +47,7 @@ const Propriete = ({ route }) => {
                     </View>
                 </>
             )}
-        </View>
+        </ScrollView>
     );
 };
 

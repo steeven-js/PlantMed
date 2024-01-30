@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import {
+    FONT_SIZE_SM,
     FONT_SIZE_XS,
     DOSIS_REGULAR,
     DOSIS_SEMIBOLD,
@@ -13,7 +14,7 @@ import {
 export default StyleSheet.create({
     textInputLabel: {
         fontFamily: DOSIS_SEMIBOLD,
-        fontSize: FONT_SIZE_XS,
+        fontSize: FONT_SIZE_SM,
         marginBottom: STANDARD_SPACING * 1.5,
     },
     textInput: {

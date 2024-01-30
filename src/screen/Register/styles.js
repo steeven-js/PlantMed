@@ -5,6 +5,7 @@ import {
     SCREEN_WIDTH,
     SCREEN_HEIGHT
 } from '../../config/Constants';
+import { COLORS } from '../../config/Colors';
 
 const styles = StyleSheet.create({
     mainWrapper: {
@@ -35,25 +36,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: COLORS.accent,
         padding: 10,
-    },
-    icon: {
-        padding: 10,
-        width: 30,
-        height: 30,
     },
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    textTopNavBar: {
-        fontSize: 18,
-        color: '#fff',
-        fontFamily: 'Dosis-Regular',
-    },
-
     input: {
         height: 40,
         borderColor: 'gray',

@@ -1,4 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { COLORS } from '../../config/Colors';
+import { FONT_SIZE_XL } from '../../config/Constants';
 
 const { width } = Dimensions.get('window');
 const numColumns = 2;
@@ -8,13 +10,14 @@ const styles = StyleSheet.create({
     TopNavBar: {
         padding: 10,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: COLORS.accent,
     },
     textTopNavBar: {
-        fontSize: 18,
+        fontSize: FONT_SIZE_XL,
         color: 'white',
-        fontFamily: 'Dosis-Regular',
+        fontFamily: 'Dosis-Medium',
     },
     background: {
         flex: 1,
@@ -23,7 +26,7 @@ const styles = StyleSheet.create({
     },
     overlay: {
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        backgroundColor: COLORS.textHighContrast,
     },
     container: {
         flexDirection: 'row',
@@ -34,38 +37,48 @@ const styles = StyleSheet.create({
         color: 'white',
         height: 150,
     },
-    favorite: {
+    plant: {
         width: columnWidth - 20,
         height: columnWidth - 20,
-        borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.6)',
-        borderRadius: 15,
+        borderRadius: 5,
         marginBottom: 10,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
         margin: 10,
-        borderColor: 'white',
+        shadowColor: '#000',
     },
-    favoriteInfoContainer: {
+    favoritePlant: {
+        width: columnWidth - 20,
+        height: columnWidth - 20,
+        borderRadius: 5,
+        marginBottom: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+        margin: 10,
+    },
+    plantInfoContainer: {
         position: 'absolute',
         bottom: 0,
         left: 0,
         width: '100%',
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        borderBottomLeftRadius: 15,
-        borderBottomRightRadius: 15,
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
         padding: 5,
     },
-    favoriteName: {
-        color: 'white',
+    plantName: {
+        color: COLORS.white,
         textAlign: 'center',
         fontFamily: 'Dosis-Regular',
+        fontWeight: '500',
+        fontSize: 22,
     },
     plantImage: {
         width: '100%',
         height: '100%',
-        borderRadius: 15,
+        borderRadius: 5,
     },
     loadingContainer: {
         flex: 1,
@@ -76,6 +89,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    icon: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        zIndex: 1,
     },
 });
 

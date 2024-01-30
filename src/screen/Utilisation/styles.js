@@ -1,41 +1,41 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../config/Colors';
+import { Text } from 'react-native-animatable';
 
 const styles = StyleSheet.create({
     background: {
         flex: 1,
+        backgroundColor: COLORS.secondary,
     },
     container: {
-        backgroundColor: '#f1e3c6',
         borderRadius: 10,
-        borderColor: 'orange',
-        borderWidth: 3,
         margin: 20,
-        marginTop: 30,
     },
-    content: {
-        padding: 10,
+    verticalSpacer: {
+        marginVertical: 10 * 1.5,
     },
     title: {
-        fontFamily: 'Dosis-Medium',
-        color: 'black',
-        fontSize: 15,
-        textAlign: 'center',
+        fontSize: 22,
+        fontFamily: 'Dosis-Bold',
+        textAlign: 'left',
+        color: COLORS.textHighContrast,
     },
     soustitre: {
-        fontFamily: 'Dosis-Medium',
-        color: 'black',
-        textAlign: 'center',
-        marginTop: 10,
-        paddingBottom: 5,
-    },
-    borderBottom: {
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
+        fontSize: 20,
+        fontFamily: 'Dosis-Bold',
+        textAlign: 'left',
+        marginBottom: 10,
+        color: COLORS.textHighContrast,
     },
     loadingContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    text: {
+        fontFamily: 'Dosis-Medium',
+        color: COLORS.textHighContrast,
+        fontSize: 16,
     },
 });
 

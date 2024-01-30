@@ -11,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import useFetchPlants from '../../../hook/useFetchPlants';
 import firestore from '@react-native-firebase/firestore';
 import { firebase } from '@react-native-firebase/auth';
+import StarIcon from 'react-native-vector-icons/FontAwesome6';
 
 import styles from './styles';
 
@@ -22,8 +23,8 @@ const Plantes = ({ navigation }) => {
 
   if (!data) {
     return (
-      <View>
-        <ActivityIndicator size="large" color="#00ff00" />
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#2c5c2d" />
       </View>
     );
   }
@@ -71,12 +72,6 @@ const Plantes = ({ navigation }) => {
           getPlantItemStyle(item),
           styles.spacing,
         ]}
-        // onPress={() => {
-        //   navigation.navigate('Info', {
-        //     plantId: item.id,
-        //     plantName: item.name,
-        //   });
-        // }}
         onPress={() => {
           navigation.navigate('PlanteStack', {
             screen: 'Info',
@@ -91,6 +86,7 @@ const Plantes = ({ navigation }) => {
           source={imageUrl ? { uri: imageUrl } : require('../../assets/images/plante/no-image.png')}
           style={styles.plantImage}
         />
+        <StarIcon name="star" size={30} color="#fff" style={styles.icon} onPress={() => { console.log('hello') }} />
         <View style={styles.plantInfoContainer}>
           <Text style={styles.plantName}>{item.name}</Text>
         </View>
@@ -103,7 +99,7 @@ const Plantes = ({ navigation }) => {
       <View style={styles.overlay}>
         {isLoading ? (
           <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color="#00ff00" />
+            <ActivityIndicator size="large" color="#2c5c2d" />
           </View>
         ) : error ? (
           <View style={styles.errorContainer}>

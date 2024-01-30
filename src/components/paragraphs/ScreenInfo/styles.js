@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import {
-    FONT_SIZE_XS,
+    FONT_SIZE_MD,
     DOSIS_REGULAR,
     STANDARD_SPACING,
 } from '../../../config/Constants';
@@ -9,7 +9,6 @@ import {
 export default StyleSheet.create({
     info: {
         fontFamily: DOSIS_REGULAR,
-        fontSize: FONT_SIZE_XS,
-        // textTransform: 'capitalize',
+        fontSize: FONT_SIZE_MD,
     },
 });

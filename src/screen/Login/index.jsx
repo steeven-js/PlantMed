@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'react-native-linear-gradient';
-import MenuIcon from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
@@ -17,12 +15,12 @@ import styles from './styles';
 import * as Animatable from 'react-native-animatable';
 import { STANDARD_SOCIAL_ICON_SIZE } from '../../config/Constants';
 
-import { icons } from '../../constants';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 import Link from '../../components/links/Link';
 import { SvgXml } from 'react-native-svg';
 import OrDivider from '../../components/dividers/OrDivider';
 import Question from '../../components/paragraphs/Question';
+import TopNavBar from '../../components/topNavBar';
 
 
 const Login = ({ navigation }) => {
@@ -109,19 +107,11 @@ const Login = ({ navigation }) => {
 
     return (
         <View style={[styles.mainWrapper, { backgroundColor: COLORS.accent }]}>
-            <LinearGradient
-                colors={['#2e6a30', '#439a46']}
-                locations={[0, 0.65]}
-                useAngle
-                angle={180}
-                style={styles.header}
-            >
-                <MenuIcon name="menu" size={30} color="#fff" onPress={() => navigation.openDrawer()} />
-                <Text style={styles.textTopNavBar}>Se connecter</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Plantes médicinales')}>
-                    <Image source={icons.plante} style={styles.icon} />
-                </TouchableOpacity>
-            </LinearGradient>
+
+            {/* Top navigation bar */}
+            <TopNavBar
+                title="Connexion"
+            />
 
             <Animatable.View
                 animation="fadeInUp"
@@ -164,7 +154,7 @@ const Login = ({ navigation }) => {
                 <View style={styles.verticalSpacer} />
 
                 <Animatable.View animation="fadeInUp" delay={1100}>
-                    <Link label="Forgot password?" />
+                    <Link label="Mot de passe oublié ?" />
                 </Animatable.View>
 
                 <View style={styles.verticalSpacer} />
@@ -176,6 +166,8 @@ const Login = ({ navigation }) => {
                     />
                     {emptyFieldsError ? <Text style={styles.errorMessage}>{emptyFieldsError}</Text> : null}
                 </Animatable.View>
+
+                <View style={styles.verticalSpacer} />
 
                 <Animatable.View animation="fadeInUp" delay={1500}>
                     <OrDivider label="or login with" />

@@ -13,6 +13,7 @@ export default StyleSheet.create({
         borderRadius: STANDARD_BORDER_RADIUS,
         alignItems: 'center',
         justifyContent: 'center',
+        width: '100%',
     },
     buttonLabel: {
         fontFamily: DOSIS_MEDIUM,

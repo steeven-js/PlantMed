@@ -1,7 +1,9 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import {
-    STANDARD_FLEX,
     STANDARD_SPACING,
+    STANDARD_FLEX,
+    SCREEN_WIDTH,
+    SCREEN_HEIGHT
 } from '../../config/Constants';
 import { COLORS } from '../../config/Colors';
 
@@ -13,12 +15,25 @@ const styles = StyleSheet.create({
     background: {
         flex: STANDARD_FLEX,
         resizeMode: 'cover',
+        justifyContent: 'center',
         backgroundColor: COLORS.textHighContrast,
     },
     container: {
         backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    verticalSpacer: {
+        marginVertical: 10 * 1.5,
+    },
+    formWrapper: {
+        width: SCREEN_WIDTH,
+        flex: STANDARD_FLEX,
+        height: SCREEN_HEIGHT,
+        padding: STANDARD_SPACING * 6,
+        borderTopLeftRadius: STANDARD_SPACING * 6,
+        borderTopRightRadius: STANDARD_SPACING * 6,
+        justifyContent: 'flex-start',
     },
     favorite: {
         width: columnWidth - 20,
@@ -28,8 +43,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
-        borderColor: COLORS.white,
         margin: 10,
+        shadowColor: COLORS.black,
     },
     favoriteInfoContainer: {
         position: 'absolute',
@@ -54,28 +69,18 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     loadingContainer: {
-        flex: STANDARD_FLEX,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    loadingContainer: {
-        flex: STANDARD_FLEX,
+    loginButtonContainer: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    errorContainer: {
-        flex: STANDARD_FLEX,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    icon: {
-        position: 'absolute',
-        top: 10,
-        right: 10,
-        zIndex: 1,
+        height: '100%',
     },
     noFavorite: {
-        flex: STANDARD_FLEX,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -83,15 +88,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignSelf: 'center',
         paddingBottom: STANDARD_SPACING * 5,
-    },
-    backgroundLogOut: {
-        flex: STANDARD_FLEX,
-        justifyContent: 'center',
-        backgroundColor: COLORS.secondary,
-        padding: STANDARD_SPACING * 5,
-    },
-    verticalSpacer: {
-        marginVertical: STANDARD_SPACING * 5,
     },
 });
 
