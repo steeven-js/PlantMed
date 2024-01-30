@@ -5,9 +5,8 @@ import { firebase } from '@react-native-firebase/auth';
 import BackIcon from 'react-native-vector-icons/Ionicons';
 import StarIcon from 'react-native-vector-icons/FontAwesome6';
 import NavIcon from 'react-native-vector-icons/FontAwesome6';
+import { useSelector, useDispatch } from 'react-redux'
 import styles from './styles';
-
-import { icons } from '../../../constants';
 
 const Colors = {
     active: '#00f',
@@ -18,7 +17,8 @@ const PlantNavBar = ({ data, plantId }) => {
     const navigation = useNavigation();
     const route = useRoute();
     const [user, setUser] = useState(null);
-    const [isFavorite, setIsFavorite] = useState(false); // New state variable
+    const [isFavorite, setIsFavorite] = useState(false); 
+    const uid = useSelector(state => state.auth.uid)
 
     const navigateToScreen = (screenName) => {
         navigation.navigate(screenName, {
@@ -47,15 +47,17 @@ const PlantNavBar = ({ data, plantId }) => {
     };
 
     const addToFavoritesHandler = async () => {
-        if (!user) {
+        console.log('uid', uid)
+        if (!uid) {
             console.log("L'utilisateur n'est pas connecté");
             return;
         }
 
         try {
+            console.log('uid', uid)
             const plantId = route.params?.plantId;
             const existingFavoriteQuery = await firebase.firestore().collection('favoris')
-                .where('userId', '==', user.uid)
+                .where('userId', '==', uid)
                 .where('plantId', '==', plantId)
                 .get();
 
@@ -68,7 +70,7 @@ const PlantNavBar = ({ data, plantId }) => {
             }
 
             await firebase.firestore().collection('favoris').add({
-                userId: user.uid,
+                userId: uid,
                 plantId: plantId,
             });
 
@@ -118,6 +120,8 @@ const PlantNavBar = ({ data, plantId }) => {
             }
         });
 
+        console.log('uid', uid)
+
         return () => unsubscribe();
     }, []);
 
@@ -150,7 +154,7 @@ const PlantNavBar = ({ data, plantId }) => {
                                 <BackIcon name="arrow-back" size={30} color="#fff" />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.star} onPress={addToFavoritesHandler}>
-                                {user && isFavorite ? (
+                                {uid && isFavorite ? (
                                     <StarIcon name="star" size={30} color="yellow" />
                                 ) : (
                                     <StarIcon name="star" size={30} color="#fff" />

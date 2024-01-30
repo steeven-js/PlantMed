@@ -43,6 +43,7 @@ const Plantes = ({ navigation }) => {
 
   const loadFavorites = async (userId) => {
     try {
+      console.log('loadFavorites')
       const favoritesSnapshot = await firestore()
         .collection('favoris')
         .where('userId', '==', userId)
@@ -51,7 +52,7 @@ const Plantes = ({ navigation }) => {
         id: doc.id,
         ...doc.data(),
       }));
-      setFavorites(favoritePlants);
+      // setFavorites(favoritePlants);
     } catch (error) {
       console.error('Error loading favorites:', error);
     }

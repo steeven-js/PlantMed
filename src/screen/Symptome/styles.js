@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(30, 30, 30, 0.3)',
+        backgroundColor: 'white',
     },
     icon: {
         padding: 10,

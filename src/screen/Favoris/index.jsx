@@ -13,6 +13,7 @@ import useFetchPlants from '../../../hook/useFetchPlants';
 import Question from '../../components/paragraphs/Question';
 import Link from '../../components/links/Link';
 import * as Animatable from 'react-native-animatable';
+import { useSelector, useDispatch } from 'react-redux'
 
 import styles from './styles';
 import Button from '../../components/buttons/Button';
@@ -23,6 +24,32 @@ const Favoris = ({ route, navigation }) => {
     const [favorites, setFavorites] = useState([]);
     const initialLoad = useRef(true);
     const { data: plantsData, isLoading, error, refetch } = useFetchPlants();
+    const uid = useSelector(state => state.auth.uid)
+
+    const favorisStateChange = () => {
+        if (uid) {
+            const subscriber = firestore()
+                .collection('favoris')
+                .where('userId', '==', uid)
+                .onSnapshot(documentSnapshot => {
+                    console.log('favoris data: ');
+                    documentSnapshot.docChanges().forEach((change) => {
+                        console.log('change', change.type)
+                        if (change.type === 'added') {
+                            console.log('New favoris: ', change.doc.data());
+                        } else if (change.type === 'modified') {
+                            console.log('Updated favoris: ', change.doc.data());
+                        } else if (change.type === 'removed') {
+                            console.log('Removed favoris: ', change.doc.data());
+                        }
+                    });
+                });
+    
+            return subscriber;
+        }
+    
+        return null;
+    };
 
     useEffect(() => {
         const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
@@ -32,6 +59,10 @@ const Favoris = ({ route, navigation }) => {
                 initialLoad.current = false;
             }
         });
+
+        favorisStateChange()
+
+        console.log('uid', uid)
 
         return unsubscribe;
     }, []);
@@ -90,7 +121,7 @@ const Favoris = ({ route, navigation }) => {
 
     if (isLoading) {
         return (
-            <View style={user ? styles.background : styles.backgroundLogOut}>
+            <View style={uid ? styles.background : styles.backgroundLogOut}>
                 <View style={styles.loadingContainer}>
                     <ActivityIndicator size="large" color="#2c5c2d" />
                 </View>
@@ -99,7 +130,7 @@ const Favoris = ({ route, navigation }) => {
     }
 
 
-    if (!user) {
+    if (!uid) {
         return (
             <View style={styles.backgroundLogOut}>
 
@@ -124,7 +155,7 @@ const Favoris = ({ route, navigation }) => {
         );
     }
 
-    if (!error && plantsData && user) {
+    if (!error && plantsData && uid) {
         return (
             <View style={styles.background}>
                 <View style={styles.overlay}>
