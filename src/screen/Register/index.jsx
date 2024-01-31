@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import LinearGradient from 'react-native-linear-gradient';
-import MenuIcon from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import { COLORS } from '../../config/Colors';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';

@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { Text } from 'react-native-animatable';
 import { COLORS } from '../../config/Colors';
 
 const styles = StyleSheet.create({

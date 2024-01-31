@@ -8,7 +8,7 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import useFetchPlants from '../../../hook/useFetchPlants';
+import useFetchPlants from '../../hook/useFetchPlants';
 import Question from '../../components/paragraphs/Question';
 import Link from '../../components/links/Link';
 import * as Animatable from 'react-native-animatable';
@@ -87,7 +87,7 @@ const Favoris = ({ route, navigation }) => {
         return (
             <View style={uid ? styles.background : styles.backgroundLogOut}>
                 <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#2c5c2d" />
+                    <ActivityIndicator size="large" color={COLORS.white} />
                 </View>
             </View>
         );

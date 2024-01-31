@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
 import PlantNavBar from '../../navigation/tabs/PlantNavBar';
-import useFetchPlant from '../../../hook/useFetchPlant';
+import useFetchPlant from '../../hook/useFetchPlant';
 import styles from './styles';
+import { COLORS } from '../../config/Colors';
 
 const Propriete = ({ route }) => {
     const { plantId, originRoute, symptomeId, symptomeName } = route.params;
@@ -11,7 +12,7 @@ const Propriete = ({ route }) => {
     if (!data) {
         return (
             <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#2c5c2d" />
+                <ActivityIndicator size="large" color={COLORS.accent} />
             </View>
         );
     }
@@ -19,17 +20,17 @@ const Propriete = ({ route }) => {
     const { proprietes } = data;
 
     return (
-        <ScrollView style={styles.background}>
+        <View style={styles.background}>
             {isLoading ? (
                 <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#2c5c2d" />
+                    <ActivityIndicator size="large" color={COLORS.accent} />
                 </View>
             ) : error ? (
                 <Text>Something went wrong</Text>
             ) : (
                 <>
                     <PlantNavBar data={data} plantId={plantId} originRoute={originRoute} symptomeId={symptomeId} symptomeName={symptomeName} />
-                    <View style={styles.container}>
+                    <ScrollView style={styles.container}>
                         <View style={styles.content}>
                             <View style={styles.section}>
                                 <Text style={styles.soustitre}>Propriétés</Text>
@@ -44,10 +45,10 @@ const Propriete = ({ route }) => {
                                 <Text>No properties available</Text>
                             )}
                         </View>
-                    </View>
+                    </ScrollView>
                 </>
             )}
-        </ScrollView>
+        </View>
     );
 };
 

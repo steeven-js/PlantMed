@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
 import BackIcon from 'react-native-vector-icons/Ionicons';
-import useFetchSymptom from '../../../hook/useFetchSymptom';
+import useFetchSymptom from '../../hook/useFetchSymptom';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
 import styles from './styles';
+import { COLORS } from '../../config/Colors';
 
 const SymptomeDetail = ({ route, navigation }) => {
     const { symptomeId, symptomeName } = route.params;
@@ -50,7 +51,7 @@ const SymptomeDetail = ({ route, navigation }) => {
                 />
                 <Text style={styles.textTopNavBar}>{symptomeName}</Text>
                 {isLoading ? (
-                    <ActivityIndicator size="large" color="#2c5c2d" />
+                    <ActivityIndicator size="large" color={COLORS.white} />
                 ) : error ? (
                     <Text>Error loading plants. Please try again.</Text>
                 ) : (
@@ -63,7 +64,7 @@ const SymptomeDetail = ({ route, navigation }) => {
             <View style={styles.overlay}>
                 {isLoading ? (
                     <View style={styles.loadingContainer}>
-                        <ActivityIndicator size="large" color="#2c5c2d" />
+                        <ActivityIndicator size="large" color={COLORS.white} />
                     </View>
                 ) : error ? (
                     <Text>Error loading plants. Please try again.</Text>

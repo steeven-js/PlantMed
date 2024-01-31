@@ -21,7 +21,7 @@ const Home = () => {
 
         setTimeout(() => {
           dispatch(stopLoading());
-        }, 1500);
+        }, 2500);
         console.log("User is signed in.");
 
       } else {

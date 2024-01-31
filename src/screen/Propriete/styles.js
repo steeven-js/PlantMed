@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.secondary,
     },
     container: {
-        borderRadius: 10,
         margin: 20,
     },
     verticalSpacer: {

@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, FlatList, TouchableOpacity, Text, ActivityIndicator, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import useFetchSymptoms from '../../../hook/useFetchSymptoms';
+import useFetchSymptoms from '../../hook/useFetchSymptoms';
 import { icons } from '../../constants';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
+import { COLORS } from '../../config/Colors';
 
 const Symptomes = () => {
     const { data, isLoading, error, refetch } = useFetchSymptoms();
@@ -52,7 +53,7 @@ const Symptomes = () => {
             <View style={styles.overlay}>
                 {isLoading ? (
                     <View style={styles.loadingContainer}>
-                        <ActivityIndicator size="large" color="#2c5c2d" />
+                        <ActivityIndicator size="large" color={COLORS.white} />
                     </View>
                 ) : error ? (
                     <View style={styles.errorContainer}>

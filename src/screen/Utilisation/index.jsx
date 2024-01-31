@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
 import PlantNavBar from '../../navigation/tabs/PlantNavBar';
-import useFetchPlant from '../../../hook/useFetchPlant';
+import useFetchPlant from '../../hook/useFetchPlant';
 import styles from './styles';
+import { COLORS } from '../../config/Colors';
 
 const Utilisation = ({ route }) => {
     const { plantId, originRoute, symptomeId, symptomeName } = route.params;
@@ -11,7 +12,7 @@ const Utilisation = ({ route }) => {
     if (!data) {
         return (
             <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#2c5c2d" />
+                <ActivityIndicator size="large" color={COLORS.accent} />
             </View>
         );
     }
@@ -20,7 +21,7 @@ const Utilisation = ({ route }) => {
         <View style={styles.background}>
             {isLoading ? (
                 <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color="#2c5c2d" />
+                    <ActivityIndicator size="large" color={COLORS.accent} />
                 </View>
             ) : error ? (
                 <Text>Something went wrong</Text>

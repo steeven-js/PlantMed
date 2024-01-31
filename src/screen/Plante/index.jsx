@@ -13,8 +13,9 @@ import firestore from '@react-native-firebase/firestore';
 import { useSelector } from 'react-redux';
 import StarIcon from 'react-native-vector-icons/FontAwesome6';
 
-import useFetchPlants from '../../../hook/useFetchPlants';
+import useFetchPlants from '../../hook/useFetchPlants';
 import styles from './styles';
+import { COLORS } from '../../config/Colors';
 
 const Plantes = ({ navigation }) => {
   const [favorites, setFavorites] = useState([]);
@@ -47,7 +48,7 @@ const Plantes = ({ navigation }) => {
   if (!data) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#2c5c2d" />
+        <ActivityIndicator size="large" color={COLORS.white} />
       </View>
     );
   }
@@ -103,7 +104,7 @@ const Plantes = ({ navigation }) => {
       <View style={styles.overlay}>
         {isLoading ? (
           <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color="#2c5c2d" />
+            <ActivityIndicator size="large" color={COLORS.white} />
           </View>
         ) : error ? (
           <View style={styles.errorContainer}>
