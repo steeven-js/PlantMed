@@ -6,7 +6,6 @@ export const favorisSlice = createSlice({
     initialState: [],
     reducers: {
         refresh: async (state, action) => {
-            // console.log('refresh');
             const { payload: { uid } } = action;
             const favoritesSnapshot = await firestore()
                 .collection('favoris')
@@ -19,21 +18,16 @@ export const favorisSlice = createSlice({
 
             console.log(favoritePlants);
 
-            // state = favoritePlants;
             return favoritePlants;
         },
         add: (state, action) => {
-            // console.log('add');
-
-            return [...state, action.payload]
-
+            return [...state, action.payload];
         },
-        remove: (state, action) => {
-            // console.log('remove');
+        remove: (state = [], action) => { // Provide a default value for state
             const { payload: { plantId } } = action;
 
-            // Filter out the plant with the specified plantId
-            state.value = state.value.filter((fav) => fav.plantId !== plantId);
+            // Ensure that state is defined before trying to filter
+            return state.filter((fav) => fav.id !== plantId);
         },
     },
 });
