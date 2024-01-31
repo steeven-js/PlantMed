@@ -18,6 +18,7 @@ import styles from './styles';
 import Button from '../../components/buttons/Button';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 import { useFocusEffect } from '@react-navigation/native';
+import { COLORS } from '../../config/Colors';
 
 const Favoris = ({ route, navigation }) => {
     const [favorites, setFavorites] = useState([]);
