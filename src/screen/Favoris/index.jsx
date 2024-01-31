@@ -8,69 +8,68 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import { firebase } from '@react-native-firebase/auth';
 import useFetchPlants from '../../../hook/useFetchPlants';
 import Question from '../../components/paragraphs/Question';
 import Link from '../../components/links/Link';
 import * as Animatable from 'react-native-animatable';
 import { useSelector, useDispatch } from 'react-redux'
-import { add } from '../../redux/reducer/favoris';
-
+import { add, remove } from '../../redux/reducer/favoris';
 import styles from './styles';
 import Button from '../../components/buttons/Button';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 
 const Favoris = ({ route, navigation }) => {
-    const [favorites, setFavorites] = useState([]);
-    const initialLoad = useRef(true);
+    // const [favorites, setFavorites] = useState([]);
     const { data: plantsData, isLoading, error, refetch } = useFetchPlants();
     const uid = useSelector(state => state.auth.uid)
-    const dispatch = useDispatch();
+    const favorites = useSelector(state => state.favoris)
 
-    const favorisStateChange = () => {
-        if (uid) {
-            const subscriber = firestore()
-                .collection('favoris')
-                .where('userId', '==', uid)
-                .onSnapshot(documentSnapshot => {
-                    console.log('favoris data: ');
-                    documentSnapshot.docChanges().forEach((change) => {
-                        console.log('change', change.type)
-                        if (change.type === 'added') {
-                            console.log('New favoris: ', change.doc.data());
-                            loadFavorites(uid);
-                            dispatch(add({id:change.doc.id, ...change.doc.data()}))
-                        } else if (change.type === 'removed') {
-                            console.log('Removed favoris: ', change.doc.data());
-                            favorites.filter((item) => item.plantId !== change.doc.id)
-                            console.log('favoris data: ', favorites)
-                            setFavorites(favorites)
-                        }
-                    });
-                });
-            return subscriber;
-        }
-        return null;
-    };
+    console.log('favorites', favorites)
 
-    const loadFavorites = async (userId) => {
-        try {
-            const favoritesSnapshot = await firestore()
-                .collection('favoris')
-                .where('userId', '==', userId)
-                .get();
-            const favoritePlants = favoritesSnapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setFavorites(favoritePlants);
-        } catch (error) {
-            console.error('Error loading favorites:', error);
-        }
-    };
+    // const favorisStateChange = () => {
+    //     if (uid) {
+    //         const subscriber = firestore()
+    //             .collection('favoris')
+    //             .where('userId', '==', uid)
+    //             .onSnapshot(documentSnapshot => {
+    //                 console.log('favoris data: ');
+    //                 documentSnapshot.docChanges().forEach((change) => {
+    //                     console.log('change', change.type)
+    //                     if (change.type === 'added') {
+    //                         console.log('New favoris: ', change.doc.data());
+    //                         loadFavorites(uid);
+    //                         dispatch(add({id:change.doc.id, ...change.doc.data()}))
+    //                     } else if (change.type === 'removed') {
+    //                         console.log('Removed favoris: ', change.doc.data());
+    //                         favorites.filter((item) => item.plantId !== change.doc.id)
+    //                         console.log('favoris data: ', favorites)
+    //                         setFavorites(favorites)
+    //                     }
+    //                 });
+    //             });
+    //         return subscriber;
+    //     }
+    //     return null;
+    // };
+
+    // const loadFavorites = async (userId) => {
+    //     try {
+    //         const favoritesSnapshot = await firestore()
+    //             .collection('favoris')
+    //             .where('userId', '==', userId)
+    //             .get();
+    //         const favoritePlants = favoritesSnapshot.docs.map((doc) => ({
+    //             id: doc.id,
+    //             ...doc.data(),
+    //         }));
+    //         setFavorites(favoritePlants);
+    //     } catch (error) {
+    //         console.error('Error loading favorites:', error);
+    //     }
+    // };
 
     useEffect(() => {
-        favorisStateChange()
+        favorites
     }, []);
 
     const renderItem = ({ item }) => {

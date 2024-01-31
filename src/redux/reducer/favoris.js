@@ -3,12 +3,10 @@ import firestore from '@react-native-firebase/firestore';
 
 export const favorisSlice = createSlice({
     name: 'favoris',
-    initialState: {
-        value: [],
-    },
+    initialState: [],
     reducers: {
         refresh: async (state, action) => {
-            console.log('refresh');
+            // console.log('refresh');
             const { payload: { uid } } = action;
             const favoritesSnapshot = await firestore()
                 .collection('favoris')
@@ -21,31 +19,17 @@ export const favorisSlice = createSlice({
 
             console.log(favoritePlants);
 
-            state.value = favoritePlants;
+            // state = favoritePlants;
+            return favoritePlants;
         },
         add: (state, action) => {
-            console.log('add');
-            console.log('add', action.payload)
+            // console.log('add');
 
-            // state.value = {...action.payload, ...state.value}
-            state.value.push(action.payload)
-            // const { payload: { plantId, uid } } = action;
+            return [...state, action.payload]
 
-            // // Check if the plant is already in the favorites
-            // const existingPlant = state.value.find((fav) => fav.plantId === plantId);
-
-            // if (!existingPlant) {
-            //     // If not, add it to the favorites
-            //     state.value.push({
-            //         id: 'new', 
-            //         plantId,
-            //         uid,
-            //         // Add other properties as needed
-            //     });
-            // }
         },
         remove: (state, action) => {
-            console.log('remove');
+            // console.log('remove');
             const { payload: { plantId } } = action;
 
             // Filter out the plant with the specified plantId
