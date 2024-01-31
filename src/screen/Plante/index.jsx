@@ -8,22 +8,22 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import useFetchPlants from '../../../hook/useFetchPlants';
+import { useFocusEffect } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux';
 import StarIcon from 'react-native-vector-icons/FontAwesome6';
 
+import useFetchPlants from '../../../hook/useFetchPlants';
 import styles from './styles';
 
 const Plantes = ({ navigation }) => {
   const [favorites, setFavorites] = useState([]);
   const { data, isLoading, error, refetch } = useFetchPlants();
-  const uid = useSelector(state => state.auth.uid);
-  const favoris = useSelector(state => state.favoris)
+  const uid = useSelector((state) => state.auth.uid);
 
   const loadFavorites = async (userId) => {
     try {
-      console.log('loadFavorites')
+      console.log('loadFavorites');
       const favoritesSnapshot = await firestore()
         .collection('favoris')
         .where('userId', '==', userId)
@@ -38,10 +38,11 @@ const Plantes = ({ navigation }) => {
     }
   };
 
-  useEffect(() => {
-    loadFavorites(uid);
-    setFavorites(favorites)
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      loadFavorites(uid);
+    }, [uid])
+  );
 
   if (!data) {
     return (
@@ -54,7 +55,9 @@ const Plantes = ({ navigation }) => {
   const renderPlantItem = ({ item }) => {
     const hasMedia = item.media && item.media.length > 0;
     const imageUrl = hasMedia ? item.media[0]?.original_url : null;
-    const isFavorite = favorites.some((favorite) => favorite.plantId === item.id);
+    const isFavorite = favorites.some(
+      (favorite) => favorite.plantId === item.id
+    );
 
     return (
       <TouchableOpacity
@@ -66,15 +69,27 @@ const Plantes = ({ navigation }) => {
               plantId: item.id,
               plantName: item.name,
             },
-          })
+          });
         }}
       >
         <Image
-          source={imageUrl ? { uri: imageUrl } : require('../../assets/images/plante/no-image.png')}
+          source={
+            imageUrl
+              ? { uri: imageUrl }
+              : require('../../assets/images/plante/no-image.png')
+          }
           style={styles.plantImage}
         />
         {isFavorite ? (
-          <StarIcon name="star" size={30} color="#fff" style={styles.icon} onPress={() => { console.log('hello') }} />
+          <StarIcon
+            name="star"
+            size={30}
+            color="#fff"
+            style={styles.icon}
+            onPress={() => {
+              console.log('hello');
+            }}
+          />
         ) : null}
         <View style={styles.plantInfoContainer}>
           <Text style={styles.plantName}>{item.name}</Text>
