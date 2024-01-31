@@ -50,10 +50,10 @@ const Home = () => {
           documentSnapshot.docChanges().forEach((change) => {
             // console.log('change', change.type)
             if (change.type === 'added') {
-              console.log('Liste des favoris: ', change.doc.data());
+              // console.log('Liste des favoris: ', change.doc.data());
               dispatch(add({ id: change.doc.id, ...change.doc.data() }))
             } else if (change.type === 'removed') {
-              console.log('Removed favoris: ', change.doc.data());
+              // console.log('Removed favoris: ', change.doc.data());
               dispatch(remove(change.doc.id))
             }
           });

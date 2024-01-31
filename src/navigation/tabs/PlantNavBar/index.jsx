@@ -47,14 +47,12 @@ const PlantNavBar = ({ data, plantId }) => {
     };
 
     const addToFavoritesHandler = async () => {
-        console.log('uid', uid)
         if (!uid) {
             console.log("L'utilisateur n'est pas connecté");
             return;
         }
 
         try {
-            console.log('uid', uid)
             const plantId = route.params?.plantId;
             const existingFavoriteQuery = await firebase.firestore().collection('favoris')
                 .where('userId', '==', uid)
@@ -119,8 +117,6 @@ const PlantNavBar = ({ data, plantId }) => {
                 setIsFavorite(false);
             }
         });
-
-        console.log('uid', uid)
 
         return () => unsubscribe();
     }, []);

@@ -23,7 +23,7 @@ const Plantes = ({ navigation }) => {
 
   const loadFavorites = async (userId) => {
     try {
-      console.log('loadFavorites');
+      // console.log('loadFavorites');
       const favoritesSnapshot = await firestore()
         .collection('favoris')
         .where('userId', '==', userId)
