@@ -123,7 +123,7 @@ const Favoris = ({ route, navigation }) => {
         return (
             <View style={styles.background}>
                 <View style={styles.overlay}>
-                    {favorites.length === 0 ? (
+                    {uid && favorites.length === 0 ? (
                         <View style={styles.noFavorite}>
                             <Animatable.View
                                 animation="fadeInUp"

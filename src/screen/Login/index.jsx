@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
@@ -21,7 +21,8 @@ import { SvgXml } from 'react-native-svg';
 import OrDivider from '../../components/dividers/OrDivider';
 import Question from '../../components/paragraphs/Question';
 import TopNavBar from '../../components/topNavBar';
-
+import { setUser, clearUser } from '../../redux/reducer/auth';
+import { useDispatch } from 'react-redux';
 
 const Login = ({ navigation }) => {
     GoogleSignin.configure({
@@ -45,6 +46,7 @@ const Login = ({ navigation }) => {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [emptyFieldsError, setEmptyFieldsError] = useState('');
+    const dispatch = useDispatch();
 
     const handleConnexion = async () => {
         try {
@@ -104,6 +106,21 @@ const Login = ({ navigation }) => {
         // Sign-in the user with the credential
         return auth().signInWithCredential(googleCredential);
     }
+
+    // Si connection réussie, obtenir l'uid de l'utilisateur et le stocker dans le Redux store
+    useEffect(() => {
+        const unsubscribe = auth().onAuthStateChanged((user) => {
+            if (user) {
+                dispatch(setUser(user.uid));
+                // console.log('User UID:', user.uid)
+            } else {
+                dispatch(clearUser(null));
+                // console.log('User UID:', null)
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     return (
         <View style={[styles.mainWrapper, { backgroundColor: COLORS.accent }]}>
