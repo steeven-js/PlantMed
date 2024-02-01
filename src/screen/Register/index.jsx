@@ -215,7 +215,7 @@ const Register = ({ navigation }) => {
                                     delay={1500}
                                     style={styles.questionAndLinkWrapper}>
                                     <Question question="Vous avez déjà un compte?" />
-                                    <Link label="Se connecter" onPress={() => navigation.navigate('Se connecter')} />
+                                    <Link label="Se connecter" onPress={() => navigation.navigate('Login')} />
                                 </Animatable.View>
                             </View>
                         )}

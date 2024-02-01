@@ -211,7 +211,9 @@ const Login = ({ navigation }) => {
                     <Question question="Vous n'avez pas de compte ?" />
                     <Link
                         label="S'inscrire"
-                        onPress={() => navigation.navigate("S'inscrire")}
+                        onPress={() => {
+                            navigation.navigate('Register');
+                        }}
                     />
                 </Animatable.View>
 

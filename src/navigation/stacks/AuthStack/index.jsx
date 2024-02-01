@@ -1,9 +1,9 @@
 import Login from "../../../screen/Login";
 import Register from "../../../screen/Register";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 // Creating stack navigator
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 // Auth stack
 const AuthStack = () => {

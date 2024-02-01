@@ -4,13 +4,23 @@ import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import auth from '@react-native-firebase/auth';
 import HomeStack from '../../stacks/HomeStack';
-import Profile from '../../../screen/MyProfile';
-import Connexion from '../../../screen/Login';
-import Register from '../../../screen/Register';
+import { SvgXml } from 'react-native-svg';
+import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
+import ic_home_dark_green from '../../../assets/icons/svg/ic_home_dark_green';
+import ic_home_light_grey from '../../../assets/icons/svg/ic_home_light_grey';
+import ic_login_dark_green from '../../../assets/icons/svg/ic_login_dark_green';
+import ic_login_light_grey from '../../../assets/icons/svg/ic_login_light_grey';
+import ic_paper_dark_green from '../../../assets/icons/svg/ic_paper_dark_green';
+import ic_paper_light_grey from '../../../assets/icons/svg/ic_paper_light_grey';
 
 import styles from './styles';
 import AuthStack from '../../stacks/AuthStack';
 import MyProfileStack from '../../stacks/MyProfileStack';
+import { COLORS, IndependentColors } from '../../../config/Colors';
+import {
+    STANDARD_VECTOR_ICON_SIZE,
+} from '../../../config/Constants';
+import PoliciesStack from '../../stacks/PoliciesStack';
 
 const Drawer = createDrawerNavigator();
 
@@ -29,7 +39,37 @@ const HomeDrawer = () => {
     return (
         <Drawer.Navigator
             initialRouteName="HomeStack"
-            screenOptions={{ headerShown: false }}
+            screenOptions={({ navigation }) => ({
+                headerShown: false,
+                drawerActiveTintColor: COLORS.accent,
+                drawerInactiveTintColor: COLORS.textLowContrast,
+                drawerInactiveBackgroundColor: COLORS.primary,
+                drawerStyle: styles.drawer,
+                drawerItemStyle: styles.drawerItem,
+                swipeEdgeWidth: 0,
+                headerTitleAlign: 'center',
+                headerTitleStyle: [styles.headerTitle],
+                headerTintColor: IndependentColors.white,
+                headerStyle: [
+                    {
+                        backgroundColor: COLORS.accent,
+                        elevation: 0,
+                        shadowOpacity: 0,
+                        borderBottomWidth: 0,
+                    },
+                ],
+                headerLeft: () => (
+                    <TouchableOpacity
+                        onPress={() => navigation.goBack()}
+                        style={styles.leftArrowIcon}>
+                        <SvgXml
+                            xml={ic_arrow_left_white}
+                            width={STANDARD_VECTOR_ICON_SIZE}
+                            height={STANDARD_VECTOR_ICON_SIZE}
+                        />
+                    </TouchableOpacity>
+                ),
+            })}
             drawerContent={(props) => {
                 return (
                     <SafeAreaView>
@@ -59,17 +99,24 @@ const HomeDrawer = () => {
                 component={HomeStack}
                 options={{
                     headerShown: false,
-                    drawerIcon: () => (
-                        <Image
-                            source={
-                                require('../../../assets/icons/png/soin.png')
-                            }
-                            style={styles.drawerItemIcon}
-                        />
-                    ),
+                    drawerIcon: ({ focused }) =>
+                        focused ? (
+                            <SvgXml
+                                xml={ic_home_dark_green}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ) : (
+                            <SvgXml
+                                xml={ic_home_light_grey}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ),
                     drawerLabelStyle: styles.drawerItemLabel,
                 }}
             />
+
             {isUserAuthenticated ? (
                 <>
                     {/* Afficher les écrans lorsque l'utilisateur est connecté */}
@@ -77,15 +124,21 @@ const HomeDrawer = () => {
                         name="Mon Profile"
                         component={MyProfileStack}
                         options={{
-                            headerShown: false,
-                            drawerIcon: () => (
-                                <Image
-                                    source={
-                                        require('../../../assets/icons/png/info.png')
-                                    }
-                                    style={styles.drawerItemIcon}
-                                />
-                            ),
+                            drawerLabel: 'Mon Profile',
+                            drawerIcon: ({ focused }) =>
+                                focused ? (
+                                    <SvgXml
+                                        xml={ic_login_dark_green}
+                                        width={STANDARD_VECTOR_ICON_SIZE}
+                                        height={STANDARD_VECTOR_ICON_SIZE}
+                                    />
+                                ) : (
+                                    <SvgXml
+                                        xml={ic_login_light_grey}
+                                        width={STANDARD_VECTOR_ICON_SIZE}
+                                        height={STANDARD_VECTOR_ICON_SIZE}
+                                    />
+                                ),
                             drawerLabelStyle: styles.drawerItemLabel,
                         }}
                     />
@@ -98,35 +151,49 @@ const HomeDrawer = () => {
                         component={AuthStack}
                         options={{
                             headerShown: false,
-                            drawerIcon: () => (
-                                <Image
-                                    source={
-                                        require('../../../assets/icons/png/soin.png')
-                                    }
-                                    style={styles.drawerItemIcon}
-                                />
-                            ),
-                            drawerLabelStyle: styles.drawerItemLabel,
-                        }}
-                    />
-                    <Drawer.Screen
-                        name="S'inscrire"
-                        component={Register}
-                        options={{
-                            headerShown: false,
-                            drawerIcon: () => (
-                                <Image
-                                    source={
-                                        require('../../../assets/icons/png/soin.png')
-                                    }
-                                    style={styles.drawerItemIcon}
-                                />
-                            ),
+                            drawerIcon: ({ focused }) =>
+                                focused ? (
+                                    <SvgXml
+                                        xml={ic_login_dark_green}
+                                        width={STANDARD_VECTOR_ICON_SIZE}
+                                        height={STANDARD_VECTOR_ICON_SIZE}
+                                    />
+                                ) : (
+                                    <SvgXml
+                                        xml={ic_login_light_grey}
+                                        width={STANDARD_VECTOR_ICON_SIZE}
+                                        height={STANDARD_VECTOR_ICON_SIZE}
+                                    />
+                                ),
                             drawerLabelStyle: styles.drawerItemLabel,
                         }}
                     />
                 </>
             )}
+
+            <Drawer.Screen
+                name="PoliciesStack"
+                component={PoliciesStack}
+                options={{
+                    drawerLabel: 'Legal Policies',
+                    drawerIcon: ({ focused }) =>
+                        focused ? (
+                            <SvgXml
+                                xml={ic_paper_dark_green}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ) : (
+                            <SvgXml
+                                xml={ic_paper_light_grey}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ),
+                    drawerLabelStyle: styles.drawerItemLabel,
+                }}
+            />
+
         </Drawer.Navigator>
     )
 }

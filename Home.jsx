@@ -33,8 +33,6 @@ const Home = () => {
     return unsubscribe;
   };
 
-  console.log('isLoading', isLoading);
-
   useEffect(() => {
     const unsubscribe = checkAuthStatus();
     unsubscribe();
@@ -46,7 +44,7 @@ const Home = () => {
         .collection('favoris')
         .where('userId', '==', uid)
         .onSnapshot(documentSnapshot => {
-          console.log('favoris data: ');
+          // console.log('favoris data: ');
           documentSnapshot.docChanges().forEach((change) => {
             // console.log('change', change.type)
             if (change.type === 'added') {
