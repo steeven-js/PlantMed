@@ -29,6 +29,7 @@ import ic_users_dark_green from '../../../assets/icons/svg/ic_users_dark_green';
 import ic_users_light_grey from '../../../assets/icons/svg/ic_users_light_grey';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import HomeStack from '../../stacks/HomeStack';
+import SupportStack from '../../stacks/SupportStack';
 
 // Creating drawer navigator
 const Drawer = createDrawerNavigator();
@@ -137,7 +138,7 @@ const HomeDrawer = () => {
                 }}
             />
 
-            {/* <Drawer.Screen
+            <Drawer.Screen
                 name="SupportStack"
                 component={SupportStack}
                 options={{
@@ -158,7 +159,7 @@ const HomeDrawer = () => {
                         ),
                     drawerLabelStyle: styles.drawerItemLabel,
                 }}
-            /> */}
+            />
 
             <Drawer.Screen
                 name="PoliciesStack"

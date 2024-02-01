@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles';
 import {Text} from 'react-native';
-import { COLORS } from '../../config/Colors';
+import { COLORS } from '../../../config/Colors';
 
 const ScreenTitle = ({title}) => {
     return (
