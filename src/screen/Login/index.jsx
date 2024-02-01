@@ -103,6 +103,14 @@ const Login = ({ navigation }) => {
         // Create a Google credential with the token
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
+        const navigateToHome = () => {
+            navigation.navigate('Home', {
+                screen: 'Plantes médicinales',
+            });
+        };
+
+        navigateToHome();
+
         // Sign-in the user with the credential
         return auth().signInWithCredential(googleCredential);
     }
@@ -112,15 +120,14 @@ const Login = ({ navigation }) => {
         const unsubscribe = auth().onAuthStateChanged((user) => {
             if (user) {
                 dispatch(setUser(user.uid));
-                // console.log('User UID:', user.uid)
             } else {
-                dispatch(clearUser(null));
-                // console.log('User UID:', null)
+                dispatch(clearUser());
             }
         });
-
-        return () => unsubscribe();
-    }, []);
+        return () => {
+            unsubscribe();
+        }
+    }, [dispatch]);
 
     return (
         <View style={[styles.mainWrapper, { backgroundColor: COLORS.accent }]}>
