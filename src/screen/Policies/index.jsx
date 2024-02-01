@@ -1,4 +1,4 @@
-import {View, ScrollView} from 'react-native';
+import {View, ScrollView, Text} from 'react-native';
 import { useCallback } from 'react';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles'

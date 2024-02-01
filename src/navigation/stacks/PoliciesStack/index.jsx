@@ -1,7 +1,7 @@
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import {SvgXml} from 'react-native-svg';
 import { createStackNavigator } from '@react-navigation/stack';
-import { IndependentColors } from '../../../config/Colors';
+import { COLORS, IndependentColors } from '../../../config/Colors';
 import {TouchableOpacity} from 'react-native';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import styles from '../styles';
@@ -20,7 +20,7 @@ const PoliciesStack = () => {
         headerTintColor: IndependentColors.white,
         headerStyle: [
             {
-                backgroundColor: theme.accent,
+                backgroundColor: COLORS.accent,
                 elevation: 0,
                 shadowOpacity: 0,
                 borderBottomWidth: 0,
