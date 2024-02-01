@@ -1,44 +1,87 @@
-import React, { useEffect, useState } from 'react';
-import { ImageBackground, View, Image, Text } from 'react-native';
-import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import auth from '@react-native-firebase/auth';
-import HomeStack from '../../stacks/HomeStack';
+import {
+    View,
+    Image,
+    Text,
+    ImageBackground,
+    TouchableOpacity,
+} from 'react-native';
+import styles from './styles';
+import {
+    createDrawerNavigator,
+    DrawerContentScrollView,
+    DrawerItemList,
+    DrawerItem,
+} from '@react-navigation/drawer';
 import { SvgXml } from 'react-native-svg';
-import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
+import AuthStack from '../../stacks/AuthStack';
+import PoliciesStack from '../../stacks/PoliciesStack';
+import { COLORS, IndependentColors } from '../../../config/Colors';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import ic_home_dark_green from '../../../assets/icons/svg/ic_home_dark_green';
 import ic_home_light_grey from '../../../assets/icons/svg/ic_home_light_grey';
-import ic_login_dark_green from '../../../assets/icons/svg/ic_login_dark_green';
-import ic_login_light_grey from '../../../assets/icons/svg/ic_login_light_grey';
+import ic_call_dark_green from '../../../assets/icons/svg/ic_call_dark_green';
+import ic_call_light_grey from '../../../assets/icons/svg/ic_call_light_grey';
 import ic_paper_dark_green from '../../../assets/icons/svg/ic_paper_dark_green';
 import ic_paper_light_grey from '../../../assets/icons/svg/ic_paper_light_grey';
+import ic_login_dark_green from '../../../assets/icons/svg/ic_login_dark_green';
+import ic_login_light_grey from '../../../assets/icons/svg/ic_login_light_grey';
+import ic_users_dark_green from '../../../assets/icons/svg/ic_users_dark_green';
+import ic_users_light_grey from '../../../assets/icons/svg/ic_users_light_grey';
+import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
+import HomeStack from '../../stacks/HomeStack';
 
-import styles from './styles';
-import AuthStack from '../../stacks/AuthStack';
-import MyProfileStack from '../../stacks/MyProfileStack';
-import { COLORS, IndependentColors } from '../../../config/Colors';
-import {
-    STANDARD_VECTOR_ICON_SIZE,
-} from '../../../config/Constants';
-import PoliciesStack from '../../stacks/PoliciesStack';
-
+// Creating drawer navigator
 const Drawer = createDrawerNavigator();
 
+// Custom drawer content component
+const CustomDrawerContent = props => {
+
+    // Returning
+    return (
+        <View style={[styles.mainWrapper, { backgroundColor: COLORS.primary }]}>
+            {/* Header image background */}
+            <ImageBackground
+                source={require('../../../assets/images/backgrounds/liquid-cheese-background.png')}
+                style={styles.drawerHeaderImageBackground}>
+                <View style={[styles.logoWrapper, { backgroundColor: COLORS.primary }]}>
+                    <Image
+                        source={require('../../../assets/images/logos/logo_light.png')}
+                        style={styles.logo}
+                    />
+                </View>
+                <View>
+                    <Text style={styles.brandName}>Mon Remède</Text>
+                    <Text style={styles.brandSlogan}>Le soins par les plantes!</Text>
+                </View>
+            </ImageBackground>
+
+            {/* Drawer item list */}
+            <DrawerContentScrollView
+                bounces={false}
+                showsVerticalScrollIndicator={false}>
+                <DrawerItemList {...props} />
+            </DrawerContentScrollView>
+
+            {/* Custom drawer item */}
+            <View>
+                <DrawerItem
+                    label="App Version 0.1.0 - Jan, 2024"
+                    labelStyle={[
+                        styles.drawerItemLabel,
+                        { color: COLORS.textLowContrast, alignSelf: 'center' },
+                    ]}
+                />
+            </View>
+        </View>
+    );
+};
+
+// Home drawer
 const HomeDrawer = () => {
 
-    const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
-
-    useEffect(() => {
-        const unsubscribe = auth().onAuthStateChanged(user => {
-            setIsUserAuthenticated(!!user);
-        });
-
-        return () => unsubscribe();
-    }, []);
-
+    // Retuning
     return (
         <Drawer.Navigator
-            initialRouteName="HomeStack"
             screenOptions={({ navigation }) => ({
                 headerShown: false,
                 drawerActiveTintColor: COLORS.accent,
@@ -70,35 +113,12 @@ const HomeDrawer = () => {
                     </TouchableOpacity>
                 ),
             })}
-            drawerContent={(props) => {
-                return (
-                    <SafeAreaView>
-                        <ImageBackground
-                            source={require('../../../assets/images/backgrounds/liquid-cheese-background.png')}
-                            style={styles.drawerHeaderImageBackground}
-                        >
-                            <View style={styles.logoWrapper}>
-                                <Image
-                                    source={require('../../../assets/images/logos/logo_light.png')}
-                                    style={styles.logo}
-                                />
-                            </View>
-                            <View>
-                                <Text style={styles.brandName}>Mon Remède</Text>
-                                <Text style={styles.brandSlogan}>Les soins par les plantes</Text>
-                            </View>
-                        </ImageBackground>
-                        <DrawerItemList {...props} />
-                    </SafeAreaView>
-                )
-
-            }}
-        >
+            drawerContent={props => <CustomDrawerContent {...props} />}>
             <Drawer.Screen
-                name="Accueil"
+                name="HomeStack"
                 component={HomeStack}
                 options={{
-                    headerShown: false,
+                    drawerLabel: 'Accueil',
                     drawerIcon: ({ focused }) =>
                         focused ? (
                             <SvgXml
@@ -117,59 +137,28 @@ const HomeDrawer = () => {
                 }}
             />
 
-            {isUserAuthenticated ? (
-                <>
-                    {/* Afficher les écrans lorsque l'utilisateur est connecté */}
-                    <Drawer.Screen
-                        name="Mon Profile"
-                        component={MyProfileStack}
-                        options={{
-                            drawerLabel: 'Mon Profile',
-                            drawerIcon: ({ focused }) =>
-                                focused ? (
-                                    <SvgXml
-                                        xml={ic_login_dark_green}
-                                        width={STANDARD_VECTOR_ICON_SIZE}
-                                        height={STANDARD_VECTOR_ICON_SIZE}
-                                    />
-                                ) : (
-                                    <SvgXml
-                                        xml={ic_login_light_grey}
-                                        width={STANDARD_VECTOR_ICON_SIZE}
-                                        height={STANDARD_VECTOR_ICON_SIZE}
-                                    />
-                                ),
-                            drawerLabelStyle: styles.drawerItemLabel,
-                        }}
-                    />
-                </>
-            ) : (
-                <>
-                    {/* Afficher les écrans lorsque l'utilisateur n'est pas connecté */}
-                    <Drawer.Screen
-                        name="Se connecter"
-                        component={AuthStack}
-                        options={{
-                            headerShown: false,
-                            drawerIcon: ({ focused }) =>
-                                focused ? (
-                                    <SvgXml
-                                        xml={ic_login_dark_green}
-                                        width={STANDARD_VECTOR_ICON_SIZE}
-                                        height={STANDARD_VECTOR_ICON_SIZE}
-                                    />
-                                ) : (
-                                    <SvgXml
-                                        xml={ic_login_light_grey}
-                                        width={STANDARD_VECTOR_ICON_SIZE}
-                                        height={STANDARD_VECTOR_ICON_SIZE}
-                                    />
-                                ),
-                            drawerLabelStyle: styles.drawerItemLabel,
-                        }}
-                    />
-                </>
-            )}
+            {/* <Drawer.Screen
+                name="SupportStack"
+                component={SupportStack}
+                options={{
+                    drawerLabel: 'Help & Support',
+                    drawerIcon: ({ focused }) =>
+                        focused ? (
+                            <SvgXml
+                                xml={ic_call_dark_green}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ) : (
+                            <SvgXml
+                                xml={ic_call_light_grey}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ),
+                    drawerLabelStyle: styles.drawerItemLabel,
+                }}
+            /> */}
 
             <Drawer.Screen
                 name="PoliciesStack"
@@ -194,8 +183,55 @@ const HomeDrawer = () => {
                 }}
             />
 
-        </Drawer.Navigator>
-    )
-}
+            <Drawer.Screen
+                name="AuthStack"
+                component={AuthStack}
+                options={{
+                    drawerLabel: 'Account Login',
+                    drawerIcon: ({ focused }) =>
+                        focused ? (
+                            <SvgXml
+                                xml={ic_login_dark_green}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ) : (
+                            <SvgXml
+                                xml={ic_login_light_grey}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ),
+                    drawerLabelStyle: styles.drawerItemLabel,
+                }}
+            />
 
-export default HomeDrawer
+            {/* <Drawer.Screen
+                name="Contacts"
+                component={Contacts}
+                options={{
+                    headerShown: true,
+                    drawerLabel: 'Contacts',
+                    drawerIcon: ({ focused }) =>
+                        focused ? (
+                            <SvgXml
+                                xml={ic_users_dark_green}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ) : (
+                            <SvgXml
+                                xml={ic_users_light_grey}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ),
+                    drawerLabelStyle: styles.drawerItemLabel,
+                }}
+            /> */}
+        </Drawer.Navigator>
+    );
+};
+
+// Exporting
+export default HomeDrawer;

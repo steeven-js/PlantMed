@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
@@ -12,8 +12,7 @@ import useFetchPlants from '../../hook/useFetchPlants';
 import Question from '../../components/paragraphs/Question';
 import Link from '../../components/links/Link';
 import * as Animatable from 'react-native-animatable';
-import { useSelector, useDispatch } from 'react-redux'
-import { add, remove } from '../../redux/reducer/favoris';
+import { useSelector } from 'react-redux'
 import styles from './styles';
 import Button from '../../components/buttons/Button';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';
@@ -98,18 +97,18 @@ const Favoris = ({ route, navigation }) => {
         return (
             <View style={styles.backgroundLogOut}>
 
-                <Animatable.View animation="fadeInUp" delay={250}>
+                <Animatable.View animation="fadeInUp" delay={150}>
                     {/* <ScreenInfo label="Vous devez être connecté pour accéder à vos favoris" /> */}
                     <ScreenInfo info="Vous devez être connecté pour accéder à vos favoris" />
                 </Animatable.View>
 
                 <View style={styles.verticalSpacer} />
 
-                <Animatable.View animation="fadeInUp" delay={500}>
+                <Animatable.View animation="fadeInUp" delay={250}>
                     <Button
                         label="Se connecter"
                         onPress={() => {
-                            navigation.navigate('Se connecter')
+                            navigation.navigate('Login')
                         }}
                         disabled={isLoading}
                     />

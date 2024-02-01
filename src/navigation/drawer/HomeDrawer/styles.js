@@ -1,18 +1,18 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
-  DOSIS_BOLD,
-  DOSIS_MEDIUM,
-  STANDARD_DRAWER_WIDTH,
-  STANDARD_FLEX,
-  STANDARD_DRAWER_HEADER_HEIGHT,
-  STANDARD_SPACING,
-  STANDARD_BORDER_RADIUS,
   FONT_SIZE_SM,
   FONT_SIZE_XS,
+  STANDARD_FLEX,
+  STANDARD_SPACING,
+  STANDARD_BORDER_RADIUS,
+  STANDARD_DRAWER_WIDTH,
+  STANDARD_DRAWER_HEADER_HEIGHT,
+  DOSIS_BOLD,
+  DOSIS_MEDIUM,
+  DOSIS_SEMIBOLD,
   FONT_SIZE_MD,
 } from '../../../config/Constants';
-import { COLORS, IndependentColors } from '../../../config/Colors';
-
+import {IndependentColors} from '../../../config/Colors';
 
 // Exporting style
 export default StyleSheet.create({
@@ -30,9 +30,11 @@ export default StyleSheet.create({
   logoWrapper: {
     marginHorizontal: STANDARD_SPACING * 2,
     padding: STANDARD_SPACING,
-    borderRadius: STANDARD_BORDER_RADIUS * 5,
+    borderRadius: STANDARD_BORDER_RADIUS * 20,
     width: 70,
     aspectRatio: 1,
+    backgroundColor: IndependentColors.white,
+    padding: STANDARD_SPACING * 2,
   },
   logo: {
     width: null,
@@ -63,7 +65,7 @@ export default StyleSheet.create({
     marginLeft: STANDARD_SPACING * 3,
   },
   headerTitle: {
-    fontFamily: DOSIS_BOLD,
+    fontFamily: DOSIS_SEMIBOLD,
     fontSize: FONT_SIZE_MD,
   },
 });
