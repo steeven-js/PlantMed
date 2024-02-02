@@ -31,6 +31,8 @@ import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import HomeStack from '../../stacks/HomeStack';
 import SupportStack from '../../stacks/SupportStack';
 import SettingsStack from '../../stacks/SettingsStack';
+import { useSelector } from 'react-redux'
+import MyProfileStack from '../../stacks/MyProfileStack';
 
 // Creating drawer navigator
 const Drawer = createDrawerNavigator();
@@ -80,6 +82,9 @@ const CustomDrawerContent = props => {
 
 // Home drawer
 const HomeDrawer = () => {
+
+    // Constants
+    const uid = useSelector(state => state.auth.uid);
 
     // Retuning
     return (
@@ -139,6 +144,57 @@ const HomeDrawer = () => {
                 }}
             />
 
+
+            {uid == null ? (
+                <Drawer.Screen
+                    name="AuthStack"
+                    component={AuthStack}
+                    options={{
+                        drawerLabel: 'Se connecter',
+                        drawerIcon: ({ focused }) => (
+                            focused ? (
+                                <SvgXml
+                                    xml={ic_login_dark_green}
+                                    width={STANDARD_VECTOR_ICON_SIZE}
+                                    height={STANDARD_VECTOR_ICON_SIZE}
+                                />
+                            ) : (
+                                <SvgXml
+                                    xml={ic_login_light_grey}
+                                    width={STANDARD_VECTOR_ICON_SIZE}
+                                    height={STANDARD_VECTOR_ICON_SIZE}
+                                />
+                            )
+                        ),
+                        drawerLabelStyle: styles.drawerItemLabel,
+                    }}
+                />
+            ) : (
+                <Drawer.Screen
+                    name="MyProfileStack"
+                    component={MyProfileStack}
+                    options={{
+                        drawerLabel: 'Mon profil',
+                        drawerIcon: ({ focused }) => (
+                            focused ? (
+                                <SvgXml
+                                    xml={ic_login_dark_green}
+                                    width={STANDARD_VECTOR_ICON_SIZE}
+                                    height={STANDARD_VECTOR_ICON_SIZE}
+                                />
+                            ) : (
+                                <SvgXml
+                                    xml={ic_login_light_grey}
+                                    width={STANDARD_VECTOR_ICON_SIZE}
+                                    height={STANDARD_VECTOR_ICON_SIZE}
+                                />
+                            )
+                        ),
+                        drawerLabelStyle: styles.drawerItemLabel,
+                    }}
+                />
+            )}
+
             <Drawer.Screen
                 name="SupportStack"
                 component={SupportStack}
@@ -177,29 +233,6 @@ const HomeDrawer = () => {
                         ) : (
                             <SvgXml
                                 xml={ic_paper_light_grey}
-                                width={STANDARD_VECTOR_ICON_SIZE}
-                                height={STANDARD_VECTOR_ICON_SIZE}
-                            />
-                        ),
-                    drawerLabelStyle: styles.drawerItemLabel,
-                }}
-            />
-
-            <Drawer.Screen
-                name="AuthStack"
-                component={AuthStack}
-                options={{
-                    drawerLabel: 'Account Login',
-                    drawerIcon: ({ focused }) =>
-                        focused ? (
-                            <SvgXml
-                                xml={ic_login_dark_green}
-                                width={STANDARD_VECTOR_ICON_SIZE}
-                                height={STANDARD_VECTOR_ICON_SIZE}
-                            />
-                        ) : (
-                            <SvgXml
-                                xml={ic_login_light_grey}
                                 width={STANDARD_VECTOR_ICON_SIZE}
                                 height={STANDARD_VECTOR_ICON_SIZE}
                             />
