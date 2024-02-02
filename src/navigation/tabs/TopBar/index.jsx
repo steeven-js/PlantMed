@@ -9,10 +9,18 @@ import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 
 import styles from './styles';
 
-const TopBar = ({ navigation, route }) => {
+const TopBar = ({ navigation, route, title }) => {
     const navigateToScreen = (screenName) => {
         navigation.navigate(screenName);
     };
+
+    if (route && route.name === 'Symptomes') {
+        title = 'Usages thérapeutiques';
+    } else if (route && route.name === 'Plantes') {
+        title = 'Plantes médicinales';
+    } else if (route && route.name === 'Favoris') {
+        title = 'Favoris';
+    }
 
     return (
         <View style={styles.topNav}
@@ -20,7 +28,7 @@ const TopBar = ({ navigation, route }) => {
             {/* Div au-dessus des onglets */}
             <View style={styles.TopNavBar}>
                 <MenuIcon name="menu" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" onPress={() => navigation.openDrawer()} />
-                <Text style={styles.textTopNavBar}>{route && route.name}</Text>
+                <Text style={styles.textTopNavBar}> {title} </Text>
                 <SearchIcon name="search" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
             </View>
 
