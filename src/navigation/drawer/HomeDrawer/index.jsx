@@ -25,11 +25,12 @@ import ic_paper_dark_green from '../../../assets/icons/svg/ic_paper_dark_green';
 import ic_paper_light_grey from '../../../assets/icons/svg/ic_paper_light_grey';
 import ic_login_dark_green from '../../../assets/icons/svg/ic_login_dark_green';
 import ic_login_light_grey from '../../../assets/icons/svg/ic_login_light_grey';
-import ic_users_dark_green from '../../../assets/icons/svg/ic_users_dark_green';
-import ic_users_light_grey from '../../../assets/icons/svg/ic_users_light_grey';
+import ic_gear_dark_green from '../../../assets/icons/svg/ic_gear_dark_green';
+import ic_gear_light_green from '../../../assets/icons/svg/ic_gear_light_green';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import HomeStack from '../../stacks/HomeStack';
 import SupportStack from '../../stacks/SupportStack';
+import SettingsStack from '../../stacks/SettingsStack';
 
 // Creating drawer navigator
 const Drawer = createDrawerNavigator();
@@ -207,29 +208,29 @@ const HomeDrawer = () => {
                 }}
             />
 
-            {/* <Drawer.Screen
-                name="Contacts"
-                component={Contacts}
+            <Drawer.Screen
+                name="Paramètres"
+                component={SettingsStack}
                 options={{
-                    headerShown: true,
-                    drawerLabel: 'Contacts',
+                    headerShown: false,
+                    drawerLabel: 'Paramètres',
                     drawerIcon: ({ focused }) =>
                         focused ? (
                             <SvgXml
-                                xml={ic_users_dark_green}
+                                xml={ic_gear_dark_green}
                                 width={STANDARD_VECTOR_ICON_SIZE}
                                 height={STANDARD_VECTOR_ICON_SIZE}
                             />
                         ) : (
                             <SvgXml
-                                xml={ic_users_light_grey}
+                                xml={ic_gear_light_green}
                                 width={STANDARD_VECTOR_ICON_SIZE}
                                 height={STANDARD_VECTOR_ICON_SIZE}
                             />
                         ),
                     drawerLabelStyle: styles.drawerItemLabel,
                 }}
-            /> */}
+            />
         </Drawer.Navigator>
     );
 };
