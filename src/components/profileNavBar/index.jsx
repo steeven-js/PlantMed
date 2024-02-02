@@ -37,7 +37,7 @@ const ProfileNavBar = ({ title }) => {
             // Dispatch action to set user in the Redux store
             dispatch(clearUser(null));
             navigation.navigate('Home', {
-                screen: 'Plantes médicinales',
+                screen: 'Plantes',
             });
         } catch (error) {
             console.error('Error logging out:', error.message);

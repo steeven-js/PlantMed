@@ -43,7 +43,7 @@ const SupportStack = () => {
   // Returning
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="Help & Support" component={Support} />
+      <Stack.Screen name="Help & Support" component={Support} options={{title:'Aide et support'}} />
       <Stack.Screen name="ContactUs" component={ContactUs} />
       <Stack.Screen name="Faqs" component={Faqs} />
     </Stack.Navigator>

@@ -42,8 +42,8 @@ const PoliciesStack = () => {
     // Returning
     return (
         <Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen name="Policies" component={Policies} />
-            <Stack.Screen name="Policy" component={Policy} />
+            <Stack.Screen name="Policies" component={Policies} options={{title: 'Conditions légales'}}/>
+            <Stack.Screen name="Policy" component={Policy} options={{title: 'Condition légal'}}/>
         </Stack.Navigator>
     )
 }

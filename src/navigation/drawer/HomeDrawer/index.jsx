@@ -199,7 +199,7 @@ const HomeDrawer = () => {
                 name="SupportStack"
                 component={SupportStack}
                 options={{
-                    drawerLabel: 'Help & Support',
+                    drawerLabel: 'Assistance',
                     drawerIcon: ({ focused }) =>
                         focused ? (
                             <SvgXml
@@ -222,7 +222,7 @@ const HomeDrawer = () => {
                 name="PoliciesStack"
                 component={PoliciesStack}
                 options={{
-                    drawerLabel: 'Legal Policies',
+                    drawerLabel: 'Conditions légales',
                     drawerIcon: ({ focused }) =>
                         focused ? (
                             <SvgXml

@@ -74,7 +74,7 @@ const Login = ({ navigation }) => {
 
             // Rediriger vers la page d'accueil après l'authentification réussie
             navigation.navigate('Home', {
-                screen: 'Plantes médicinales',
+                screen: 'Plantes',
             });
         } catch (error) {
             console.error('Erreur de connexion :', error.message);
@@ -105,7 +105,7 @@ const Login = ({ navigation }) => {
 
         const navigateToHome = () => {
             navigation.navigate('Home', {
-                screen: 'Plantes médicinales',
+                screen: 'Plantes',
             });
         };
 

@@ -87,7 +87,7 @@ const PlantNavBar = ({ data, plantId }) => {
     };
 
     const backPlantDetail = () => {
-        navigation.navigate('Plantes médicinales');
+        navigation.navigate('Plantes');
     };
 
     const backFavoris = () => {
@@ -99,12 +99,12 @@ const PlantNavBar = ({ data, plantId }) => {
         switch (originRoute) {
             case 'SymptomeDetail':
                 return backSymptomeDetail();
-            case 'Plantes médicinales':
+            case 'Plantes':
                 return backPlantDetail();
             case 'Favoris':
                 return backFavoris();
             default:
-                return navigation.navigate('Plantes médicinales');
+                return navigation.navigate('Plantes');
         }
     };
 

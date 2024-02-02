@@ -64,7 +64,7 @@ const Register = ({ navigation }) => {
 
             // Rediriger vers la page d'accueil après l'authentification réussie
             navigation.navigate('Home', {
-                screen: 'Plantes médicinales',
+                screen: 'Plantes',
             });
         } catch (error) {
             console.error('Erreur lors de l\'enregistrement de l\'utilisateur :', error.message);

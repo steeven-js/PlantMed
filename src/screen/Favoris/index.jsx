@@ -139,7 +139,7 @@ const Favoris = ({ route, navigation }) => {
                                 <Link
                                     label="Découvrir nos plantes médicinales"
                                     onPress={() => navigation.navigate('Home', {
-                                        screen: 'Plantes médicinales',
+                                        screen: 'Plantes',
                                     })}
                                 />
                             </Animatable.View>

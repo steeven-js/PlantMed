@@ -15,8 +15,8 @@ const Home = () => {
                 animationEnabled: false,
             }}
         >
-            <HomeStack.Screen name="Usages thérapeutiques" component={Symptome} />
-            <HomeStack.Screen name="Plantes médicinales" component={Plantes} />
+            <HomeStack.Screen name="Symptomes" component={Symptome} options={{title: 'Usages thérapeutiques'}}/>
+            <HomeStack.Screen name="Plantes" component={Plantes} options={{title: 'Plantes médicinales'}}/>
             <HomeStack.Screen name="Favoris" component={Favoris} />
         </HomeStack.Navigator>
     );

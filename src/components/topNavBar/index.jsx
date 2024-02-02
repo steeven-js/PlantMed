@@ -12,7 +12,7 @@ const TopNavBar = ({ title }) => {
         <View style={styles.header}>
             <MenuIcon name="menu" size={30} color="#fff" onPress={() => navigation.openDrawer()} />
             <Text style={styles.textTopNavBar}>{title}</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('Plantes médicinales')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Plantes')}>
                 <Image source={icons.plante} style={styles.icon} />
             </TouchableOpacity>
         </View>

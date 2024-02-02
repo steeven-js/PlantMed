@@ -26,10 +26,10 @@ const TopBar = ({ navigation, route }) => {
 
             {/* Onglets */}
             <View style={styles.container}>
-                <TouchableOpacity onPress={() => navigateToScreen('Usages thérapeutiques')} style={[styles.tab, route && route.name === 'Usages thérapeutiques' && styles.activeTab1]}>
+                <TouchableOpacity onPress={() => navigateToScreen('Symptomes')} style={[styles.tab, route && route.name === 'Symptomes' && styles.activeTab1]}>
                     <HeartIcon name="heart" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" style={styles.icon} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigateToScreen('Plantes médicinales')} style={[styles.tab, route && route.name === 'Plantes médicinales' && styles.activeTab2]}>
+                <TouchableOpacity onPress={() => navigateToScreen('Plantes')} style={[styles.tab, route && route.name === 'Plantes' && styles.activeTab2]}>
                     <PlantIcon name="plant-wilt" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" style={styles.icon} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigateToScreen('Favoris')} style={[styles.tab, route && route.name === 'Favoris' && styles.activeTab3]}>
