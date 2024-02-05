@@ -2,6 +2,9 @@
 emulator -avd Pixel_7_Pro_API_33 -dns-server 8.8.8.8,8.8.4.4`
 
 npx react-native start
+
+keytool -genkeypair -v -storetype PKCS12 -keystore my-upload-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+
 ```
 
 `useSelector` et `useDispatch` sont deux hooks fournis par React Redux, une bibliothèque React pour la gestion de l'état global de l'application. Ces hooks facilitent l'interaction avec le store Redux.

@@ -8,6 +8,7 @@ const COLORS = {
     textLowContrast: '#888BA4',
     white: '#FFFFFF',
     black: '#000000',
+    yelloww: '#FFD700',
     blackBackground: 'rgba(0, 0, 0, 0.7)',
 };
 

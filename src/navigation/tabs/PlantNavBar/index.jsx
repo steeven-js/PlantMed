@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { firebase } from '@react-native-firebase/auth';
 import BackIcon from 'react-native-vector-icons/Ionicons';
-import StarIcon from 'react-native-vector-icons/FontAwesome6';
+import StarIcon from 'react-native-vector-icons/AntDesign';
 import NavIcon from 'react-native-vector-icons/FontAwesome6';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styles from './styles';
+import { COLORS } from '../../../config/Colors';
 
 const Colors = {
     active: '#00f',
@@ -151,9 +152,9 @@ const PlantNavBar = ({ data, plantId }) => {
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.star} onPress={addToFavoritesHandler}>
                                 {uid && isFavorite ? (
-                                    <StarIcon name="star" size={30} color="yellow" />
+                                    <StarIcon name="star" size={30} color={COLORS.yelloww} />
                                 ) : (
-                                    <StarIcon name="star" size={30} color="#fff" />
+                                    <StarIcon name="star" size={30} color={COLORS.white} />
                                 )}
                             </TouchableOpacity>
                         </View>

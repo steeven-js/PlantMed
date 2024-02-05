@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   TouchableOpacity,
@@ -11,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 import { useSelector } from 'react-redux';
-import StarIcon from 'react-native-vector-icons/FontAwesome6';
+import StarIcon from 'react-native-vector-icons/AntDesign';
 
 import useFetchPlants from '../../hook/useFetchPlants';
 import styles from './styles';
@@ -85,7 +85,7 @@ const Plantes = ({ navigation }) => {
           <StarIcon
             name="star"
             size={30}
-            color="#fff"
+            color={COLORS.yelloww}
             style={styles.icon}
             onPress={() => {
               console.log('hello');
