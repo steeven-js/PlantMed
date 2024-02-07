@@ -5,7 +5,7 @@ const useFetchSymptom = (symptomId) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const endpoint = `http://apimonremede.jsprod.fr/api/symptomes/${symptomId}`;
+    const endpoint = `https://apimonremede.jsprod.fr/api/symptomes/${symptomId}`;
 
     const fetchData = async () => {
         setIsLoading(true);

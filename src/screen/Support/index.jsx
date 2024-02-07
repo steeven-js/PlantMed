@@ -1,16 +1,16 @@
 import styles from './styles';
-import {SvgXml} from 'react-native-svg';
-import { useCallback} from 'react';
+import { SvgXml } from 'react-native-svg';
+import { useCallback } from 'react';
 import * as Animatable from 'react-native-animatable';
-import {STANDARD_VECTOR_ICON_SIZE} from '../../config/Constants';
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import ic_mail_dark_green from '../../assets/icons/svg/ic_mail_dark_green';
 import ic_info_dark_green from '../../assets/icons/svg/ic_info_dark_green';
 import ic_smile_dark_green from '../../assets/icons/svg/ic_smile_dark_green';
 import { COLORS } from '../../config/Colors';
 
 // Functional component
-const Support = ({navigation}) => {
+const Support = ({ navigation }) => {
 
   // Navigate to the contact screen
   const _navigateToContactScreen = useCallback(
@@ -26,18 +26,18 @@ const Support = ({navigation}) => {
 
   // Returning
   return (
-    <View style={[styles.mainWrapper, {backgroundColor: COLORS.primary}]}>
+    <View style={[styles.mainWrapper, { backgroundColor: COLORS.primary }]}>
       {/* Header */}
       <Animatable.View
         delay={100}
         animation="fadeInDown"
-        style={[styles.header, {backgroundColor: COLORS.accent}]}>
+        style={[styles.header, { backgroundColor: COLORS.accent }]}>
         {/* Title */}
         <Animatable.Text
           delay={300}
           animation="fadeInUp"
           style={styles.needHelpLabel}>
-          Need Help?
+          Besoin d'aide?
         </Animatable.Text>
 
         {/* Title */}
@@ -79,8 +79,8 @@ const Support = ({navigation}) => {
             <Animatable.Text
               delay={1500}
               animation="fadeInUp"
-              style={[styles.question, {color: COLORS.accent}]}>
-              Tell us how may we help you?
+              style={[styles.question, { color: COLORS.accent }]}>
+              Dites-nous comment pouvons-nous vous aider ?
             </Animatable.Text>
 
             <Animatable.View delay={1700} animation="fadeInUp">
@@ -95,8 +95,8 @@ const Support = ({navigation}) => {
           <Animatable.Text
             delay={1900}
             animation="fadeInUp"
-            style={[styles.info, {color: COLORS.textLowContrast}]}>
-            Our crew of superheroes are standing by {'\n'}for service & support!
+            style={[styles.info, { color: COLORS.textLowContrast }]}>
+            Notre équipe de super-héros est à votre disposition pour {'\n'}le service et l'assistance!
           </Animatable.Text>
         </Animatable.View>
 
@@ -106,7 +106,7 @@ const Support = ({navigation}) => {
           animation="fadeInUp"
           style={[
             styles.scrollViewWrapper,
-            {backgroundColor: COLORS.secondary},
+            { backgroundColor: COLORS.secondary },
           ]}>
           {/* Support list items scroll view */}
           <ScrollView
@@ -120,14 +120,14 @@ const Support = ({navigation}) => {
                 activeOpacity={1}
                 style={[
                   styles.supportListItem,
-                  {backgroundColor: COLORS.primary},
+                  { backgroundColor: COLORS.primary },
                 ]}
                 onPress={_navigateToContactScreen}>
                 {/* Support icon wrapper */}
                 <View
                   style={[
                     styles.supportIconWrapper,
-                    {backgroundColor: COLORS.accentLightest},
+                    { backgroundColor: COLORS.accentLightest },
                   ]}>
                   <SvgXml
                     xml={ic_mail_dark_green}
@@ -141,19 +141,18 @@ const Support = ({navigation}) => {
                   <Text
                     style={[
                       styles.supportTypeTitle,
-                      {color: COLORS.textHighContrast},
+                      { color: COLORS.textHighContrast },
                     ]}>
-                    Mail Us
+                    Envoyez-nous un mail
                   </Text>
                   {/* Subtitle */}
                   <Text
                     style={[
                       styles.supportTypeTitleInfo,
-                      {color: COLORS.textLowContrast},
+                      { color: COLORS.textLowContrast },
                     ]}>
-                    Mail us at{' '}
-                    <Text style={[styles.mailId, {color: COLORS.accent}]}>
-                      suuport@foodbazaar.com
+                    <Text style={[styles.mailId, { color: COLORS.accent }]}>
+                      contact.jsprod972@gmail.com
                     </Text>
                   </Text>
                 </View>
@@ -166,14 +165,14 @@ const Support = ({navigation}) => {
                 activeOpacity={1}
                 style={[
                   styles.supportListItem,
-                  {backgroundColor: COLORS.primary},
+                  { backgroundColor: COLORS.primary },
                 ]}
                 onPress={_navigateToFaqsScreen}>
                 {/* Support icon wrapper */}
                 <View
                   style={[
                     styles.supportIconWrapper,
-                    {backgroundColor: COLORS.accentLightest},
+                    { backgroundColor: COLORS.accentLightest },
                   ]}>
                   <SvgXml
                     xml={ic_info_dark_green}
@@ -187,7 +186,7 @@ const Support = ({navigation}) => {
                   <Text
                     style={[
                       styles.supportTypeTitle,
-                      {color: COLORS.textHighContrast},
+                      { color: COLORS.textHighContrast },
                     ]}>
                     FAQs
                   </Text>
@@ -195,9 +194,9 @@ const Support = ({navigation}) => {
                   <Text
                     style={[
                       styles.supportTypeTitleInfo,
-                      {color: COLORS.textLowContrast},
+                      { color: COLORS.textLowContrast },
                     ]}>
-                    Find intelligent answers instantly!
+                    Trouvez instantanément des réponses intelligentes!
                   </Text>
                 </View>
               </TouchableOpacity>

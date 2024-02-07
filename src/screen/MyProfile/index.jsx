@@ -82,8 +82,9 @@ const MyProfile = () => {
                         {/* Vertical spacer */}
                         <View style={styles.verticalSpacer} />
 
+                        {/* Mapping */}
+                        {/*  
                         <Animatable.View animation="fadeInUp" delay={900}>
-                            {/* Mapping */}
                             {MyProfileData.map((item, index) => (
                                 <View key={index}>
                                     <NavigationLink
@@ -97,6 +98,7 @@ const MyProfile = () => {
                                 </View>
                             ))}
                         </Animatable.View>
+                    */}
                     </ScrollView>
 
                 </Animatable.View>

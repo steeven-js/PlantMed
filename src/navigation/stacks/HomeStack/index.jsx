@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react'
 import Home from '../../../screen/Home';
 import SymptomeStack from '../SymptomStack';
-import PlanteStack from '../Plante';
+import PlanteStack from '../PlanteStack';
 
 const Stack = createNativeStackNavigator();
 
