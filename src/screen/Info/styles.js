@@ -1,5 +1,12 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../../config/Colors';
+import {
+    FONT_SIZE_LG,
+    FONT_SIZE_MD,
+    FONT_SIZE_XL,
+    DOSIS_BOLD,
+    DOSIS_MEDIUM
+} from '../../config/Constants';
 
 const styles = StyleSheet.create({
     background: {
@@ -13,14 +20,14 @@ const styles = StyleSheet.create({
         marginVertical: 10 * 1.5,
     },
     title: {
-        fontSize: 25,
+        fontSize: FONT_SIZE_XL,
         fontFamily: 'Dosis-Bold',
         textAlign: 'center',
         marginBottom: 10,
         color: COLORS.textHighContrast,
     },
     soustitre: {
-        fontSize: 20,
+        fontSize: FONT_SIZE_LG,
         fontFamily: 'Dosis-Bold',
         textAlign: 'left',
         marginBottom: 10,
@@ -39,7 +46,7 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: 'Dosis-Medium',
         color: COLORS.textHighContrast,
-        fontSize: 16,
+        fontSize: FONT_SIZE_MD,
     },
 });
 

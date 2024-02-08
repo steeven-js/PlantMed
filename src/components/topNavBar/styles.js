@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { COLORS } from '../../config/Colors';
-import { FONT_SIZE_MD, FONT_SIZE_LG, FONT_SIZE_XL } from '../../config/Constants';
+import { FONT_SIZE_MD, FONT_SIZE_LG, FONT_SIZE_XL, STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
 
 export default StyleSheet.create({
     header: {
@@ -17,7 +17,11 @@ export default StyleSheet.create({
     },
     icon: {
         padding: 10,
-        width: 30,
-        height: 30,
+        width: STANDARD_VECTOR_ICON_SIZE,
+        height: STANDARD_VECTOR_ICON_SIZE,
+    },
+    Touch: {
+        padding: 10,
+        // backgroundColor: 'red'
     },
 });

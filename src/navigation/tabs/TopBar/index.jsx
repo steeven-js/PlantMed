@@ -27,7 +27,9 @@ const TopBar = ({ navigation, route, title }) => {
         >
             {/* Div au-dessus des onglets */}
             <View style={styles.TopNavBar}>
-                <MenuIcon name="menu" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" onPress={() => navigation.openDrawer()} />
+                <TouchableOpacity style={styles.Touch} onPress={() => navigation.openDrawer()} >
+                    <MenuIcon name="menu" size={STANDARD_VECTOR_ICON_SIZE} color="#fff"/>
+                </TouchableOpacity>
                 <Text style={styles.textTopNavBar}> {title} </Text>
                 <SearchIcon name="search" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
             </View>

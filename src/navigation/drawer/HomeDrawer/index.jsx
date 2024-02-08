@@ -16,7 +16,7 @@ import { SvgXml } from 'react-native-svg';
 import AuthStack from '../../stacks/AuthStack';
 import PoliciesStack from '../../stacks/PoliciesStack';
 import { COLORS, IndependentColors } from '../../../config/Colors';
-import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
+import { FONT_SIZE_LG, FONT_SIZE_MD, FONT_SIZE_SM, FONT_SIZE_XL, STANDARD_STANDARD, STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import ic_home_dark_green from '../../../assets/icons/svg/ic_home_dark_green';
 import ic_home_light_grey from '../../../assets/icons/svg/ic_home_light_grey';
 import ic_call_dark_green from '../../../assets/icons/svg/ic_call_dark_green';
@@ -54,7 +54,7 @@ const CustomDrawerContent = props => {
                     />
                 </View>
                 <View>
-                    <Text style={styles.brandName}>Mon Remède</Text>
+                    <Text style={styles.brandName}>PlantMed</Text>
                     <Text style={styles.brandSlogan}>Le soins par les plantes!</Text>
                 </View>
             </ImageBackground>
@@ -140,10 +140,12 @@ const HomeDrawer = () => {
                                 height={STANDARD_VECTOR_ICON_SIZE}
                             />
                         ),
-                    drawerLabelStyle: styles.drawerItemLabel,
+                    drawerLabelStyle: [
+                        styles.drawerItemLabel,
+                        { fontSize: 'Accueil'.length >= STANDARD_STANDARD * 2 ? FONT_SIZE_MD : FONT_SIZE_LG },
+                    ],
                 }}
             />
-
 
             {uid == null ? (
                 <Drawer.Screen
@@ -166,7 +168,10 @@ const HomeDrawer = () => {
                                 />
                             )
                         ),
-                        drawerLabelStyle: styles.drawerItemLabel,
+                        drawerLabelStyle: [
+                            styles.drawerItemLabel,
+                            { fontSize: 'Se connecter'.length >= STANDARD_STANDARD * 2 ? FONT_SIZE_MD : FONT_SIZE_LG },
+                        ],
                     }}
                 />
             ) : (
@@ -190,7 +195,10 @@ const HomeDrawer = () => {
                                 />
                             )
                         ),
-                        drawerLabelStyle: styles.drawerItemLabel,
+                        drawerLabelStyle: [
+                            styles.drawerItemLabel,
+                            { fontSize: 'Mon profil'.length >= STANDARD_STANDARD * 2 ? FONT_SIZE_MD : FONT_SIZE_LG },
+                        ],
                     }}
                 />
             )}
@@ -214,7 +222,10 @@ const HomeDrawer = () => {
                                 height={STANDARD_VECTOR_ICON_SIZE}
                             />
                         ),
-                    drawerLabelStyle: styles.drawerItemLabel,
+                    drawerLabelStyle: [
+                        styles.drawerItemLabel,
+                        { fontSize: 'Assistance'.length >= STANDARD_STANDARD * 2 ? FONT_SIZE_MD : FONT_SIZE_LG },
+                    ],
                 }}
             />
 
@@ -237,7 +248,10 @@ const HomeDrawer = () => {
                                 height={STANDARD_VECTOR_ICON_SIZE}
                             />
                         ),
-                    drawerLabelStyle: styles.drawerItemLabel,
+                    drawerLabelStyle: [
+                        styles.drawerItemLabel,
+                        { fontSize: 'Conditions légales'.length >= STANDARD_STANDARD ? FONT_SIZE_SM : FONT_SIZE_MD },
+                    ],
                 }}
             />
 
@@ -261,7 +275,10 @@ const HomeDrawer = () => {
                                 height={STANDARD_VECTOR_ICON_SIZE}
                             />
                         ),
-                    drawerLabelStyle: styles.drawerItemLabel,
+                    drawerLabelStyle: [
+                        styles.drawerItemLabel,
+                        { fontSize: 'Paramètres'.length >= STANDARD_STANDARD * 2 ? FONT_SIZE_MD : FONT_SIZE_LG },
+                    ],
                 }}
             />
         </Drawer.Navigator>

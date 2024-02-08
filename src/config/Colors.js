@@ -18,4 +18,3 @@ const IndependentColors = {
   };
 
 export { COLORS, IndependentColors };
-// 2c5c2d

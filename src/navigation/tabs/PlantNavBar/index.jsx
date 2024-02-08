@@ -8,6 +8,8 @@ import NavIcon from 'react-native-vector-icons/FontAwesome6';
 import { useSelector } from 'react-redux'
 import styles from './styles';
 import { COLORS } from '../../../config/Colors';
+import { Screen } from 'react-native-screens';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 
 const Colors = {
     active: '#00f',
@@ -50,6 +52,9 @@ const PlantNavBar = ({ data, plantId }) => {
     const addToFavoritesHandler = async () => {
         if (!uid) {
             console.log("L'utilisateur n'est pas connecté");
+            navigation.navigate('AuthStack', {
+                Screen: 'Login',
+            });
             return;
         }
 
@@ -148,13 +153,13 @@ const PlantNavBar = ({ data, plantId }) => {
                     <View style={styles.divAboveTabs}>
                         <View style={styles.divAboveTabsContent}>
                             <TouchableOpacity style={styles.back} onPress={backToOriginRoute}>
-                                <BackIcon name="arrow-back" size={30} color="#fff" />
+                                <BackIcon name="arrow-back" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.star} onPress={addToFavoritesHandler}>
                                 {uid && isFavorite ? (
-                                    <StarIcon name="star" size={30} color={COLORS.yelloww} />
+                                    <StarIcon name="star" size={STANDARD_VECTOR_ICON_SIZE} color={COLORS.yelloww} />
                                 ) : (
-                                    <StarIcon name="star" size={30} color={COLORS.white} />
+                                    <StarIcon name="star" size={STANDARD_VECTOR_ICON_SIZE} color={COLORS.white} />
                                 )}
                             </TouchableOpacity>
                         </View>
@@ -174,7 +179,7 @@ const PlantNavBar = ({ data, plantId }) => {
                             },
                         ]}
                     >
-                        <NavIcon name="circle-info" size={22} color="#fff" />
+                        <NavIcon name="circle-info" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                         {/* <Image source={icons.info} style={styles.icon} /> */}
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -187,7 +192,7 @@ const PlantNavBar = ({ data, plantId }) => {
                             },
                         ]}
                     >
-                        <NavIcon name="clipboard-list" size={22} color="#fff" />
+                        <NavIcon name="clipboard-list" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                         {/* <Image source={icons.propriete} style={styles.icon} /> */}
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -200,7 +205,7 @@ const PlantNavBar = ({ data, plantId }) => {
                             },
                         ]}
                     >
-                        <NavIcon name="heart-circle-check" size={22} color="#fff" />
+                        <NavIcon name="heart-circle-check" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                         {/* <Image source={icons.usage} style={styles.icon} /> */}
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -213,7 +218,7 @@ const PlantNavBar = ({ data, plantId }) => {
                             },
                         ]}
                     >
-                        <NavIcon name="circle-exclamation" size={22} color="#fff" />
+                        <NavIcon name="circle-exclamation" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                         {/* <Image source={icons.caution} style={styles.icon} /> */}
                     </TouchableOpacity>
                 </View>

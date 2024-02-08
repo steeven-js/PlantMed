@@ -2,6 +2,9 @@ import { StyleSheet, Dimensions } from 'react-native';
 import {
     STANDARD_FLEX,
     STANDARD_SPACING,
+    FONT_SIZE_SM,
+    FONT_SIZE_LG,
+    FONT_SIZE_XL,
 } from '../../config/Constants';
 import { COLORS } from '../../config/Colors';
 
@@ -85,6 +88,12 @@ const styles = StyleSheet.create({
         paddingBottom: STANDARD_SPACING * 5,
     },
     backgroundLogOut: {
+        flex: STANDARD_FLEX,
+        justifyContent: 'center',
+        backgroundColor: COLORS.secondary,
+        padding: STANDARD_SPACING * 5,
+    },
+    backgroundNoFavoris: {
         flex: STANDARD_FLEX,
         justifyContent: 'center',
         backgroundColor: COLORS.secondary,

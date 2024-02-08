@@ -118,43 +118,45 @@ const Favoris = ({ route, navigation }) => {
         );
     }
 
-    if (!error && plantsData && uid) {
+    if (uid && favorites.length === 0) {
+        return (
+            <View style={styles.backgroundNoFavoris}>
+                <View style={styles.noFavorite}>
+                    <Animatable.View
+                        animation="fadeInUp"
+                        delay={100}
+                        style={styles.questionAndLinkWrapper}>
+                        <Question question="Vous n'avez pas de plante dans vos favoris" />
+                    </Animatable.View>
+                    <Animatable.View
+                        animation="fadeInUp"
+                        delay={300}
+                        style={styles.questionAndLinkWrapper}>
+                        <Link
+                            label="Découvrir nos plantes médicinales"
+                            onPress={() => navigation.navigate('Home', {
+                                screen: 'Plantes',
+                            })}
+                        />
+                    </Animatable.View>
+                </View>
+            </View>
+        );
+    }
+
+    if (!error && plantsData && uid && favorites.length > 0) {
         return (
             <View style={styles.background}>
                 <View style={styles.overlay}>
-                    {uid && favorites.length === 0 ? (
-                        <View style={styles.noFavorite}>
-                            <Animatable.View
-                                animation="fadeInUp"
-                                delay={100}
-                                style={styles.questionAndLinkWrapper}>
-
-                                <Question question="Vous n'avez pas de plante dans vos favoris" />
-                            </Animatable.View>
-                            <Animatable.View
-                                animation="fadeInUp"
-                                delay={300}
-                                style={styles.questionAndLinkWrapper}>
-
-                                <Link
-                                    label="Découvrir nos plantes médicinales"
-                                    onPress={() => navigation.navigate('Home', {
-                                        screen: 'Plantes',
-                                    })}
-                                />
-                            </Animatable.View>
-                        </View>
-                    ) : (
-                        <FlatList
-                            data={favorites}
-                            keyExtractor={(item) => item.id}
-                            renderItem={renderItem}
-                            numColumns={2}
-                            refreshing={isLoading}
-                            showsVerticalScrollIndicator={false}
-                            onRefresh={refetch}
-                        />
-                    )}
+                    <FlatList
+                        data={favorites}
+                        keyExtractor={(item) => item.id}
+                        renderItem={renderItem}
+                        numColumns={2}
+                        refreshing={isLoading}
+                        showsVerticalScrollIndicator={false}
+                        onRefresh={refetch}
+                    />
                 </View>
             </View>
         );

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import MenuIcon from 'react-native-vector-icons/Ionicons';
 import IconLogout from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
 import { setUser, clearUser } from '../../redux/reducer/auth';
 import { useDispatch } from 'react-redux';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
 import styles from './styles';
 
 const ProfileNavBar = ({ title }) => {
@@ -46,9 +47,13 @@ const ProfileNavBar = ({ title }) => {
 
     return (
         <View style={styles.header}>
-            <MenuIcon name="menu" size={30} color="#fff" onPress={() => navigation.openDrawer()} />
+            <TouchableOpacity style={styles.touchableOpacity}>
+                <MenuIcon name="menu" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" onPress={() => navigation.openDrawer()} />
+            </TouchableOpacity>
             <Text style={styles.textTopNavBar}>{title}</Text>
-            <IconLogout name="logout" size={30} color="#fff" onPress={handleLogout} />
+            <TouchableOpacity style={styles.touchableOpacity}>
+                <IconLogout name="logout" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" onPress={handleLogout} />
+            </TouchableOpacity>
         </View>
     );
 };

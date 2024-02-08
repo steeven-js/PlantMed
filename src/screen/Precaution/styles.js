@@ -1,4 +1,11 @@
 import { StyleSheet } from 'react-native';
+import { 
+    FONT_SIZE_MD, 
+    FONT_SIZE_LG, 
+    FONT_SIZE_XL,
+    DOSIS_BOLD, 
+    DOSIS_MEDIUM 
+} from '../../config/Constants';
 
 const styles = StyleSheet.create({
     background: {
@@ -19,13 +26,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     title: {
-        fontSize: 22,
+        fontSize: FONT_SIZE_XL,
         fontFamily: 'Dosis-Bold',
         textAlign: 'left',
         color: '#283828',
     },
     soustitre: {
-        fontSize: 20,
+        fontSize: FONT_SIZE_LG,
         fontFamily: 'Dosis-Bold',
         textAlign: 'left',
         marginBottom: 10,
@@ -39,7 +46,7 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: 'Dosis-Medium',
         color: '#283828',
-        fontSize: 16,
+        fontSize: FONT_SIZE_MD,
         marginBottom: 10,
     },
 });

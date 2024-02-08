@@ -17,6 +17,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
+    back: {
+        padding: 10,
+        // backgroundColor: 'red',
+    },
+    star: {
+        padding: 10,
+        // backgroundColor: 'blue',
+    },
     container: {
         position: 'absolute',
         bottom: 0,
@@ -32,12 +40,6 @@ const styles = StyleSheet.create({
         padding: 10,
         width: '20%',
         alignItems: 'center',
-
-    },
-    icon: {
-        padding: 10,
-        width: 25,
-        height: 25,
     },
 });
 

@@ -11,6 +11,7 @@ import {
   DOSIS_MEDIUM,
   DOSIS_SEMIBOLD,
   FONT_SIZE_MD,
+  FONT_SIZE_LG,
 } from '../../../config/Constants';
 import {IndependentColors} from '../../../config/Colors';
 
@@ -44,12 +45,12 @@ export default StyleSheet.create({
   },
   brandName: {
     fontFamily: DOSIS_BOLD,
-    fontSize: FONT_SIZE_SM,
+    fontSize: FONT_SIZE_LG,
     color: IndependentColors.white,
   },
   brandSlogan: {
     fontFamily: DOSIS_MEDIUM,
-    fontSize: FONT_SIZE_XS,
+    fontSize: FONT_SIZE_SM,
     color: IndependentColors.white,
   },
   drawerItem: {
@@ -59,7 +60,7 @@ export default StyleSheet.create({
   },
   drawerItemLabel: {
     fontFamily: DOSIS_MEDIUM,
-    fontSize: FONT_SIZE_XS,
+    // fontSize: FONT_SIZE_LG,
   },
   leftArrowIcon: {
     marginLeft: STANDARD_SPACING * 3,

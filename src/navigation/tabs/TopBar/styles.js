@@ -22,6 +22,12 @@ const styles = StyleSheet.create({
         fontSize: 22,
         color: COLORS.white,
         fontFamily: 'Dosis-Medium',
+        flex: 1,
+        textAlign: 'center',
+    },
+    Touch: {
+        padding: 10,
+        // backgroundColor: 'red'
     },
     container: {
         flexDirection: 'row',
