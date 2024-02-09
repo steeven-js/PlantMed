@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
@@ -137,94 +137,100 @@ const Login = ({ navigation }) => {
                 title="Connexion"
             />
 
-            <Animatable.View
-                animation="fadeInUp"
-                delay={100}
-                style={[styles.formWrapper, { backgroundColor: COLORS.primary }]}>
-
-                <Animatable.View animation="fadeInUp" delay={500}>
-                    <ScreenInfo info="Bonjour, veuillez fournir vos informations d'identification pour accéder à votre compte." />
-                </Animatable.View>
-
-                <View style={styles.verticalSpacer} />
-                <View style={styles.verticalSpacer} />
-
-                <Animatable.View animation="fadeInUp" delay={700}>
-                    <CustomTextInput
-                        label="Email"
-                        placeholder="Email"
-                        value={email}
-                        onChangeText={(text) => setEmail(text)}
-                        autoCapitalize="none"
-                        keyboardType="email-address"
-                    />
-                    {emailError ? <Text style={styles.errorMessage}>{emailError}</Text> : null}
-                </Animatable.View>
-
-                <View style={styles.verticalSpacer} />
-
-                <Animatable.View animation="fadeInUp" delay={900}>
-                    <PasswordTextInput
-                        label="Mot de passe"
-                        placeholder="Mot de passe"
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
-                        afficherMotDePasse={afficherMotDePasse}
-                        setAfficherMotDePasse={setAfficherMotDePasse}
-                    />
-                    {passwordError ? <Text style={styles.errorMessage}>{passwordError}</Text> : null}
-                </Animatable.View>
-
-                <View style={styles.verticalSpacer} />
-
-                <Animatable.View animation="fadeInUp" delay={1100}>
-                    <Link label="Mot de passe oublié ?" />
-                </Animatable.View>
-
-                <View style={styles.verticalSpacer} />
-
-                <Animatable.View animation="fadeInUp" delay={1300}>
-                    <Button
-                        label="Login"
-                        onPress={handleConnexion}
-                    />
-                    {emptyFieldsError ? <Text style={styles.errorMessage}>{emptyFieldsError}</Text> : null}
-                </Animatable.View>
-
-                <View style={styles.verticalSpacer} />
-
-                <Animatable.View animation="fadeInUp" delay={1500}>
-                    <OrDivider label="or login with" />
-                </Animatable.View>
-
-                <View style={styles.socialMediaIconsWrapper}>
-                    <Animatable.View animation="bounceIn" delay={2100}>
-                        <TouchableOpacity onPress={googleSignIn}>
-                            <SvgXml
-                                xml={ic_google}
-                                width={STANDARD_SOCIAL_ICON_SIZE}
-                                height={STANDARD_SOCIAL_ICON_SIZE}
-                            />
-                        </TouchableOpacity>
-                    </Animatable.View>
-                </View>
-
-                <View style={styles.verticalSpacer} />
+            <ScrollView>
 
                 <Animatable.View
                     animation="fadeInUp"
-                    delay={2300}
-                    style={styles.questionAndLinkWrapper}>
-                    <Question question="Vous n'avez pas de compte ?" />
-                    <Link
-                        label="S'inscrire"
-                        onPress={() => {
-                            navigation.navigate('Register');
-                        }}
-                    />
+                    delay={100}
+                    style={[styles.formWrapper, { backgroundColor: COLORS.primary }]}>
+
+                    <Animatable.View animation="fadeInUp" delay={500}>
+                        <ScreenInfo info="Bonjour, veuillez fournir vos informations d'identification pour accéder à votre compte." />
+                    </Animatable.View>
+
+                    <View style={styles.verticalSpacer} />
+                    <View style={styles.verticalSpacer} />
+
+                    <Animatable.View animation="fadeInUp" delay={700}>
+                        <CustomTextInput
+                            label="Email"
+                            placeholder="Email"
+                            value={email}
+                            onChangeText={(text) => setEmail(text)}
+                            autoCapitalize="none"
+                            keyboardType="email-address"
+                        />
+                        {emailError ? <Text style={styles.errorMessage}>{emailError}</Text> : null}
+                    </Animatable.View>
+
+                    <View style={styles.verticalSpacer} />
+
+                    <Animatable.View animation="fadeInUp" delay={900}>
+                        <PasswordTextInput
+                            label="Mot de passe"
+                            placeholder="Mot de passe"
+                            value={password}
+                            onChangeText={(text) => setPassword(text)}
+                            afficherMotDePasse={afficherMotDePasse}
+                            setAfficherMotDePasse={setAfficherMotDePasse}
+                        />
+                        {passwordError ? <Text style={styles.errorMessage}>{passwordError}</Text> : null}
+                    </Animatable.View>
+
+                    <View style={styles.verticalSpacer} />
+
+                    <Animatable.View animation="fadeInUp" delay={1100}>
+                        <Link label="Mot de passe oublié ?" />
+                    </Animatable.View>
+
+                    <View style={styles.verticalSpacer} />
+
+                    <Animatable.View animation="fadeInUp" delay={1300}>
+                        <Button
+                            label="Login"
+                            onPress={handleConnexion}
+                        />
+                        {emptyFieldsError ? <Text style={styles.errorMessage}>{emptyFieldsError}</Text> : null}
+                    </Animatable.View>
+
+                    <View style={styles.verticalSpacer} />
+
+                    <Animatable.View animation="fadeInUp" delay={1500}>
+                        <OrDivider label="or login with" />
+                    </Animatable.View>
+
+                    <View style={styles.socialMediaIconsWrapper}>
+                        <Animatable.View animation="bounceIn" delay={2100}>
+                            <TouchableOpacity onPress={googleSignIn}>
+                                <SvgXml
+                                    xml={ic_google}
+                                    width={STANDARD_SOCIAL_ICON_SIZE}
+                                    height={STANDARD_SOCIAL_ICON_SIZE}
+                                />
+                            </TouchableOpacity>
+                        </Animatable.View>
+                    </View>
+
+                    <View style={styles.verticalSpacer} />
+
+                    <Animatable.View
+                        animation="fadeInUp"
+                        delay={2300}
+                        style={styles.questionAndLinkWrapper}>
+                        <Question question="Vous n'avez pas de compte ?" />
+                        <Link
+                            label="S'inscrire"
+                            onPress={() => {
+                                navigation.navigate('Register');
+                            }}
+                        />
+                    </Animatable.View>
+
                 </Animatable.View>
 
-            </Animatable.View>
+            </ScrollView>
+
+
         </View>
     );
 };

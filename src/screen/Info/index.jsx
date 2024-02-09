@@ -57,6 +57,9 @@ const Info = ({ route }) => {
                                 <Text style={styles.text}>{data.description}</Text>
                             </View>
 
+                            {/* Vertical spacer */}
+                            <View style={styles.verticalSpacer} />
+
                             <View style={[styles.section, styles.borderBottom]}>
                                 <Text style={styles.soustitre}>Habitat</Text>
                                 <Text style={styles.text}>{data.habitat}</Text>

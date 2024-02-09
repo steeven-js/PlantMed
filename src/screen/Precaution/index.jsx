@@ -38,7 +38,7 @@ const Precaution = ({ route }) => {
                             {precautions && precautions.length > 0 ? (
                                 precautions.map((precautionItem) => (
                                     <View key={precautionItem.id} style={styles.text}>
-                                        <Text style={styles.text}>{'.'} {precautionItem.value}</Text>
+                                        <Text style={styles.text}>{precautionItem.value}</Text>
                                     </View>
                                 ))
                             ) : (

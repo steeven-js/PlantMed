@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../../config/Colors';
 
 const styles = StyleSheet.create({
     backgroundImage: {
@@ -34,12 +35,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        backgroundColor: COLORS.blackBackground,
     },
     touchableOpacity: {
         padding: 10,
         width: '20%',
         alignItems: 'center',
+    },
+    bgIcon: {
+        backgroundColor: COLORS.blackBackground,
+        borderRadius: 50,
     },
 });
 

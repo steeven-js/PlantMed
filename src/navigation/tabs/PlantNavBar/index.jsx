@@ -152,10 +152,10 @@ const PlantNavBar = ({ data, plantId }) => {
                 >
                     <View style={styles.divAboveTabs}>
                         <View style={styles.divAboveTabsContent}>
-                            <TouchableOpacity style={styles.back} onPress={backToOriginRoute}>
+                            <TouchableOpacity style={[styles.back, styles.bgIcon]} onPress={backToOriginRoute}>
                                 <BackIcon name="arrow-back" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.star} onPress={addToFavoritesHandler}>
+                            <TouchableOpacity style={[styles.star, styles.bgIcon]} onPress={addToFavoritesHandler}>
                                 {uid && isFavorite ? (
                                     <StarIcon name="star" size={STANDARD_VECTOR_ICON_SIZE} color={COLORS.yelloww} />
                                 ) : (

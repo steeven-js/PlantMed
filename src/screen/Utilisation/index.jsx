@@ -53,6 +53,7 @@ const Utilisation = ({ route }) => {
                                 <View style={styles.verticalSpacer} />
 
                             </View>
+                            
                             <View style={styles.section}>
                                 <Text style={styles.soustitre}>Usage Externe</Text>
                                 {data.utilisations.filter(item => item.type === 'externe').map((utilisationItem) => (
