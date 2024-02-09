@@ -9,6 +9,7 @@ import {
 export default StyleSheet.create({
     leftArrowIcon: {
         marginLeft: STANDARD_SPACING * 3,
+        padding: STANDARD_SPACING * 2,
     },
     headerTitle: {
         fontFamily: DOSIS_BOLD,
