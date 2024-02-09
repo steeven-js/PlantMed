@@ -108,7 +108,9 @@ const Favoris = ({ route, navigation }) => {
                     <Button
                         label="Se connecter"
                         onPress={() => {
-                            navigation.navigate('Login')
+                            navigation.navigate('AuthStack', {
+                                screen: 'Login',
+                            })
                         }}
                         disabled={isLoading}
                     />
