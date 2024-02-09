@@ -38,7 +38,7 @@ const Propriete = ({ route }) => {
                             {proprietes && proprietes.length > 0 ? (
                                 proprietes.map((proprietesItem) => (
                                     <View key={proprietesItem.id} style={styles.text}>
-                                        <Text style={styles.text}>{'.'} {proprietesItem.value}</Text>
+                                        <Text style={styles.text}>{proprietesItem.value}</Text>
                                     </View>
                                 ))
                             ) : (
