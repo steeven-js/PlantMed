@@ -35,7 +35,7 @@ const Propriete = ({ route }) => {
                             <View style={styles.section}>
                                 <Text style={styles.soustitre}>Propriétés</Text>
                             </View>
-                            {proprietes && proprietes.length > 0 ? (
+                            {/* {proprietes && proprietes.length > 0 ? (
                                 proprietes.map((proprietesItem) => (
                                     <View key={proprietesItem.id} style={styles.text}>
                                         <Text style={styles.text}>{proprietesItem.value}</Text>
@@ -43,6 +43,11 @@ const Propriete = ({ route }) => {
                                 ))
                             ) : (
                                 <Text>No properties available</Text>
+                            )} */}
+                            {data.propriete ? (
+                                <Text style={styles.text}>{data.propriete}</Text>
+                            ) : (
+                                <Text style={styles.text}>No properties available</Text>
                             )}
                         </View>
                     </ScrollView>

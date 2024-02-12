@@ -35,7 +35,7 @@ const Precaution = ({ route }) => {
                             <View style={styles.section}>
                                 <Text style={styles.soustitre}>Précautions</Text>
                             </View>
-                            {precautions && precautions.length > 0 ? (
+                            {/* {precautions && precautions.length > 0 ? (
                                 precautions.map((precautionItem) => (
                                     <View key={precautionItem.id} style={styles.text}>
                                         <Text style={styles.text}>{precautionItem.value}</Text>
@@ -43,6 +43,12 @@ const Precaution = ({ route }) => {
                                 ))
                             ) : (
                                 <Text>No precautions available</Text>
+                            )} */}
+
+                            {data.precaution ? (
+                                <Text style={styles.text}>{data.precaution}</Text>
+                            ) : (
+                                <Text style={styles.text}>No properties available</Text>
                             )}
                         </View>
                     </ScrollView>

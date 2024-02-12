@@ -2,11 +2,13 @@ const PoliciesData = [
   {
     id: 1,
     title: 'Conditions d\'utilisation',
+    url: 'https://plantmed.vercel.app/legal/condition/',
   },
-  // {
-  //   id: 3,
-  //   title: 'Privacy policy',
-  // },
+  {
+    id: 2,
+    title: 'Politique de Confidentialité',
+    url: 'https://plantmed.vercel.app/legal/confidentialite/',
+  },
   // {
   //   id: 3,
   //   title: 'Affiliate policy',

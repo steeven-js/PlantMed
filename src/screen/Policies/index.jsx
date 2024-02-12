@@ -1,4 +1,4 @@
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, Linking } from 'react-native';
 import { useCallback } from 'react';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles'
@@ -10,8 +10,10 @@ import PolicyNavigationLink from '../../components/links/PolicyNavigationLink';
 const Policies = ({ navigation }) => {
 
     // Navigating to the specified screen
-    const _navigateToScreen = useCallback(
-        screen => navigation.navigate(screen),
+    const _openURL = useCallback(
+        // screen => navigation.navigate(screen),
+        // [],
+        (url) => Linking.openURL(url),
         [],
     );
 
@@ -44,7 +46,7 @@ const Policies = ({ navigation }) => {
                                 key={index}
                                 label={policy.title}
                                 borderBottomColor={borderBottomColor}
-                                onPress={() => _navigateToScreen('Policy')}
+                                onPress={() => _openURL(policy.url)}
                             />
                         );
                     })}

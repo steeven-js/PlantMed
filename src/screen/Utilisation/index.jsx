@@ -43,24 +43,36 @@ const Utilisation = ({ route }) => {
 
                             <View style={[styles.section, styles.borderBottom]}>
                                 <Text style={styles.soustitre}>Usage Interne</Text>
-                                {data.utilisations.filter(item => item.type === 'interne').map((utilisationItem) => (
+                                {/* {data.utilisations.filter(item => item.type === 'interne').map((utilisationItem) => (
                                     <Text key={utilisationItem.id} style={styles.text}>
                                         {utilisationItem.value}
                                     </Text>
-                                ))}
+                                ))} */}
+
+                                {data.usageInterne ? (
+                                    <Text style={styles.text}>{data.usageInterne}</Text>
+                                ) : (
+                                    <Text style={styles.text}>No properties available</Text>
+                                )}
 
                                 {/* Vertical spacer */}
                                 <View style={styles.verticalSpacer} />
 
                             </View>
-                            
+
                             <View style={styles.section}>
                                 <Text style={styles.soustitre}>Usage Externe</Text>
-                                {data.utilisations.filter(item => item.type === 'externe').map((utilisationItem) => (
+                                {/* {data.utilisations.filter(item => item.type === 'externe').map((utilisationItem) => (
                                     <Text key={utilisationItem.id} style={styles.text}>
                                         {utilisationItem.value}
                                     </Text>
-                                ))}
+                                ))} */}
+
+                                {data.usageExterne ? (
+                                    <Text style={styles.text}>{data.usageExterne}</Text>
+                                ) : (
+                                    <Text style={styles.text}>No properties available</Text>
+                                )}
 
                                 {/* Vertical spacer */}
                                 <View style={styles.verticalSpacer} />
