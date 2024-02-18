@@ -40,21 +40,6 @@ const Support = ({ navigation }) => {
           Besoin d'aide?
         </Animatable.Text>
 
-        {/* Title */}
-        <Animatable.Text
-          delay={500}
-          animation="fadeInUp"
-          style={styles.twentyFourSevenLabel}>
-          24 X 7
-        </Animatable.Text>
-
-        {/* Title */}
-        <Animatable.Text
-          delay={700}
-          animation="fadeInUp"
-          style={styles.screenHeadingTitle}>
-          Support
-        </Animatable.Text>
       </Animatable.View>
 
       {/* Support content wrapper */}

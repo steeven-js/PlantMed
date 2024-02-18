@@ -1,6 +1,5 @@
 import {TouchableOpacity} from 'react-native';
-import {SvgXml} from 'react-native-svg';
-import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
+import MenuIcon from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator } from '@react-navigation/stack';
 import { COLORS, IndependentColors } from '../../../config/Colors';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
@@ -27,13 +26,9 @@ const SourceStack = () => {
         ],
         headerLeft: () => (
             <TouchableOpacity
-                onPress={() => navigation.goBack()}
+                onPress={() => navigation.openDrawer()}
                 style={styles.leftArrowIcon}>
-                <SvgXml
-                    xml={ic_arrow_left_white}
-                    width={STANDARD_VECTOR_ICON_SIZE}
-                    height={STANDARD_VECTOR_ICON_SIZE}
-                />
+                <MenuIcon name="menu" size={STANDARD_VECTOR_ICON_SIZE} color="#fff"/>
             </TouchableOpacity>
         ),
     });

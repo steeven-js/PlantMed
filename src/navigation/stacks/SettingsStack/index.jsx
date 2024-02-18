@@ -1,5 +1,5 @@
 import styles from '../styles';
-import { SvgXml } from 'react-native-svg';
+import MenuIcon from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native';
 import { COLORS, IndependentColors } from '../../../config/Colors';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -32,13 +32,9 @@ const SettingsStack = () => {
     ],
     headerLeft: () => (
       <TouchableOpacity
-        onPress={() => navigation.goBack()}
+        onPress={() => navigation.openDrawer()}
         style={styles.leftArrowIcon}>
-        <SvgXml
-          xml={ic_arrow_left_white}
-          width={STANDARD_VECTOR_ICON_SIZE}
-          height={STANDARD_VECTOR_ICON_SIZE}
-        />
+        <MenuIcon name="menu" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
       </TouchableOpacity>
     ),
   });
@@ -52,11 +48,11 @@ const SettingsStack = () => {
         component={EditProfile}
         options={{ title: "Modifier le profil" }}
       />
-      <Stack.Screen name="Reset Password" component={ResetPassword}  options={{ title: "Modifier le mot de passe" }}  />
+      <Stack.Screen name="Reset Password" component={ResetPassword} options={{ title: "Modifier le mot de passe" }} />
       <Stack.Screen
         name="NotificationSettings"
         component={NotificationSettings}
-        options={{ title: "Paramètre de notification" }} 
+        options={{ title: "Paramètre de notification" }}
       />
     </Stack.Navigator>
   );
