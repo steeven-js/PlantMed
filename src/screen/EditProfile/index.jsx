@@ -4,7 +4,7 @@ import {
   STANDARD_VECTOR_ICON_SIZE,
 } from '../../config/Constants';
 import React, { useState, useEffect } from 'react';
-import { View, Alert } from 'react-native';
+import { View, Alert, TouchableOpacity, Image } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import Link from '../../components/links/Link';
 import { firebase } from '@react-native-firebase/auth';
@@ -15,19 +15,26 @@ import TextInput from '../../components/inputs/TextInput';
 import av_woman_4 from '../../assets/avatars/svg/av_woman_4';
 import ic_edit_dark_green from '../../assets/icons/svg/ic_edit_dark_green';
 import { COLORS } from '../../config/Colors';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 const EditProfile = ({ navigation }) => {
   const [user, setUser] = useState(null);
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [galleryPhoto, setGalleryPhoto] = useState('');
+  const [avatarUri, setAvatarUri] = useState('');
 
-  useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
-      setUser(authUser);
-    });
+  const openGallery = async () => {
+    const options = {
+      mediaType: 'photo',
+    };
 
-    return () => unsubscribe();
-  }, []);
+    const result = await launchImageLibrary(options);
+    if (result.assets.length > 0) {
+      setGalleryPhoto(result.assets[0].uri);
+      setAvatarUri(result.assets[0].uri);
+    }
+  };
 
   // Retrieve email from Firebase
   const userEmail = user ? user.email : '';
@@ -37,22 +44,23 @@ const EditProfile = ({ navigation }) => {
       Alert.alert('Error', 'User not authenticated. Please sign in.');
       return;
     }
-
+  
     try {
-      // Update user's display name and phone number
+      // Update user's display name, phone number, and avatar URI
       await user.updateProfile({
         displayName: name,
       });
-
+  
       // Update the userProfile collection in Firestore
       await firestore().collection('userProfile').doc(user.uid).set({
         uid: user.uid,
         name,
         phoneNumber,
+        avatarUri, // Add this line to store the avatar URI
       });
-
+  
       // Alert.alert('Success', 'Profile updated successfully.');
-
+  
       // Navigate to the profile screen
       navigation.navigate('MyProfileStack', { screen: 'MyProfile' });
     } catch (error) {
@@ -60,6 +68,16 @@ const EditProfile = ({ navigation }) => {
       console.log('Error updating profile:', error.message);
     }
   };
+
+  // console.log('galleryPhoto:', galleryPhoto);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
+      setUser(authUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <View style={[styles.mainWrapper, { backgroundColor: COLORS.accent }]}>
@@ -76,6 +94,13 @@ const EditProfile = ({ navigation }) => {
             width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
             height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
           />
+          {galleryPhoto !== '' && (
+            <Image
+              source={{ uri: galleryPhoto }}
+              style={[styles.avatar, { width: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2, height: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2, borderRadius: STANDARD_USER_AVATAR_WRAPPER_SIZE}]}
+            />
+          )}
+
           <Animatable.View
             animation="bounceIn"
             delay={1700}
@@ -83,11 +108,13 @@ const EditProfile = ({ navigation }) => {
               styles.cameraIconWrapper,
               { backgroundColor: COLORS.accentLightest },
             ]}>
-            <SvgXml
-              xml={ic_edit_dark_green}
-              width={STANDARD_VECTOR_ICON_SIZE}
-              height={STANDARD_VECTOR_ICON_SIZE}
-            />
+            <TouchableOpacity onPress={openGallery}>
+              <SvgXml
+                xml={ic_edit_dark_green}
+                width={STANDARD_VECTOR_ICON_SIZE}
+                height={STANDARD_VECTOR_ICON_SIZE}
+              />
+            </TouchableOpacity>
           </Animatable.View>
         </Animatable.View>
 

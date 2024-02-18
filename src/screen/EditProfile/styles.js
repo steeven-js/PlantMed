@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
@@ -38,5 +38,12 @@ export default StyleSheet.create({
   },
   verticalSpacer: {
     marginVertical: STANDARD_SPACING * 1.5,
+  },
+  avatar: {
+    width: STANDARD_SPACING * 20,
+    height: STANDARD_SPACING * 20,
+    borderRadius: STANDARD_SPACING,
+    position: 'absolute',
+    alignSelf: 'center',
   },
 });
