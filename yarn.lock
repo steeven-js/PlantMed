@@ -1788,29 +1788,29 @@
     prompts "^2.4.0"
     semver "^7.5.2"
 
-"@react-native-firebase/app@^18.7.3":
-  version "18.7.3"
-  resolved "https://registry.npmjs.org/@react-native-firebase/app/-/app-18.7.3.tgz"
-  integrity sha512-KlUuLSCYrBMHXE2Evye1fzrqunUjFEPihxcpzuUyJ5yQyAuCNws7VGdEPIaXoKz1esof0uv8wMSxD+G6W+Vi8Q==
+"@react-native-firebase/app@^18.8.0":
+  version "18.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-18.8.0.tgz#54864f4c54fa0b938ddece67598dc401aecd1e9a"
+  integrity sha512-bVwjop3zLKV1G+ZxyxrdSXVutdSHSM9mngk3qG9W1swmAdeTjvWWIFpyJBf6KlkbKzWbDmLeK7Q+Yc+HLJlg7A==
   dependencies:
     opencollective-postinstall "^2.0.3"
     superstruct "^0.6.2"
 
-"@react-native-firebase/auth@^18.7.3":
-  version "18.7.3"
-  resolved "https://registry.npmjs.org/@react-native-firebase/auth/-/auth-18.7.3.tgz"
-  integrity sha512-agsooQigPbfZC3D74v2hDymG4dIdoLzhAoszmBPLUgPkS55nAnVgRvXpbG2c19T8jX98nuFWt2/mY0Y0GEEfWA==
+"@react-native-firebase/auth@^18.8.0":
+  version "18.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-18.8.0.tgz#bba2aa87d59ab52e4e1e7c6af4be922852b58a36"
+  integrity sha512-hjeaxCEvujqAiX8uoQCSaoG4n2yof5QlyJWeyoaQcpstIkHtA49JZBpqDJt1lLb1uJumGfr27SyrNzDgHzriOw==
   dependencies:
     plist "^3.1.0"
 
-"@react-native-firebase/firestore@^18.7.3":
-  version "18.7.3"
-  resolved "https://registry.npmjs.org/@react-native-firebase/firestore/-/firestore-18.7.3.tgz"
-  integrity sha512-ts5clqDnpXw2nnX7W9H9+AZbh0jyXNIjnhHfTnMpstpCDQ3DCld/d8Ta2n/jzLUGRhtkCd0iALXmvVQBNNOTSQ==
+"@react-native-firebase/firestore@^18.8.0":
+  version "18.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-18.8.0.tgz#77d54794b896ca792c2d97d01fd8e0c0d09bc322"
+  integrity sha512-tB8ZhIYuFoTO4kYXdh5Q+LSPIXxJ5WPrVxxIxdc+qeaF7SudIojO6w/g8tTxbFdPEos8+JWhBIFAb+o0L3RbBQ==
 
 "@react-native-firebase/storage@^18.8.0":
   version "18.8.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/storage/-/storage-18.8.0.tgz#cb33c76e2c85d54923ed9bdb5528485da8753a8e"
+  resolved "https://registry.npmjs.org/@react-native-firebase/storage/-/storage-18.8.0.tgz"
   integrity sha512-Z+26aQnU/1bNk3JPwuORke7T6yhKu955UFb+LUeh4L/0a36pFFxwuiHKLc4tjjALB4XclFcxVlb1+Ife5TCV4w==
 
 "@react-native-google-signin/google-signin@^11.0.0":
