@@ -2,13 +2,13 @@
 import {StyleSheet} from 'react-native';
 import {IndependentColors} from '../../config/Colors';
 import {
+  DOSIS_BOLD,
+  DOSIS_MEDIUM,
+  DOSIS_REGULAR,
   FONT_SIZE_LG,
   FONT_SIZE_MD,
   FONT_SIZE_SM,
   FONT_SIZE_XS,
-  POPPINS_BOLD,
-  POPPINS_MEDIUM,
-  POPPINS_REGULAR,
   STANDARD_BORDER_RADIUS,
   STANDARD_FLEX,
   STANDARD_LETTER_SPACING,
@@ -30,19 +30,19 @@ export default StyleSheet.create({
     position: 'relative',
   },
   needHelpLabel: {
-    fontFamily: POPPINS_REGULAR,
+    fontFamily: DOSIS_REGULAR,
     fontSize: FONT_SIZE_MD,
     marginBottom: STANDARD_SPACING * 2,
     letterSpacing: STANDARD_LETTER_SPACING,
     color: IndependentColors.white,
   },
   twentyFourSevenLabel: {
-    fontFamily: POPPINS_REGULAR,
+    fontFamily: DOSIS_REGULAR,
     fontSize: FONT_SIZE_MD,
     color: IndependentColors.white,
   },
   screenHeadingTitle: {
-    fontFamily: POPPINS_BOLD,
+    fontFamily: DOSIS_BOLD,
     fontSize: FONT_SIZE_LG,
     letterSpacing: STANDARD_LETTER_SPACING,
     color: IndependentColors.white,
@@ -64,13 +64,13 @@ export default StyleSheet.create({
     borderRadius: STANDARD_BORDER_RADIUS * 5,
   },
   question: {
-    fontFamily: POPPINS_MEDIUM,
+    fontFamily: DOSIS_MEDIUM,
     fontSize: FONT_SIZE_SM,
     marginEnd: STANDARD_SPACING,
     letterSpacing: STANDARD_LETTER_SPACING,
   },
   info: {
-    fontFamily: POPPINS_REGULAR,
+    fontFamily: DOSIS_REGULAR,
     fontSize: FONT_SIZE_XS,
     letterSpacing: STANDARD_LETTER_SPACING,
     textAlign: 'center',
@@ -100,17 +100,17 @@ export default StyleSheet.create({
     marginEnd: STANDARD_SPACING * 3,
   },
   supportTypeTitle: {
-    fontFamily: POPPINS_MEDIUM,
+    fontFamily: DOSIS_MEDIUM,
     fontSize: FONT_SIZE_SM,
     letterSpacing: STANDARD_LETTER_SPACING,
   },
   supportTypeTitleInfo: {
-    fontFamily: POPPINS_REGULAR,
+    fontFamily: DOSIS_REGULAR,
     fontSize: FONT_SIZE_XS,
     letterSpacing: STANDARD_LETTER_SPACING,
   },
   mailId: {
-    fontFamily: POPPINS_MEDIUM,
+    fontFamily: DOSIS_MEDIUM,
     fontSize: FONT_SIZE_XS,
     letterSpacing: STANDARD_LETTER_SPACING,
   },

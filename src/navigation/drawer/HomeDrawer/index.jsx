@@ -33,6 +33,7 @@ import SupportStack from '../../stacks/SupportStack';
 import SettingsStack from '../../stacks/SettingsStack';
 import { useSelector } from 'react-redux'
 import MyProfileStack from '../../stacks/MyProfileStack';
+import SourceStack from '../../stacks/SourceStack';
 
 // Creating drawer navigator
 const Drawer = createDrawerNavigator();
@@ -69,7 +70,7 @@ const CustomDrawerContent = props => {
             {/* Custom drawer item */}
             <View>
                 <DrawerItem
-                    label="App Version 0.1.0 - Jan, 2024"
+                    label="App Version 1.0.5 - Fev, 2024"
                     labelStyle={[
                         styles.drawerItemLabel,
                         { color: COLORS.textLowContrast, alignSelf: 'center' },
@@ -143,6 +144,32 @@ const HomeDrawer = () => {
                     drawerLabelStyle: [
                         styles.drawerItemLabel,
                         { fontSize: 'Accueil'.length >= STANDARD_STANDARD * 2 ? FONT_SIZE_MD : FONT_SIZE_LG },
+                    ],
+                }}
+            />
+
+            <Drawer.Screen
+                name="SourceStack"
+                component={SourceStack}
+                options={{
+                    drawerLabel: 'Source',
+                    drawerIcon: ({ focused }) =>
+                        focused ? (
+                            <SvgXml
+                                xml={ic_paper_dark_green}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ) : (
+                            <SvgXml
+                                xml={ic_paper_light_grey}
+                                width={STANDARD_VECTOR_ICON_SIZE}
+                                height={STANDARD_VECTOR_ICON_SIZE}
+                            />
+                        ),
+                    drawerLabelStyle: [
+                        styles.drawerItemLabel,
+                        { fontSize: 'Source'.length >= STANDARD_STANDARD * 2 ? FONT_SIZE_MD : FONT_SIZE_LG },
                     ],
                 }}
             />

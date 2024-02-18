@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native';
 import {
   FONT_SIZE_XS,
-  POPPINS_MEDIUM,
-  POPPINS_REGULAR,
+  DOSIS_MEDIUM,
+  DOSIS_REGULAR,
   STANDARD_BORDER_RADIUS,
   STANDARD_FLEX,
   STANDARD_SPACING,
@@ -31,14 +31,14 @@ export default StyleSheet.create({
   },
   question: {
     fontSize: FONT_SIZE_XS,
-    fontFamily: POPPINS_MEDIUM,
+    fontFamily: DOSIS_MEDIUM,
   },
   accordionBody: {
     padding: STANDARD_SPACING * 2,
   },
   answer: {
     fontSize: FONT_SIZE_XS,
-    fontFamily: POPPINS_REGULAR,
+    fontFamily: DOSIS_REGULAR,
   },
   verticalSpacer: {
     marginVertical: STANDARD_SPACING * 1.5,
