@@ -282,32 +282,36 @@ const HomeDrawer = () => {
                 }}
             />
 
-            <Drawer.Screen
-                name="Paramètres"
-                component={SettingsStack}
-                options={{
-                    headerShown: false,
-                    drawerLabel: 'Paramètres',
-                    drawerIcon: ({ focused }) =>
-                        focused ? (
-                            <SvgXml
-                                xml={ic_gear_dark_green}
-                                width={STANDARD_VECTOR_ICON_SIZE}
-                                height={STANDARD_VECTOR_ICON_SIZE}
-                            />
-                        ) : (
-                            <SvgXml
-                                xml={ic_gear_light_green}
-                                width={STANDARD_VECTOR_ICON_SIZE}
-                                height={STANDARD_VECTOR_ICON_SIZE}
-                            />
-                        ),
-                    drawerLabelStyle: [
-                        styles.drawerItemLabel,
-                        { fontSize: 'Paramètres'.length >= STANDARD_STANDARD * 2 ? FONT_SIZE_MD : FONT_SIZE_LG },
-                    ],
-                }}
-            />
+            {uid !== null && (
+                <Drawer.Screen
+                    name="Paramètres"
+                    component={SettingsStack}
+                    options={{
+                        headerShown: false,
+                        drawerLabel: 'Paramètres',
+                        drawerIcon: ({ focused }) =>
+                            focused ? (
+                                <SvgXml
+                                    xml={ic_gear_dark_green}
+                                    width={STANDARD_VECTOR_ICON_SIZE}
+                                    height={STANDARD_VECTOR_ICON_SIZE}
+                                />
+                            ) : (
+                                <SvgXml
+                                    xml={ic_gear_light_green}
+                                    width={STANDARD_VECTOR_ICON_SIZE}
+                                    height={STANDARD_VECTOR_ICON_SIZE}
+                                />
+                            ),
+                        drawerLabelStyle: [
+                            styles.drawerItemLabel,
+                            { fontSize: 'Paramètres'.length >= STANDARD_STANDARD * 2 ? FONT_SIZE_MD : FONT_SIZE_LG },
+                        ],
+                    }}
+                />
+            )}
+
+
         </Drawer.Navigator>
     );
 };
