@@ -16,6 +16,8 @@ import av_woman_4 from '../../assets/avatars/svg/av_woman_4';
 import ic_edit_dark_green from '../../assets/icons/svg/ic_edit_dark_green';
 import { COLORS } from '../../config/Colors';
 import { launchImageLibrary } from 'react-native-image-picker';
+import storage from '@react-native-firebase/storage';
+import { ref } from '@react-native-firebase/storage';
 
 const EditProfile = ({ navigation }) => {
   const [user, setUser] = useState(null);
@@ -40,36 +42,59 @@ const EditProfile = ({ navigation }) => {
   const userEmail = user ? user.email : '';
 
   const handleUpdateProfile = async () => {
-    if (!user) {
-      Alert.alert('Erreur', 'Utilisateur non authentifié. Veuillez vous connecter.');
-      return;
+    // if (!user) {
+    //   Alert.alert('Erreur', 'Utilisateur non authentifié. Veuillez vous connecter.');
+    //   return;
+    // }
+
+    // try {
+    //   // Mettre à jour le nom d'affichage, le numéro de téléphone et l'URL de l'avatar de l'utilisateur
+    //   await user.updateProfile({
+    //     displayName: name,
+    //   });
+
+    //   const userProfileData = {
+    //     uid: user.uid,
+    //     name,
+    //     phoneNumber,
+    //   };
+
+    //   if (galleryPhoto !== '') {
+    //     const imageName = `${user.uid}_avatar.jpg`;
+    //     const storageRef = ref(storage(), `avatars/${imageName}`);
+    //     await storageRef.putFile(galleryPhoto);
+    //     userProfileData.avatarUri = await storageRef.getDownloadURL();
+    //   }
+
+    //   // Mettre à jour la collection userProfile dans Firestore
+    //   await firestore().collection('userProfile').doc(user.uid).set(userProfileData);
+
+    //   // Naviguer vers l'écran de profil
+    //   navigation.navigate('MyProfileStack', { screen: 'MyProfile' });
+    // } catch (error) {
+    //   Alert.alert('Erreur', error.message);
+    //   console.log('Erreur lors de la mise à jour du profil :', error.message);
+    // }
+
+    // Si il y a une image avatarUri dans la collection userProfile ne pas supprimer si le formulaire est vide
+    const userProfileData = {
+      name,
+      phoneNumber,
+    };
+
+    if (galleryPhoto !== '') {
+      const imageName = `${user.uid}_avatar.jpg`;
+      const storageRef = ref(storage(), `avatars/${imageName}`);
+      await storageRef.putFile(galleryPhoto);
+      userProfileData.avatarUri = await storageRef.getDownloadURL();
     }
 
-    try {
-      // Mettre à jour le nom d'affichage, le numéro de téléphone et l'URL de l'avatar de l'utilisateur
-      await user.updateProfile({
-        displayName: name,
-      });
+    // Mettre à jour la collection userProfile dans Firestore
+    await firestore().collection('userProfile').doc(user.uid).set(userProfileData, { merge: true });
 
-      // Mettre à jour la collection userProfile dans Firestore
-      await firestore().collection('userProfile').doc(user.uid).set({
-        uid: user.uid,
-        name,
-        phoneNumber,
-        avatarUri, // Ajouter cette ligne pour stocker l'URL de l'avatar
-      });
-
-      // Alert.alert('Succès', 'Profil mis à jour avec succès.');
-
-      // Naviguer vers l'écran de profil
-      navigation.navigate('MyProfileStack', { screen: 'MyProfile' });
-    } catch (error) {
-      Alert.alert('Erreur', error.message);
-      console.log('Erreur lors de la mise à jour du profil :', error.message);
-    }
+    // Naviguer vers l'écran de profil
+    navigation.navigate('MyProfileStack', { screen: 'MyProfile' });
   };
-
-  // console.log('galleryPhoto:', galleryPhoto);
 
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(async (authUser) => {
@@ -95,6 +120,8 @@ const EditProfile = ({ navigation }) => {
     return () => unsubscribe();
   }, []);
 
+  // console.log('avatarUri:', avatarUri)
+
   return (
     <View style={[styles.mainWrapper, { backgroundColor: COLORS.accent }]}>
       <Animatable.View
@@ -105,15 +132,17 @@ const EditProfile = ({ navigation }) => {
           animation="fadeInUp"
           delay={300}
           style={styles.avatarWrapper}>
-          <SvgXml
-            xml={av_woman_4}
-            width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
-            height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
-          />
-          {galleryPhoto !== '' && (
+
+          {avatarUri !== '' ? (
             <Image
-              source={{ uri: galleryPhoto }}
-              style={[styles.avatar, { width: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2, height: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2, borderRadius: STANDARD_USER_AVATAR_WRAPPER_SIZE }]}
+              source={{ uri: avatarUri }}
+              style={styles.avatar}
+            />
+          ) : (
+            <SvgXml
+              xml={av_woman_4}
+              width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
+              height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
             />
           )}
 
@@ -170,7 +199,9 @@ const EditProfile = ({ navigation }) => {
         <View style={styles.verticalSpacer} />
 
         <Animatable.View animation="fadeInUp" delay={1300}>
-          <Link label="Envie de changer de mot de passe ?" />
+          <Link
+            onPress={() => navigation.navigate('SettingsStack', { screen: 'Reset Password' })}
+            label="Envie de changer de mot de passe ?" />
         </Animatable.View>
 
         <View style={styles.verticalSpacer} />

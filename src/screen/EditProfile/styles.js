@@ -4,6 +4,7 @@ import {
   SCREEN_WIDTH,
   STANDARD_FLEX,
   STANDARD_SPACING,
+  STANDARD_USER_AVATAR_WRAPPER_SIZE,
   STANDARD_VECTOR_ICON_WRAPPER_SIZE,
 } from '../../config/Constants';
 
@@ -42,8 +43,7 @@ export default StyleSheet.create({
   avatar: {
     width: STANDARD_SPACING * 20,
     height: STANDARD_SPACING * 20,
-    borderRadius: STANDARD_SPACING,
-    position: 'absolute',
+    borderRadius: STANDARD_SPACING * 10,
     alignSelf: 'center',
   },
 });

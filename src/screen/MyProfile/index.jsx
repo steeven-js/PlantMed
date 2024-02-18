@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, Image } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import * as Animatable from 'react-native-animatable';
@@ -18,6 +18,7 @@ const MyProfile = () => {
     const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
     const [userEmail, setUserEmail] = useState('');
     const [userName, setUserName] = useState('');
+    const [avatar, setAvatar] = useState('')
     const navigation = useNavigation();
 
     const fetchUserName = useCallback(async (uid) => {
@@ -59,6 +60,7 @@ const MyProfile = () => {
                 .onSnapshot((snapshot) => {
                     if (snapshot.exists) {
                         setUserName(snapshot.data().name || '');
+                        setAvatar(snapshot.data().avatarUri || '');
                     }
                 });
 
@@ -88,11 +90,22 @@ const MyProfile = () => {
                             style={styles.profileInfoWrapper}
                         >
                             {/* Avatar */}
-                            <SvgXml
-                                xml={av_man_2}
-                                width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 1.5}
-                                height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 1.5}
-                            />
+                            {avatar !== null && avatar !== '' ? (
+                                <Image
+                                    source={{ uri: avatar }}
+                                    style={{
+                                        width: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2.5,
+                                        height: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2.5,
+                                        borderRadius: STANDARD_USER_AVATAR_WRAPPER_SIZE * 1.25,
+                                    }}
+                                />
+                            ) : (
+                                <SvgXml
+                                    xml={av_man_2}
+                                    width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2.5}
+                                    height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2.5}
+                                />
+                            )}
 
                             {/* Vertical spacer */}
                             <View style={styles.verticalSpacer} />
