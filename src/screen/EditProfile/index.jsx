@@ -36,44 +36,60 @@ const EditProfile = ({ navigation }) => {
     }
   };
 
-  // Retrieve email from Firebase
+  // Récupérer l'e-mail depuis Firebase
   const userEmail = user ? user.email : '';
 
   const handleUpdateProfile = async () => {
     if (!user) {
-      Alert.alert('Error', 'User not authenticated. Please sign in.');
+      Alert.alert('Erreur', 'Utilisateur non authentifié. Veuillez vous connecter.');
       return;
     }
-  
+
     try {
-      // Update user's display name, phone number, and avatar URI
+      // Mettre à jour le nom d'affichage, le numéro de téléphone et l'URL de l'avatar de l'utilisateur
       await user.updateProfile({
         displayName: name,
       });
-  
-      // Update the userProfile collection in Firestore
+
+      // Mettre à jour la collection userProfile dans Firestore
       await firestore().collection('userProfile').doc(user.uid).set({
         uid: user.uid,
         name,
         phoneNumber,
-        avatarUri, // Add this line to store the avatar URI
+        avatarUri, // Ajouter cette ligne pour stocker l'URL de l'avatar
       });
-  
-      // Alert.alert('Success', 'Profile updated successfully.');
-  
-      // Navigate to the profile screen
+
+      // Alert.alert('Succès', 'Profil mis à jour avec succès.');
+
+      // Naviguer vers l'écran de profil
       navigation.navigate('MyProfileStack', { screen: 'MyProfile' });
     } catch (error) {
-      Alert.alert('Error', error.message);
-      console.log('Error updating profile:', error.message);
+      Alert.alert('Erreur', error.message);
+      console.log('Erreur lors de la mise à jour du profil :', error.message);
     }
   };
 
   // console.log('galleryPhoto:', galleryPhoto);
 
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async (authUser) => {
       setUser(authUser);
+
+      if (authUser) {
+        try {
+          const userDoc = await firestore().collection('userProfile').doc(authUser.uid).get();
+          const userData = userDoc.data();
+
+          if (userData) {
+            // Si les données existent dans Firestore, définir l'état
+            setName(userData.name || '');
+            setPhoneNumber(userData.phoneNumber || '');
+            setAvatarUri(userData.avatarUri || ''); // Supposant que l'avatarUri est stocké dans Firestore
+          }
+        } catch (error) {
+          console.log('Erreur lors de la récupération des données utilisateur :', error.message);
+        }
+      }
     });
 
     return () => unsubscribe();
@@ -97,7 +113,7 @@ const EditProfile = ({ navigation }) => {
           {galleryPhoto !== '' && (
             <Image
               source={{ uri: galleryPhoto }}
-              style={[styles.avatar, { width: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2, height: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2, borderRadius: STANDARD_USER_AVATAR_WRAPPER_SIZE}]}
+              style={[styles.avatar, { width: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2, height: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2, borderRadius: STANDARD_USER_AVATAR_WRAPPER_SIZE }]}
             />
           )}
 
@@ -122,8 +138,8 @@ const EditProfile = ({ navigation }) => {
 
         <Animatable.View animation="fadeInUp" delay={700}>
           <TextInput
-            label="Name"
-            placeholder="Enter your name"
+            label="Nom"
+            placeholder="Entrez votre nom"
             value={name}
             onChangeText={setName}
           />
@@ -133,8 +149,8 @@ const EditProfile = ({ navigation }) => {
 
         <Animatable.View animation="fadeInUp" delay={900}>
           <TextInput
-            label="Email"
-            placeholder="Enter your email"
+            label="E-mail"
+            placeholder="Entrez votre adresse e-mail"
             disabled={true}
             value={userEmail}
           />
@@ -144,8 +160,8 @@ const EditProfile = ({ navigation }) => {
 
         <Animatable.View animation="fadeInUp" delay={1100}>
           <TextInput
-            label="Phone number"
-            placeholder="Enter your phone number"
+            label="Numéro de téléphone"
+            placeholder="Entrez votre numéro de téléphone"
             value={phoneNumber}
             onChangeText={setPhoneNumber}
           />
@@ -154,13 +170,13 @@ const EditProfile = ({ navigation }) => {
         <View style={styles.verticalSpacer} />
 
         <Animatable.View animation="fadeInUp" delay={1300}>
-          <Link label="Want to change password?" />
+          <Link label="Envie de changer de mot de passe ?" />
         </Animatable.View>
 
         <View style={styles.verticalSpacer} />
 
         <Animatable.View animation="fadeInUp" delay={1500}>
-          <Button label="Submit & Save" onPress={handleUpdateProfile} />
+          <Button label="Soumettre et enregistrer" onPress={handleUpdateProfile} />
         </Animatable.View>
       </Animatable.View>
     </View>
@@ -168,3 +184,4 @@ const EditProfile = ({ navigation }) => {
 };
 
 export default EditProfile;
+
