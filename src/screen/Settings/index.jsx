@@ -36,7 +36,7 @@ const Settings = ({navigation}) => {
             />
           }
           label="Modifier mon profile"
-          onPress={() => navigation.navigate('Edit Profile')}
+          onPress={() => navigation.navigate('EditProfile')}
         />
 
         {/* Vertical spacer */}

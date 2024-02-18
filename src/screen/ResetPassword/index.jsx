@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'; // Import useEffect for onAuthStateChanged
+import React, { useState, useEffect } from 'react';
 import { View, Alert } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import { firebase } from '@react-native-firebase/auth'; // Import firebase directly
+import { firebase } from '@react-native-firebase/auth'; 
 import styles from './styles';
 import ScreenTitle from '../../components/headings/ScreenTitle';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';

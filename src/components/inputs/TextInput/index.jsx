@@ -5,13 +5,14 @@ import { COLORS } from '../../../config/Colors';
 import styles from './styles';
 
 // Functional component
-const CustomTextInput  = ({
+const CustomTextInput = ({
     label,
     placeholder,
     value,
     onChangeText,
     autoCapitalize,
     keyboardType,
+    disabled = false,
 }) => {
     return (
         <>
@@ -35,9 +36,10 @@ const CustomTextInput  = ({
                 onChangeText={onChangeText}
                 autoCapitalize={autoCapitalize}
                 keyboardType={keyboardType}
+                editable={!disabled} 
             />
         </>
     );
 };
 
-export default CustomTextInput ;
+export default CustomTextInput;

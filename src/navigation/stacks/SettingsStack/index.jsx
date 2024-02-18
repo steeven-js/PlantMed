@@ -48,13 +48,13 @@ const SettingsStack = () => {
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name="Settings" component={Settings} options={{ title: "Paramètre" }} />
       <Stack.Screen
-        name="Edit Profile"
+        name="EditProfile"
         component={EditProfile}
         options={{ title: "Modifier le profil" }}
       />
       <Stack.Screen name="Reset Password" component={ResetPassword}  options={{ title: "Modifier le mot de passe" }}  />
       <Stack.Screen
-        name="Notification Settings"
+        name="NotificationSettings"
         component={NotificationSettings}
         options={{ title: "Paramètre de notification" }} 
       />

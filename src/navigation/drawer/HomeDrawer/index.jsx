@@ -284,7 +284,7 @@ const HomeDrawer = () => {
 
             {uid !== null && (
                 <Drawer.Screen
-                    name="Paramètres"
+                    name="SettingsStack"
                     component={SettingsStack}
                     options={{
                         headerShown: false,
