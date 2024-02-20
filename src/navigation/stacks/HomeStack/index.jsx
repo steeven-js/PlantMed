@@ -5,6 +5,7 @@ import SymptomeStack from '../SymptomStack';
 import PlanteStack from '../PlanteStack';
 import SearchStack from '../SearchStack';
 
+
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
@@ -13,7 +14,7 @@ const HomeStack = () => {
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="SymptomeStack" component={SymptomeStack} />
             <Stack.Screen name="PlanteStack" component={PlanteStack} />
-            <Stack.Screen name="Search" component={SearchStack} />
+            <Stack.Screen name="SearchStack" component={SearchStack} />
         </Stack.Navigator>
     )
 }

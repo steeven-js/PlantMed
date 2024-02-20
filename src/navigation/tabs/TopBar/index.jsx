@@ -6,10 +6,13 @@ import HeartIcon from 'react-native-vector-icons/AntDesign';
 import StarIcon from 'react-native-vector-icons/AntDesign';
 import PlantIcon from 'react-native-vector-icons/FontAwesome6';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
+import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-const TopBar = ({ navigation, route, title }) => {
+const TopBar = ({ route, title }) => {
+    const navigation = useNavigation();
+
     const navigateToScreen = (screenName) => {
         navigation.navigate(screenName);
     };
@@ -31,7 +34,7 @@ const TopBar = ({ navigation, route, title }) => {
                     <MenuIcon name="menu" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                 </TouchableOpacity>
                 <Text style={styles.textTopNavBar}> {title} </Text>
-                <TouchableOpacity style={styles.Touch} onPress={() => navigation.navigate('HomeStack', { screen: 'Search' })} >
+                <TouchableOpacity style={styles.Touch} onPress={() => navigation.navigate('SearchStack', { screen: 'Search' })} >
                     <SearchIcon name="search" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                 </TouchableOpacity>
             </View>
