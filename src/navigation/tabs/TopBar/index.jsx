@@ -28,10 +28,12 @@ const TopBar = ({ navigation, route, title }) => {
             {/* Div au-dessus des onglets */}
             <View style={styles.TopNavBar}>
                 <TouchableOpacity style={styles.Touch} onPress={() => navigation.openDrawer()} >
-                    <MenuIcon name="menu" size={STANDARD_VECTOR_ICON_SIZE} color="#fff"/>
+                    <MenuIcon name="menu" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                 </TouchableOpacity>
                 <Text style={styles.textTopNavBar}> {title} </Text>
-                <SearchIcon name="search" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
+                <TouchableOpacity style={styles.Touch} onPress={() => navigation.navigate('HomeStack', { screen: 'Search' })} >
+                    <SearchIcon name="search" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
+                </TouchableOpacity>
             </View>
 
             {/* Onglets */}

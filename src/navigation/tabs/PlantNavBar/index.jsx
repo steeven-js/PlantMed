@@ -100,6 +100,10 @@ const PlantNavBar = ({ data, plantId }) => {
         navigation.navigate('Favoris');
     };
 
+    const backSearch = () => {
+        navigation.navigate('PlantSearch');
+    };
+
     const backToOriginRoute = () => {
         const { originRoute } = route.params;
         switch (originRoute) {
@@ -109,6 +113,8 @@ const PlantNavBar = ({ data, plantId }) => {
                 return backPlantDetail();
             case 'Favoris':
                 return backFavoris();
+            case 'PlantSearchScreen':
+                return backSearch();
             default:
                 return navigation.navigate('Plantes');
         }

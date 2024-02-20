@@ -7,6 +7,9 @@ keytool -genkeypair -v -storetype PKCS12 -keystore my-upload-key.keystore -alias
 
 npx react-native build-android --mode=release
 ```
+```js
+Corection de bugs et amélioration des performances.
+```
 
 `useSelector` et `useDispatch` sont deux hooks fournis par React Redux, une bibliothèque React pour la gestion de l'état global de l'application. Ces hooks facilitent l'interaction avec le store Redux.
 
