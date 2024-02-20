@@ -41,7 +41,7 @@ const SymptomSearchScreen = ({ navigation }) => {
 
     const renderItem = ({ item }) => (
         <TouchableOpacity onPress={() => {
-            console.log('symptomeId:', item.id); // Ajout du console.log
+            // console.log('symptomeId:', item.id);
             navigation.navigate('SymptomeStack', {
                 screen: 'SymptomeDetail',
                 params: {
@@ -52,7 +52,6 @@ const SymptomSearchScreen = ({ navigation }) => {
         }}>
             <View>
                 <Text>{item.name}</Text>
-                {/* Affichez d'autres informations sur le symptôme si nécessaire */}
             </View>
         </TouchableOpacity>
     );

@@ -40,12 +40,8 @@ const PlantSearchScreen = ({ navigation }) => {
     }, [searchQuery]);
 
     const renderItem = ({ item }) => (
-        // <TouchableOpacity onPress={() => navigation.navigate('PlanteStack', {
-        //     screen: 'Info',
-        //     plantId: item.id,
-        // })}>
         <TouchableOpacity onPress={() => {
-            console.log('plantId:', item.id);
+            // console.log('plantId:', item.id);
             navigation.navigate('PlanteStack', {
                 screen: 'Info',
                 params: {
@@ -56,7 +52,6 @@ const PlantSearchScreen = ({ navigation }) => {
         }}>
             <View>
                 <Text>{item.name}</Text>
-                {/* Affichez d'autres informations sur la plante si nécessaire */}
             </View>
         </TouchableOpacity>
     );
