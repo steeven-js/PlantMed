@@ -132,11 +132,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    icon: {
-        position: 'absolute',
-        top: 10,
-        right: 10,
-        zIndex: 1,
+    text: {
+        color: COLORS.white,
     },
 });
 
