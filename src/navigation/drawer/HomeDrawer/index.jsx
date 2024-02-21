@@ -70,7 +70,7 @@ const CustomDrawerContent = props => {
             {/* Custom drawer item */}
             <View>
                 <DrawerItem
-                    label="App Version 1.0.6 - Fev, 2024"
+                    label="App Version 1.0.7 - Fev, 2024"
                     labelStyle={[
                         styles.drawerItemLabel,
                         { color: COLORS.textLowContrast, alignSelf: 'center' },
