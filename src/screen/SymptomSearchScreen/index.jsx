@@ -105,7 +105,7 @@ const SymptomSearchScreen = ({ navigation }) => {
                     value={searchQuery}
                     onChangeText={(text) => setSearchQuery(text)}
                     autoCapitalize="none"
-                    keyboardType="text"
+                    keyboardType="default"
                 />
 
                 <View style={styles.verticalSpacer} />
