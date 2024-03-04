@@ -18,13 +18,19 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
+    divAboveRightContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     back: {
         padding: 10,
-        // backgroundColor: 'red',
+    },
+    share: {
+        padding: 10,
+        marginRight: 10,
     },
     star: {
         padding: 10,
-        // backgroundColor: 'blue',
     },
     container: {
         position: 'absolute',

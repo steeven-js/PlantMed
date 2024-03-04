@@ -5,6 +5,7 @@ import { firebase } from '@react-native-firebase/auth';
 import BackIcon from 'react-native-vector-icons/Ionicons';
 import StarIcon from 'react-native-vector-icons/AntDesign';
 import NavIcon from 'react-native-vector-icons/FontAwesome6';
+import ShareIcon from 'react-native-vector-icons/FontAwesome6';
 import { useSelector } from 'react-redux'
 import styles from './styles';
 import { COLORS } from '../../../config/Colors';
@@ -20,7 +21,7 @@ const PlantNavBar = ({ data, plantId }) => {
     const navigation = useNavigation();
     const route = useRoute();
     const [user, setUser] = useState(null);
-    const [isFavorite, setIsFavorite] = useState(false); 
+    const [isFavorite, setIsFavorite] = useState(false);
     const uid = useSelector(state => state.auth.uid)
 
     const navigateToScreen = (screenName) => {
@@ -161,13 +162,18 @@ const PlantNavBar = ({ data, plantId }) => {
                             <TouchableOpacity style={[styles.back, styles.bgIcon]} onPress={backToOriginRoute}>
                                 <BackIcon name="arrow-back" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.star, styles.bgIcon]} onPress={addToFavoritesHandler}>
-                                {uid && isFavorite ? (
-                                    <StarIcon name="star" size={STANDARD_VECTOR_ICON_SIZE} color={COLORS.yelloww} />
-                                ) : (
-                                    <StarIcon name="star" size={STANDARD_VECTOR_ICON_SIZE} color={COLORS.white} />
-                                )}
-                            </TouchableOpacity>
+                            <View style={styles.divAboveRightContent}>
+                                <TouchableOpacity style={[styles.share, styles.bgIcon]}>
+                                    <ShareIcon name="share-from-square" size={STANDARD_VECTOR_ICON_SIZE} color={COLORS.white} />
+                                </TouchableOpacity>
+                                <TouchableOpacity style={[styles.star, styles.bgIcon]} onPress={addToFavoritesHandler}>
+                                    {uid && isFavorite ? (
+                                        <StarIcon name="star" size={STANDARD_VECTOR_ICON_SIZE} color={COLORS.yelloww} />
+                                    ) : (
+                                        <StarIcon name="star" size={STANDARD_VECTOR_ICON_SIZE} color={COLORS.white} />
+                                    )}
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                 </ImageBackground>

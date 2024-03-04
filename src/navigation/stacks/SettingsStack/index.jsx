@@ -46,7 +46,7 @@ const SettingsStack = () => {
   // Returning
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="Settings" component={Settings} options={{ title: "Paramètre" }} />
+      <Stack.Screen name="Settings" component={Settings} options={{ title: "Paramètres" }} />
       <Stack.Screen
         name="EditProfile"
         component={EditProfile}
