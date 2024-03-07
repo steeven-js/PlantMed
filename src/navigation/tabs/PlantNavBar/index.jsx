@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, TouchableOpacity, ImageBackground, Share } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { firebase } from '@react-native-firebase/auth';
 import BackIcon from 'react-native-vector-icons/Ionicons';
@@ -9,7 +9,6 @@ import ShareIcon from 'react-native-vector-icons/FontAwesome6';
 import { useSelector } from 'react-redux'
 import styles from './styles';
 import { COLORS } from '../../../config/Colors';
-import { Screen } from 'react-native-screens';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 
 const Colors = {
@@ -121,19 +120,6 @@ const PlantNavBar = ({ data, plantId }) => {
         }
     };
 
-    useEffect(() => {
-        const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
-            setUser(authUser);
-            if (authUser) {
-                checkIsFavorite(authUser.uid);
-            } else {
-                setIsFavorite(false);
-            }
-        });
-
-        return () => unsubscribe();
-    }, []);
-
     const checkIsFavorite = async (userId) => {
         try {
             const existingFavoriteQuery = await firebase.firestore().collection('favoris')
@@ -150,6 +136,29 @@ const PlantNavBar = ({ data, plantId }) => {
     const hasMedia = data.media && data.media.length > 0;
     const imageUrl = hasMedia ? data.media[0]?.original_url : null;
 
+    const sharePlant = () => {
+        const plantUrl = `https://jsplantmed.vercel.app/plantmed/plante/${plantId}`;
+        
+        Share.share({
+            message: plantUrl,
+        })
+            .then(result => console.log(result))
+            .catch(errorMsg => console.error(errorMsg));
+    };
+
+    useEffect(() => {
+        const unsubscribe = firebase.auth().onAuthStateChanged((authUser) => {
+            setUser(authUser);
+            if (authUser) {
+                checkIsFavorite(authUser.uid);
+            } else {
+                setIsFavorite(false);
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
+
     return (
         <View>
             <View>
@@ -163,7 +172,7 @@ const PlantNavBar = ({ data, plantId }) => {
                                 <BackIcon name="arrow-back" size={STANDARD_VECTOR_ICON_SIZE} color="#fff" />
                             </TouchableOpacity>
                             <View style={styles.divAboveRightContent}>
-                                <TouchableOpacity style={[styles.share, styles.bgIcon]}>
+                                <TouchableOpacity style={[styles.share, styles.bgIcon]} onPress={sharePlant}>
                                     <ShareIcon name="share-from-square" size={STANDARD_VECTOR_ICON_SIZE} color={COLORS.white} />
                                 </TouchableOpacity>
                                 <TouchableOpacity style={[styles.star, styles.bgIcon]} onPress={addToFavoritesHandler}>
