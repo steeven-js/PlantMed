@@ -25,7 +25,7 @@ const Utilisation = ({ route }) => {
                 </View>
             ) : error ? (
                 <Text>Something went wrong</Text>
-            ) : !data || !data.utilisations ? (
+            ) : !data && !data.utilisations ? (
                 <View>
                     <Text>Utilisations data is missing or undefined.</Text>
                 </View>
