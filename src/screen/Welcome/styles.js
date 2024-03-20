@@ -26,17 +26,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    checkboxContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    flexRow: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     verticalSpacer: {
         marginVertical: STANDARD_SPACING * 1.5,
     },
     logoWrapper: {
         marginHorizontal: STANDARD_SPACING * 2,
+        marginVertical: STANDARD_SPACING * 2,
         padding: STANDARD_SPACING,
         borderRadius: STANDARD_BORDER_RADIUS * 20,
         width: 150,
         aspectRatio: 1,
         backgroundColor: IndependentColors.white,
-        padding: STANDARD_SPACING * 2,
     },
     logo: {
         width: null,
