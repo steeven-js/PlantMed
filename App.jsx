@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import Welcome from './src/screen/Welcome/Welcome';
-import Home from './Home';
+import Home from './src/screen/Home/Home';
 
 const Stack = createStackNavigator();
 

@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, clearUser } from './src/redux/reducer/auth';
+import { setUser, clearUser } from '../../redux/reducer/auth';
 import { firebase } from '@react-native-firebase/auth';
-import { startLoading, stopLoading } from './src/redux/reducer/loading';
-import { add, remove } from './src/redux/reducer/favoris';
+import { startLoading, stopLoading } from '../../redux/reducer/loading';
+import { add, remove } from '../../redux/reducer/favoris';
 import firestore from '@react-native-firebase/firestore';
-import Splash from './src/screen/splash';
-import HomeDrawer from './src/navigation/drawer/HomeDrawer';
+import Splash from '../splash';
+import HomeDrawer from '../../navigation/drawer/HomeDrawer';
 
 const LOADING_TIMEOUT = 2500;
 
 const Home = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.loading);
   const uid = useSelector((state) => state.auth.uid);
   const [isStarting, setIsStarting] = useState(true);
 

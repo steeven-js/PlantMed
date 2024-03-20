@@ -1,38 +1,27 @@
 {
-  "env": {
-    "es2021": true,
-    "node": true
-  },
-  "extends": ["plugin:react/recommended", "airbnb", "airbnb/hooks"],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+    "env": {
+        "es2021": true,
+        "node": true
     },
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "plugins": ["react", "react-native"],
-  "rules": {
-    "no-alert": 0,
-    "camelcase": 0,
-    "no-console": 0,
-    "no-param-reassign": 0,
-    "naming-convention": 0,
-    "default-param-last": 0,
-    "no-underscore-dangle": 0,
-    "no-use-before-define": 0,
-    "no-restricted-exports": 0,
-    "react/no-children-prop": 0,
-    "react/forbid-prop-types": 0,
-    "react/react-in-jsx-scope": 0,
-    "jsx-a11y/anchor-is-valid": 0,
-    "react/no-array-index-key": 0,
-    "no-promise-executor-return": 0,
-    "react/require-default-props": 0,
-    "react/jsx-filename-extension": 0,
-    "react/jsx-props-no-spreading": 0,
-    "import/prefer-default-export": 0,
-    "react/function-component-definition": 0,
-    "jsx-a11y/control-has-associated-label": 0
-  }
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "rules": {}
 }
