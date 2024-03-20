@@ -1,7 +1,7 @@
 // Welcome.js
 import React, { useState } from 'react';
 import * as Animatable from 'react-native-animatable';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import Button from '../../components/buttons/Button';
 import Swiper from 'react-native-swiper';
 import { useNavigation } from '@react-navigation/native';
