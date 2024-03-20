@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Provider } from 'react-redux'
+import { createStackNavigator } from '@react-navigation/stack';
+import { Provider } from 'react-redux';
 import store from './src/redux/store';
+import Welcome from './Welcome';
 import Home from './Home';
 
-const App = () => {
+const Stack = createStackNavigator();
 
+const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Home />
+        <Stack.Navigator initialRouteName="Welcome" screenOptions={{
+          headerShown: false
+        }}>
+          <Stack.Screen name="Welcome" component={Welcome} />
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
