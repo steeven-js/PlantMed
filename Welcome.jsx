@@ -20,11 +20,20 @@ const Welcome = () => {
         </View>,
         <View style={styles.pageContent} key={2}>
             <Text style={styles.title}>Informations importantes</Text>
-            <Text>Ceci est la deuxième page d'information.</Text>
+            <Text>
+                Cette application est destinée à la découverte, à la recherche et à la documentation de plantes médicinales.
+                Elle ne remplace en aucun cas les conseils médicaux professionnels.
+            </Text>
         </View>,
         <View style={styles.pageContent} key={3}>
-            <Text style={styles.title}>Prêt à commencer ?</Text>
-            <Text>Ceci est la dernière page d'information.</Text>
+            <Text>
+                En cas de maladie ou de condition médicale, consultez immédiatement un médecin.
+            </Text>
+            <Text>
+                Nous déclinons toute responsabilité en cas de mauvaise utilisation des informations fournies dans cette application.
+                Vous êtes responsable de votre propre santé et de vos décisions en matière de traitement.
+            </Text>
+            <Text style={styles.readyText}>Prêt à commencer ?</Text>
             <TouchableOpacity onPress={handleButtonPress} style={styles.button}>
                 <Text style={styles.buttonText}>Commencer</Text>
             </TouchableOpacity>
@@ -63,6 +72,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
+    },
+    readyText: {
+        fontSize: 16,
+        marginTop: 20,
     },
     pagination: {
         bottom: 10,
