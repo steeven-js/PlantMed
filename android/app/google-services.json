@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "485456459649",
+    "project_id": "plantmedapp",
+    "storage_bucket": "plantmedapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485456459649:android:f0a6c72bf9803ffe1eda80",
+        "android_client_info": {
+          "package_name": "com.plantmed"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3Ef75aoPIeZGl2JlMxY1C65RItNM6Yy8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

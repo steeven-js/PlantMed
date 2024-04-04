@@ -1,0 +1,72 @@
+import { memo, useContext } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { SvgXml } from 'react-native-svg';
+
+import ic_bag_white from '../../../assets/icons/svg/ic_bag_white';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
+import styles from './styles';
+
+// Functional component
+const GridViewItem = ({
+    plantImage = null,
+    plantTitle = '',
+    touchOptions = false,
+    onPressOption = () => {},
+    onPress = () => {},
+}) => {
+    // Using context
+    const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
+
+    // Storing theme config according to the theme mode
+    const theme = isLightTheme ? lightTheme : darkTheme;
+
+    // Returning
+    return (
+        <TouchableOpacity
+            style={[styles.productCard, { backgroundColor: theme.secondary }]}
+            onPress={onPress}
+        >
+            {/* Rotated background */}
+            <View
+                style={[
+                    styles.rotatedBackground,
+                    { borderColor: theme.secondary },
+                ]}
+            />
+            {/* Product image */}
+            {plantImage && (
+                <Image source={plantImage} style={styles.productImage} />
+            )}
+
+            {/* Product title */}
+            <Text
+                style={[styles.productTitle, { color: theme.textHighContrast }]}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+            >
+                {plantTitle}
+            </Text>
+
+            {/* Bag icon wrapper */}
+            {touchOptions && (
+                <TouchableOpacity
+                    style={[
+                        styles.bagIconWrapper,
+                        { backgroundColor: theme.accent },
+                    ]}
+                    onPress={onPressOption} // Corrected onPressOption to onPress
+                >
+                    <SvgXml
+                        xml={ic_bag_white}
+                        width={STANDARD_VECTOR_ICON_SIZE}
+                        height={STANDARD_VECTOR_ICON_SIZE}
+                    />
+                </TouchableOpacity>
+            )}
+        </TouchableOpacity>
+    );
+};
+
+// Exporting
+export default memo(GridViewItem);
