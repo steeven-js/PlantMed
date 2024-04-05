@@ -147,9 +147,9 @@ const UserFavorisList = () => {
                 </ScrollView>
             ) : (
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ color: theme.textHighContrast }} > Vous devez être connecté pour voir vos favoris </Text>
-                        <View style={styles.verticalSpacer} />
-                        <Button label="Se connecter" onPress={() => navigation.navigate('Auth Stack', { screen: 'Login' })} />
+                    <Text style={{ color: theme.textHighContrast }} > Vous devez être connecté pour voir vos favoris </Text>
+                    <View style={styles.verticalSpacer} />
+                    <Button label="Se connecter" onPress={() => navigation.navigate('Auth Stack', { screen: 'Login' })} />
                 </View>
             )}
         </View>

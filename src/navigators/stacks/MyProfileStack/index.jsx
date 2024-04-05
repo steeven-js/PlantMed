@@ -30,7 +30,7 @@ const MyProfileStack = () => {
     const navigation = useNavigation();
 
     // Screen options
-    const screenOptions = () => ({
+    const screenOptions = ({ route }) => ({
         headerTitleAlign: 'center',
         headerTitleStyle: [styles.headerTitle],
         headerTintColor: IndependentColors.white,
@@ -44,7 +44,13 @@ const MyProfileStack = () => {
         ],
         headerLeft: () => (
             <TouchableOpacity
-                onPress={() => navigation.goBack()}
+                onPress={() => {
+                    if (route.name === 'My Profile') {
+                        navigation.navigate('Home Stack');
+                    } else {
+                        navigation.navigate('My Profile');
+                    }
+                }}
                 style={styles.leftArrowIcon}
             >
                 <SvgXml
