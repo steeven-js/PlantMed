@@ -8,8 +8,6 @@ import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import { IndependentColors } from '../../../config/Colors';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import EditProfile from '../../../screens/EditProfile';
-import Languages from '../../../screens/Languages';
-import NotificationSettings from '../../../screens/NotificationSettings';
 import ResetPassword from '../../../screens/ResetPassword';
 import Settings from '../../../screens/Settings';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
@@ -68,11 +66,6 @@ const SettingsStack = ({ route }) => {
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Edit Profile" component={EditProfile} />
             <Stack.Screen name="Reset Password" component={ResetPassword} />
-            <Stack.Screen
-                name="Notification Settings"
-                component={NotificationSettings}
-            />
-            <Stack.Screen name="Languages" component={Languages} />
         </Stack.Navigator>
     );
 };
