@@ -9,7 +9,7 @@ import { IndependentColors } from '../../config/Colors';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
 
-const HomeCategoriesSection = ({homeData}) => {
+const HomeCategoriesSection = ({ homeData }) => {
     // Using context
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
     // Storing theme config according to the theme mode
@@ -115,6 +115,10 @@ const HomeCategoriesSection = ({homeData}) => {
                         );
                     })}
                 </ScrollView>
+
+                {/* Vertical spacer */}
+                <View style={styles.verticalSpacer} />
+
             </View>
         </>
     );
