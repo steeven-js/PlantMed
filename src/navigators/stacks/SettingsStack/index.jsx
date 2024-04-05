@@ -19,7 +19,7 @@ import styles from '../styles';
 const Stack = createStackNavigator();
 
 // Settings stack
-const SettingsStack = () => {
+const SettingsStack = ({ route }) => {
     // Using context
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
@@ -44,7 +44,13 @@ const SettingsStack = () => {
         ],
         headerLeft: () => (
             <TouchableOpacity
-                onPress={() => navigation.goBack()}
+                onPress={() => {
+                    if (route.name === 'Settings') {
+                        navigation.navigate('Home Stack');
+                    } else {
+                        navigation.navigate('Settings');
+                    }
+                }}
                 style={styles.leftArrowIcon}
             >
                 <SvgXml
