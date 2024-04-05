@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useContext } from 'react';
 import { TouchableOpacity } from 'react-native';
@@ -23,8 +24,11 @@ const PlantMedStack = () => {
     // Storing theme config according to the theme mode
     const theme = isLightTheme ? lightTheme : darkTheme;
 
+    // Navigation
+    const navigation = useNavigation();
+
     // Screen options
-    const screenOptions = ({ navigation }) => ({
+    const screenOptions = ({ route }) => ({
         headerTitleAlign: 'center',
         headerTitleStyle: [styles.headerTitle],
         headerTintColor: IndependentColors.white,
@@ -38,7 +42,13 @@ const PlantMedStack = () => {
         ],
         headerLeft: () => (
             <TouchableOpacity
-                onPress={() => navigation.goBack()}
+                onPress={() => {
+                    if (route.name === 'PlantMedTab') {
+                        navigation.navigate('Home Stack');
+                    } else {
+                        navigation.navigate('PlantMedTab');
+                    }
+                }}
                 style={styles.leftArrowIcon}
             >
                 <SvgXml
