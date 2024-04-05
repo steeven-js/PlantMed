@@ -1,7 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { SvgXml } from 'react-native-svg';
+
+// Import de useEditProfile
+import useEditProfile from '../../functions/userEditProfile';
 
 import av_woman_4 from '../../assets/avatars/svg/av_woman_4';
 import ic_edit_dark_green from '../../assets/icons/svg/ic_edit_dark_green';
@@ -24,8 +27,43 @@ const EditProfile = ({ navigation }) => {
     // Storing theme config according to the theme mode
     const theme = isLightTheme ? lightTheme : darkTheme;
 
-    // AuthCheck hook
-    const { isUserAuthenticated, userAuthEmail, displayName } = useAuthCheck();
+    // AuthCheck
+    const { isUserAuthenticated, userAuthEmail } = useAuthCheck();
+
+    // Utilisation de useEditProfile
+    const { displayName, updateDisplayName } = useEditProfile();
+
+    // State local pour stocker le nouveau nom d'affichage
+    const [newDisplayName, setNewDisplayName] = useState('');
+
+    // State local pour gérer l'état de la soumission du formulaire
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // log
+    console.log('displayName:', displayName);
+
+    // Fonction de gestion de la soumission du formulaire
+    const handleSubmit = async () => {
+        try {
+            // Définir l'état de soumission sur true pour indiquer que le formulaire est en cours de soumission
+            setIsSubmitting(true);
+
+            // Mettez à jour le nom d'affichage avec la fonction updateDisplayName
+            await updateDisplayName(newDisplayName);
+
+            // Réinitialiser le champ de saisie après la soumission réussie
+            setNewDisplayName('');
+
+            // Affichez un message de succès
+            console.log('Nom d\'affichage mis à jour avec succès !');
+        } catch (error) {
+            // Affichez une erreur s'il y a un problème lors de la mise à jour du nom d'affichage
+            console.error('Erreur lors de la mise à jour du nom d\'affichage :', error);
+        } finally {
+            // Définir l'état de soumission sur false une fois la soumission terminée (qu'elle réussisse ou échoue)
+            setIsSubmitting(false);
+        }
+    };
 
     // Returning
     return (
@@ -72,9 +110,11 @@ const EditProfile = ({ navigation }) => {
                 {/* Text input component */}
                 <Animatable.View animation="fadeInUp" delay={700}>
                     <TextInput
-                    label="Name"
-                    value={displayName}
-                    placeholder="Enter your name"
+                        label="Name"
+                        value={newDisplayName !== '' ? newDisplayName : displayName}
+                        onChangeText={setNewDisplayName} // Mettre à jour le nouveau nom d'affichage lors de la saisie
+                        placeholder="Enter your name"
+                        keyboardType={'default'}
                     />
                 </Animatable.View>
 
@@ -109,7 +149,11 @@ const EditProfile = ({ navigation }) => {
 
                 {/* Button component */}
                 <Animatable.View animation="fadeInUp" delay={1300}>
-                    <Button label="Submit & Save" />
+                    <Button
+                        label="Submit & Save"
+                        onPress={handleSubmit}
+                        disabled={isSubmitting}
+                    />
                 </Animatable.View>
             </Animatable.View>
         </View>

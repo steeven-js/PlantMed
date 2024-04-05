@@ -6,7 +6,7 @@ import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from './styles';
 
 // Functional component
-const Button = ({ label, onPress }) => {
+const Button = ({ label, onPress, disabled }) => {
     // Using context
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
@@ -18,6 +18,7 @@ const Button = ({ label, onPress }) => {
         <TouchableOpacity
             style={[styles.button, { backgroundColor: theme.accent }]}
             onPress={onPress}
+            disabled={disabled}
         >
             <Text
                 style={[styles.buttonLabel, { color: IndependentColors.white }]}
