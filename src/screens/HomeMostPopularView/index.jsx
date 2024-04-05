@@ -11,6 +11,7 @@ const HomeMostPopularView = ({ theme, homeData }) => {
     // Navigation
     const navigation = useNavigation();
 
+    // Fetch most popular plants
     const { isPlantsLoading, mostPopularPlants, plantsError } = useFetchPlantsSpecials();
 
     return (
@@ -42,7 +43,7 @@ const HomeMostPopularView = ({ theme, homeData }) => {
                 >
                     {isPlantsLoading ? (
                         <View style={styles.productWrapper}>
-                            <ActivityIndicator size="large" color={theme.primary} />
+                            <ActivityIndicator size="large" color={theme.activityIndicator} />
                         </View>
                     ) : (
                         <>
@@ -55,7 +56,7 @@ const HomeMostPopularView = ({ theme, homeData }) => {
                                                 : require('../../assets/images/banners/home/808_x_338.png')
                                         }
                                         plantTitle={plant.name}
-                                        onPress={() => console.log('Plante')}
+                                        onPress={() => navigation.navigate('Plant Stack', { screen: 'PlantView', params: { plantId: plant.id, plantName: plant.name } })}
                                     />
                                 </View>
                             ))}

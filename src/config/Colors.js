@@ -7,6 +7,7 @@ const LightThemeColors = {
     accentLightest: '#5881571A',
     textHighContrast: '#344E41',
     textLowContrast: '#888BA4',
+    activityIndicator: '#344E41',
 };
 
 // Defining dark theme colors
@@ -18,6 +19,7 @@ const DarkThemeColors = {
     accentLightest: '#5881571A',
     textHighContrast: '#FFFFFF',
     textLowContrast: '#9EA3B9',
+    activityIndicator: '#FFFFFF',
 };
 
 // Defining independent colors

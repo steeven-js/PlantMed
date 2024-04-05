@@ -16,6 +16,7 @@ export const ThemeContextProvider = ({ children }) => {
             accentLightest: LightThemeColors.accentLightest,
             textHighContrast: LightThemeColors.textHighContrast,
             textLowContrast: LightThemeColors.textLowContrast,
+            activityIndicator: LightThemeColors.activityIndicator,
         },
         darkTheme: {
             primary: DarkThemeColors.primary,
@@ -25,6 +26,7 @@ export const ThemeContextProvider = ({ children }) => {
             accentLightest: LightThemeColors.accentLightest,
             textHighContrast: DarkThemeColors.textHighContrast,
             textLowContrast: DarkThemeColors.textLowContrast,
+            activityIndicator: DarkThemeColors.activityIndicator,
         },
         isLightTheme: true,
     });

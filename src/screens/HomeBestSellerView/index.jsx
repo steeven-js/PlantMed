@@ -42,7 +42,7 @@ const HomeBestSellerView = ({ theme, homeData }) => {
                 >
                     {isPlantsLoading ? (
                         <View style={styles.productWrapper}>
-                            <ActivityIndicator size="large" color={theme.primary} />
+                            <ActivityIndicator size="large" color={theme.activityIndicator} />
                         </View>
                     ) : (
                         <>
@@ -55,7 +55,7 @@ const HomeBestSellerView = ({ theme, homeData }) => {
                                                 : require('../../assets/images/banners/home/808_x_338.png')
                                         }
                                         plantTitle={plant.name}
-                                        onPress={() => console.log('Plante')}
+                                        onPress={() => navigation.navigate('Plant Stack', {screen: 'PlantView', params: {plantId: plant.id, plantName: plant.name}})}
                                     />
                                 </View>
                             ))}
