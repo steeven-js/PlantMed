@@ -11,6 +11,7 @@ import { IndependentColors } from '../../config/Colors';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
+import useAuthCheck from '../../functions/authCheck';
 
 // Functional component
 const Settings = ({ navigation }) => {
@@ -22,7 +23,6 @@ const Settings = ({ navigation }) => {
     const theme = isLightTheme ? lightTheme : darkTheme;
 
     // Local states
-
     const [isThemeSwitchOn, setIsThemeSwitchOn] = useState(false);
 
     const _toggleThemeSwitch = useCallback(() => {
@@ -38,6 +38,11 @@ const Settings = ({ navigation }) => {
     const Thumb_Active_Color = IndependentColors.white;
     const Thumb_Inactive_Color = theme.secondary;
 
+    // AuthCheck hook
+    const { isUserAuthenticated } = useAuthCheck();
+
+    // console.log('isUserAuthenticated:', isUserAuthenticated, 'userAuthEmail:', userAuthEmail, 'displayName:', displayName);
+
     // Returning
     return (
         <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
@@ -46,65 +51,54 @@ const Settings = ({ navigation }) => {
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.scrollViewContentContainerStyle}
             >
-                {/* Section title component */}
-                <SectionTitle title="Account" />
+                {isUserAuthenticated && (
+                    <>
+                        {/* Section Account */}
 
-                {/* Vertical spacer */}
-                <View style={styles.verticalSpacer} />
+                        {/* Section title component */}
+                        <SectionTitle title="Account" />
 
-                {/* Navigation link component */}
-                <NavigationLink
-                    leftIcon={
-                        <SvgXml
-                            xml={ic_edit_dark_green}
-                            width={STANDARD_VECTOR_ICON_SIZE}
-                            height={STANDARD_VECTOR_ICON_SIZE}
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Navigation link component */}
+                        <NavigationLink
+                            leftIcon={
+                                <SvgXml
+                                    xml={ic_edit_dark_green}
+                                    width={STANDARD_VECTOR_ICON_SIZE}
+                                    height={STANDARD_VECTOR_ICON_SIZE}
+                                />
+                            }
+                            label="Edit profile"
+                            onPress={() => navigation.navigate('Edit Profile')}
                         />
-                    }
-                    label="Edit profile"
-                    onPress={() => navigation.navigate('Edit Profile')}
-                />
 
-                {/* Vertical spacer */}
-                <View style={styles.verticalSpacer} />
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
 
-                {/* Navigation link component */}
-                <NavigationLink
-                    leftIcon={
-                        <SvgXml
-                            xml={ic_lock_dark_green}
-                            width={STANDARD_VECTOR_ICON_SIZE}
-                            height={STANDARD_VECTOR_ICON_SIZE}
+                        {/* Navigation link component */}
+                        <NavigationLink
+                            leftIcon={
+                                <SvgXml
+                                    xml={ic_lock_dark_green}
+                                    width={STANDARD_VECTOR_ICON_SIZE}
+                                    height={STANDARD_VECTOR_ICON_SIZE}
+                                />
+                            }
+                            label="Reset password"
+                            onPress={() => navigation.navigate('Reset Password')}
                         />
-                    }
-                    label="Reset password"
-                    onPress={() => navigation.navigate('Reset Password')}
-                />
 
-                {/* Vertical spacer */}
-                {/* <View style={styles.verticalSpacer} /> */}
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
 
-                {/* Section title component */}
-                {/* <SectionTitle title="Messaging" /> */}
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+                    </>
+                )}
 
-                {/* Vertical spacer */}
-                <View style={styles.verticalSpacer} />
-
-                {/* Navigation link component */}
-                {/* <NavigationLink
-                    leftIcon={
-                        <SvgXml
-                            xml={ic_bell_dark_green}
-                            width={STANDARD_VECTOR_ICON_SIZE}
-                            height={STANDARD_VECTOR_ICON_SIZE}
-                        />
-                    }
-                    label="Notifications"
-                    onPress={() => navigation.navigate('Notification Settings')}
-                /> */}
-
-                {/* Vertical spacer */}
-                <View style={styles.verticalSpacer} />
+                {/* Section Appearance */}
 
                 {/* Section title component */}
                 <SectionTitle title="Appearance" />
