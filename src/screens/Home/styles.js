@@ -21,6 +21,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         margin: STANDARD_SPACING * 3,
+        marginTop: SCREEN_HEIGHT * 0.06,
     },
     svgBg: {
         backgroundColor: '#588157',
