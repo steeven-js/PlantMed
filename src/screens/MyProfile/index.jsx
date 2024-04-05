@@ -22,7 +22,7 @@ const MyProfile = () => {
     // Storing theme config according to the theme mode
     const theme = isLightTheme ? lightTheme : darkTheme;
 
-    const { isUserAuthenticated, userAuthEmail, displayName } = useAuthCheck(); // Utilisation du hook d'authentification
+    const { isUserAuthenticated, userAuthEmail, displayName } = useAuthCheck();
 
     // Navigation
     const navigation = useNavigation();

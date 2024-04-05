@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
-import { View } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { SvgXml } from 'react-native-svg';
-
-// Import de useEditProfile
+import * as ImagePicker from 'react-native-image-picker';
+import { useSelector } from 'react-redux';
 import useEditProfile from '../../functions/userEditProfile';
 
 import av_woman_4 from '../../assets/avatars/svg/av_woman_4';
@@ -31,16 +31,46 @@ const EditProfile = ({ navigation }) => {
     const { isUserAuthenticated, userAuthEmail } = useAuthCheck();
 
     // Utilisation de useEditProfile
-    const { displayName, updateDisplayName } = useEditProfile();
+    const { displayName, updateDisplayName, updateAvatar } = useEditProfile();
 
-    // State local pour stocker le nouveau nom d'affichage
+    // State local pour stocker le nouveau nom d'affichage et l'URL de l'avatar
     const [newDisplayName, setNewDisplayName] = useState('');
 
     // State local pour gérer l'état de la soumission du formulaire
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // log
-    console.log('displayName:', displayName);
+    // Selecting the avatarUrl from the Redux store
+    const avatarUrl = useSelector(state => state.auth.avatarUrl);
+
+    // Fonction pour changer l'avatar
+    const handleOpenGallery = () => {
+        // Configuration de l'image à choisir dans la galerie
+        const options = {
+            mediaType: 'photo',
+            quality: 0.5,
+        };
+
+        // Ouvrir la galerie
+        ImagePicker.launchImageLibrary(options, response => {
+            if (response.didCancel) {
+                // L'utilisateur a annulé la sélection de l'image
+                console.log('Sélection de l\'image annulée');
+            } else if (response.error) {
+                // Une erreur s'est produite lors de la sélection de l'image
+                console.error('Erreur lors de la sélection de l\'image :', response.error);
+            } else {
+                // L'image a été sélectionnée avec succès
+                const selectedUri = response.assets[0].uri; // Utilisez response.assets[0].uri
+                if (selectedUri) {
+                    console.log('URI de l\'image sélectionnée :', selectedUri); // Ajoutez ce log
+                    // Mettre à jour l'avatar en appelant updateAvatar
+                    updateAvatar(selectedUri);
+                } else {
+                    console.error('URI de l\'image sélectionnée est undefined');
+                }
+            }
+        });
+    };
 
     // Fonction de gestion de la soumission du formulaire
     const handleSubmit = async () => {
@@ -80,12 +110,24 @@ const EditProfile = ({ navigation }) => {
                     delay={300}
                     style={styles.avatarWrapper}
                 >
-                    {/* Avatar */}
-                    <SvgXml
-                        xml={av_woman_4}
-                        width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
-                        height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
-                    />
+                    {/* Afficher l'avatar sélectionné s'il y en a un */}
+                    {avatarUrl ? (
+                        <Image
+                            source={{ uri: avatarUrl }}
+                            style={{
+                                width: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2,
+                                height: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2,
+                                borderRadius: STANDARD_USER_AVATAR_WRAPPER_SIZE,
+                            }}
+                        />
+                    ) : (
+                        // Sinon, afficher l'avatar par défaut
+                        <SvgXml
+                            xml={av_woman_4}
+                            width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
+                            height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
+                        />
+                    )}
 
                     {/* Camera icon wrapper */}
                     <Animatable.View
@@ -96,11 +138,13 @@ const EditProfile = ({ navigation }) => {
                             { backgroundColor: theme.accentLightest },
                         ]}
                     >
-                        <SvgXml
-                            xml={ic_edit_dark_green}
-                            width={STANDARD_VECTOR_ICON_SIZE}
-                            height={STANDARD_VECTOR_ICON_SIZE}
-                        />
+                        <TouchableOpacity onPress={handleOpenGallery}>
+                            <SvgXml
+                                xml={ic_edit_dark_green}
+                                width={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                                height={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                            />
+                        </TouchableOpacity>
                     </Animatable.View>
                 </Animatable.View>
 
