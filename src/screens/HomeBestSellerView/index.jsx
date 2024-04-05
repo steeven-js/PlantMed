@@ -7,7 +7,7 @@ import styles from './styles';
 import useFetchPlantsSpecials from '../../hooks/useFetchPlantsSpecials';
 import PlantGridView from '../../components/cards/PlantGridView';
 
-const HomeBestSellerView = ({ theme }) => {
+const HomeBestSellerView = ({ theme, homeData }) => {
     // Navigation
     const navigation = useNavigation();
 
@@ -21,11 +21,11 @@ const HomeBestSellerView = ({ theme }) => {
             {/* Section title & link wrapper */}
             <View style={styles.sectionTitleAndLinkWrapper}>
                 {/* Section title component */}
-                <SectionTitle title="Best seller" />
+                <SectionTitle title={homeData[2].title} />
 
                 {/* Link component */}
                 <Link
-                    label="Tous voir"
+                    label={homeData[2].link}
                     onPress={() => navigation.navigate('Grid View Products')}
                 />
             </View>

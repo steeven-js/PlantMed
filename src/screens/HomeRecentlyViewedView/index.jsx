@@ -7,7 +7,7 @@ import styles from './styles';
 import useFetchPlantsSpecials from '../../hooks/useFetchPlantsSpecials';
 import PlantGridView from '../../components/cards/PlantGridView';
 
-const HomeRecentlyViewedView = ({ theme }) => {
+const HomeRecentlyViewedView = ({ theme, homeData }) => {
     // Navigation
     const navigation = useNavigation();
 
@@ -21,11 +21,11 @@ const HomeRecentlyViewedView = ({ theme }) => {
             {/* Section title & link wrapper */}
             <View style={styles.sectionTitleAndLinkWrapper}>
                 {/* Section title component */}
-                <SectionTitle title="Recently viewed" />
+                <SectionTitle title={homeData[4].title} />
 
                 {/* Link component */}
                 <Link
-                    label="Tous voir"
+                    label={homeData[4].link}
                     onPress={() => navigation.navigate('Grid View Products')}
                 />
             </View>

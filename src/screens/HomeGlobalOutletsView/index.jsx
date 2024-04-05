@@ -6,16 +6,16 @@ import Link from '../../components/links/Link';
 import GlobalOutletsData from '../../data/GlobalOutletsData';
 import styles from './styles';
 
-const HomeGlobalOutletsView = () => {
+const HomeGlobalOutletsView = ({homeData}) => {
     return (
         <>
             {/* Section title & link wrapper */}
             <View style={styles.sectionTitleAndLinkWrapper}>
                 {/* Section title component */}
-                <SectionTitle title="Global outlets" />
+                <SectionTitle title={homeData[5].title} />
 
                 {/* Link component */}
-                <Link label="Tous voir" />
+                <Link label={homeData[5].link} />
             </View>
 
             {/* Vertical spacer */}

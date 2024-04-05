@@ -9,7 +9,7 @@ import { IndependentColors } from '../../config/Colors';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
 
-const HomeCategoriesSection = () => {
+const HomeCategoriesSection = ({homeData}) => {
     // Using context
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
     // Storing theme config according to the theme mode
@@ -38,11 +38,11 @@ const HomeCategoriesSection = () => {
             {/* Section title & link wrapper */}
             <View style={styles.sectionTitleAndLinkWrapper}>
                 {/* Section title component */}
-                <SectionTitle title="Usages thérapeutiques" />
+                <SectionTitle title={homeData[0].title} />
 
                 {/* Link component */}
                 <Link
-                    label="Tous voir"
+                    label={homeData[0].link}
                     onPress={() => navigation.navigate('Grid View Products')}
                 />
             </View>
