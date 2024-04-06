@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import {
     ActivityIndicator,
     Image,
@@ -73,18 +73,6 @@ const PlantView = ({ route }) => {
     const handleaddOrRemovePlantFavoris = async () => {
         await addOrRemovePlantFavoris({ uid, data, plantId });
     };
-
-    // Restaurer la navigation lorsque l'utilisateur quitte la vue du symptôme
-    useEffect(() => {
-        const unsubscribe = navigation.addListener('blur', () => {
-            navigation.reset({
-                index: 0,
-                routes: [{ name: 'PlantMedTab' }],
-            });
-        });
-
-        return unsubscribe;
-    }, [navigation]);
 
     // Screen options
     const screenOptions = {

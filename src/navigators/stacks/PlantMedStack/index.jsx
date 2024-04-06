@@ -45,10 +45,6 @@ const PlantMedStack = () => {
         const symptomName = route.params?.symptomName;
         const plantName = route.params?.plantName;
 
-        // Afficher le nom du symptôme dans la console
-        console.log('Nom du symptôme:', symptomName);
-        console.log('Nom de la plante:', plantName);
-
         return {
             headerTitle: symptomName || plantName || getHeaderTitle(route),
             headerTitleAlign: 'center',
