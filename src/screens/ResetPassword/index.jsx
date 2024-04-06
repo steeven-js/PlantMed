@@ -29,6 +29,11 @@ const ResetPassword = () => {
     // Function to handle password reset
     const handleResetPassword = async () => {
         await changePassword(currentPassword, newPassword, confirmNewPassword);
+
+        // Resetting input fields after password reset
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmNewPassword('');
     };
 
     // Returning
