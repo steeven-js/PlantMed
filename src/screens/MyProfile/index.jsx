@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { ScrollView, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { SvgXml } from 'react-native-svg';
+import { useSelector } from 'react-redux';
 
 import av_man_2 from '../../assets/avatars/svg/av_man_2';
 import NavigationLink from '../../components/links/NavigationLink';
@@ -22,7 +23,10 @@ const MyProfile = () => {
     // Storing theme config according to the theme mode
     const theme = isLightTheme ? lightTheme : darkTheme;
 
-    const { isUserAuthenticated, userAuthEmail, displayName } = useAuthCheck();
+    const { isUserAuthenticated, userAuthEmail } = useAuthCheck();
+
+    // Selecting the displayName from the Redux store
+    const displayName = useSelector(state => state.auth.displayName);
 
     // Navigation
     const navigation = useNavigation();
