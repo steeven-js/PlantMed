@@ -48,7 +48,6 @@ const SupportStack = () => {
             headerLeft: () => (
                 <TouchableOpacity
                     onPress={() => {
-                        console.log('route', route.name);
                         if (route.name === 'Help & Support') {
                             navigation.navigate('Home Stack');
                         } else {

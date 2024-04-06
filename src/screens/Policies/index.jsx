@@ -1,12 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
-import { useCallback, useContext } from 'react';
+import { useContext } from 'react';
 import { ScrollView, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import PolicyNavigationLink from '../../components/links/PolicyNavigationLink';
-import PoliciesData from '../../data/PoliciesData';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
+import PoliciesData from '../../data/PoliciesData';
 
 // Functional component
 const Policies = () => {
@@ -18,12 +18,6 @@ const Policies = () => {
 
     // Navigation
     const navigation = useNavigation();
-
-    // Navigating to the specified screen
-    const _navigateToScreen = useCallback(
-        (screen) => navigation.navigate(screen),
-        [navigation],
-    );
 
     // Returning
     return (
@@ -52,7 +46,7 @@ const Policies = () => {
                             index === PoliciesData.length - 1
                                 ? 'transparent'
                                 : theme.primary;
-
+                        console.log('policy', policy);
                         // Returning
                         return (
                             <PolicyNavigationLink
@@ -60,7 +54,7 @@ const Policies = () => {
                                 label={policy.title}
                                 // eslint-disable-next-line no-undef
                                 borderBottomColor={borderBottomColor}
-                                onPress={() => _navigateToScreen('Policy')}
+                                onPress={() => navigation.navigate(policy.name)}
                             />
                         );
                     })}

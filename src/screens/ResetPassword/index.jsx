@@ -36,8 +36,6 @@ const ResetPassword = ({ route }) => {
         setConfirmNewPassword('');
     };
 
-    console.log('route', route.name);
-
     // Returning
     return (
         <View style={[styles.mainWrapper, { backgroundColor: theme.accent }]}>

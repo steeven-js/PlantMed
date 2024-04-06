@@ -8,9 +8,11 @@ import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import { IndependentColors } from '../../../config/Colors';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import Policies from '../../../screens/Policies';
-import Policy from '../../../screens/Policy';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from '../styles';
+import Cgu from '../../../screens/Confidentialite';
+import Confidentialite from '../../../screens/Cgu';
+import DataSources from '../../../screens/DataSources';
 
 // Creating stack navigator
 const Stack = createStackNavigator();
@@ -27,37 +29,58 @@ const PoliciesStack = () => {
     const navigation = useNavigation();
 
     // Screen options
-    const screenOptions = () => ({
-        headerTitleAlign: 'center',
-        headerTitleStyle: [styles.headerTitle],
-        headerTintColor: IndependentColors.white,
-        headerStyle: [
-            {
+    const screenOptions = ({ route }) => {
+        let routeName = '';
+
+        if (route.name === 'Policies') {
+            routeName = 'Politiques Légales';
+        } else if (route.name === 'Cgu') {
+            routeName = 'Conditions Générales d\'Utilisation';
+        } else if (route.name === 'Confidentialite') {
+            routeName = 'Politique de Confidentialité';
+        } else if (route.name === 'DataSources') {
+            routeName = 'Sources de Données';
+        }
+
+        return {
+            headerTitle: routeName,
+            headerTitleAlign: 'center',
+            headerTitleStyle: styles.headerTitle,
+            headerTintColor: IndependentColors.white,
+            headerStyle: {
                 backgroundColor: theme.accent,
                 elevation: 0,
                 shadowOpacity: 0,
                 borderBottomWidth: 0,
             },
-        ],
-        headerLeft: () => (
-            <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                style={styles.leftArrowIcon}
-            >
-                <SvgXml
-                    xml={ic_arrow_left_white}
-                    width={STANDARD_VECTOR_ICON_SIZE}
-                    height={STANDARD_VECTOR_ICON_SIZE}
-                />
-            </TouchableOpacity>
-        ),
-    });
+            headerLeft: () => (
+                <TouchableOpacity
+                    onPress={() => {
+                        if (route.name === 'Policies') {
+                            navigation.navigate('Home Stack');
+                        } else {
+                            navigation.navigate('Policies');
+                        }
+                    }}
+                    style={styles.leftArrowIcon}
+                >
+                    <SvgXml
+                        xml={ic_arrow_left_white}
+                        width={STANDARD_VECTOR_ICON_SIZE}
+                        height={STANDARD_VECTOR_ICON_SIZE}
+                    />
+                </TouchableOpacity>
+            ),
+        };
+    };
 
     // Returning
     return (
         <Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen name="Policies" component={Policies} />
-            <Stack.Screen name="Policy" component={Policy} />
+            <Stack.Screen name="Cgu" component={Cgu} />
+            <Stack.Screen name="Confidentialite" component={Confidentialite} />
+            <Stack.Screen name="DataSources" component={DataSources} />
         </Stack.Navigator>
     );
 };
