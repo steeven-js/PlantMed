@@ -101,7 +101,7 @@ const Register = () => {
 
                 ShowToast({
                     type: 'success',
-                    position: 'bottom',
+                    position: 'top',
                     text1: 'Utilisateur enregistré avec succès',
                     visibilityTime: 6000,
                     autoHide: true,

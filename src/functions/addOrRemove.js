@@ -20,7 +20,7 @@ export const addOrRemovePlantFavoris = async ({ uid, data, plantId }) => {
                     userData.plantIds.splice(existingPlantIndex, 1);
                     ShowToast({
                         type: 'error',
-                        position: 'bottom',
+                        position: 'top',
                         text1: 'Plante retirée des favoris',
                         visibilityTime: 3000,
                         autoHide: true,
@@ -32,7 +32,7 @@ export const addOrRemovePlantFavoris = async ({ uid, data, plantId }) => {
                     });
                     ShowToast({
                         type: 'success',
-                        position: 'bottom',
+                        position: 'top',
                         text1: 'Plante ajoutée aux favoris',
                         visibilityTime: 3000,
                         autoHide: true,
@@ -42,7 +42,7 @@ export const addOrRemovePlantFavoris = async ({ uid, data, plantId }) => {
                 userData.plantIds = [{ plantId: plantId, Name: plantName }];
                 ShowToast({
                     type: 'info',
-                    position: 'bottom',
+                    position: 'top',
                     text1: 'Liste de favoris créée',
                     visibilityTime: 3000,
                     autoHide: true,
@@ -57,7 +57,7 @@ export const addOrRemovePlantFavoris = async ({ uid, data, plantId }) => {
             });
             ShowToast({
                 type: 'info',
-                position: 'bottom',
+                position: 'top',
                 text1: 'Document utilisateur créé',
                 visibilityTime: 3000,
                 autoHide: true,
@@ -95,7 +95,7 @@ export const addOrRemoveSymptomFavoris = async ({
                     userSymptomData.symptomIds.splice(existingSymptomIndex, 1);
                     ShowToast({
                         type: 'error',
-                        position: 'bottom',
+                        position: 'top',
                         text1: 'Symptôme retiré des favoris',
                         visibilityTime: 3000,
                         autoHide: true,
@@ -107,7 +107,7 @@ export const addOrRemoveSymptomFavoris = async ({
                     });
                     ShowToast({
                         type: 'success',
-                        position: 'bottom',
+                        position: 'top',
                         text1: 'Symptôme ajouté aux favoris',
                         visibilityTime: 3000,
                         autoHide: true,
@@ -119,7 +119,7 @@ export const addOrRemoveSymptomFavoris = async ({
                 ];
                 ShowToast({
                     type: 'info',
-                    position: 'bottom',
+                    position: 'top',
                     text1: 'Liste de symptômes favoris créée',
                     visibilityTime: 3000,
                     autoHide: true,
@@ -133,7 +133,7 @@ export const addOrRemoveSymptomFavoris = async ({
             });
             ShowToast({
                 type: 'info',
-                position: 'bottom',
+                position: 'top',
                 text1: 'Document utilisateur créé',
                 visibilityTime: 3000,
                 autoHide: true,

@@ -22,7 +22,7 @@ const useChangePassword = () => {
                 // Show a toast to indicate successful password update
                 ShowToast({
                     type: 'success',
-                    position: 'bottom',
+                    position: 'top',
                     text1: 'Mot de passe mis à jour avec succès.',
                     visibilityTime: 3000,
                     autoHide: true,
@@ -37,7 +37,7 @@ const useChangePassword = () => {
             // Show a toast to indicate an error occurred during password update
             ShowToast({
                 type: 'error',
-                position: 'bottom',
+                position: 'top',
                 text1: 'Une erreur s\'est produite lors de la mise à jour du mot de passe.',
                 visibilityTime: 3000,
                 autoHide: true,

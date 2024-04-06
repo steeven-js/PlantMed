@@ -34,7 +34,7 @@ const useEditProfile = () => {
                 dispatch(setUserDisplayName(newDisplayName));
                 ShowToast({
                     type: 'success',
-                    position: 'bottom',
+                    position: 'top',
                     text1: 'Nom d\'affichage mis à jour avec succès.',
                     visibilityTime: 3000,
                     autoHide: true,
@@ -44,7 +44,7 @@ const useEditProfile = () => {
             console.error('Error updating display name:', error);
             ShowToast({
                 type: 'error',
-                position: 'bottom',
+                position: 'top',
                 text1: 'Une erreur s\'est produite lors de la mise à jour du nom d\'affichage.',
                 visibilityTime: 3000,
                 autoHide: true,
@@ -63,7 +63,7 @@ const useEditProfile = () => {
                 dispatch(setUserAvatarUrl(newAvatarUrl));
                 ShowToast({
                     type: 'success',
-                    position: 'bottom',
+                    position: 'top',
                     text1: 'Avatar mis à jour avec succès.',
                     visibilityTime: 3000,
                     autoHide: true,
@@ -74,7 +74,7 @@ const useEditProfile = () => {
             console.error('Error updating avatar:', error);
             ShowToast({
                 type: 'error',
-                position: 'bottom',
+                position: 'top',
                 text1: 'Une erreur s\'est produite lors de la mise à jour de l\'avatar.',
                 visibilityTime: 3000,
                 autoHide: true,

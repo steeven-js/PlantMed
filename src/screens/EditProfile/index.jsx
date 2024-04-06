@@ -28,7 +28,7 @@ const EditProfile = ({ navigation }) => {
     const theme = isLightTheme ? lightTheme : darkTheme;
 
     // AuthCheck
-    const { isUserAuthenticated, userAuthEmail } = useAuthCheck();
+    const { isUserAuthenticated, userAuthEmail, useDisplayName } = useAuthCheck();
 
     // Utilisation de useEditProfile
     const { displayName, updateDisplayName, updateAvatar } = useEditProfile();
@@ -93,6 +93,14 @@ const EditProfile = ({ navigation }) => {
             // Définir l'état de soumission sur false une fois la soumission terminée (qu'elle réussisse ou échoue)
             setIsSubmitting(false);
         }
+    };
+
+    console.log('displayName', useDisplayName);
+
+    // Function to check if the form can be submitted
+    const canSubmitForm = () => {
+        // Disable form submission if newDisplayName is empty
+        return newDisplayName.trim() !== '';
     };
 
     // Returning
@@ -196,7 +204,7 @@ const EditProfile = ({ navigation }) => {
                     <Button
                         label="Submit & Save"
                         onPress={handleSubmit}
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || !canSubmitForm()}
                     />
                 </Animatable.View>
             </Animatable.View>
