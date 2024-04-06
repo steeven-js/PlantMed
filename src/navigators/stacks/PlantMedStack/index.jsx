@@ -40,39 +40,50 @@ const PlantMedStack = () => {
     };
 
     // Screen options
-    const screenOptions = ({ route }) => ({
-        headerTitle: getHeaderTitle(route),
-        headerTitleAlign: 'center',
-        headerTitleStyle: [styles.headerTitle],
-        headerTintColor: IndependentColors.white,
-        headerStyle: [
-            {
-                backgroundColor: theme.accent,
-                elevation: 0,
-                shadowOpacity: 0,
-                borderBottomWidth: 0,
-            },
-        ],
-        headerLeft: () => (
-            <TouchableOpacity
-                onPress={() => {
-                    if (route.name === 'PlantMedTab') {
-                        navigation.navigate('Home Stack');
-                    } else {
-                        navigation.navigate('PlantMedTab');
-                    }
-                }}
-                style={styles.leftArrowIcon}
-            >
-                <SvgXml
-                    xml={ic_arrow_left_white}
-                    width={STANDARD_VECTOR_ICON_SIZE}
-                    height={STANDARD_VECTOR_ICON_SIZE}
-                />
-            </TouchableOpacity>
-        ),
-        headerRight: () => null,
-    });
+    const screenOptions = ({ route }) => {
+        // Récupérer le nom du symptôme
+        const symptomName = route.params?.symptomName;
+        const plantName = route.params?.plantName;
+
+        // Afficher le nom du symptôme dans la console
+        console.log('Nom du symptôme:', symptomName);
+        console.log('Nom de la plante:', plantName);
+
+        return {
+            headerTitle: symptomName || plantName || getHeaderTitle(route),
+            headerTitleAlign: 'center',
+            headerTitleStyle: [styles.headerTitle],
+            headerTintColor: IndependentColors.white,
+            headerStyle: [
+                {
+                    backgroundColor: theme.accent,
+                    elevation: 0,
+                    shadowOpacity: 0,
+                    borderBottomWidth: 0,
+                },
+            ],
+            headerLeft: () => (
+                <TouchableOpacity
+                    onPress={() => {
+                        if (route.name === 'PlantMedTab') {
+                            navigation.navigate('Home Stack');
+                        } else {
+                            navigation.navigate('PlantMedTab');
+                        }
+                    }}
+                    style={styles.leftArrowIcon}
+                >
+                    <SvgXml
+                        xml={ic_arrow_left_white}
+                        width={STANDARD_VECTOR_ICON_SIZE}
+                        height={STANDARD_VECTOR_ICON_SIZE}
+                    />
+                </TouchableOpacity>
+            ),
+            headerRight: () => null,
+        };
+    };
+
 
     // Returning
     return (
