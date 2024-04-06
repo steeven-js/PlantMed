@@ -29,7 +29,6 @@ const PlantMedStack = () => {
 
     const getHeaderTitle = (route) => {
         const routeName = getFocusedRouteNameFromRoute(route) ?? 'Symptoms';
-        console.log('routeName: ', routeName);
         switch (routeName) {
             case 'Symptoms':
                 return 'Symptômes';
