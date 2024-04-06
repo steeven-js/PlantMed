@@ -17,7 +17,7 @@ import styles from '../styles';
 const Stack = createStackNavigator();
 
 // Settings stack
-const SettingsStack = ({ route }) => {
+const SettingsStack = () => {
     // Using context
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
@@ -28,7 +28,7 @@ const SettingsStack = ({ route }) => {
     const navigation = useNavigation();
 
     // Screen options
-    const screenOptions = () => ({
+    const screenOptions = ({ route }) => ({
         headerTitleAlign: 'center',
         headerTitleStyle: [styles.headerTitle],
         headerTintColor: IndependentColors.white,
