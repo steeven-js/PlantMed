@@ -16,7 +16,7 @@ import ic_arrow_up_darkest_green from '../../assets/icons/svg/ic_arrow_up_darkes
 import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
-import { FaqsData } from '../../data/AppData';
+import FaqsData from '../../data/FaqsData';
 
 // Comparing
 if (Platform.OS === 'android') {
