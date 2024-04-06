@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import HomeCategoriesSection from '../HomeCategories';
 import HomeMostPopularView from '../HomeMostPopularView';
 import HomeRecentlyViewedView from '../HomeRecentlyViewedView';
-import HomeData from '../../data/HomeData';
+import { HomeData } from '../../data/AppData';
 
 const HomeContent = ({ theme }) => {
     const homeData = HomeData;

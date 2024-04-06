@@ -36,12 +36,14 @@ import PoliciesStack from '../../stacks/PoliciesStack';
 import SupportStack from '../../stacks/SupportStack';
 import HomeBottomTab from '../../tabs/HomeBottomTab';
 import styles from './styles';
+import { DrawerData } from '../../../data/AppData';
 
 // Creating drawer navigator
 const Drawer = createDrawerNavigator();
 
 // Custom drawer content component
 const CustomDrawerContent = (props) => {
+    const { drawerHeader, drawerFooter } = props; // Déstructure drawerHeader de props
     // Using context
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
@@ -53,7 +55,7 @@ const CustomDrawerContent = (props) => {
         <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
             {/* Header image background */}
             <ImageBackground
-                source={require('../../../assets/images/backgrounds/liquid-cheese-background.png')}
+                source={drawerHeader[0].ImageBackground}
                 style={styles.drawerHeaderImageBackground}
             >
                 <View
@@ -65,16 +67,16 @@ const CustomDrawerContent = (props) => {
                     <Image
                         source={
                             isLightTheme
-                                ? require('../../../assets/images/logos/logo_light.png')
-                                : require('../../../assets/images/logos/logo_dark.png')
+                                ? drawerHeader[0].logo_light
+                                : drawerHeader[0].logo_dark
                         }
                         style={styles.logo}
                     />
                 </View>
                 <View>
-                    <Text style={styles.brandName}>PlantMed</Text>
+                    <Text style={styles.brandName}>{drawerHeader[0].brandName}</Text>
                     <Text style={styles.brandSlogan}>
-                        Le soin par les plantes!
+                        {drawerHeader[0].brandSlogan}
                     </Text>
                 </View>
             </ImageBackground>
@@ -90,7 +92,7 @@ const CustomDrawerContent = (props) => {
             {/* Custom drawer item */}
             <View>
                 <DrawerItem
-                    label="App Version 3.0.0 - March, 2024"
+                    label={drawerFooter[0].label}
                     labelStyle={[
                         styles.drawerItemLabel,
                         { color: theme.textLowContrast, alignSelf: 'center' },
@@ -109,10 +111,14 @@ const HomeDrawer = () => {
     // Storing theme config according to the theme mode
     const theme = isLightTheme ? lightTheme : darkTheme;
 
+    // Using custom hook
     const { isUserAuthenticated, userAuthUid } = useAuthCheck();
 
     // Navigation
     const navigation = useNavigation();
+
+    // Drawer data
+    const { drawerHeader, drawerLabel, drawerFooter } = DrawerData;
 
     // Retuning
     return (
@@ -149,13 +155,13 @@ const HomeDrawer = () => {
                     </TouchableOpacity>
                 ),
             })}
-            drawerContent={(props) => <CustomDrawerContent {...props} />}
+            drawerContent={(props) => <CustomDrawerContent {...props} drawerHeader={drawerHeader} drawerFooter={drawerFooter} />}
         >
             <Drawer.Screen
                 name="HomeBottomTab"
                 component={HomeBottomTab}
                 options={{
-                    drawerLabel: 'Home',
+                    drawerLabel: drawerLabel[0].trad ,
                     drawerIcon: ({ focused }) =>
                         focused ? (
                             <SvgXml
@@ -178,7 +184,7 @@ const HomeDrawer = () => {
                 name="SupportStack"
                 component={SupportStack}
                 options={{
-                    drawerLabel: 'Help & Support',
+                    drawerLabel: drawerLabel[1].trad,
                     drawerIcon: ({ focused }) =>
                         focused ? (
                             <SvgXml
@@ -201,7 +207,7 @@ const HomeDrawer = () => {
                 name="PoliciesStack"
                 component={PoliciesStack}
                 options={{
-                    drawerLabel: 'Legal Policies',
+                    drawerLabel: drawerLabel[2].trad,
                     drawerIcon: ({ focused }) =>
                         focused ? (
                             <SvgXml
@@ -225,7 +231,7 @@ const HomeDrawer = () => {
                     name="Auth Stack"
                     component={AuthStack}
                     options={{
-                        drawerLabel: 'Account Login',
+                        drawerLabel: drawerLabel[3].trad,
                         drawerIcon: ({ focused }) =>
                             focused ? (
                                 <SvgXml
@@ -248,7 +254,7 @@ const HomeDrawer = () => {
                     name="MyProfileStack"
                     component={MyProfileStack}
                     options={{
-                        drawerLabel: 'My Profile',
+                        drawerLabel: drawerLabel[4].trad,
                         drawerIcon: ({ focused }) =>
                             focused ? (
                                 <SvgXml
