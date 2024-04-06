@@ -1,18 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import Button from '../../components/buttons/Button';
-import OrDivider from '../../components/dividers/OrDivider';
 import ScreenTitle from '../../components/headings/ScreenTitle';
 import TextArea from '../../components/inputs/TextArea';
 import TextInput from '../../components/inputs/TextInput';
-import Link from '../../components/links/Link';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 import useAuthCheck from '../../functions/authCheck';
 import userSendEmail from '../../hooks/userSendEmail';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
+import {ContactUsData} from '../../data/AppData';
 
 const ContactUs = () => {
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
@@ -115,12 +114,12 @@ const ContactUs = () => {
                 >
                     {/* Screen title */}
                     <Animatable.View animation="fadeInUp" delay={300}>
-                        <ScreenTitle title="Contact Us" />
+                        <ScreenTitle title={ContactUsData[0].label} />
                     </Animatable.View>
 
                     {/* Information paragraph */}
                     <Animatable.View animation="fadeInUp" delay={500}>
-                        <ScreenInfo info="If you need to contact us for any reason, don't hesitate to reach out." />
+                        <ScreenInfo info={ContactUsData[1].info} />
                     </Animatable.View>
 
                     {/* Spacing */}
@@ -130,7 +129,7 @@ const ContactUs = () => {
                     {/* Email input field */}
                     <Animatable.View animation="fadeInUp" delay={700}>
                         <TextInput
-                            label="Email"
+                            label={ContactUsData[2].inputLabel}
                             placeholder={
                                 isUserAuthenticated
                                     ? 'Votre email'
@@ -155,8 +154,8 @@ const ContactUs = () => {
                     {/* Message textarea */}
                     <Animatable.View animation="fadeInUp" delay={900}>
                         <TextArea
-                            label="Message"
-                            placeholder="Enter your message here..."
+                            label={ContactUsData[3].inputLabel}
+                            placeholder={ContactUsData[3].placeholder}
                             value={message}
                             onChangeText={(text) => setMessage(text)}
                             autoCapitalize="none"
@@ -182,12 +181,12 @@ const ContactUs = () => {
                     </Animatable.View>
 
                     {/* Spacing */}
-                    <View style={styles.verticalSpacer} />
+                    {/* <View style={styles.verticalSpacer} /> */}
 
                     {/* Link for uploading a file */}
-                    <Animatable.View animation="fadeInUp" delay={1100}>
-                        <Link label="Want to upload a file?" />
-                    </Animatable.View>
+                    {/* <Animatable.View animation="fadeInUp" delay={1100}>
+                        <Link label={ContactUsData[4].file} />
+                    </Animatable.View> */}
 
                     {/* Spacing */}
                     <View style={styles.verticalSpacer} />
@@ -195,63 +194,15 @@ const ContactUs = () => {
                     {/* Button for sending email */}
                     <Animatable.View animation="fadeInUp" delay={1300}>
                         <Button
-                            label="Envoyer un e-mail"
+                            label={ContactUsData[5].submit}
                             onPress={handleEmailSend}
                         />
                     </Animatable.View>
 
                     {/* Divider for alternative help methods */}
-                    <Animatable.View animation="fadeInUp" delay={1500}>
+                    {/* <Animatable.View animation="fadeInUp" delay={1500}>
                         <OrDivider label="Or get help via" />
-                    </Animatable.View>
-
-                    {/* Help icons */}
-                    <View style={styles.helpIconsWrapper}>
-                        {/* Help icon: headphone */}
-                        <Animatable.View animation="bounceIn" delay={1700}>
-                            <TouchableOpacity
-                                style={[
-                                    styles.helpIconWrapper,
-                                    { backgroundColor: theme.secondary },
-                                ]}
-                            >
-                                <Image
-                                    source={require('../../assets/icons/png/contact-us/headphone.png')}
-                                    style={styles.helpIconImage}
-                                />
-                            </TouchableOpacity>
-                        </Animatable.View>
-
-                        {/* Help icon: FAQs */}
-                        <Animatable.View animation="bounceIn" delay={1900}>
-                            <TouchableOpacity
-                                style={[
-                                    styles.helpIconWrapper,
-                                    { backgroundColor: theme.secondary },
-                                ]}
-                            >
-                                <Image
-                                    source={require('../../assets/icons/png/contact-us/faqs.png')}
-                                    style={styles.helpIconImage}
-                                />
-                            </TouchableOpacity>
-                        </Animatable.View>
-
-                        {/* Help icon: location pin */}
-                        <Animatable.View animation="bounceIn" delay={2100}>
-                            <TouchableOpacity
-                                style={[
-                                    styles.helpIconWrapper,
-                                    { backgroundColor: theme.secondary },
-                                ]}
-                            >
-                                <Image
-                                    source={require('../../assets/icons/png/contact-us/location_pin.png')}
-                                    style={styles.helpIconImage}
-                                />
-                            </TouchableOpacity>
-                        </Animatable.View>
-                    </View>
+                    </Animatable.View> */}
                 </ScrollView>
             </Animatable.View>
         </View>

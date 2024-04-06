@@ -14,9 +14,9 @@ import { SvgXml } from 'react-native-svg';
 import ic_arrow_down_darkest_green from '../../assets/icons/svg/ic_arrow_down_darkest_green';
 import ic_arrow_up_darkest_green from '../../assets/icons/svg/ic_arrow_up_darkest_green';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
-import FaqsData from '../../data/FaqsData';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
+import { FaqsData } from '../../data/AppData';
 
 // Comparing
 if (Platform.OS === 'android') {
