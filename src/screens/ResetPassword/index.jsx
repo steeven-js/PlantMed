@@ -1,14 +1,14 @@
-import { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-
-import Button from '../../components/buttons/Button';
-import ScreenTitle from '../../components/headings/ScreenTitle';
+import { ThemeContext } from '../../theming/contexts/ThemeContext';
+import styles from './styles';
 import PasswordTextInput from '../../components/inputs/PasswordTextInput';
 import Link from '../../components/links/Link';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';
-import { ThemeContext } from '../../theming/contexts/ThemeContext';
-import styles from './styles';
+import ScreenTitle from '../../components/headings/ScreenTitle';
+import useChangePassword from '../../hooks/userChangePassword';
+import Button from '../../components/buttons/Button';
 
 // Functional component
 const ResetPassword = () => {
@@ -17,6 +17,19 @@ const ResetPassword = () => {
 
     // Storing theme config according to the theme mode
     const theme = isLightTheme ? lightTheme : darkTheme;
+
+    // State variables for currentPassword, newPassword, and confirmNewPassword
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
+    // Custom hook for changing password
+    const changePassword = useChangePassword();
+
+    // Function to handle password reset
+    const handleResetPassword = async () => {
+        await changePassword(currentPassword, newPassword, confirmNewPassword);
+    };
 
     // Returning
     return (
@@ -46,6 +59,8 @@ const ResetPassword = () => {
                     <PasswordTextInput
                         label="Current password"
                         placeholder="Enter your current password"
+                        value={currentPassword}
+                        onChangeText={setCurrentPassword}
                     />
                 </Animatable.View>
 
@@ -57,6 +72,8 @@ const ResetPassword = () => {
                     <PasswordTextInput
                         label="New password"
                         placeholder="Enter your new password"
+                        value={newPassword}
+                        onChangeText={setNewPassword}
                     />
                 </Animatable.View>
 
@@ -68,6 +85,8 @@ const ResetPassword = () => {
                     <PasswordTextInput
                         label="Re-enter new password"
                         placeholder="Re-enter your new password"
+                        value={confirmNewPassword}
+                        onChangeText={setConfirmNewPassword}
                     />
                 </Animatable.View>
 
@@ -84,7 +103,7 @@ const ResetPassword = () => {
 
                 {/* Button component */}
                 <Animatable.View animation="fadeInUp" delay={1500}>
-                    <Button label="Reset Password" />
+                    <Button label="Reset Password" onPress={handleResetPassword} />
                 </Animatable.View>
             </Animatable.View>
         </View>

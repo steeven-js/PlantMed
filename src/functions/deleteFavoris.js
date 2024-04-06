@@ -17,7 +17,7 @@ const deleteOnePlantFavoris = async ({ uid, plantId }) => {
                 await userDocRef.update({ plantIds: updatedPlantIds });
                 ShowToast({
                     type: 'error',
-                    position: 'top',
+                    position: 'bottom',
                     text1: 'Plante retirée des favoris',
                     visibilityTime: 3000,
                     autoHide: true,
@@ -39,7 +39,7 @@ const deleteAllPlantsFavoris = async ({ uid }) => {
         await userDocRef.update({ plantIds: [] });
         ShowToast({
             type: 'error',
-            position: 'top',
+            position: 'bottom',
             text1: 'Toutes les plantes ont été retirées des favoris',
             visibilityTime: 3000,
             autoHide: true,
@@ -70,7 +70,7 @@ const deleteOneSymptomFavoris = async ({ uid, symptomId }) => {
                 await userDocRef.update({ symptomIds: updatedSymptomIds });
                 ShowToast({
                     type: 'error',
-                    position: 'top',
+                    position: 'bottom',
                     text1: 'Symptôme retiré des favoris',
                     visibilityTime: 3000,
                     autoHide: true,
@@ -94,7 +94,7 @@ const deleteAllSymptomsFavoris = async ({ uid }) => {
         await userDocRef.update({ symptomIds: [] });
         ShowToast({
             type: 'error',
-            position: 'top',
+            position: 'bottom',
             text1: 'Tous les symptômes ont été retirés des favoris',
             visibilityTime: 3000,
             autoHide: true,

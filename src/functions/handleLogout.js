@@ -7,7 +7,7 @@ const handleLogout = async () => {
         await auth().signOut();
         ShowToast({
             type: 'success',
-            position: 'top',
+            position: 'bottom',
             text1: 'Déconnexion réussie',
             visibilityTime: 3000,
             autoHide: true,

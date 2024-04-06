@@ -5,6 +5,7 @@ import {
     setUserDisplayName,
     setUserAvatarUrl,
 } from '../redux/reducer/auth';
+import { ShowToast } from '../functions/toast';
 
 const useEditProfile = () => {
     const dispatch = useDispatch();
@@ -12,18 +13,16 @@ const useEditProfile = () => {
     const [avatarUrl, setAvatarUrl] = useState('');
 
     useEffect(() => {
-        // Mettre à jour l'état local lorsque le nom d'affichage de l'utilisateur change
         const unsubscribe = auth().onAuthStateChanged(user => {
             if (user) {
                 setDisplayName(user.displayName || '');
-                setAvatarUrl(user.photoURL || ''); // Mettre à jour l'URL de l'avatar
+                setAvatarUrl(user.photoURL || '');
             }
         });
 
-        return () => unsubscribe(); // Nettoyage de l'effet lors du démontage
+        return () => unsubscribe();
     }, []);
 
-    // Fonction pour mettre à jour le nom d'affichage de l'utilisateur
     const updateDisplayName = async (newDisplayName) => {
         try {
             const user = auth().currentUser;
@@ -31,19 +30,28 @@ const useEditProfile = () => {
                 await user.updateProfile({
                     displayName: newDisplayName,
                 });
-                // Mettre à jour l'état local
                 setDisplayName(newDisplayName);
-                // Mettre à jour le magasin Redux
                 dispatch(setUserDisplayName(newDisplayName));
-                // log
-                console.log('Display name updated successfully');
+                ShowToast({
+                    type: 'success',
+                    position: 'bottom',
+                    text1: 'Nom d\'affichage mis à jour avec succès.',
+                    visibilityTime: 3000,
+                    autoHide: true,
+                });
             }
         } catch (error) {
             console.error('Error updating display name:', error);
+            ShowToast({
+                type: 'error',
+                position: 'bottom',
+                text1: 'Une erreur s\'est produite lors de la mise à jour du nom d\'affichage.',
+                visibilityTime: 3000,
+                autoHide: true,
+            });
         }
     };
 
-    // Fonction pour mettre à jour l'avatar de l'utilisateur
     const updateAvatar = async (newAvatarUrl) => {
         try {
             const user = auth().currentUser;
@@ -51,17 +59,26 @@ const useEditProfile = () => {
                 await user.updateProfile({
                     photoURL: newAvatarUrl,
                 });
-                // log
-                console.log('Avatar updated successfully');
-
-                // Mettre à jour l'état local
                 setAvatarUrl(newAvatarUrl);
-                // Mettre à jour le magasin Redux
                 dispatch(setUserAvatarUrl(newAvatarUrl));
+                ShowToast({
+                    type: 'success',
+                    position: 'bottom',
+                    text1: 'Avatar mis à jour avec succès.',
+                    visibilityTime: 3000,
+                    autoHide: true,
+                });
             }
         }
         catch (error) {
             console.error('Error updating avatar:', error);
+            ShowToast({
+                type: 'error',
+                position: 'bottom',
+                text1: 'Une erreur s\'est produite lors de la mise à jour de l\'avatar.',
+                visibilityTime: 3000,
+                autoHide: true,
+            });
         }
     };
 

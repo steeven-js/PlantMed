@@ -1,7 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 
-import { getFormattedDate, getFormattedTime } from './date';
-import { ShowToast } from './toast';
+import { getFormattedDate, getFormattedTime } from '../functions/date';
+import { ShowToast } from '../functions/toast';
 
 const userSendEmail = async ({ uid, email, message }) => {
     try {
@@ -29,7 +29,7 @@ const userSendEmail = async ({ uid, email, message }) => {
                 await userDocRef.update({ mailIds: updatedMailIds });
                 ShowToast({
                     type: 'success',
-                    position: 'top',
+                    position: 'bottom',
                     text1: 'E-mail envoyé avec succès',
                     visibilityTime: 3000,
                     autoHide: true,
@@ -49,7 +49,7 @@ const userSendEmail = async ({ uid, email, message }) => {
                 );
                 ShowToast({
                     type: 'success',
-                    position: 'top',
+                    position: 'bottom',
                     text1: 'E-mail envoyé avec succès',
                     visibilityTime: 3000,
                     autoHide: true,
@@ -69,7 +69,7 @@ const userSendEmail = async ({ uid, email, message }) => {
             console.log('Document utilisateur créé avec succès');
             ShowToast({
                 type: 'success',
-                position: 'top',
+                position: 'bottom',
                 text1: 'E-mail envoyé avec succès',
                 visibilityTime: 3000,
                 autoHide: true,
@@ -79,7 +79,7 @@ const userSendEmail = async ({ uid, email, message }) => {
         console.error("Erreur lors de l'envoi de l'email :", error);
         ShowToast({
             type: 'error',
-            position: 'top',
+            position: 'bottom',
             text1: "Erreur lors de l'envoi de l'email",
             visibilityTime: 3000,
             autoHide: true,

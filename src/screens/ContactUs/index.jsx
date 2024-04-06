@@ -10,7 +10,7 @@ import TextInput from '../../components/inputs/TextInput';
 import Link from '../../components/links/Link';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 import useAuthCheck from '../../functions/authCheck';
-import userSendEmail from '../../functions/userSendEmail';
+import userSendEmail from '../../hooks/userSendEmail';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
 

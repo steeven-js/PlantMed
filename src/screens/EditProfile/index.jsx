@@ -4,7 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import { SvgXml } from 'react-native-svg';
 import * as ImagePicker from 'react-native-image-picker';
 import { useSelector } from 'react-redux';
-import useEditProfile from '../../functions/userEditProfile';
+import useEditProfile from '../../hooks/userEditProfile';
 
 import av_woman_4 from '../../assets/avatars/svg/av_woman_4';
 import ic_edit_dark_green from '../../assets/icons/svg/ic_edit_dark_green';

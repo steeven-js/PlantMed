@@ -95,7 +95,7 @@ const Login = () => {
 
             ShowToast({
                 type: 'success',
-                position: 'top',
+                position: 'bottom',
                 text1: 'Connexion réussie',
                 visibilityTime: 3000,
                 autoHide: true,
