@@ -14,6 +14,7 @@ import {
 export default StyleSheet.create({
     mainWrapper: {
         flex: STANDARD_FLEX,
+        marginBottom: 20,
     },
     scrollViewContentContainerStyle: {
         padding: STANDARD_SPACING * 2,
@@ -32,7 +33,6 @@ export default StyleSheet.create({
         fontSize: FONT_SIZE_XS,
         marginStart: STANDARD_SPACING * 2,
         marginVertical: STANDARD_SPACING * 2,
-        textTransform: 'capitalize',
         letterSpacing: STANDARD_LETTER_SPACING,
     },
     policyDetails: {

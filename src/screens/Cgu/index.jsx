@@ -3,13 +3,13 @@ import { ScrollView, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import Markdown from 'react-native-markdown-display';
 
-import PolicyData from '../../data/PolicyData';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import Rules from './Rules';
 import styles from './styles';
+import CguData from '../../data/CguData';
 
 // Functional component
-const Confidentialite = () => {
+const Cgu = () => {
     // Using context
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
@@ -32,7 +32,7 @@ const Confidentialite = () => {
                     <Markdown
                         rules={rules} // Utiliser les règles de rendu basées sur le thème
                     >
-                        {PolicyData}
+                        {CguData}
                     </Markdown>
                 </ScrollView>
             </Animatable.View>
@@ -40,4 +40,4 @@ const Confidentialite = () => {
     );
 };
 
-export default Confidentialite;
+export default Cgu;

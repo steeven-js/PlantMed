@@ -3,10 +3,10 @@ import { ScrollView, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import Markdown from 'react-native-markdown-display';
 
-import PolicyData from '../../data/PolicyData';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import Rules from './Rules';
 import styles from './styles';
+import SourcesData from '../../data/SourcesData';
 
 // Functional component
 const DataSources = () => {
@@ -32,7 +32,7 @@ const DataSources = () => {
                     <Markdown
                         rules={rules} // Utiliser les règles de rendu basées sur le thème
                     >
-                        {PolicyData}
+                        {SourcesData}
                     </Markdown>
                 </ScrollView>
             </Animatable.View>

@@ -10,8 +10,8 @@ import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import Policies from '../../../screens/Policies';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from '../styles';
-import Cgu from '../../../screens/Confidentialite';
-import Confidentialite from '../../../screens/Cgu';
+import Cgu from '../../../screens/Cgu';
+import Confidentialite from '../../../screens/Confidentialite';
 import DataSources from '../../../screens/DataSources';
 
 // Creating stack navigator
