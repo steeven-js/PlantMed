@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Image, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { SvgXml } from 'react-native-svg';
 import * as ImagePicker from 'react-native-image-picker';
@@ -103,111 +103,120 @@ const EditProfile = ({ navigation }) => {
 
     // Returning
     return (
-        <View style={[styles.mainWrapper, { backgroundColor: theme.accent }]}>
-            {/* Form wrapper */}
-            <Animatable.View
-                animation="fadeInUp"
-                delay={100}
-                style={[styles.formWrapper, { backgroundColor: theme.primary }]}
-            >
-                {/* Avatar wrapper */}
-                <Animatable.View
-                    animation="fadeInUp"
-                    delay={300}
-                    style={styles.avatarWrapper}
-                >
-                    {/* Afficher l'avatar sélectionné s'il y en a un */}
-                    {avatarUrl ? (
-                        <Image
-                            source={{ uri: avatarUrl }}
-                            style={{
-                                width: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2,
-                                height: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2,
-                                borderRadius: STANDARD_USER_AVATAR_WRAPPER_SIZE,
-                            }}
-                        />
-                    ) : (
-                        // Sinon, afficher l'avatar par défaut
-                        <SvgXml
-                            xml={av_woman_4}
-                            width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
-                            height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
-                        />
-                    )}
-
-                    {/* Camera icon wrapper */}
+        <>
+            {!isUserAuthenticated ? (
+                <Animatable.View animation="fadeInUp" delay={100}>
+                    <Text>Connectez-vous</Text>
+                </Animatable.View>
+            ) : (
+                <View style={[styles.mainWrapper, { backgroundColor: theme.accent }]}>
+                    {/* Form wrapper */}
                     <Animatable.View
-                        animation="bounceIn"
-                        delay={1700}
-                        style={[
-                            styles.cameraIconWrapper,
-                            { backgroundColor: theme.accentLightest },
-                        ]}
+                        animation="fadeInUp"
+                        delay={100}
+                        style={[styles.formWrapper, { backgroundColor: theme.primary }]}
                     >
-                        <TouchableOpacity onPress={handleOpenGallery}>
-                            <SvgXml
-                                xml={ic_edit_dark_green}
-                                width={STANDARD_VECTOR_ICON_SIZE * 1.5}
-                                height={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                        {/* Avatar wrapper */}
+                        <Animatable.View
+                            animation="fadeInUp"
+                            delay={300}
+                            style={styles.avatarWrapper}
+                        >
+                            {/* Afficher l'avatar sélectionné s'il y en a un */}
+                            {avatarUrl ? (
+                                <Image
+                                    source={{ uri: avatarUrl }}
+                                    style={{
+                                        width: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2,
+                                        height: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2,
+                                        borderRadius: STANDARD_USER_AVATAR_WRAPPER_SIZE,
+                                    }}
+                                />
+                            ) : (
+                                // Sinon, afficher l'avatar par défaut
+                                <SvgXml
+                                    xml={av_woman_4}
+                                    width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
+                                    height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
+                                />
+                            )}
+
+                            {/* Camera icon wrapper */}
+                            <Animatable.View
+                                animation="bounceIn"
+                                delay={1700}
+                                style={[
+                                    styles.cameraIconWrapper,
+                                    { backgroundColor: theme.accentLightest },
+                                ]}
+                            >
+                                <TouchableOpacity onPress={handleOpenGallery}>
+                                    <SvgXml
+                                        xml={ic_edit_dark_green}
+                                        width={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                                        height={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                                    />
+                                </TouchableOpacity>
+                            </Animatable.View>
+                        </Animatable.View>
+
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Text input component */}
+                        <Animatable.View animation="fadeInUp" delay={700}>
+                            <TextInput
+                                label="Name"
+                                value={newDisplayName !== '' ? newDisplayName : displayName}
+                                onChangeText={setNewDisplayName} // Mettre à jour le nouveau nom d'affichage lors de la saisie
+                                placeholder="Votre pseudo"
+                                keyboardType={'default'}
                             />
-                        </TouchableOpacity>
+                        </Animatable.View>
+
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Text input component */}
+                        {isUserAuthenticated && (
+                            <Animatable.View animation="fadeInUp" delay={900}>
+                                <TextInput
+                                    label="Email"
+                                    value={userAuthEmail}
+                                    placeholder="Votre adresse e-mail"
+                                    disabled={true}
+                                />
+                            </Animatable.View>
+                        )}
+
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Link component */}
+                        <Animatable.View animation="fadeInUp" delay={1100}>
+                            <Link label="Want to change password?" />
+                        </Animatable.View>
+
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Button component */}
+                        <Animatable.View animation="fadeInUp" delay={1300}>
+                            <Button
+                                label="Submit & Save"
+                                onPress={handleSubmit}
+                                disabled={isSubmitting || !canSubmitForm()}
+                            />
+                        </Animatable.View>
                     </Animatable.View>
-                </Animatable.View>
-
-                {/* Vertical spacer */}
-                <View style={styles.verticalSpacer} />
-
-                {/* Text input component */}
-                <Animatable.View animation="fadeInUp" delay={700}>
-                    <TextInput
-                        label="Name"
-                        value={newDisplayName !== '' ? newDisplayName : displayName}
-                        onChangeText={setNewDisplayName} // Mettre à jour le nouveau nom d'affichage lors de la saisie
-                        placeholder="Votre pseudo"
-                        keyboardType={'default'}
-                    />
-                </Animatable.View>
-
-                {/* Vertical spacer */}
-                <View style={styles.verticalSpacer} />
-
-                {/* Text input component */}
-                {isUserAuthenticated && (
-                    <Animatable.View animation="fadeInUp" delay={900}>
-                        <TextInput
-                            label="Email"
-                            value={userAuthEmail}
-                            placeholder="Votre adresse e-mail"
-                            disabled={true}
-                        />
-                    </Animatable.View>
-                )}
-
-                {/* Vertical spacer */}
-                <View style={styles.verticalSpacer} />
-
-                {/* Vertical spacer */}
-                <View style={styles.verticalSpacer} />
-
-                {/* Link component */}
-                <Animatable.View animation="fadeInUp" delay={1100}>
-                    <Link label="Want to change password?" />
-                </Animatable.View>
-
-                {/* Vertical spacer */}
-                <View style={styles.verticalSpacer} />
-
-                {/* Button component */}
-                <Animatable.View animation="fadeInUp" delay={1300}>
-                    <Button
-                        label="Submit & Save"
-                        onPress={handleSubmit}
-                        disabled={isSubmitting || !canSubmitForm()}
-                    />
-                </Animatable.View>
-            </Animatable.View>
-        </View>
+                </View>
+            )}
+        </>
     );
+
 };
 
 // Exporting
