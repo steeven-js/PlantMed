@@ -77,3 +77,54 @@ export const DrawerData = {
     ],
 };
 
+export const BottomTabData = [
+    {
+        id: 1,
+        label: 'Accueil',
+    },
+    {
+        id: 2,
+        label: 'PlantMed',
+    },
+    {
+        id: 3,
+        label: 'Se connecter',
+    },
+    {
+        id: 3,
+        label: 'Mon Compte',
+    },
+    {
+        id: 4,
+        label: 'Paramètres',
+    },
+];
+
+export const SettingsData = {
+    account: [
+        {
+            id: 1,
+            label: 'Compte',
+            options: [
+                {
+                    id: 1,
+                    label1: 'Modifier mon profil',
+                    label2: 'Modifier mon mot de passe',
+                },
+            ],
+        },
+    ],
+    appearance: [
+        {
+            id: 1,
+            label: 'Apparence',
+            options: [
+                {
+                    id: 1,
+                    label1: 'Thème de l\'application',
+                },
+            ],
+        },
+    ],
+};
+

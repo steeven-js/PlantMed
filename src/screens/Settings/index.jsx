@@ -12,6 +12,7 @@ import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
 import useAuthCheck from '../../functions/authCheck';
+import {SettingsData} from '../../data/AppData';
 
 // Functional component
 const Settings = ({ navigation }) => {
@@ -41,7 +42,8 @@ const Settings = ({ navigation }) => {
     // AuthCheck hook
     const { isUserAuthenticated } = useAuthCheck();
 
-    // console.log('isUserAuthenticated:', isUserAuthenticated, 'userAuthEmail:', userAuthEmail, 'displayName:', displayName);
+    // AppData
+    const { account, appearance } = SettingsData;
 
     // Returning
     return (
@@ -56,7 +58,7 @@ const Settings = ({ navigation }) => {
                         {/* Section Account */}
 
                         {/* Section title component */}
-                        <SectionTitle title="Account" />
+                        <SectionTitle title={account[0].label} />
 
                         {/* Vertical spacer */}
                         <View style={styles.verticalSpacer} />
@@ -70,7 +72,7 @@ const Settings = ({ navigation }) => {
                                     height={STANDARD_VECTOR_ICON_SIZE}
                                 />
                             }
-                            label="Edit profile"
+                            label={account[0].options[0].label1}
                             onPress={() => navigation.navigate('Edit Profile')}
                         />
 
@@ -86,7 +88,7 @@ const Settings = ({ navigation }) => {
                                     height={STANDARD_VECTOR_ICON_SIZE}
                                 />
                             }
-                            label="Reset password"
+                            label={account[0].options[0].label2}
                             onPress={() => navigation.navigate('Reset Password')}
                         />
 
@@ -101,15 +103,15 @@ const Settings = ({ navigation }) => {
                 {/* Section Appearance */}
 
                 {/* Section title component */}
-                <SectionTitle title="Appearance" />
+                <SectionTitle title={appearance[0].label} />
 
                 {/* Vertical spacer */}
                 <View style={styles.verticalSpacer} />
 
                 {/* Switch list */}
                 <SwitchList
-                    label="App Theme"
-                    labelInfo={`Switch to ${isLightTheme ? 'dark' : 'light'} mode.`}
+                    label={appearance[0].options[0].label1}
+                    labelInfo={`Passer en mode ${isLightTheme ? 'sombre' : 'clair'}.`}
                     trackActiveColor={Track_Active_Color}
                     trackInactiveColor={Track_Inactive_Color}
                     thumbActiveColor={Thumb_Active_Color}
