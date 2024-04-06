@@ -40,6 +40,8 @@ const PoliciesStack = () => {
             routeName = 'Politique de Confidentialité';
         } else if (route.name === 'DataSources') {
             routeName = 'Sources de Données';
+        } else {
+            routeName = route.name;
         }
 
         return {
