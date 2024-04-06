@@ -29,7 +29,7 @@ const SearchTextInput = ({ value, onChangeText }) => {
         >
             {/* Text input */}
             <TextInput
-                placeholder="Search here..."
+                placeholder="Recherche..."
                 value={value}
                 onChangeText={onChangeText}
                 placeholderTextColor={theme.textLowContrast}
