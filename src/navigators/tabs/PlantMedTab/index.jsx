@@ -1,5 +1,5 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { SvgXml } from 'react-native-svg';
 
 import ic_heart_dark_green from '../../../assets/icons/svg/ic_heart_dark_green';
@@ -23,17 +23,6 @@ const PlantMedTab = ({ onTabChange }) => {
 
     // Storing theme config according to the theme mode
     const theme = isLightTheme ? lightTheme : darkTheme;
-
-    const [, setCurrentTitle] = useState('');
-
-    // Función para cambiar el título basado en la pestaña seleccionada
-    const handleTabChange = (tabName) => {
-        setCurrentTitle(tabName);
-        // Llama a la función onTabChange si es necesario
-        if (typeof onTabChange === 'function') {
-            onTabChange(tabName);
-        }
-    };
 
     // Screen options
     const screenOptions = {
@@ -68,7 +57,6 @@ const PlantMedTab = ({ onTabChange }) => {
                             />
                         ),
                 }}
-                listeners={{ tabPress: () => handleTabChange('Usages thérapeutiques') }}
             />
             <Tab.Screen
                 name="Plants"
@@ -89,7 +77,6 @@ const PlantMedTab = ({ onTabChange }) => {
                             />
                         ),
                 }}
-                listeners={{ tabPress: () => handleTabChange('Plantes médicinales') }}
             />
             <Tab.Screen
                 name="Favoris"
@@ -110,7 +97,6 @@ const PlantMedTab = ({ onTabChange }) => {
                             />
                         ),
                 }}
-                listeners={{ tabPress: () => handleTabChange('Favoris') }}
             />
         </Tab.Navigator>
     );

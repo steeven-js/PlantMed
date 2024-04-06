@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
@@ -27,18 +27,6 @@ const PlantMedStack = () => {
     // Navigation
     const navigation = useNavigation();
 
-    // Créez un état pour stocker le titre actuel
-    const [currentTab, setCurrentTab] = useState('Usages thérapeutiques');
-
-    console.log('currentTab:', currentTab);
-
-    // Définissez la fonction de rappel pour récupérer le titre de l'onglet
-    const handleTabChange = (tabName) => {
-        setCurrentTab(tabName);
-        // Faites ce que vous voulez avec currentTab ici
-        console.log('Titre de l\'onglet actuel:', tabName);
-    };
-
     // Screen options
     const screenOptions = ({ route }) => ({
         headerTitleAlign: 'center',
@@ -52,7 +40,6 @@ const PlantMedStack = () => {
                 borderBottomWidth: 0,
             },
         ],
-        headerTitle: currentTab,
         headerLeft: () => (
             <TouchableOpacity
                 onPress={() => {
@@ -80,12 +67,8 @@ const PlantMedStack = () => {
             initialRouteName="PlantMedTab"
             screenOptions={screenOptions}
         >
-            {/* Corrected the component prop */}
-            <Stack.Screen name="PlantMedTab">
-                {props => {
-                    return <PlantMedTab {...props} onTabChange={handleTabChange} />;
-                }}
-            </Stack.Screen>
+            {/* name="Symptoms" component={SymptomsList} | name="Plants" component={PlantList} | name="Favoris" component={UserFavorisList} */}
+            <Stack.Screen name="PlantMedTab" component={PlantMedTab} />
             <Stack.Screen name="SymptomView" component={SymptomView} />
             <Stack.Screen name="PlantView" component={PlantView} />
         </Stack.Navigator>
