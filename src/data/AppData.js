@@ -77,6 +77,42 @@ export const DrawerData = {
     ],
 };
 
+export const PlantMedData = {
+    stackHeader: [
+        {
+            id: 1,
+            label1: 'Symptômes',
+            label2: 'Modifier le profil',
+            label3: 'Réinitialiser le mot de passe',
+        },
+    ],
+    account: [
+        {
+            id: 1,
+            label: 'Compte',
+            options: [
+                {
+                    id: 1,
+                    label1: 'Modifier mon profil',
+                    label2: 'Modifier mon mot de passe',
+                },
+            ],
+        },
+    ],
+    appearance: [
+        {
+            id: 1,
+            label: 'Apparence',
+            options: [
+                {
+                    id: 1,
+                    label1: 'Thème de l\'application',
+                },
+            ],
+        },
+    ],
+};
+
 export const SettingsData = {
     stackHeader: [
         {
