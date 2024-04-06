@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useContext } from 'react';
 import { scale } from 'react-native-size-matters';
 import { SvgXml } from 'react-native-svg';
+import { Platform } from 'react-native';
 
 import ic_gear_dark_green from '../../../assets/icons/svg/ic_gear_dark_green';
 import ic_gear_light_green from '../../../assets/icons/svg/ic_gear_light_green';
@@ -33,16 +34,29 @@ const HomeBottomTab = () => {
 
     const { isUserAuthenticated, userId } = useAuthCheck();
 
+    const iosTabBarStyle = {
+        borderTopWidth: 0,
+        backgroundColor: theme.primary,
+        elevation: 0,
+        height: scale(70),
+        padding: scale(15),
+    };
+
+    const androidTabBarStyle = {
+        borderTopWidth: 0,
+        backgroundColor: theme.primary,
+        elevation: 0,
+        height: scale(50),
+    };
+
     // Screen options
     const screenOptions = {
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: {
-            borderTopWidth: 0,
-            backgroundColor: theme.primary,
-            elevation: 0,
-            height: scale(50),
-        },
+        tabBarStyle: Platform.select({
+            ios: iosTabBarStyle,
+            android: androidTabBarStyle,
+        }),
     };
 
     // Returning

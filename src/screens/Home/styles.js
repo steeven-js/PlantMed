@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { scale } from 'react-native-size-matters';
 
 import {
@@ -11,17 +11,27 @@ import {
     STANDARD_SPACING,
 } from '../../config/Constants';
 
-// Creating & exporting stylesheet
+// Définir les styles spécifiques à iOS et Android
+const iosHeaderStyle = {
+    marginTop: SCREEN_HEIGHT * 0.06,
+};
+
+const androidHeaderStyle = {};
+
+// Créer et exporter les styles
 export default StyleSheet.create({
     mainWrapper: {
         flex: STANDARD_FLEX,
     },
     header: {
+        ...Platform.select({
+            ios: iosHeaderStyle,
+            android: androidHeaderStyle,
+        }),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         margin: STANDARD_SPACING * 3,
-        marginTop: SCREEN_HEIGHT * 0.06,
     },
     svgBg: {
         backgroundColor: '#588157',
