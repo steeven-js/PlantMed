@@ -31,11 +31,11 @@ const PlantMedStack = () => {
         const routeName = getFocusedRouteNameFromRoute(route) ?? 'Symptoms';
         switch (routeName) {
             case 'Symptoms':
-                return 'Symptômes';
+                return 'Usages thérapeutiques';
             case 'Plants':
-                return 'Plantes';
+                return 'Plantes médicinales';
             case 'Favoris':
-                return 'Favoris';
+                return 'Mes favoris';
         }
     };
 
