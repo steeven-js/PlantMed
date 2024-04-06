@@ -43,7 +43,7 @@ const HomeCategoriesSection = ({ homeData }) => {
                 {/* Link component */}
                 <Link
                     label={homeData[0].link}
-                    onPress={() => navigation.navigate('Grid View Products')}
+                    onPress={() => navigation.navigate('Plant Stack', {screen: 'Symptoms'})}
                 />
             </View>
 
