@@ -11,7 +11,7 @@ import useChangePassword from '../../hooks/userChangePassword';
 import Button from '../../components/buttons/Button';
 
 // Functional component
-const ResetPassword = () => {
+const ResetPassword = ({ route }) => {
     // Using context
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
@@ -35,6 +35,8 @@ const ResetPassword = () => {
         setNewPassword('');
         setConfirmNewPassword('');
     };
+
+    console.log('route', route.name);
 
     // Returning
     return (

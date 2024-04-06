@@ -28,7 +28,7 @@ const EditProfile = ({ navigation }) => {
     const theme = isLightTheme ? lightTheme : darkTheme;
 
     // AuthCheck
-    const { isUserAuthenticated, userAuthEmail, useDisplayName } = useAuthCheck();
+    const { isUserAuthenticated, userAuthEmail } = useAuthCheck();
 
     // Utilisation de useEditProfile
     const { displayName, updateDisplayName, updateAvatar } = useEditProfile();
@@ -94,8 +94,6 @@ const EditProfile = ({ navigation }) => {
             setIsSubmitting(false);
         }
     };
-
-    console.log('displayName', useDisplayName);
 
     // Function to check if the form can be submitted
     const canSubmitForm = () => {
@@ -165,7 +163,7 @@ const EditProfile = ({ navigation }) => {
                         label="Name"
                         value={newDisplayName !== '' ? newDisplayName : displayName}
                         onChangeText={setNewDisplayName} // Mettre à jour le nouveau nom d'affichage lors de la saisie
-                        placeholder="Enter your name"
+                        placeholder="Votre pseudo"
                         keyboardType={'default'}
                     />
                 </Animatable.View>
@@ -179,7 +177,7 @@ const EditProfile = ({ navigation }) => {
                         <TextInput
                             label="Email"
                             value={userAuthEmail}
-                            placeholder="Enter your email"
+                            placeholder="Votre adresse e-mail"
                             disabled={true}
                         />
                     </Animatable.View>

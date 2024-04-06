@@ -81,7 +81,9 @@ export const SettingsData = {
     stackHeader: [
         {
             id: 1,
-            title: 'Paramètres',
+            label1: 'Paramètres',
+            label2: 'Modifier le profil',
+            label3: 'Réinitialiser le mot de passe',
         },
     ],
     account: [

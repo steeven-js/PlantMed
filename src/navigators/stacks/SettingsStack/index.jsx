@@ -12,7 +12,7 @@ import ResetPassword from '../../../screens/ResetPassword';
 import Settings from '../../../screens/Settings';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from '../styles';
-import {SettingsData} from '../../../data/AppData';
+import { SettingsData } from '../../../data/AppData';
 
 // Creating stack navigator
 const Stack = createStackNavigator();
@@ -31,6 +31,20 @@ const SettingsStack = () => {
     // AppData
     const { stackHeader } = SettingsData;
 
+    // Fonction de traduction pour traduire les noms d'écran
+    const translateScreenName = (screenName) => {
+        switch (screenName) {
+            case 'Settings':
+                return stackHeader[0].label1;
+            case 'Edit Profile':
+                return stackHeader[0].label2;
+            case 'Reset Password':
+                return stackHeader[0].label3;
+            default:
+                return screenName;
+        }
+    };
+
     // Screen options
     const screenOptions = ({ route }) => ({
         headerTitleAlign: 'center',
@@ -44,7 +58,7 @@ const SettingsStack = () => {
                 borderBottomWidth: 0,
             },
         ],
-        title: stackHeader[0].title,
+        title: translateScreenName(route.name),
         headerLeft: () => (
             <TouchableOpacity
                 onPress={() => {
