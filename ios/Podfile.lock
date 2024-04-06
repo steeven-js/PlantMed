@@ -831,12 +831,12 @@ PODS:
     - React-Core (= 0.73.6)
     - React-jsi (= 0.73.6)
     - ReactCommon/turbomodule/core (= 0.73.6)
-  - Firebase/Auth (10.23.0):
+  - Firebase/Auth (10.23.1):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 10.23.0)
-  - Firebase/CoreOnly (10.23.0):
-    - FirebaseCore (= 10.23.0)
-  - Firebase/Firestore (10.23.0):
+  - Firebase/CoreOnly (10.23.1):
+    - FirebaseCore (= 10.23.1)
+  - Firebase/Firestore (10.23.1):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.23.0)
   - FirebaseAppCheckInterop (10.23.0)
@@ -847,7 +847,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseCore (10.23.0):
+  - FirebaseCore (10.23.1):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
     - GoogleUtilities/Logger (~> 7.12)
@@ -1869,7 +1869,7 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - react-native-pager-view (6.2.3):
+  - react-native-pager-view (6.3.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -2045,19 +2045,19 @@ PODS:
   - RecaptchaInterop (100.0.0)
   - RNDeviceInfo (10.11.0):
     - React-Core
-  - RNFBApp (19.1.1):
-    - Firebase/CoreOnly (= 10.23.0)
+  - RNFBApp (19.1.2):
+    - Firebase/CoreOnly (= 10.23.1)
     - React-Core
-  - RNFBAuth (19.1.1):
-    - Firebase/Auth (= 10.23.0)
+  - RNFBAuth (19.1.2):
+    - Firebase/Auth (= 10.23.1)
     - React-Core
     - RNFBApp
-  - RNFBFirestore (19.1.1):
-    - Firebase/Firestore (= 10.23.0)
+  - RNFBFirestore (19.1.2):
+    - Firebase/Firestore (= 10.23.1)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (2.15.0):
+  - RNGestureHandler (2.16.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -2296,10 +2296,10 @@ SPEC CHECKSUMS:
   DoubleConversion: fea03f2699887d960129cc54bba7e52542b6f953
   FBLazyVector: f64d1e2ea739b4d8f7e4740cde18089cd97fe864
   FBReactNativeSpec: 9f2b8b243131565335437dba74923a8d3015e780
-  Firebase: 333ec7c6b12fa09c77b5162cda6b862102211d50
+  Firebase: cf09623f98ae25a3ad484e23c7e0e5f464152d80
   FirebaseAppCheckInterop: a1955ce8c30f38f87e7d091630e871e91154d65d
   FirebaseAuth: 22eb85d3853141de7062bfabc131aa7d6335cade
-  FirebaseCore: 63efb128decaebb04c4033ed4e05fb0bb1cccef1
+  FirebaseCore: c43f9f0437b50a965e930cac4ad243200d12a984
   FirebaseCoreExtension: cb88851781a24e031d1b58e0bd01eb1f46b044b5
   FirebaseCoreInternal: 6a292e6f0bece1243a737e81556e56e5e19282e3
   FirebaseFirestore: 3478b0580f6c16d895460611b4fcec93955f4717
@@ -2340,7 +2340,7 @@ SPEC CHECKSUMS:
   React-logger: 3eb80a977f0d9669468ef641a5e1fabbc50a09ec
   React-Mapbuffer: d81d930c1b7f4db284e1d721fe7fdc99230ca108
   react-native-image-picker: 7c3a279e7a518628910f2ea02917bd3b90049465
-  react-native-pager-view: 3796df305c59c352a26811ead0f6ea78acac1886
+  react-native-pager-view: 571ecf3212955c0f81314163d690af153d67f527
   react-native-safe-area-context: 2cd91d532de12acdb0a9cbc8d43ac72a8e4c897c
   React-nativeconfig: e700ac3ec3d66329076bd2c2787a204411815d43
   React-NativeModulesApple: f7fa541118d195ac850ca2ea460f338152ced167
@@ -2364,10 +2364,10 @@ SPEC CHECKSUMS:
   ReactCommon: e168ee1704806f10f47ee8c7f825b5850b18eaea
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   RNDeviceInfo: bf8a32acbcb875f568217285d1793b0e8588c974
-  RNFBApp: 6d8509c5bb19b8788fee4f6a1f5d481aff20f15a
-  RNFBAuth: df3db096d7b53ca36762dd9a158c0059bde34ec9
-  RNFBFirestore: e1c8d5bb9abaf1002c161cd84d8ecccbf33ab721
-  RNGestureHandler: 2e3251b41d462552997c61afd680220d019fea65
+  RNFBApp: 7b51b55651e3b84a4d14869f1e7eee40d69ffd15
+  RNFBAuth: 954c5c29d938473baed88a64b545fb690d6173a5
+  RNFBFirestore: 1ea269ad806e0adc5234504fe85cf4b82bd0d8c8
+  RNGestureHandler: 0c8b0283d2aff561162b2f55c604d2f1f8e2c4ea
   RNReanimated: 91f980a433a2c966a7634b9c438312d8f5a0942e
   RNScreens: 2542049b045998385c0f7dfbc71817bc11d7f269
   RNSVG: 255767813dac22db1ec2062c8b7e7b856d4e5ae6

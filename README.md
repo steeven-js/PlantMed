@@ -1,63 +1,81 @@
-Nom de votre application
+# PlantMedApp
 
-Instructions de Configuration
---------------------------
+## Instructions de Configuration
 
-Prérequis
----------
+### Prérequis
+
 Assurez-vous d'avoir les éléments suivants installés sur votre machine :
-- Node.js (v14.x ou supérieur)
-- npm (v6.x ou supérieur) ou Yarn (v1.22.x ou supérieur)
-- React Native CLI (v0.64.x ou supérieur)
 
-Étapes d'installation
-----------------------
+-   Node.js (v14.x ou supérieur)
+-   npm (v6.x ou supérieur) ou Yarn (v1.22.x ou supérieur)
+-   React Native CLI (v0.64.x ou supérieur)
+
+### Étapes d'installation
+
 1. Clonez ce dépôt sur votre machine :
-   git clone <lien-du-repo>
-   cd <nom-du-repo>
+
+    ```shell
+    git clone <lien-du-repo>
+    cd <nom-du-repo>
+    ```
 
 2. Installez les dépendances du projet en exécutant la commande suivante :
-   npm install
-   # ou
-   yarn install
+    ```shell
+    npm install
+    # ou
+    yarn install
+    ```
 
-Scripts Disponibles
---------------------
+### Scripts Disponibles
+
 Dans le répertoire du projet, vous pouvez exécuter les commandes suivantes :
 
-Lancer l'émulateur Android
----------------------------
-emulator -avd Pixel_8_API_34 -dns-server 8.8.8.8,8.8.4.4
+-   **Lancer l'émulateur Android**
 
-Exécuter l'application sur Android
------------------------------------
-npx react-native run-android
+    ```shell
+    emulator -avd Pixel_8_API_34 -dns-server 8.8.8.8,8.8.4.4
+    ```
 
-Générer une clé de signature pour la publication sur Google Play
-------------------------------------------------------------------
-keytool -genkeypair -v -storetype PKCS12 -keystore my-upload-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+-   **Exécuter l'application sur Android**
 
-Construire une version de production pour Android
--------------------------------------------------
-npx react-native build-android --mode=release
+    ```shell
+    npx react-native run-android
+    ```
 
-Installer ESLint, Prettier et la configuration ESLint-Prettier
---------------------------------------------------------------
-yarn add --dev eslint prettier eslint-config-prettier
-npx eslint --init
+-   **Installer les dépendances iOS et exécuter l'application sur un simulateur**
 
-Installer les dépendances iOS et exécuter l'application sur un simulateur
---------------------------------------------------------------------------
-cd ios/
-pod install --repo-update
-cd ..
-npx react-native run-ios --simulator="iPhone 15"
+    ```shell
+    cd ios/
+    pod install --repo-update
+    cd ..
+    npx react-native run-ios --simulator="iPhone 15"
+    ```
 
-Pour commencer
---------------
+-   **Générer une clé de signature pour la publication sur Google Play**
+
+    ```shell
+    keytool -genkeypair -v -storetype PKCS12 -keystore my-upload-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+    ```
+
+-   **Construire une version de production pour Android**
+
+    ```shell
+    npx react-native build-android --mode=release
+    ```
+
+-   **Installer ESLint, Prettier et la configuration ESLint-Prettier**
+
+    ```shell
+    yarn add --dev eslint prettier eslint-config-prettier
+    npx eslint --init
+    ```
+
+### Pour commencer
+
 Pour commencer à travailler sur le projet, vous pouvez exécuter les commandes suivantes :
+
+```shell
 npm start
 # ou
 yarn start
-
-Cette commande démarre le bundler Metro pour votre application.
+```
