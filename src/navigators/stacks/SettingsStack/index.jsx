@@ -12,6 +12,7 @@ import ResetPassword from '../../../screens/ResetPassword';
 import Settings from '../../../screens/Settings';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from '../styles';
+import {SettingsData} from '../../../data/AppData';
 
 // Creating stack navigator
 const Stack = createStackNavigator();
@@ -27,6 +28,9 @@ const SettingsStack = () => {
     // Navigation
     const navigation = useNavigation();
 
+    // AppData
+    const { stackHeader } = SettingsData;
+
     // Screen options
     const screenOptions = ({ route }) => ({
         headerTitleAlign: 'center',
@@ -40,6 +44,7 @@ const SettingsStack = () => {
                 borderBottomWidth: 0,
             },
         ],
+        title: stackHeader[0].title,
         headerLeft: () => (
             <TouchableOpacity
                 onPress={() => {

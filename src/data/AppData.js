@@ -77,30 +77,13 @@ export const DrawerData = {
     ],
 };
 
-export const BottomTabData = [
-    {
-        id: 1,
-        label: 'Accueil',
-    },
-    {
-        id: 2,
-        label: 'PlantMed',
-    },
-    {
-        id: 3,
-        label: 'Se connecter',
-    },
-    {
-        id: 3,
-        label: 'Mon Compte',
-    },
-    {
-        id: 4,
-        label: 'Paramètres',
-    },
-];
-
 export const SettingsData = {
+    stackHeader: [
+        {
+            id: 1,
+            title: 'Paramètres',
+        },
+    ],
     account: [
         {
             id: 1,
