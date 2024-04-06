@@ -51,7 +51,7 @@ const PlantWishList = () => {
             'Plant Stack',
             'PlantMedTab',
             'Plants',
-            500,
+            250,
         );
     };
 

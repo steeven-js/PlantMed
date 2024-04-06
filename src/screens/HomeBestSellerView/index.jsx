@@ -6,12 +6,24 @@ import Link from '../../components/links/Link';
 import styles from './styles';
 import useFetchPlantsSpecials from '../../hooks/useFetchPlantsSpecials';
 import PlantGridView from '../../components/cards/PlantGridView';
+import { navigateAndPerformAction } from '../../functions/navigationComplex';
 
 const HomeBestSellerView = ({ theme, homeData }) => {
     // Navigation
     const navigation = useNavigation();
 
     const { isPlantsLoading, bestSellerPlants, plantsError } = useFetchPlantsSpecials();
+
+        // fonction pour naviguer vers 'Plants'
+        const navigateAndPerformAction1 = () => {
+            navigateAndPerformAction(
+                navigation,
+                'Plant Stack',
+                'PlantMedTab',
+                'Plants',
+                250,
+            );
+        };
 
     return (
         <>
@@ -26,7 +38,7 @@ const HomeBestSellerView = ({ theme, homeData }) => {
                 {/* Link component */}
                 <Link
                     label={homeData[2].link}
-                    onPress={() => navigation.navigate('Grid View Products')}
+                    onPress={navigateAndPerformAction1}
                 />
             </View>
 

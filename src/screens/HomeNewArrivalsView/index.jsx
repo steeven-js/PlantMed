@@ -6,12 +6,24 @@ import Link from '../../components/links/Link';
 import styles from './styles';
 import PlantGridView from '../../components/cards/PlantGridView';
 import useFetchPlantsSpecials from '../../hooks/useFetchPlantsSpecials';
+import { navigateAndPerformAction } from '../../functions/navigationComplex';
 
 const HomeNewArrivalsView = ({ theme, homeData }) => {
     // Navigation
     const navigation = useNavigation();
 
     const { isPlantsLoading, newArrivalsPlants, plantsError } = useFetchPlantsSpecials();
+
+    // fonction pour naviguer vers 'Plants'
+    const navigateAndPerformAction1 = () => {
+        navigateAndPerformAction(
+            navigation,
+            'Plant Stack',
+            'PlantMedTab',
+            'Plants',
+            250,
+        );
+    };
 
     return (
         <>
@@ -26,7 +38,7 @@ const HomeNewArrivalsView = ({ theme, homeData }) => {
                 {/* Link component */}
                 <Link
                     label={homeData[3].link}
-                    onPress={() => navigation.navigate('Grid View Products')}
+                    onPress={navigateAndPerformAction1}
                 />
             </View>
 
@@ -55,7 +67,7 @@ const HomeNewArrivalsView = ({ theme, homeData }) => {
                                                 : require('../../assets/images/banners/home/808_x_338.png')
                                         }
                                         plantTitle={plant.name}
-                                        onPress={() => navigation.navigate('Plant Stack', {screen: 'PlantView', params: {plantId: plant.id, plantName: plant.name}})}
+                                        onPress={() => navigation.navigate('Plant Stack', { screen: 'PlantView', params: { plantId: plant.id, plantName: plant.name } })}
                                     />
                                 </View>
                             ))}

@@ -65,7 +65,7 @@ const UserFavorisList = () => {
             'My Profile Stack',
             'Mes favoris',
             'SymptomWishList',
-            500,
+            250,
         );
     };
 
@@ -76,7 +76,7 @@ const UserFavorisList = () => {
             'My Profile Stack',
             'Mes favoris',
             'PlantWishList',
-            500,
+            250,
         );
     };
 

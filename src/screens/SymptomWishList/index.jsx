@@ -51,7 +51,7 @@ const SymptomWishList = () => {
             'Plant Stack',
             'PlantMedTab',
             'Symptoms',
-            500,
+            250,
         );
     };
 

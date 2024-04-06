@@ -6,6 +6,7 @@ import Link from '../../components/links/Link';
 import styles from './styles';
 import useFetchPlantsSpecials from '../../hooks/useFetchPlantsSpecials';
 import PlantGridView from '../../components/cards/PlantGridView';
+import { navigateAndPerformAction } from '../../functions/navigationComplex';
 
 const HomeMostPopularView = ({ theme, homeData }) => {
     // Navigation
@@ -13,6 +14,17 @@ const HomeMostPopularView = ({ theme, homeData }) => {
 
     // Fetch most popular plants
     const { isPlantsLoading, mostPopularPlants, plantsError } = useFetchPlantsSpecials();
+
+    // fonction pour naviguer vers 'Plants'
+    const navigateAndPerformAction1 = () => {
+        navigateAndPerformAction(
+            navigation,
+            'Plant Stack',
+            'PlantMedTab',
+            'Plants',
+            250,
+        );
+    };
 
     return (
         <>
@@ -27,7 +39,7 @@ const HomeMostPopularView = ({ theme, homeData }) => {
                 {/* Link component */}
                 <Link
                     label={homeData[1].link}
-                    onPress={() => navigation.navigate('Grid View Products')}
+                    onPress={navigateAndPerformAction1}
                 />
             </View>
 

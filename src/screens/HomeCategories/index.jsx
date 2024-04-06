@@ -8,6 +8,7 @@ import Link from '../../components/links/Link';
 import { IndependentColors } from '../../config/Colors';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
+import { navigateAndPerformAction } from '../../functions/navigationComplex';
 
 const HomeCategoriesSection = ({ homeData }) => {
     // Using context
@@ -30,6 +31,17 @@ const HomeCategoriesSection = ({ homeData }) => {
     // Prendre les 15 premiers éléments du tableau mélangé
     const randomSymptoms = shuffledSymptomsData.slice(0, 15);
 
+    // fonction pour naviguer vers 'Plants'
+    const navigateAndPerformAction1 = () => {
+        navigateAndPerformAction(
+            navigation,
+            'Plant Stack',
+            'PlantMedTab',
+            'Symptoms',
+            250,
+        );
+    };
+
     return (
         <>
             {/* Vertical spacer */}
@@ -43,7 +55,7 @@ const HomeCategoriesSection = ({ homeData }) => {
                 {/* Link component */}
                 <Link
                     label={homeData[0].link}
-                    onPress={() => navigation.navigate('Plant Stack', {screen: 'Symptoms'})}
+                    onPress={navigateAndPerformAction1}
                 />
             </View>
 
