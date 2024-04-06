@@ -10,9 +10,7 @@ import { IndependentColors } from '../../../config/Colors';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import handleLogout from '../../../functions/handleLogout';
 import MyProfile from '../../../screens/MyProfile';
-import Notifications from '../../../screens/Notifications';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
-import UserWishlistTab from '../../tabs/UserWishlistTab';
 import styles from '../styles';
 
 // Creating stack navigator
@@ -78,16 +76,6 @@ const MyProfileStack = () => {
                 name="My Profile"
                 component={MyProfile}
                 options={{ title: 'Mon profile' }}
-            />
-            <Stack.Screen
-                name="Mes favoris"
-                component={UserWishlistTab}
-                options={{ title: 'Mes favoris' }}
-            />
-            <Stack.Screen
-                name="Notifications"
-                component={Notifications}
-                options={{ title: 'Notifications' }}
             />
         </Stack.Navigator>
     );

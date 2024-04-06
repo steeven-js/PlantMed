@@ -12,6 +12,7 @@ import MyProfileData from '../../data/MyProfileData';
 import useAuthCheck from '../../functions/authCheck';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
+import { navigateAndPerformAction } from '../../functions/navigationComplex';
 
 // Import du hook d'authentification
 
@@ -30,6 +31,17 @@ const MyProfile = () => {
 
     // Navigation
     const navigation = useNavigation();
+
+    // fonction pour naviguer vers 'Plants'
+    const navigateAndPerformAction1 = () => {
+        navigateAndPerformAction(
+            navigation,
+            'Plant Stack',
+            'PlantMedTab',
+            'Favoris',
+            250,
+        );
+    };
 
     // Returning
     return (
@@ -103,9 +115,7 @@ const MyProfile = () => {
                                 <NavigationLink
                                     leftIcon={item.leftIcon}
                                     label={item.label}
-                                    onPress={() =>
-                                        navigation.navigate(item.label)
-                                    }
+                                    onPress={navigateAndPerformAction1}
                                 />
                                 {index !== MyProfileData.length - 1 && (
                                     <View style={styles.verticalSpacer} />
