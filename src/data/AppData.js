@@ -163,7 +163,7 @@ export const SupportData = {
         },
         {
             id: 2,
-            label: 'Informations, bugs ou suggestions? Nous sommes là pour',
+            label: 'Informations, bugs ou suggestions? Contactez-nous!',
         },
     ],
     item: [
