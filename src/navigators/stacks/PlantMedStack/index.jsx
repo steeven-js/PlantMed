@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { getFocusedRouteNameFromRoute, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useContext } from 'react';
 import { TouchableOpacity } from 'react-native';
@@ -27,8 +27,22 @@ const PlantMedStack = () => {
     // Navigation
     const navigation = useNavigation();
 
+    const getHeaderTitle = (route) => {
+        const routeName = getFocusedRouteNameFromRoute(route) ?? 'Symptoms';
+        console.log('routeName: ', routeName);
+        switch (routeName) {
+            case 'Symptoms':
+                return 'Symptômes';
+            case 'Plants':
+                return 'Plantes';
+            case 'Favoris':
+                return 'Favoris';
+        }
+    };
+
     // Screen options
     const screenOptions = ({ route }) => ({
+        headerTitle: getHeaderTitle(route),
         headerTitleAlign: 'center',
         headerTitleStyle: [styles.headerTitle],
         headerTintColor: IndependentColors.white,
