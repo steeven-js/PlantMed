@@ -20,7 +20,6 @@ const ContactUs = () => {
     const { userAuthUid, isUserAuthenticated, userAuthEmail } = useAuthCheck();
     const uid = userAuthUid;
     const userEmail = userAuthEmail;
-
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [emailError, setEmailError] = useState('');

@@ -149,3 +149,33 @@ export const SettingsData = {
     ],
 };
 
+export const SupportData = {
+    hedaer: [
+        {
+            id: 1,
+            label1: 'Besoin d\'aide?',
+        },
+    ],
+    subHeader: [
+        {
+            id: 1,
+            label: 'Comment pouvons-nous vous aider?',
+        },
+        {
+            id: 2,
+            label: 'Informations, bugs ou suggestions? Nous sommes là pour',
+        },
+    ],
+    item: [
+        {
+            id: 1,
+            label: 'Par mail',
+            email: 'contact.jsprod972@gmail.com',
+        },
+        {
+            id: 2,
+            label: 'FAQs',
+            info: 'Questions fréquemment posées',
+        },
+    ],
+};

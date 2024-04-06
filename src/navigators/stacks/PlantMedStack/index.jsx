@@ -27,6 +27,7 @@ const PlantMedStack = () => {
     // Navigation
     const navigation = useNavigation();
 
+    // Get header title according to the route
     const getHeaderTitle = (route) => {
         const routeName = getFocusedRouteNameFromRoute(route) ?? 'Symptoms';
         switch (routeName) {

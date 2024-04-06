@@ -82,7 +82,8 @@ export default StyleSheet.create({
     },
     scrollViewContentContainer: {
         flexGrow: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
+        marginTop: STANDARD_SPACING * 3,
         marginHorizontal: STANDARD_SPACING * 3,
     },
     supportListItem: {

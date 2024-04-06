@@ -28,31 +28,44 @@ const SupportStack = () => {
     const navigation = useNavigation();
 
     // Screen options
-    const screenOptions = () => ({
-        headerTitleAlign: 'center',
-        headerTitleStyle: [styles.headerTitle],
-        headerTintColor: IndependentColors.white,
-        headerStyle: [
-            {
-                backgroundColor: theme.accent,
-                elevation: 0,
-                shadowOpacity: 0,
-                borderBottomWidth: 0,
-            },
-        ],
-        headerLeft: () => (
-            <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                style={styles.leftArrowIcon}
-            >
-                <SvgXml
-                    xml={ic_arrow_left_white}
-                    width={STANDARD_VECTOR_ICON_SIZE}
-                    height={STANDARD_VECTOR_ICON_SIZE}
-                />
-            </TouchableOpacity>
-        ),
-    });
+    const screenOptions = ({ route }) => {
+
+        const routeName = route.params?.screenTitle;
+
+        return {
+            headerTitle: routeName || 'Aide et support',
+            headerTitleAlign: 'center',
+            headerTitleStyle: [styles.headerTitle],
+            headerTintColor: IndependentColors.white,
+            headerStyle: [
+                {
+                    backgroundColor: theme.accent,
+                    elevation: 0,
+                    shadowOpacity: 0,
+                    borderBottomWidth: 0,
+                },
+            ],
+            headerLeft: () => (
+                <TouchableOpacity
+                    onPress={() => {
+                        console.log('route', route.name);
+                        if (route.name === 'Help & Support') {
+                            navigation.navigate('Home Stack');
+                        } else {
+                            navigation.navigate('Help & Support');
+                        }
+                    }}
+                    style={styles.leftArrowIcon}
+                >
+                    <SvgXml
+                        xml={ic_arrow_left_white}
+                        width={STANDARD_VECTOR_ICON_SIZE}
+                        height={STANDARD_VECTOR_ICON_SIZE}
+                    />
+                </TouchableOpacity>
+            ),
+        };
+    };
 
     // Returning
     return (

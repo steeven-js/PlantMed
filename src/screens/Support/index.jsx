@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { useCallback, useContext } from 'react';
+import { useContext } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { SvgXml } from 'react-native-svg';
@@ -10,6 +10,7 @@ import ic_smile_dark_green from '../../assets/icons/svg/ic_smile_dark_green';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
+import { SupportData } from '../../data/AppData';
 
 // Functional component
 const Support = () => {
@@ -22,17 +23,8 @@ const Support = () => {
     // Navigation
     const navigation = useNavigation();
 
-    // Navigate to the contact screen
-    const _navigateToContactScreen = useCallback(
-        () => navigation.navigate('ContactUs'),
-        [navigation],
-    );
-
-    // Navigate to the Faqs screen
-    const _navigateToFaqsScreen = useCallback(
-        () => navigation.navigate('Faqs'),
-        [navigation],
-    );
+    // Data
+    const { hedaer, subHeader, item } = SupportData;
 
     // Returning
     return (
@@ -49,42 +41,25 @@ const Support = () => {
                     animation="fadeInUp"
                     style={styles.needHelpLabel}
                 >
-                    Need Help?
+                    {hedaer[0].label1}
                 </Animatable.Text>
 
-                {/* Title */}
-                <Animatable.Text
-                    delay={500}
-                    animation="fadeInUp"
-                    style={styles.twentyFourSevenLabel}
-                >
-                    24 X 7
-                </Animatable.Text>
-
-                {/* Title */}
-                <Animatable.Text
-                    delay={700}
-                    animation="fadeInUp"
-                    style={styles.screenHeadingTitle}
-                >
-                    Support
-                </Animatable.Text>
             </Animatable.View>
 
             {/* Support content wrapper */}
             <Animatable.View
-                delay={900}
+                delay={500}
                 animation="fadeInUp"
                 style={styles.supportContentWrapper}
             >
                 {/* Support content header */}
                 <Animatable.View
-                    delay={1100}
+                    delay={700}
                     animation="fadeInUp"
                     style={styles.supportContentWrapperHeader}
                 >
                     <Animatable.View
-                        delay={1300}
+                        delay={900}
                         animation="fadeInUp"
                         style={[
                             styles.questionAndIconWrapper,
@@ -94,14 +69,14 @@ const Support = () => {
                         ]}
                     >
                         <Animatable.Text
-                            delay={1500}
+                            delay={1100}
                             animation="fadeInUp"
                             style={[styles.question, { color: theme.accent }]}
                         >
-                            Tell us how may we help you?
+                            {subHeader[0].label}
                         </Animatable.Text>
 
-                        <Animatable.View delay={1700} animation="fadeInUp">
+                        <Animatable.View delay={1300} animation="fadeInUp">
                             <SvgXml
                                 xml={ic_smile_dark_green}
                                 width={STANDARD_VECTOR_ICON_SIZE}
@@ -111,18 +86,17 @@ const Support = () => {
                     </Animatable.View>
 
                     <Animatable.Text
-                        delay={1900}
+                        delay={1500}
                         animation="fadeInUp"
-                        style={[styles.info, { color: theme.textLowContrast }]}
+                        style={[styles.info, { color: theme.textLowContrast, marginTop: 10 }]}
                     >
-                        Our crew of superheroes are standing by {'\n'}for
-                        service & support!
+                        {subHeader[1].label}
                     </Animatable.Text>
                 </Animatable.View>
 
                 {/* Scroll view wrapper */}
                 <Animatable.View
-                    delay={2100}
+                    delay={1700}
                     animation="fadeInUp"
                     style={[
                         styles.scrollViewWrapper,
@@ -140,14 +114,18 @@ const Support = () => {
                         {/* Support list item */}
 
                         {/* Support list item */}
-                        <Animatable.View delay={2500} animation="fadeInUp">
+                        <Animatable.View delay={1900} animation="fadeInUp">
                             <TouchableOpacity
                                 activeOpacity={1}
                                 style={[
                                     styles.supportListItem,
                                     { backgroundColor: theme.primary },
                                 ]}
-                                onPress={_navigateToContactScreen}
+                                onPress={() => {
+                                    navigation.navigate('ContactUs', {
+                                        screenTitle: 'Nous contacter',
+                                    });
+                                }}
                             >
                                 {/* Support icon wrapper */}
                                 <View
@@ -174,7 +152,7 @@ const Support = () => {
                                             { color: theme.textHighContrast },
                                         ]}
                                     >
-                                        Mail Us
+                                        {item[0].label}
                                     </Text>
                                     {/* Subtitle */}
                                     <Text
@@ -183,14 +161,14 @@ const Support = () => {
                                             { color: theme.textLowContrast },
                                         ]}
                                     >
-                                        Mail us at{' '}
+                                        A{' '}
                                         <Text
                                             style={[
                                                 styles.mailId,
                                                 { color: theme.accent },
                                             ]}
                                         >
-                                            suuport@foodbazaar.com
+                                            {item[0].email}
                                         </Text>
                                     </Text>
                                 </View>
@@ -198,14 +176,18 @@ const Support = () => {
                         </Animatable.View>
 
                         {/* Support list item */}
-                        <Animatable.View delay={2700} animation="fadeInUp">
+                        <Animatable.View delay={2100} animation="fadeInUp">
                             <TouchableOpacity
                                 activeOpacity={1}
                                 style={[
                                     styles.supportListItem,
                                     { backgroundColor: theme.primary },
                                 ]}
-                                onPress={_navigateToFaqsScreen}
+                                onPress={() => {
+                                    navigation.navigate('Faqs', {
+                                        screenTitle: 'FAQs',
+                                    });
+                                }}
                             >
                                 {/* Support icon wrapper */}
                                 <View
@@ -232,7 +214,7 @@ const Support = () => {
                                             { color: theme.textHighContrast },
                                         ]}
                                     >
-                                        FAQs
+                                        {item[1].label}
                                     </Text>
                                     {/* Subtitle */}
                                     <Text
@@ -241,7 +223,7 @@ const Support = () => {
                                             { color: theme.textLowContrast },
                                         ]}
                                     >
-                                        Find intelligent answers instantly!
+                                        {item[1].info}
                                     </Text>
                                 </View>
                             </TouchableOpacity>
