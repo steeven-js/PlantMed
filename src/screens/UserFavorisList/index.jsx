@@ -4,7 +4,6 @@ import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 
 import GridViewItem from '../../components/cards/GridViewItem';
 import SectionTitle from '../../components/headings/SectionTitle';
-import Link from '../../components/links/Link';
 import useAuthCheck from '../../functions/authCheck';
 import {
     deleteOnePlantFavoris,
@@ -14,13 +13,11 @@ import {
     useUserPlantsFavoris,
     useUserSymptomsFavoris,
 } from '../../functions/loadUserFavoris';
-import { navigateAndPerformAction } from '../../functions/navigationComplex';
 import useFetchFavorisPlants from '../../hooks/useFetchFavorisPlants';
 import useFetchFavorisSymptoms from '../../hooks/useFetchFavorisSymptoms';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
 import Button from '../../components/buttons/Button';
-import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 
 const UserFavorisList = () => {
     // Using context
@@ -32,6 +29,13 @@ const UserFavorisList = () => {
     // Utilisez useAuthCheck pour récupérer l'identifiant de l'utilisateur authentifié
     const { isUserAuthenticated, userAuthUid } = useAuthCheck();
 
+    // Utilisez useUserPlantsFavoris pour récupérer les identifiants des plantes favorites de l'utilisateur
+    const userFavoris = useUserPlantsFavoris(userAuthUid);
+
+    // Récupérer les données des plantes favorites de l'utilisateur
+    const { plantData, isFavorisPlantsLoading } =
+        useFetchFavorisPlants(userFavoris);
+
     // Utilisez useUserSymptomsFavoris pour récupérer les identifiants des symptômes favoris de l'utilisateur
     const userSymptoms = useUserSymptomsFavoris(userAuthUid);
 
@@ -39,12 +43,7 @@ const UserFavorisList = () => {
     const { symptomData, isFavorisSymptomsLoading } =
         useFetchFavorisSymptoms(userSymptoms);
 
-    // Utilisez useUserPlantsFavoris pour récupérer les identifiants des plantes favorites de l'utilisateur
-    const userFavoris = useUserPlantsFavoris(userAuthUid);
-
-    // Récupérer les données des plantes favorites de l'utilisateur
-    const { plantData, isFavorisPlantsLoading } =
-        useFetchFavorisPlants(userFavoris);
+    console.log('plantData', plantData);
 
     // Suppression d'un symptôme de la liste de favoris
     const deleteOnePlant = (plantId) => {
@@ -59,28 +58,6 @@ const UserFavorisList = () => {
     // Utilisation de useNavigation
     const navigation = useNavigation();
 
-    // fonction pour naviguer vers 'SymptomWishList'
-    const navigateAndPerformAction1 = () => {
-        navigateAndPerformAction(
-            navigation,
-            'My Profile Stack',
-            'Mes favoris',
-            'SymptomWishList',
-            250,
-        );
-    };
-
-    // fonction pour naviguer vers 'PlantWishList'
-    const navigateAndPerformAction2 = () => {
-        navigateAndPerformAction(
-            navigation,
-            'My Profile Stack',
-            'Mes favoris',
-            'PlantWishList',
-            250,
-        );
-    };
-
     return (
         <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
             {isUserAuthenticated ? (
@@ -92,13 +69,14 @@ const UserFavorisList = () => {
                     {/* Plantes Favoris */}
                     <View style={styles.sectionTitleAndLinkWrapper}>
                         <SectionTitle title="Mes plantes favoris" />
-                        <Link label="Tous voir" onPress={navigateAndPerformAction2} />
                     </View>
 
                     {/* Chargement des données */}
                     {isFavorisPlantsLoading || !plantData || plantData.length === 0 ? (
                         <>
-                            <ScreenInfo label="Aucune plante ajouté à la liste de favoris" />
+                            <View style={styles.sectionTitleAndLinkWrapper}>
+                                <Text style={{ color: theme.textHighContrast }}>Aucune plante ajoutée à la liste de favoris</Text>
+                            </View>
                         </>
                     ) : (
                         <>
@@ -136,13 +114,14 @@ const UserFavorisList = () => {
                     <View style={styles.verticalSpacer} />
                     <View style={styles.sectionTitleAndLinkWrapper}>
                         <SectionTitle title="Symptômes cibles" />
-                        <Link label="Tous voir" onPress={navigateAndPerformAction1} />
                     </View>
 
                     {/* Chargement des données */}
                     {isFavorisSymptomsLoading || !symptomData || symptomData.length === 0 ? (
                         <>
-                            <ScreenInfo label="Aucune plante ajouté à la liste de favoris" />
+                            <View style={styles.sectionTitleAndLinkWrapper}>
+                                <Text style={{ color: theme.textHighContrast }}>Aucun symptôme cible ajouté à la liste de favoris</Text>
+                            </View>
                         </>
                     ) : (
                         <>
