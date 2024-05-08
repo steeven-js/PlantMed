@@ -46,7 +46,7 @@ const Policies = () => {
                             index === PoliciesData.length - 1
                                 ? 'transparent'
                                 : theme.primary;
-                        console.log('policy', policy);
+                        // console.log('policy', policy);
                         // Returning
                         return (
                             <PolicyNavigationLink

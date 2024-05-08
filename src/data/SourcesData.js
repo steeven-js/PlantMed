@@ -1,28 +1,40 @@
-const SourcesData = `
+const sourcesData = [
+    {
+        title: 'Sources de Données sur les Plantes',
+        sources: [
+            'Wikipédia',
+            'Amélie',
+        ],
+    },
+    {
+        title: "Sources d'Icônes",
+        sources: [
+            'Flaticon',
+            'The Noun Project',
+            'Iconfinder',
+            'Vecteezy',
+        ],
+    },
+    {
+        title: "Sources d'Images",
+        sources: [
+            'Pixabay',
+            'Unsplash',
+            'Wikimedia Commons',
+            'Openclipart',
+            'Freepik',
+        ],
+    },
+    {
+        title: "Sources d'Informations sur les Symptômes",
+        sources: [
+            'Wikipédia (pour des informations générales)',
+            'Sites médicaux réputés (pour des informations spécifiques sur les symptômes)',
+            'Consultation avec des professionnels de la santé',
+        ],
+    },
+];
 
-### Sources de Données sur les Plantes :
-1. Wikipédia
-2. Amélie
+export default sourcesData;
 
-### Sources d'Icônes :
-1. Flaticon
-2. The Noun Project
-3. Iconfinder
-4. Noun Project
-5. Vecteezy
-
-### Sources d'Images :
-1. Pixabay
-2. Unsplash
-3. Wikimedia Commons
-4. Openclipart
-5. Freepik
-
-### Sources d'Informations sur les Symptômes :
-1. Wikipédia (pour des informations générales)
-2. Sites médicaux réputés (pour des informations spécifiques sur les symptômes)
-3. Consultation avec des professionnels de la santé
-
-`;
-
-export default SourcesData;
+export const updateDate = 'Dernière mise à jour le 08 mai 2024';
