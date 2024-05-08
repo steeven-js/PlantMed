@@ -14,21 +14,14 @@ import { SvgXml } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
 
 import ic_close_dark_green from '../../assets/icons/svg/ic_close_dark_green';
-import ic_facebook from '../../assets/icons/svg/ic_facebook';
-import ic_google from '../../assets/icons/svg/ic_google';
-import ic_twitter from '../../assets/icons/svg/ic_twitter';
 import Button from '../../components/buttons/Button';
-import OrDivider from '../../components/dividers/OrDivider';
 import ScreenTitle from '../../components/headings/ScreenTitle';
 import PasswordTextInput from '../../components/inputs/PasswordTextInput';
 import TextInput from '../../components/inputs/TextInput';
 import Link from '../../components/links/Link';
 import Question from '../../components/paragraphs/Question';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';
-import {
-    STANDARD_SOCIAL_ICON_SIZE,
-    STANDARD_VECTOR_ICON_SIZE,
-} from '../../config/Constants';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
 import { ShowToast } from '../../functions/toast';
 import {
     setUserDisplayName,
@@ -147,8 +140,11 @@ const Login = () => {
                 >
                     {/* Screen title */}
                     <Animatable.View animation="fadeInUp" delay={300}>
-                        <ScreenTitle title="Login" />
+                        <ScreenTitle title="Se connecter" />
                     </Animatable.View>
+
+                    {/* Vertical spacer */}
+                    <View style={styles.verticalSpacer} />
 
                     {/* Screen info component */}
                     <Animatable.View animation="fadeInUp" delay={500}>
@@ -201,7 +197,7 @@ const Login = () => {
 
                     {/* Link component */}
                     <Animatable.View animation="fadeInUp" delay={1100}>
-                        <Link label="Forgot password?" onPress={toggleModal} />
+                        <Link label="Mot de passe oublié?" onPress={toggleModal} />
                     </Animatable.View>
 
                     {/* Vertical spacer */}
@@ -210,7 +206,7 @@ const Login = () => {
                     {/* Button component */}
                     <Animatable.View animation="fadeInUp" delay={1300}>
                         <Button
-                            label="Login"
+                            label="Se connecter"
                             onPress={handleConnexion}
                             disabled={isLoading} // Désactivez le bouton pendant le chargement
                         />
@@ -226,12 +222,12 @@ const Login = () => {
                     </Animatable.View>
 
                     {/* Or divider component */}
-                    <Animatable.View animation="fadeInUp" delay={1500}>
+                    {/* <Animatable.View animation="fadeInUp" delay={1500}>
                         <OrDivider label="or login with" />
-                    </Animatable.View>
+                    </Animatable.View> */}
 
                     {/* Social media icons wrapper */}
-                    <View style={styles.socialMediaIconsWrapper}>
+                    {/* <View style={styles.socialMediaIconsWrapper}>
                         <Animatable.View animation="bounceIn" delay={1700}>
                             <TouchableOpacity>
                                 <SvgXml
@@ -261,7 +257,7 @@ const Login = () => {
                                 />
                             </TouchableOpacity>
                         </Animatable.View>
-                    </View>
+                    </View> */}
 
                     {/* Vertical spacer */}
                     <View style={styles.verticalSpacer} />
@@ -269,15 +265,15 @@ const Login = () => {
                     {/* Question & link component wrapper */}
                     <Animatable.View
                         animation="fadeInUp"
-                        delay={2300}
+                        delay={1500}
                         style={styles.questionAndLinkWrapper}
                     >
                         {/* Question component */}
-                        <Question question="Don't have an account?" />
+                        <Question question="Vous n'avez pas de compte?" />
 
                         {/* Link component */}
                         <Link
-                            label="Register"
+                            label="S'inscrire"
                             onPress={() => navigation.navigate('Register')}
                         />
                     </Animatable.View>

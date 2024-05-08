@@ -74,10 +74,10 @@ const Register = () => {
                 setIsCorrect(false);
             }
 
-            if (password.length < 8 || password.length > 100) {
+            if (password.length < 8 || password.length > 50) {
                 setShowLengthError(true);
                 setPasswordError(
-                    'Le mot de passe doit comporter entre 8 et 100 caractères',
+                    'Le mot de passe doit comporter entre 8 et 50 caractères',
                 );
                 setIsCorrect(false);
             }
@@ -146,12 +146,15 @@ const Register = () => {
                 >
                     {/* Screen title component */}
                     <Animatable.View animation="fadeInUp" delay={300}>
-                        <ScreenTitle title="Register" />
+                        <ScreenTitle title="S'inscrire" />
                     </Animatable.View>
+
+                    {/* Vertical spacer */}
+                    <View style={styles.verticalSpacer} />
 
                     {/* Screen info component */}
                     <Animatable.View animation="fadeInUp" delay={500}>
-                        <ScreenInfo info="hey, enter your account details to create a new Plant mart customer account." />
+                        <ScreenInfo info="Bonjour ! Prêt à vous lancer dans votre aventure avec PlantMed ? Commençons en créant votre nouveau compte client." />
                     </Animatable.View>
 
                     {/* Vertical spacer */}
@@ -161,8 +164,8 @@ const Register = () => {
                     {/* Text input component */}
                     <Animatable.View animation="fadeInUp" delay={700}>
                         <TextInput
-                            label="Name"
-                            placeholder="Enter your name"
+                            label="Nom"
+                            placeholder="Entrez votre nom"
                             value={displayName}
                             onChangeText={(text) => setDisplayName(text)}
                             autoCapitalize="none"
@@ -256,11 +259,11 @@ const Register = () => {
                         style={styles.questionAndLinkWrapper}
                     >
                         {/* Question component */}
-                        <Question question="Already have an account?" />
+                        <Question question="Vous avez déjà un compte?" />
 
                         {/* Login component */}
                         <Link
-                            label="Login"
+                            label="Se connecter"
                             onPress={() => navigation.goBack()}
                         />
                     </Animatable.View>
