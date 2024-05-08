@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 
 import GridViewItem from '../../components/cards/GridViewItem';
 import SectionTitle from '../../components/headings/SectionTitle';
@@ -20,6 +20,7 @@ import useFetchFavorisSymptoms from '../../hooks/useFetchFavorisSymptoms';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
 import Button from '../../components/buttons/Button';
+import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 
 const UserFavorisList = () => {
     // Using context
@@ -87,63 +88,94 @@ const UserFavorisList = () => {
                     bounces={false}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.scrollViewContentContainerStyle}>
+
+                    {/* Plantes Favoris */}
                     <View style={styles.sectionTitleAndLinkWrapper}>
                         <SectionTitle title="Mes plantes favoris" />
                         <Link label="Tous voir" onPress={navigateAndPerformAction2} />
                     </View>
-                    <ScrollView
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        bounces={false}
-                        contentContainerStyle={styles.horizontalScrollViewContentContainerStyle}>
-                        {isFavorisPlantsLoading || !plantData || plantData.length === 0 ? (
-                            // <ScreenInfo label="Aucune plante ajoutée à la liste de favoris" />
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                                <Text style={{ color: theme.textHighContrast }} > Aucune plante ajoutée à la liste de favoris </Text>
-                            </View>
-                        ) : (
-                            plantData.map((item, index) => (
-                                <View key={index} style={styles.productWrapper}>
-                                    <GridViewItem
-                                        plantImage={item.media && item.media.length > 0 ? { uri: item.media[0].original_url } : require('../../assets/images/banners/home/808_x_338.png')}
-                                        plantTitle={item.name || ''}
-                                        touchOptions={true}
-                                        onPressOption={() => deleteOnePlant(item.id)}
-                                        onPress={() => navigation.navigate('Plant Stack', { screen: 'PlantView', params: { plantId: item.id, plantName: item.name } })}
-                                    />
-                                </View>
-                            ))
-                        )}
-                    </ScrollView>
+
+                    {/* Chargement des données */}
+                    {isFavorisPlantsLoading || !plantData || plantData.length === 0 ? (
+                        <>
+                            <ScreenInfo label="Aucune plante ajouté à la liste de favoris" />
+                        </>
+                    ) : (
+                        <>
+                            {isFavorisPlantsLoading ? (
+                                <ActivityIndicator size="large" color="red" />
+                            ) : (
+                                <ScrollView
+                                    horizontal
+                                    showsHorizontalScrollIndicator={false}
+                                    bounces={false}
+                                    contentContainerStyle={styles.horizontalScrollViewContentContainerStyle}>
+                                    {!plantData || plantData.length === 0 ? (
+                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                                            <Text style={{ color: theme.textHighContrast }}>Aucune plante ajoutée à la liste de favoris</Text>
+                                        </View>
+                                    ) : (
+                                        plantData.map((item, index) => (
+                                            <View key={index} style={styles.productWrapper}>
+                                                <GridViewItem
+                                                    plantImage={item.media && item.media.length > 0 ? { uri: item.media[0].original_url } : require('../../assets/images/banners/home/808_x_338.png')}
+                                                    plantTitle={item.name || ''}
+                                                    touchOptions={true}
+                                                    onPressOption={() => deleteOnePlant(item.id)}
+                                                    onPress={() => navigation.navigate('Plant Stack', { screen: 'PlantView', params: { plantId: item.id, plantName: item.name } })}
+                                                />
+                                            </View>
+                                        ))
+                                    )}
+                                </ScrollView>
+                            )}
+                        </>
+                    )}
+
+                    {/* Symptômes Favoris */}
                     <View style={styles.verticalSpacer} />
                     <View style={styles.sectionTitleAndLinkWrapper}>
                         <SectionTitle title="Symptômes cibles" />
                         <Link label="Tous voir" onPress={navigateAndPerformAction1} />
                     </View>
-                    <ScrollView
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        bounces={false}
-                        contentContainerStyle={styles.horizontalScrollViewContentContainerStyle}>
-                        {isFavorisSymptomsLoading || !symptomData || symptomData.length === 0 ? (
-                            // <ScreenInfo label="Aucun symptôme ajouté à la liste de favoris" />
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                                <Text style={{ color: theme.textHighContrast }} > Aucun symptôme cible ajouté à la liste de favoris </Text>
-                            </View>
-                        ) : (
-                            symptomData.map((item, index) => (
-                                <View key={index} style={styles.productWrapper}>
-                                    <GridViewItem
-                                        plantImage={item.media && item.media.length > 0 ? { uri: item.media[0].original_url } : require('../../assets/images/banners/home/808_x_338.png')}
-                                        plantTitle={item.name || ''}
-                                        touchOptions={true}
-                                        onPressOption={() => deleteOneSymptom(item.id)}
-                                        onPress={() => navigation.navigate('Plant Stack', { screen: 'SymptomView', params: { symptomId: item.id, symptomName: item.name } })}
-                                    />
-                                </View>
-                            ))
-                        )}
-                    </ScrollView>
+
+                    {/* Chargement des données */}
+                    {isFavorisSymptomsLoading || !symptomData || symptomData.length === 0 ? (
+                        <>
+                            <ScreenInfo label="Aucune plante ajouté à la liste de favoris" />
+                        </>
+                    ) : (
+                        <>
+                            {isFavorisSymptomsLoading ? (
+                                <ActivityIndicator size="large" color="red" />
+                            ) : (
+                                <ScrollView
+                                    horizontal
+                                    showsHorizontalScrollIndicator={false}
+                                    bounces={false}
+                                    contentContainerStyle={styles.horizontalScrollViewContentContainerStyle}>
+                                    {!symptomData || symptomData.length === 0 ? (
+                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                                            <Text style={{ color: theme.textHighContrast }}>Aucun symptôme cible ajouté à la liste de favoris</Text>
+                                        </View>
+                                    ) : (
+                                        symptomData.map((item, index) => (
+                                            <View key={index} style={styles.productWrapper}>
+                                                <GridViewItem
+                                                    plantImage={item.media && item.media.length > 0 ? { uri: item.media[0].original_url } : require('../../assets/images/banners/home/808_x_338.png')}
+                                                    plantTitle={item.name || ''}
+                                                    touchOptions={true}
+                                                    onPressOption={() => deleteOneSymptom(item.id)}
+                                                    onPress={() => navigation.navigate('Plant Stack', { screen: 'SymptomView', params: { symptomId: item.id, symptomName: item.name } })}
+                                                />
+                                            </View>
+                                        ))
+                                    )}
+                                </ScrollView>
+                            )}
+                        </>
+                    )}
+
                 </ScrollView>
             ) : (
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
