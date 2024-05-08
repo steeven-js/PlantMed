@@ -32,8 +32,6 @@ const MyProfile = () => {
     // Selecting the avatarUrl from the Redux store
     const avatarUrl = useSelector(state => state.auth.avatarUrl);
 
-    console.log('avatarUrl:', avatarUrl);
-
     // Navigation
     const navigation = useNavigation();
 
