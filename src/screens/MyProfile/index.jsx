@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useContext } from 'react';
-import { ScrollView, View } from 'react-native';
+import { Image, ScrollView, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { SvgXml } from 'react-native-svg';
 import { useSelector } from 'react-redux';
@@ -28,6 +28,11 @@ const MyProfile = () => {
 
     // Selecting the displayName from the Redux store
     const displayName = useSelector(state => state.auth.displayName);
+
+    // Selecting the avatarUrl from the Redux store
+    const avatarUrl = useSelector(state => state.auth.avatarUrl);
+
+    console.log('avatarUrl:', avatarUrl);
 
     // Navigation
     const navigation = useNavigation();
@@ -69,11 +74,24 @@ const MyProfile = () => {
                         style={styles.profileInfoWrapper}
                     >
                         {/* Avatar */}
-                        <SvgXml
-                            xml={av_man_2}
-                            width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 1.5}
-                            height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 1.5}
-                        />
+                        {/* Afficher l'avatar sélectionné s'il y en a un */}
+                        {avatarUrl ? (
+                                <Image
+                                    source={{ uri: avatarUrl }}
+                                    style={{
+                                        width: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2,
+                                        height: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2,
+                                        borderRadius: STANDARD_USER_AVATAR_WRAPPER_SIZE,
+                                    }}
+                                />
+                            ) : (
+                                // Sinon, afficher l'avatar par défaut
+                                <SvgXml
+                                    xml={av_man_2}
+                                    width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
+                                    height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
+                                />
+                            )}
 
                         {/* Vertical spacer */}
                         <View style={styles.verticalSpacer} />
