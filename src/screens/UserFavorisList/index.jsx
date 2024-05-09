@@ -43,8 +43,6 @@ const UserFavorisList = () => {
     const { symptomData, isFavorisSymptomsLoading } =
         useFetchFavorisSymptoms(userSymptoms);
 
-    console.log('plantData', plantData);
-
     // Suppression d'un symptôme de la liste de favoris
     const deleteOnePlant = (plantId) => {
         deleteOnePlantFavoris({ uid: userAuthUid, plantId });

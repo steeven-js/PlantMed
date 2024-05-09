@@ -54,9 +54,9 @@ const AuthStack = () => {
     // Returning
     return (
         <Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Login" component={Login} options={{ title: 'Se connecter' }} />
             {/* <Stack.Screen name="OTP Verification" component={OtpVerification} /> */}
-            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="Register" component={Register} options={{ title: 'S\'inscrire' }} />
             {/* <Stack.Screen name="Email Verification" component={EmailVerification} /> */}
         </Stack.Navigator>
     );
