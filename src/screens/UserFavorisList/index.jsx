@@ -20,6 +20,9 @@ import styles from './styles';
 import Button from '../../components/buttons/Button';
 
 const UserFavorisList = () => {
+    // Utilisation de useNavigation
+    const navigation = useNavigation();
+
     // Using context
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
@@ -33,15 +36,13 @@ const UserFavorisList = () => {
     const userFavoris = useUserPlantsFavoris(userAuthUid);
 
     // Récupérer les données des plantes favorites de l'utilisateur
-    const { plantData, isFavorisPlantsLoading } =
-        useFetchFavorisPlants(userFavoris);
+    const { plantData } = useFetchFavorisPlants(userFavoris);
 
     // Utilisez useUserSymptomsFavoris pour récupérer les identifiants des symptômes favoris de l'utilisateur
     const userSymptoms = useUserSymptomsFavoris(userAuthUid);
 
     // Récupérer les données des symptômes favoris de l'utilisateur
-    const { symptomData, isFavorisSymptomsLoading } =
-        useFetchFavorisSymptoms(userSymptoms);
+    const { symptomData } = useFetchFavorisSymptoms(userSymptoms);
 
     // Suppression d'un symptôme de la liste de favoris
     const deleteOnePlant = (plantId) => {
@@ -52,9 +53,6 @@ const UserFavorisList = () => {
     const deleteOneSymptom = (symptomId) => {
         deleteOneSymptomFavoris({ uid: userAuthUid, symptomId });
     };
-
-    // Utilisation de useNavigation
-    const navigation = useNavigation();
 
     return (
         <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
@@ -70,42 +68,26 @@ const UserFavorisList = () => {
                     </View>
 
                     {/* Chargement des données */}
-                    {isFavorisPlantsLoading || !plantData || plantData.length === 0 ? (
-                        <>
-                            <View style={styles.sectionTitleAndLinkWrapper}>
-                                <Text style={{ color: theme.textHighContrast }}>Aucune plante ajoutée à la liste de favoris</Text>
-                            </View>
-                        </>
+                    {plantData.length === 0 ? (
+                        <ActivityIndicator size="large" color="red" />
                     ) : (
-                        <>
-                            {isFavorisPlantsLoading ? (
-                                <ActivityIndicator size="large" color="red" />
-                            ) : (
-                                <ScrollView
-                                    horizontal
-                                    showsHorizontalScrollIndicator={false}
-                                    bounces={false}
-                                    contentContainerStyle={styles.horizontalScrollViewContentContainerStyle}>
-                                    {!plantData || plantData.length === 0 ? (
-                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                                            <Text style={{ color: theme.textHighContrast }}>Aucune plante ajoutée à la liste de favoris</Text>
-                                        </View>
-                                    ) : (
-                                        plantData.map((item, index) => (
-                                            <View key={index} style={styles.productWrapper}>
-                                                <GridViewItem
-                                                    plantImage={item.media && item.media.length > 0 ? { uri: item.media[0].original_url } : require('../../assets/images/banners/home/808_x_338.png')}
-                                                    plantTitle={item.name || ''}
-                                                    touchOptions={true}
-                                                    onPressOption={() => deleteOnePlant(item.id)}
-                                                    onPress={() => navigation.navigate('Plant Stack', { screen: 'PlantView', params: { plantId: item.id, plantName: item.name } })}
-                                                />
-                                            </View>
-                                        ))
-                                    )}
-                                </ScrollView>
-                            )}
-                        </>
+                        <ScrollView
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            bounces={false}
+                            contentContainerStyle={styles.horizontalScrollViewContentContainerStyle}>
+                            {plantData.map((item, index) => (
+                                <View key={index} style={styles.productWrapper}>
+                                    <GridViewItem
+                                        plantImage={item.media && item.media.length > 0 ? { uri: item.media[0].original_url } : require('../../assets/images/banners/home/808_x_338.png')}
+                                        plantTitle={item.name || ''}
+                                        touchOptions={true}
+                                        onPressOption={() => deleteOnePlant(item.id)}
+                                        onPress={() => navigation.navigate('Plant Stack', { screen: 'PlantView', params: { plantId: item.id, plantName: item.name } })}
+                                    />
+                                </View>
+                            ))}
+                        </ScrollView>
                     )}
 
                     {/* Symptômes Favoris */}
@@ -115,42 +97,26 @@ const UserFavorisList = () => {
                     </View>
 
                     {/* Chargement des données */}
-                    {isFavorisSymptomsLoading || !symptomData || symptomData.length === 0 ? (
-                        <>
-                            <View style={styles.sectionTitleAndLinkWrapper}>
-                                <Text style={{ color: theme.textHighContrast }}>Aucun symptôme cible ajouté à la liste de favoris</Text>
-                            </View>
-                        </>
+                    {symptomData.length === 0 ? (
+                        <ActivityIndicator size="large" color="red" />
                     ) : (
-                        <>
-                            {isFavorisSymptomsLoading ? (
-                                <ActivityIndicator size="large" color="red" />
-                            ) : (
-                                <ScrollView
-                                    horizontal
-                                    showsHorizontalScrollIndicator={false}
-                                    bounces={false}
-                                    contentContainerStyle={styles.horizontalScrollViewContentContainerStyle}>
-                                    {!symptomData || symptomData.length === 0 ? (
-                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                                            <Text style={{ color: theme.textHighContrast }}>Aucun symptôme cible ajouté à la liste de favoris</Text>
-                                        </View>
-                                    ) : (
-                                        symptomData.map((item, index) => (
-                                            <View key={index} style={styles.productWrapper}>
-                                                <GridViewItem
-                                                    plantImage={item.media && item.media.length > 0 ? { uri: item.media[0].original_url } : require('../../assets/images/banners/home/808_x_338.png')}
-                                                    plantTitle={item.name || ''}
-                                                    touchOptions={true}
-                                                    onPressOption={() => deleteOneSymptom(item.id)}
-                                                    onPress={() => navigation.navigate('Plant Stack', { screen: 'SymptomView', params: { symptomId: item.id, symptomName: item.name } })}
-                                                />
-                                            </View>
-                                        ))
-                                    )}
-                                </ScrollView>
-                            )}
-                        </>
+                        <ScrollView
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            bounces={false}
+                            contentContainerStyle={styles.horizontalScrollViewContentContainerStyle}>
+                            {symptomData.map((item, index) => (
+                                <View key={index} style={styles.productWrapper}>
+                                    <GridViewItem
+                                        plantImage={item.media && item.media.length > 0 ? { uri: item.media[0].original_url } : require('../../assets/images/banners/home/808_x_338.png')}
+                                        plantTitle={item.name || ''}
+                                        touchOptions={true}
+                                        onPressOption={() => deleteOneSymptom(item.id)}
+                                        onPress={() => navigation.navigate('Plant Stack', { screen: 'SymptomView', params: { symptomId: item.id, symptomName: item.name } })}
+                                    />
+                                </View>
+                            ))}
+                        </ScrollView>
                     )}
 
                 </ScrollView>
