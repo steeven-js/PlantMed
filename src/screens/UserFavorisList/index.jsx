@@ -36,13 +36,17 @@ const UserFavorisList = () => {
     const userFavoris = useUserPlantsFavoris(userAuthUid);
 
     // Récupérer les données des plantes favorites de l'utilisateur
-    const { plantData } = useFetchFavorisPlants(userFavoris);
+    const { plantData, isFavorisPlantsLoading } = useFetchFavorisPlants(userFavoris);
+
+    console.log('plantData:', plantData);
 
     // Utilisez useUserSymptomsFavoris pour récupérer les identifiants des symptômes favoris de l'utilisateur
     const userSymptoms = useUserSymptomsFavoris(userAuthUid);
 
     // Récupérer les données des symptômes favoris de l'utilisateur
-    const { symptomData } = useFetchFavorisSymptoms(userSymptoms);
+    const { symptomData, isFavorisSymptomsLoading } = useFetchFavorisSymptoms(userSymptoms);
+
+    console.log('symptomData:', symptomData);
 
     // Suppression d'un symptôme de la liste de favoris
     const deleteOnePlant = (plantId) => {
@@ -68,7 +72,7 @@ const UserFavorisList = () => {
                     </View>
 
                     {/* Chargement des données */}
-                    {plantData.length === 0 ? (
+                    {isFavorisPlantsLoading ? (
                         <ActivityIndicator size="large" color="red" />
                     ) : (
                         <ScrollView
@@ -90,6 +94,12 @@ const UserFavorisList = () => {
                         </ScrollView>
                     )}
 
+                    {plantData.length === 0 && !isFavorisPlantsLoading && (
+                        <Text style={{ color: theme.textHighContrast }}>
+                            Vous n'avez pas encore ajouté de plantes à vos favoris
+                        </Text>
+                    )}
+
                     {/* Symptômes Favoris */}
                     <View style={styles.verticalSpacer} />
                     <View style={styles.sectionTitleAndLinkWrapper}>
@@ -97,7 +107,7 @@ const UserFavorisList = () => {
                     </View>
 
                     {/* Chargement des données */}
-                    {symptomData.length === 0 ? (
+                    {isFavorisSymptomsLoading ? (
                         <ActivityIndicator size="large" color="red" />
                     ) : (
                         <ScrollView
@@ -117,6 +127,12 @@ const UserFavorisList = () => {
                                 </View>
                             ))}
                         </ScrollView>
+                    )}
+
+                    {symptomData.length === 0 && !isFavorisSymptomsLoading && (
+                        <Text style={{ color: theme.textHighContrast }}>
+                            Vous n'avez pas encore ajouté de symptômes à vos favoris
+                        </Text>
                     )}
 
                 </ScrollView>
