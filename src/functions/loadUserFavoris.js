@@ -29,7 +29,7 @@ export const useUserPlantsFavoris = (userId) => {
                                 image: response.data.media && response.data.media.length > 0 ? response.data.media[0].original_url : null,
                             };
                         } catch (error) {
-                            console.error('Error fetching plant data:', error);
+                            // console.error('Error fetching plant data:', error);
                             return null;
                         }
                     }));
@@ -82,7 +82,7 @@ export const useUserSymptomsFavoris = (userId) => {
                                 image: response.data.media && response.data.media.length > 0 ? response.data.media[0].original_url : null,
                             };
                         } catch (error) {
-                            console.error('Error fetching symptom data:', error);
+                            // console.error('Error fetching symptom data:', error);
                             return null;
                         }
                     }));
