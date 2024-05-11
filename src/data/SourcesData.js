@@ -6,6 +6,7 @@ export const sourcesData = [
             'Wikipédia',
             'Amélie',
             'Doctissimo',
+            'medisite',
         ],
     },
     {

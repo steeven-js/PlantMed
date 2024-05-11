@@ -17,7 +17,7 @@ const PlantList = () => {
     const navigation = useNavigation();
 
     const plantData = useSelector((state) => state.plants.plantData);
-    const [visibleItemCount, setVisibleItemCount] = useState(50); // Nombre initial d'éléments à afficher
+    const [visibleItemCount, setVisibleItemCount] = useState(25); // Nombre initial d'éléments à afficher
     const [loadingMore, setLoadingMore] = useState(false); // État pour suivre si plus de données sont en cours de chargement
 
     // Fonction pour le rendu des éléments de la liste

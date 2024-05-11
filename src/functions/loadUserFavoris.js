@@ -26,7 +26,7 @@ export const useUserPlantsFavoris = (userId) => {
                             return {
                                 id: plantId,
                                 name: response.data.name,
-                                image: response.data.media.length > 0 ? response.data.media[0].original_url : null,
+                                image: response.data.media && response.data.media.length > 0 ? response.data.media[0].original_url : null,
                             };
                         } catch (error) {
                             console.error('Error fetching plant data:', error);
@@ -79,7 +79,7 @@ export const useUserSymptomsFavoris = (userId) => {
                             return {
                                 id: symptomId,
                                 name: response.data.name,
-                                image: response.data.media.length > 0 ? response.data.media[0].original_url : null,
+                                image: response.data.media && response.data.media.length > 0 ? response.data.media[0].original_url : null,
                             };
                         } catch (error) {
                             console.error('Error fetching symptom data:', error);
