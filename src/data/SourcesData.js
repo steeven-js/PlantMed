@@ -1,9 +1,11 @@
-const sourcesData = [
+// Définition des données sources
+export const sourcesData = [
     {
         title: 'Sources de Données sur les Plantes',
         sources: [
             'Wikipédia',
             'Amélie',
+            'Doctissimo',
         ],
     },
     {
@@ -35,6 +37,5 @@ const sourcesData = [
     },
 ];
 
-export default sourcesData;
-
+// Date de la dernière mise à jour
 export const updateDate = 'Dernière mise à jour le 08 mai 2024';

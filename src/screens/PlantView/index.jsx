@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import {
     ActivityIndicator,
     Image,
+    Linking,
     ScrollView,
     Text,
     TouchableOpacity,
@@ -344,6 +345,27 @@ const PlantView = ({ route }) => {
                                 >
                                     {data?.habitat}
                                 </Text>
+                                {/* Vertical spacer */}
+                                <View style={styles.verticalSpacer} />
+                                {/* Sources */}
+                                {data?.source && (
+                                    <View>
+                                        {/* Sources */}
+                                        <Text
+                                            style={[
+                                                styles.profileName,
+                                                { color: theme.textHighContrast },
+                                            ]}
+                                        >
+                                            Sources
+                                        </Text>
+                                        <TouchableOpacity onPress={() => Linking.openURL(data?.source)}>
+                                            <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
+                                                {data?.source}
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                )}
                             </View>
                         )}
                     </ScrollView>
