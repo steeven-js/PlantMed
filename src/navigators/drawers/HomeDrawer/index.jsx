@@ -161,7 +161,7 @@ const HomeDrawer = () => {
                 name="HomeBottomTab"
                 component={HomeBottomTab}
                 options={{
-                    drawerLabel: drawerLabel[0].trad ,
+                    drawerLabel: drawerLabel[0].trad,
                     drawerIcon: ({ focused }) =>
                         focused ? (
                             <SvgXml

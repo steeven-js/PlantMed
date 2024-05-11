@@ -85,6 +85,10 @@ export default StyleSheet.create({
         fontFamily: POPPINS_SEMIBOLD,
         fontSize: FONT_SIZE_MD,
     },
+    sectionContent: {
+        fontFamily: POPPINS_REGULAR,
+        fontSize: FONT_SIZE_XS,
+    },
     screenHeaderAndTitleComponentWrapper: {
         marginHorizontal: STANDARD_SPACING * 3,
         marginBottom: STANDARD_SPACING * 3,

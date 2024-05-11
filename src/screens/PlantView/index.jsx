@@ -320,8 +320,8 @@ const PlantView = ({ route }) => {
                                 </Text>
                                 <Text
                                     style={[
-                                        styles.sectionTitle,
-                                        { color: theme.textHighContrast },
+                                        styles.sectionContent,
+                                        { color: theme.textLowContrast },
                                     ]}
                                 >
                                     {data?.description}
@@ -339,8 +339,8 @@ const PlantView = ({ route }) => {
                                 </Text>
                                 <Text
                                     style={[
-                                        styles.sectionTitle,
-                                        { color: theme.textHighContrast },
+                                        styles.sectionContent,
+                                        { color: theme.textLowContrast },
                                     ]}
                                 >
                                     {data?.habitat}
@@ -360,7 +360,7 @@ const PlantView = ({ route }) => {
                                             Sources
                                         </Text>
                                         <TouchableOpacity onPress={() => Linking.openURL(data?.source)}>
-                                            <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
+                                            <Text style={[styles.sectionContent, { color: theme.textLowContrast }]}>
                                                 {data?.source}
                                             </Text>
                                         </TouchableOpacity>
@@ -441,8 +441,8 @@ const PlantView = ({ route }) => {
                                 </Text>
                                 <Text
                                     style={[
-                                        styles.sectionTitle,
-                                        { color: theme.textHighContrast },
+                                        styles.sectionContent,
+                                        { color: theme.textLowContrast },
                                     ]}
                                 >
                                     {data?.propriete}
@@ -522,8 +522,8 @@ const PlantView = ({ route }) => {
                                 </Text>
                                 <Text
                                     style={[
-                                        styles.sectionTitle,
-                                        { color: theme.textHighContrast },
+                                        styles.sectionContent,
+                                        { color: theme.textLowContrast },
                                     ]}
                                 >
                                     {data?.usageInterne}
@@ -541,8 +541,8 @@ const PlantView = ({ route }) => {
                                 </Text>
                                 <Text
                                     style={[
-                                        styles.sectionTitle,
-                                        { color: theme.textHighContrast },
+                                        styles.sectionContent,
+                                        { color: theme.textLowContrast },
                                     ]}
                                 >
                                     {data?.usageExterne}
@@ -622,8 +622,8 @@ const PlantView = ({ route }) => {
                                 </Text>
                                 <Text
                                     style={[
-                                        styles.sectionTitle,
-                                        { color: theme.textHighContrast },
+                                        styles.sectionContent,
+                                        { color: theme.textLowContrast },
                                     ]}
                                 >
                                     {data?.precaution}

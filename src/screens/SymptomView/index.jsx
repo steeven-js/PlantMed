@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import {
     ActivityIndicator,
     Image,
+    Linking,
     ScrollView,
     Text,
     TouchableOpacity,
@@ -113,7 +114,7 @@ const SymptomView = ({ route }) => {
                         color={theme.textHighContrast}
                         style={[
                             styles.mainWrapper,
-                            { justifyContent: 'center', alignItems: 'center' },
+                            { justifyContent: 'center', alignItems: 'center', backgroundColor: theme.secondary },
                         ]}
                     />
                 )}
@@ -282,12 +283,33 @@ const SymptomView = ({ route }) => {
                                 </Text>
                                 <Text
                                     style={[
-                                        styles.sectionTitle,
-                                        { color: theme.textHighContrast },
+                                        styles.sectionContent,
+                                        { color: theme.textLowContrast },
                                     ]}
                                 >
                                     {data?.description}
                                 </Text>
+                                {/* Vertical spacer */}
+                                <View style={styles.verticalSpacer} />
+                                {/* Sources */}
+                                {data?.source && (
+                                    <View>
+                                        {/* Sources */}
+                                        <Text
+                                            style={[
+                                                styles.profileName,
+                                                { color: theme.textHighContrast },
+                                            ]}
+                                        >
+                                            Sources
+                                        </Text>
+                                        <TouchableOpacity onPress={() => Linking.openURL(data?.source)}>
+                                            <Text style={[styles.sectionContent, { color: theme.textLowContrast }]}>
+                                                {data?.source}
+                                            </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                )}
                             </View>
                         )}
                     </ScrollView>

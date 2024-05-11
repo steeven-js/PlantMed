@@ -85,4 +85,8 @@ export default StyleSheet.create({
         fontFamily: POPPINS_SEMIBOLD,
         fontSize: FONT_SIZE_MD,
     },
+    sectionContent: {
+        fontFamily: POPPINS_REGULAR,
+        fontSize: FONT_SIZE_XS,
+    },
 });

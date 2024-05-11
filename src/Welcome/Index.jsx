@@ -25,7 +25,11 @@ const Welcome = () => {
     };
 
     const handleButtonPress = () => {
-        navigation.navigate('LaunchApp');
+        // Réinitialiser l'historique des routes et naviguer vers l'écran d'accueil
+        navigation.reset({
+            index: 0,
+            routes: [{ name: 'LaunchApp' }],
+        });
     };
 
     const handleCheckboxToggle = () => {

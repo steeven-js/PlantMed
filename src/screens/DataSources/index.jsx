@@ -7,11 +7,13 @@ import useFetchPlants from '../../hooks/useFetchPlants';
 import { SvgXml } from 'react-native-svg';
 import ic_disc_dark_green from '../../assets/icons/svg/ic_disc_dark_green';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
+import useFetchSymptoms from '../../hooks/useFetchSymptoms';
 
 const Policy = () => {
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
     const theme = isLightTheme ? lightTheme : darkTheme;
     const { plants } = useFetchPlants();
+    const { symptoms } = useFetchSymptoms();
 
     return (
         <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
@@ -56,15 +58,50 @@ const Policy = () => {
                     </View>
                 ))}
 
+                <View style={styles.sourcesTitleWrapper}>
+                    <SvgXml
+                        xml={ic_disc_dark_green}
+                        width={STANDARD_VECTOR_ICON_SIZE}
+                        height={STANDARD_VECTOR_ICON_SIZE}
+                    />
+                    <Text style={[styles.lastUpdateDate, { color: theme.accent }]}>
+                        Plantes médicinales
+                    </Text>
+                </View>
+
                 {plants && plants.map((plant, plantIndex) => (
                     plant.source && (
                         <View key={plantIndex}>
-                            <Text style={[styles.title, { color: theme.textHighContrast }]}>
-                                {plant.name}
-                            </Text>
                             <TouchableOpacity onPress={() => Linking.openURL(plant.source)}>
-                                <Text style={[styles.url, { color: theme.textLowContrast }]}>
-                                    {plant.source}
+                                <Text style={[styles.title, { color: theme.textLowContrast }]}>
+                                    {plant.name}
+                                </Text>
+                            </TouchableOpacity>
+
+                            {/* Vertical spacer */}
+                            <View style={styles.verticalSpacer} />
+                        </View>
+                    )
+                ))}
+
+                <View style={styles.sourcesTitleWrapper}>
+                    <SvgXml
+                        xml={ic_disc_dark_green}
+                        width={STANDARD_VECTOR_ICON_SIZE}
+                        height={STANDARD_VECTOR_ICON_SIZE}
+                    />
+                    <Text style={[styles.lastUpdateDate, { color: theme.accent }]}>
+                        Symptômes
+                    </Text>
+                </View>
+
+                {symptoms && symptoms.map((symptom, symptomIndex) => (
+                    symptom.source && (
+                        <View key={symptomIndex}>
+
+                            <TouchableOpacity onPress={() => Linking.openURL(symptom.source)}>
+                                <Text style={[styles.title, { color: theme.textLowContrast }]}>
+                                    {symptom.name}
                                 </Text>
                             </TouchableOpacity>
 
