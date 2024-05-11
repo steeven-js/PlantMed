@@ -64,10 +64,12 @@ const PlantView = ({ route }) => {
     };
 
     // Use useUserPlantsFavoris to fetch user's favorites
-    const userFavoris = useUserPlantsFavoris(uid);
+    const userPlantsFavoris = useUserPlantsFavoris(uid);
 
     // Si plantId est dans userFavoris, alors la plante est en favoris sinon non
-    const isFavoris = userFavoris.includes(plantId);
+    // console.log('userPlantsFavoris:', userPlantsFavoris);
+    const isFavoris = userPlantsFavoris && userPlantsFavoris.userPlantsFavoris && userPlantsFavoris.userPlantsFavoris.includes && userPlantsFavoris.userPlantsFavoris.includes(plantId);
+    // console.log('isFavoris:', isFavoris);
 
     // Ajouter ou supprimer une plante des favoris
     const handleaddOrRemovePlantFavoris = async () => {

@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 import { ShowToast } from '../functions/toast';
 
 const useFetchFavorisSymptoms = (userFavoris) => {
     const [symptomImages, setSymptomImages] = useState([]);
     const [symptomData, setSymptomData] = useState([]);
-    const [isFavorisSymptomsLoading, setIsFavorisSymptomsLoading] =
-        useState(false);
+    const [isFavorisSymptomsLoading, setIsFavorisSymptomsLoading] = useState(false);
     const [dataError, setDataError] = useState(null);
 
     const endpoint = 'https://apimonremede.jsprod.fr/api/symptomes';
@@ -14,41 +14,41 @@ const useFetchFavorisSymptoms = (userFavoris) => {
         setIsFavorisSymptomsLoading(true);
 
         try {
-            const response = await fetch(endpoint);
-            const result = await response.json();
+            const response = await axios.get(endpoint);
+            const result = response.data;
 
-            if (result.length > 0) { // Vérifier si result.length est supérieur à zéro
-                // Filtrer les symptômes en fonction des IDs dans userFavoris
+            // Attendre que le résultat soit disponible
+            if (result) {
                 const favorisSymptoms = result.filter((symptom) =>
                     userFavoris.includes(symptom.id),
                 );
 
                 // Extraire les URLs des images des symptômes
-                const images = favorisSymptoms
-                    .map((symptom) => {
-                        const firstMedia =
-                            symptom.media.length > 0 ? symptom.media[0] : null;
-                        return firstMedia ? firstMedia.original_url : null;
-                    })
-                    .filter((image) => image);
+                const images = favorisSymptoms.map((symptom) =>
+                    symptom.media.length > 0 ? symptom.media[0].original_url : null,
+                );
 
                 // Mettre à jour les états
-                setSymptomImages(images);
+                setSymptomImages(images.filter((image) => image)); // Filtrer les valeurs null
                 setSymptomData(favorisSymptoms);
             } else {
-                // Afficher une notification toast si result.length est égal à zéro après un délai de 3 secondes
-                setTimeout(() => {
-                    ShowToast({
-                        message: 'Aucun symptôme trouvé',
-                        type: 'warning',
-                        position: 'top',
-                        duration: 3000,
-                    });
-                }, 3000); // Attendre 3 secondes avant d'afficher le toast
+                // Afficher une notification toast si le résultat est vide
+                ShowToast({
+                    message: 'Aucun symptôme trouvé',
+                    type: 'warning',
+                    position: 'top',
+                    duration: 3000,
+                });
             }
         } catch (error) {
             setDataError(error);
             console.error(error);
+            ShowToast({
+                message: 'Erreur lors du chargement des données',
+                type: 'danger',
+                position: 'top',
+                duration: 3000,
+            });
         } finally {
             setIsFavorisSymptomsLoading(false);
         }
@@ -58,16 +58,11 @@ const useFetchFavorisSymptoms = (userFavoris) => {
         fetchData();
     }, [fetchData]);
 
-    const dataRefetch = () => {
-        fetchData();
-    };
-
     return {
         symptomImages,
         symptomData,
         isFavorisSymptomsLoading,
         dataError,
-        dataRefetch,
     };
 };
 

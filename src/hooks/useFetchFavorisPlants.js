@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 import { ShowToast } from '../functions/toast';
 
 const useFetchFavorisPlants = (userFavoris) => {
@@ -13,35 +14,39 @@ const useFetchFavorisPlants = (userFavoris) => {
         setIsFavorisPlantsLoading(true);
 
         try {
-            const response = await fetch(endpoint);
-            const result = await response.json();
+            const response = await axios.get(endpoint);
+            const result = response.data;
 
-            if (result.length > 0) { // Vérifier si result.length est supérieur à zéro
-                // Filtrer les plantes en fonction des IDs dans userFavoris
+            // Attendre que le résultat soit disponible
+            if (result) {
                 const favorisPlants = result.filter((plant) =>
                     userFavoris.includes(plant.id),
                 );
-                // Extraire les URLs des images des plantes
+
                 const images = favorisPlants.map((plant) =>
                     plant.media.length > 0 ? plant.media[0].original_url : null,
                 );
-                // Mettre à jour les états
-                setPlantImages(images.filter((image) => image)); // Filtrer les valeurs null
+
+                setPlantImages(images.filter((image) => image));
                 setPlantData(favorisPlants);
             } else {
-                // Afficher une notification toast si result.length est égal à zéro
-                setTimeout(() => {
-                    ShowToast({
-                        message: 'Aucune plante trouvée',
-                        type: 'warning',
-                        position: 'top',
-                        duration: 3000,
-                    });
-                }, 3000); // Attendre 3 secondes avant d'afficher le toast
+                // Afficher une notification toast si le résultat est vide
+                ShowToast({
+                    message: 'Aucune plante trouvée',
+                    type: 'warning',
+                    position: 'top',
+                    duration: 3000,
+                });
             }
         } catch (error) {
             setDataError(error);
             console.error(error);
+            ShowToast({
+                message: 'Erreur lors du chargement des données',
+                type: 'danger',
+                position: 'top',
+                duration: 3000,
+            });
         } finally {
             setIsFavorisPlantsLoading(false);
         }
@@ -51,16 +56,11 @@ const useFetchFavorisPlants = (userFavoris) => {
         fetchData();
     }, [fetchData]);
 
-    const dataRefetch = () => {
-        fetchData();
-    };
-
     return {
         plantImages,
         plantData,
         isFavorisPlantsLoading,
         dataError,
-        dataRefetch,
     };
 };
 

@@ -72,7 +72,9 @@ const SymptomView = ({ route }) => {
     const userSymptomsFavoris = useUserSymptomsFavoris(uid);
 
     // Si plantId est dans userFavoris, alors la plante est en favoris sinon non
-    const isFavoris = userSymptomsFavoris.includes(symptomId);
+    // console.log('userSymptomsFavoris:', userSymptomsFavoris);
+    const isFavoris = userSymptomsFavoris && userSymptomsFavoris.userSymptomsFavoris && userSymptomsFavoris.userSymptomsFavoris.includes && userSymptomsFavoris.userSymptomsFavoris.includes(symptomId);
+    // console.log('isFavoris:', isFavoris);
 
     // Ajouter ou supprimer une plante des favoris
     const handleaddOrRemoveSymptomFavoris = async () => {
