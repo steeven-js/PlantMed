@@ -34,8 +34,8 @@ const HomeHeader = () => {
                 <View style={styles.svgBg}>
                     <SvgXml
                         xml={isThemeSwitchOn ? ic_moon : ic_sun}
-                        width={STANDARD_VECTOR_ICON_SIZE}
-                        height={STANDARD_VECTOR_ICON_SIZE}
+                        width={STANDARD_VECTOR_ICON_SIZE }
+                        height={STANDARD_VECTOR_ICON_SIZE }
                     />
                 </View>
             </TouchableOpacity>

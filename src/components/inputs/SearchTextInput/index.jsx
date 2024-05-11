@@ -40,8 +40,8 @@ const SearchTextInput = ({ value, onChangeText }) => {
             <TouchableOpacity style={styles.searchIconWrapper}>
                 <SvgXml
                     xml={ic_search_dark_green}
-                    width={STANDARD_VECTOR_ICON_SIZE}
-                    height={STANDARD_VECTOR_ICON_SIZE}
+                    width={STANDARD_VECTOR_ICON_SIZE * 0.8}
+                    height={STANDARD_VECTOR_ICON_SIZE * 0.8}
                 />
             </TouchableOpacity>
         </View>

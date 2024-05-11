@@ -5,7 +5,6 @@ import { SvgXml } from 'react-native-svg';
 import ic_heart_dark_green from '../../../assets/icons/svg/ic_heart_dark_green';
 import ic_heart_light_green from '../../../assets/icons/svg/ic_heart_light_green';
 import ic_info_dark_green from '../../../assets/icons/svg/ic_info_dark_green';
-import ic_info_dark_grey from '../../../assets/icons/svg/ic_info_dark_grey';
 import ic_plant_dark_green from '../../../assets/icons/svg/ic_plant_dark_green';
 import ic_plant_light_green from '../../../assets/icons/svg/ic_plant_dark_light_green';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
@@ -13,6 +12,7 @@ import PlantList from '../../../screens/PlantList';
 import SymptomsList from '../../../screens/SymptomsList';
 import UserFavorisList from '../../../screens/UserFavorisList';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
+import ic_info_light_green from '../../../assets/icons/svg/ic_info_light_green';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -51,7 +51,7 @@ const PlantMedTab = ({ onTabChange }) => {
                             />
                         ) : (
                             <SvgXml
-                                xml={ic_info_dark_grey}
+                                xml={ic_info_light_green}
                                 width={STANDARD_VECTOR_ICON_SIZE}
                                 height={STANDARD_VECTOR_ICON_SIZE}
                             />

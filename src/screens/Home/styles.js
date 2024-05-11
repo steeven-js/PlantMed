@@ -36,8 +36,8 @@ export default StyleSheet.create({
     svgBg: {
         backgroundColor: '#588157',
         borderRadius: 100,
-        width: 50,
-        height: 50,
+        width: 65,
+        height: 65,
         justifyContent: 'center',
         alignItems: 'center',
     },

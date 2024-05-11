@@ -6,7 +6,7 @@ export const sourcesData = [
             'Wikipédia',
             'Amélie',
             'Doctissimo',
-            'medisite',
+            'Medisite',
         ],
     },
     {
@@ -31,9 +31,10 @@ export const sourcesData = [
     {
         title: "Sources d'Informations sur les Symptômes",
         sources: [
-            'Wikipédia (pour des informations générales)',
-            'Sites médicaux réputés (pour des informations spécifiques sur les symptômes)',
-            'Consultation avec des professionnels de la santé',
+            'Wikipédia',
+            'Amélie',
+            'Doctissimo',
+            'Medisite',
         ],
     },
 ];

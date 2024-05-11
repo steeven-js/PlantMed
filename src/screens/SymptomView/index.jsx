@@ -105,7 +105,7 @@ const SymptomView = ({ route }) => {
                                 ? { uri: imageURL }
                                 : require('../../assets/images/banners/home/808_x_338.png')
                         }
-                        style={styles.bannerImage}
+                        style={[styles.bannerImage, { backgroundColor: theme.secondary }]}
                     />
                 ) : (
                     <ActivityIndicator
