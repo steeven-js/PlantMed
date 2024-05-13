@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 
+const LOADING_TIMEOUT = 2500;
+
 const useFetchSymptom = (symptomId) => {
     // États pour stocker les données, l'état de chargement et les erreurs
     const [data, setData] = useState([]); // Stocker les données récupérées
@@ -21,11 +23,17 @@ const useFetchSymptom = (symptomId) => {
         } catch (fetchError) {
             if (fetchError.response && fetchError.response.status === 403) {
                 // Attendre pendant 5 secondes avant de retenter la requête en cas d'erreur 403
-                await new Promise(resolve => setTimeout(resolve, 5000));
-                fetchData(); // Retenter la requête
+                const timeout = setTimeout(() => {
+                    fetchData(); // Appeler la fonction fetchData pour récupérer les données des symptômes
+                }, LOADING_TIMEOUT);
+                return () => clearTimeout(timeout);
             } else {
-                setError(fetchError); // Enregistrer l'erreur en cas d'échec de la requête
                 console.error(fetchError); // Afficher l'erreur dans la console
+                setError(fetchError); // Mettre à jour l'état de l'erreur avec l'erreur rencontrée
+                const timeout = setTimeout(() => {
+                    fetchData(); // Appeler la fonction fetchData pour récupérer les données des symptômes
+                }, LOADING_TIMEOUT * 10);
+                return () => clearTimeout(timeout);
             }
         } finally {
             setIsLoading(false); // Définir isLoading à false pour indiquer la fin du chargement, quelle que soit l'issue
@@ -34,7 +42,10 @@ const useFetchSymptom = (symptomId) => {
 
     // Utiliser useEffect pour effectuer la requête lors du premier rendu ou lorsque symptomId change
     useEffect(() => {
-        fetchData(); // Appeler la fonction fetchData pour récupérer les données des symptômes
+        const timeout = setTimeout(() => {
+            fetchData(); // Appeler la fonction fetchData pour récupérer les données des symptômes
+        }, LOADING_TIMEOUT * 0.5);
+        return () => clearTimeout(timeout);
     }, [symptomId, fetchData]); // Passer symptomId et fetchData comme dépendances de useEffect
 
     // Fonction refetch pour recharger les données des symptômes

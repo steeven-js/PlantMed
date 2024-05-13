@@ -273,22 +273,27 @@ const SymptomView = ({ route }) => {
                                 {/* Vertical spacer */}
                                 <View style={styles.verticalSpacer} />
                                 {/* Description */}
-                                <Text
-                                    style={[
-                                        styles.profileName,
-                                        { color: theme.textHighContrast },
-                                    ]}
-                                >
-                                    Description
-                                </Text>
-                                <Text
-                                    style={[
-                                        styles.sectionContent,
-                                        { color: theme.textLowContrast },
-                                    ]}
-                                >
-                                    {data?.description}
-                                </Text>
+                                {data?.description && (
+                                    <>
+                                        <Text
+                                            style={[
+                                                styles.profileName,
+                                                { color: theme.textHighContrast },
+                                            ]}
+                                        >
+                                            Description
+                                        </Text>
+
+                                        <Text
+                                            style={[
+                                                styles.sectionContent,
+                                                { color: theme.textLowContrast },
+                                            ]}
+                                        >
+                                            {data?.description}
+                                        </Text>
+                                    </>
+                                )}
                                 {/* Vertical spacer */}
                                 <View style={styles.verticalSpacer} />
                                 {/* Sources */}
