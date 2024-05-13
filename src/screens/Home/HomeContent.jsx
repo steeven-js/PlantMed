@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import HomeCategoriesSection from '../HomeCategories';
 import HomeMostPopularView from '../HomeMostPopularView';
 import HomeRecentlyViewedView from '../HomeRecentlyViewedView';
 import { HomeData } from '../../data/AppData';
@@ -10,7 +9,7 @@ const HomeContent = ({ theme }) => {
     const homeData = HomeData;
     return (
         <View>
-            <HomeCategoriesSection theme={theme} homeData={homeData} />
+            {/* <HomeCategoriesSection theme={theme} homeData={homeData} /> */}
             {/* <HomeBannerSection2 theme={theme} /> */}
             <HomeMostPopularView theme={theme} homeData={homeData} />
             {/* <HomeBannerSection2 theme={theme} /> */}

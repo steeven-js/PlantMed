@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 
 const useFetchPlant = (plantId) => {
@@ -12,12 +13,17 @@ const useFetchPlant = (plantId) => {
         setIsLoading(true); // Début du chargement
 
         try {
-            const response = await fetch(endpoint);
-            const result = await response.json();
-            setData(result); // Mise à jour des données de la plante
+            const response = await axios.get(endpoint);
+            setData(response.data); // Mise à jour des données de la plante
         } catch (fetchError) {
-            setError(fetchError); // Gestion des erreurs
-            console.error(fetchError);
+            if (fetchError.response && fetchError.response.status === 403) {
+                // Attendre pendant 5 secondes avant de retenter la requête en cas d'erreur 403
+                await new Promise(resolve => setTimeout(resolve, 5000));
+                fetchData(); // Retenter la requête
+            } else {
+                setError(fetchError); // Gestion des erreurs
+                console.error(fetchError);
+            }
         } finally {
             setIsLoading(false); // Fin du chargement, que ce soit réussi ou non
         }

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 
 const useFetchSymptom = (symptomId) => {
@@ -14,12 +15,18 @@ const useFetchSymptom = (symptomId) => {
         setIsLoading(true); // Définir isLoading à true pour indiquer le début du chargement
 
         try {
-            const response = await fetch(endpoint); // Effectuer une requête pour récupérer les données
-            const result = await response.json(); // Convertir la réponse en JSON
+            const response = await axios.get(endpoint); // Effectuer une requête pour récupérer les données
+            const result = response.data; // Obtenez les données de la réponse
             setData(result); // Mettre à jour les données avec les données récupérées
         } catch (fetchError) {
-            setError(fetchError); // Enregistrer l'erreur en cas d'échec de la requête
-            console.error(fetchError); // Afficher l'erreur dans la console
+            if (fetchError.response && fetchError.response.status === 403) {
+                // Attendre pendant 5 secondes avant de retenter la requête en cas d'erreur 403
+                await new Promise(resolve => setTimeout(resolve, 5000));
+                fetchData(); // Retenter la requête
+            } else {
+                setError(fetchError); // Enregistrer l'erreur en cas d'échec de la requête
+                console.error(fetchError); // Afficher l'erreur dans la console
+            }
         } finally {
             setIsLoading(false); // Définir isLoading à false pour indiquer la fin du chargement, quelle que soit l'issue
         }

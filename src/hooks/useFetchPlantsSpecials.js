@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 
 const useFetchPlantsSpecials = () => {
@@ -14,8 +15,8 @@ const useFetchPlantsSpecials = () => {
         setIsPlantsLoading(true);
 
         try {
-            const response = await fetch(endpoint);
-            const data = await response.json();
+            const response = await axios.get(endpoint);
+            const data = response.data;
 
             const mostPopularData = data.filter(plant => plant.mostPopular === 1);
             setMostPopularPlants(mostPopularData);
@@ -29,12 +30,23 @@ const useFetchPlantsSpecials = () => {
             const recentlyViewedData = data.filter(plant => plant.recentlyViewed === 1);
             setRecentlyViewedPlants(recentlyViewedData);
         } catch (error) {
-            setPlantsError(error);
+            if (error.response && error.response.status === 403) {
+                // Set error to null to clear any previous errors
+                setPlantsError(null);
+                // Wait for 5 seconds (for example) before retrying the request
+                setTimeout(() => {
+                    fetchData();
+                }, 5000); // 5000 milliseconds = 5 seconds
+            } else {
+                setPlantsError(error);
+                console.error(error);
+                setIsPlantsLoading(false);
+            }
         } finally {
             setIsPlantsLoading(false);
         }
 
-    }, []);
+    }, [endpoint]);
 
     useEffect(() => {
         fetchData();

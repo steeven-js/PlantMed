@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setPlantsData, setPlantsLoading } from '../redux/reducer/plants';
+import axios from 'axios';
 
 const useFetchPlants = () => {
     const [plants, setPlants] = useState([]);
@@ -16,19 +17,28 @@ const useFetchPlants = () => {
         setIsPlantsLoading(true);
 
         try {
-            const response = await fetch(endpoint);
-            const result = await response.json();
+            const response = await axios.get(endpoint);
+            const result = response.data;
             setPlants(result);
             dispatch(setPlantsData(result));
             dispatch(setPlantsLoading(false));
         } catch (error) {
-            setPlantsError(error);
-            dispatch(setPlantsLoading(false));
-            console.error(error);
+            if (error.response && error.response.status === 403) {
+                // Set error to null to clear any previous errors
+                setPlantsError(null);
+                // Wait for 5 seconds (for example) before retrying the request
+                setTimeout(() => {
+                    fetchData();
+                }, 5000); // 5000 milliseconds = 5 seconds
+            } else {
+                setPlantsError("Une erreur s'est produite lors du chargement des données.");
+                console.error(error);
+                dispatch(setPlantsLoading(false));
+            }
         } finally {
             setIsPlantsLoading(false);
         }
-    }, [dispatch]);
+    }, [dispatch, endpoint]);
 
     useEffect(() => {
         fetchData();
