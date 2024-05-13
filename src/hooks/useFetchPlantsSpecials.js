@@ -30,7 +30,7 @@ const useFetchPlantsSpecials = () => {
             const recentlyViewedData = data.filter(plant => plant.recentlyViewed === 1);
             setRecentlyViewedPlants(recentlyViewedData);
         } catch (error) {
-            if (error.response && error.response.status === 403) {
+            if (error.response && error.response.status === 429) {
                 // Set error to null to clear any previous errors
                 setPlantsError(null);
                 // Wait for 5 seconds (for example) before retrying the request

@@ -21,7 +21,7 @@ const useFetchSymptom = (symptomId) => {
             const result = response.data; // Obtenez les données de la réponse
             setData(result); // Mettre à jour les données avec les données récupérées
         } catch (fetchError) {
-            if (fetchError.response && fetchError.response.status === 403) {
+            if (fetchError.response && fetchError.response.status === 429) {
                 // Attendre pendant 5 secondes avant de retenter la requête en cas d'erreur 403
                 const timeout = setTimeout(() => {
                     fetchData(); // Appeler la fonction fetchData pour récupérer les données des symptômes

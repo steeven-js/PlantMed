@@ -25,7 +25,7 @@ const useFetchSymptoms = () => {
             dispatch(setSymptomsData(result));
             dispatch(setSymptomsLoading(false));
         } catch (error) {
-            if (error.response && error.response.status === 403) {
+            if (error.response && error.response.status === 429) {
                 // Attendre pendant 5 secondes avant de retenter la requête en cas d'erreur 403
                 await new Promise(resolve => setTimeout(resolve, 5000));
                 fetchData(); // Retenter la requête

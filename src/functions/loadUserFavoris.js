@@ -30,7 +30,7 @@ export const useUserPlantsFavoris = (userId) => {
                                 image: response.data.media && response.data.media.length > 0 ? response.data.media[0].original_url : null,
                             };
                         } catch (error) {
-                            if (error.response && error.response.status === 403) {
+                            if (error.response && error.response.status === 429) {
                                 // Wait for 5 seconds before retrying the request
                                 await new Promise(resolve => setTimeout(resolve, 5000));
                                 return fetchData(); // Retry the request
@@ -91,7 +91,7 @@ export const useUserSymptomsFavoris = (userId) => {
                                 image: response.data.media && response.data.media.length > 0 ? response.data.media[0].original_url : null,
                             };
                         } catch (error) {
-                            if (error.response && error.response.status === 403) {
+                            if (error.response && error.response.status === 429) {
                                 // Wait for 5 seconds before retrying the request
                                 await new Promise(resolve => setTimeout(resolve, 5000));
                                 return fetchData(); // Retry the request
