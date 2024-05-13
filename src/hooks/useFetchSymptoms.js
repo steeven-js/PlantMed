@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import { setSymptomsData, setSymptomsLoading } from '../redux/reducer/symptoms';
 import axios from 'axios';
 
-const LOADING_TIMEOUT = 2500;
-
 const useFetchSymptoms = () => {
     const [symptoms, setSymptoms] = useState([]);
     const [plantsError, setPlantsError] = useState(null);
@@ -25,26 +23,16 @@ const useFetchSymptoms = () => {
             dispatch(setSymptomsData(result));
             dispatch(setSymptomsLoading(false));
         } catch (error) {
-            if (error.response && error.response.status === 429) {
-                // Attendre pendant 5 secondes avant de retenter la requête en cas d'erreur 403
-                await new Promise(resolve => setTimeout(resolve, 5000));
-                fetchData(); // Retenter la requête
-            } else {
-                setPlantsError(error);
-                dispatch(setSymptomsLoading(false));
-                console.error(error);
-            }
+            setPlantsError(error);
+            dispatch(setSymptomsLoading(false));
+            console.error(error);
         } finally {
             setIsSymptomsLoading(false);
         }
-    }, [dispatch, endpoint]);
+    }, [dispatch]);
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
-            fetchData();
-        }, LOADING_TIMEOUT);
-
-        return () => clearTimeout(timeout);
+        fetchData();
     }, [fetchData]);
 
     const symptomsRefetch = () => {

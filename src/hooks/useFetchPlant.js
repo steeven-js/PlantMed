@@ -16,14 +16,8 @@ const useFetchPlant = (plantId) => {
             const response = await axios.get(endpoint);
             setData(response.data); // Mise à jour des données de la plante
         } catch (fetchError) {
-            if (fetchError.response && fetchError.response.status === 429) {
-                // Attendre pendant 5 secondes avant de retenter la requête en cas d'erreur 403
-                await new Promise(resolve => setTimeout(resolve, 5000));
-                fetchData(); // Retenter la requête
-            } else {
-                setError(fetchError); // Gestion des erreurs
-                console.error(fetchError);
-            }
+            console.error(fetchError);
+            setError(fetchError); // Mise à jour de l'erreur
         } finally {
             setIsLoading(false); // Fin du chargement, que ce soit réussi ou non
         }

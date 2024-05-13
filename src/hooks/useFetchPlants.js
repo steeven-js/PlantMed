@@ -23,22 +23,12 @@ const useFetchPlants = () => {
             dispatch(setPlantsData(result));
             dispatch(setPlantsLoading(false));
         } catch (error) {
-            if (error.response && error.response.status === 429) {
-                // Set error to null to clear any previous errors
-                setPlantsError(null);
-                // Wait for 5 seconds (for example) before retrying the request
-                setTimeout(() => {
-                    fetchData();
-                }, 5000); // 5000 milliseconds = 5 seconds
-            } else {
-                setPlantsError("Une erreur s'est produite lors du chargement des données.");
-                console.error(error);
-                dispatch(setPlantsLoading(false));
-            }
+            setPlantsError(error);
+            dispatch(setPlantsLoading(false));
         } finally {
             setIsPlantsLoading(false);
         }
-    }, [dispatch, endpoint]);
+    }, [dispatch]);
 
     useEffect(() => {
         fetchData();

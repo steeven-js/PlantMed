@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 export const useUserPlantsFavoris = (userId) => {
     const [userFavoris, setUserFavoris] = useState([]);
     const [plantsData, setPlantsData] = useState([]);
-    const [plantsError, setPlantsError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,21 +29,14 @@ export const useUserPlantsFavoris = (userId) => {
                                 image: response.data.media && response.data.media.length > 0 ? response.data.media[0].original_url : null,
                             };
                         } catch (error) {
-                            if (error.response && error.response.status === 429) {
-                                // Wait for 5 seconds before retrying the request
-                                await new Promise(resolve => setTimeout(resolve, 5000));
-                                return fetchData(); // Retry the request
-                            } else {
-                                console.error('Error fetching plant data:', error);
-                                return null;
-                            }
+                            // console.error('Error fetching plant data:', error);
+                            return null;
                         }
                     }));
                     setPlantsData(fetchedPlantsData.filter(data => data !== null));
                 }
             } catch (error) {
                 console.error('Error fetching user favoris:', error);
-                setPlantsError(error);
             }
         };
 
@@ -60,13 +52,12 @@ export const useUserPlantsFavoris = (userId) => {
         return () => unsubscribe();
     }, [userId]);
 
-    return { userPlantsFavoris: userFavoris, plantsData, plantsError };
+    return { userPlantsFavoris: userFavoris, plantsData };
 };
 
 export const useUserSymptomsFavoris = (userId) => {
     const [userFavoris, setUserFavoris] = useState([]);
     const [symptomsData, setSymptomsData] = useState([]);
-    const [symptomsError, setSymptomsError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -91,21 +82,14 @@ export const useUserSymptomsFavoris = (userId) => {
                                 image: response.data.media && response.data.media.length > 0 ? response.data.media[0].original_url : null,
                             };
                         } catch (error) {
-                            if (error.response && error.response.status === 429) {
-                                // Wait for 5 seconds before retrying the request
-                                await new Promise(resolve => setTimeout(resolve, 5000));
-                                return fetchData(); // Retry the request
-                            } else {
-                                console.error('Error fetching symptom data:', error);
-                                return null;
-                            }
+                            // console.error('Error fetching symptom data:', error);
+                            return null;
                         }
                     }));
                     setSymptomsData(fetchedSymptomsData.filter(data => data !== null));
                 }
             } catch (error) {
                 console.error('Error fetching user favoris:', error);
-                setSymptomsError(error);
             }
         };
 
@@ -121,5 +105,5 @@ export const useUserSymptomsFavoris = (userId) => {
         return () => unsubscribe();
     }, [userId]);
 
-    return { userSymptomsFavoris: userFavoris, symptomsData, symptomsError };
+    return { userSymptomsFavoris: userFavoris, symptomsData };
 };
