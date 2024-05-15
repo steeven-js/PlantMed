@@ -1,17 +1,15 @@
-import styles from './styles';
-import {SvgXml} from 'react-native-svg';
-import {useContext} from 'react';
+import { SvgXml } from 'react-native-svg';
+import { useContext } from 'react';
 import HomeStack from '../../stacks/HomeStack';
-import CartStack from '../../stacks/CartStack';
-import {scale} from 'react-native-size-matters';
+import PlantMedStack from '../../stacks/PlantMedStack';
+import { scale } from 'react-native-size-matters';
 import SettingsStack from '../../stacks/SettingsStack';
 import MyProfileStack from '../../stacks/MyProfileStack';
-import {STANDARD_VECTOR_ICON_SIZE} from '../../../config/Constants';
-import {ThemeContext} from '../../../theming/contexts/ThemeContext';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import ic_bag_dark_green from '../../../assets/icons/svg/ic_bag_dark_green';
-import ic_home_dark_green from '../../../assets/icons/svg/ic_home_dark_green';
-import ic_bag_light_green from '../../../assets/icons/svg/ic_bag_light_green';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ic_plant_dark_green from '../../../assets/icons/svg/ic_plant_dark_green'; import ic_home_dark_green from '../../../assets/icons/svg/ic_home_dark_green';
+import ic_plant_light_green from '../../../assets/icons/svg/ic_plant_dark_light_green';
 import ic_gear_dark_green from '../../../assets/icons/svg/ic_gear_dark_green';
 import ic_home_light_green from '../../../assets/icons/svg/ic_home_light_green';
 import ic_gear_light_green from '../../../assets/icons/svg/ic_gear_light_green';
@@ -24,7 +22,7 @@ const Tab = createBottomTabNavigator();
 // Home bottom tab navigator
 const HomeBottomTab = () => {
   // Using context
-  const {isLightTheme, lightTheme, darkTheme} = useContext(ThemeContext);
+  const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
   // Storing theme config according to the theme mode
   const theme = isLightTheme ? lightTheme : darkTheme;
@@ -48,7 +46,7 @@ const HomeBottomTab = () => {
         name="Home Stack"
         component={HomeStack}
         options={{
-          tabBarIcon: ({focused}) =>
+          tabBarIcon: ({ focused }) =>
             focused ? (
               <SvgXml
                 xml={ic_home_dark_green}
@@ -65,35 +63,30 @@ const HomeBottomTab = () => {
         }}
       />
       <Tab.Screen
-        name="Cart Stack"
-        component={CartStack}
+        name="PlantMed Stack"
+        component={PlantMedStack}
         options={{
-          tabBarIcon: ({focused}) =>
+          tabBarIcon: ({ focused }) =>
             focused ? (
               <SvgXml
-                xml={ic_bag_dark_green}
+                xml={ic_plant_dark_green}
                 width={STANDARD_VECTOR_ICON_SIZE}
                 height={STANDARD_VECTOR_ICON_SIZE}
               />
             ) : (
               <SvgXml
-                xml={ic_bag_light_green}
+                xml={ic_plant_light_green}
                 width={STANDARD_VECTOR_ICON_SIZE}
                 height={STANDARD_VECTOR_ICON_SIZE}
               />
             ),
-          tabBarBadge: 2,
-          tabBarBadgeStyle: [
-            styles.tabBarBadgeStyle,
-            {backgroundColor: theme.accent},
-          ],
         }}
       />
       <Tab.Screen
         name="My Profile Stack"
         component={MyProfileStack}
         options={{
-          tabBarIcon: ({focused}) =>
+          tabBarIcon: ({ focused }) =>
             focused ? (
               <SvgXml
                 xml={ic_person_dark_green}
@@ -113,7 +106,7 @@ const HomeBottomTab = () => {
         name="Settings Stack"
         component={SettingsStack}
         options={{
-          tabBarIcon: ({focused}) =>
+          tabBarIcon: ({ focused }) =>
             focused ? (
               <SvgXml
                 xml={ic_gear_dark_green}

@@ -1,11 +1,13 @@
 import AppStyles from './AppStyles';
+import { Provider } from 'react-redux';
 import Splash from './src/screens/Splash';
-import {SafeAreaView} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import { SafeAreaView } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import Statusbar from './src/components/others/Statusbar';
 import HomeDrawer from './src/navigators/drawers/HomeDrawer';
-import {NavigationContainer} from '@react-navigation/native';
-import {ThemeContextProvider} from './src/theming/context_providers/ThemeContextProvider';
+import { NavigationContainer } from '@react-navigation/native';
+import { ThemeContextProvider } from './src/theming/context_providers/ThemeContextProvider';
+import store from './src/redux/store';
 
 // Functional component
 const App = () => {
@@ -29,14 +31,16 @@ const App = () => {
 
   // Returning
   return (
-    <ThemeContextProvider>
-      <NavigationContainer>
-        <Statusbar barStyle="light-content" />
-        <SafeAreaView style={AppStyles.safeAreaView}>
-          <HomeDrawer />
-        </SafeAreaView>
-      </NavigationContainer>
-    </ThemeContextProvider>
+    <Provider store={store}>
+      <ThemeContextProvider>
+        <NavigationContainer>
+          <Statusbar barStyle="light-content" />
+          <SafeAreaView style={AppStyles.safeAreaView}>
+            <HomeDrawer />
+          </SafeAreaView>
+        </NavigationContainer>
+      </ThemeContextProvider>
+    </Provider>
   );
 };
 
