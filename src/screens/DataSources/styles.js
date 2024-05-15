@@ -45,13 +45,11 @@ export default StyleSheet.create({
         fontFamily: POPPINS_REGULAR,
         fontSize: FONT_SIZE_XS,
         letterSpacing: STANDARD_LETTER_SPACING,
-        textAlign: 'justify',
     },
     url: {
         fontFamily: POPPINS_REGULAR,
         fontSize: FONT_SIZE_XXS,
         letterSpacing: STANDARD_LETTER_SPACING,
-        textAlign: 'justify',
         textDecorationLine: 'underline',
     },
 });

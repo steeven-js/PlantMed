@@ -39,7 +39,6 @@ export default StyleSheet.create({
         fontFamily: POPPINS_REGULAR,
         fontSize: FONT_SIZE_XS,
         letterSpacing: STANDARD_LETTER_SPACING,
-        textAlign: 'justify',
     },
     // Text Output
     text: {},
@@ -53,7 +52,6 @@ export default StyleSheet.create({
         justifyContent: 'flex-start',
         width: '100%',
         backgroundColor: 'red',
-        textAlign: 'justify',
     },
     hardbreak: {
         width: '100%',

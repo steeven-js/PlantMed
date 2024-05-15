@@ -8,6 +8,5 @@ export default StyleSheet.create({
         fontFamily: POPPINS_REGULAR,
         fontSize: FONT_SIZE_XS,
         textTransform: 'none',
-        textAlign: 'justify',
     },
 });
