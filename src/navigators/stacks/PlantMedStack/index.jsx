@@ -52,8 +52,14 @@ const PlantMedStack = () => {
     return (
         <Stack.Navigator initialRouteName="PlantMed" screenOptions={screenOptions}>
             <Stack.Screen name="PlantMed" component={PlantMed} />
-            <Stack.Screen name="Symptom" component={Symptom} />
-            <Stack.Screen name="Plant" component={Plant} />
+            <Stack.Screen
+                name="Symptom"
+                component={Symptom}
+            />
+            <Stack.Screen
+            name="Plant"
+            component={Plant}
+            />
             <Stack.Screen name="Favoris" component={Favoris} />
         </Stack.Navigator>
     );
