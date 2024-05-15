@@ -8,6 +8,7 @@ import HomeDrawer from './src/navigators/drawers/HomeDrawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { ThemeContextProvider } from './src/theming/context_providers/ThemeContextProvider';
 import store from './src/redux/store';
+import Toast from 'react-native-toast-message';
 
 // Functional component
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
     <Provider store={store}>
       <ThemeContextProvider>
         <NavigationContainer>
+          <Toast />
           <Statusbar barStyle="light-content" />
           <SafeAreaView style={AppStyles.safeAreaView}>
             <HomeDrawer />

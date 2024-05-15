@@ -12,7 +12,7 @@ const MyProfileData = [
                 height={STANDARD_VECTOR_ICON_SIZE}
             />
         ),
-        label: 'Wishlist',
+        label: 'Mes favoris',
     },
 ];
 

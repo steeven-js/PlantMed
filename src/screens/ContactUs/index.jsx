@@ -1,134 +1,112 @@
-import styles from './styles';
-import {useContext} from 'react';
-import Link from '../../components/links/Link';
-import Button from '../../components/buttons/Button';
+/* eslint-disable no-lone-blocks */
+import React, { useContext, useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import Button from '../../components/buttons/Button';
+import ScreenTitle from '../../components/headings/ScreenTitle';
 import TextArea from '../../components/inputs/TextArea';
 import TextInput from '../../components/inputs/TextInput';
-import OrDivider from '../../components/dividers/OrDivider';
-import ScreenTitle from '../../components/headings/ScreenTitle';
 import ScreenInfo from '../../components/paragraphs/ScreenInfo';
-import {ThemeContext} from '../../theming/contexts/ThemeContext';
-import {View, TouchableOpacity, Image, ScrollView} from 'react-native';
+import useAuthCheck from '../../functions/authCheck';
+import userSendEmail from '../../hooks/userSendEmail';
+import { ThemeContext } from '../../theming/contexts/ThemeContext';
+import styles from './styles';
+import { ContactUsData } from '../../data/AppData';
 
-// Functional component
 const ContactUs = () => {
-  // Using context
-  const {isLightTheme, lightTheme, darkTheme} = useContext(ThemeContext);
+    const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
+    const theme = isLightTheme ? lightTheme : darkTheme;
+    const { userAuthUid, isUserAuthenticated, userAuthEmail } = useAuthCheck();
+    const uid = userAuthUid;
 
-  // Storing theme config according to the theme mode
-  const theme = isLightTheme ? lightTheme : darkTheme;
+    const [email, setEmail] = useState(isUserAuthenticated ? userAuthEmail : '');
+    const [message, setMessage] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [messageError, setMessageError] = useState('');
+    const [emptyFieldsError, setEmptyFieldsError] = useState('');
+    const [showLengthError, setShowLengthError] = useState(false);
+    const [messageLengthError, setMessageLengthError] = useState('');
 
-  // Returning
-  return (
-    <View style={[styles.mainWrapper, {backgroundColor: theme.accent}]}>
-      {/* Form wrapper */}
-      <Animatable.View
-        animation="fadeInUp"
-        delay={100}
-        style={[styles.formWrapper, {backgroundColor: theme.primary}]}>
-        {/* Scrollview */}
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          bounces={false}
-          contentContainerStyle={styles.scrollViewContentContainerStyle}>
-          {/* Screen title */}
-          <Animatable.View animation="fadeInUp" delay={300}>
-            <ScreenTitle title="Contact Us" />
-          </Animatable.View>
+    const handleEmailSend = async () => {
+        let hasError = false;
+        setEmailError('');
+        setMessageError('');
+        setEmptyFieldsError('');
+        setShowLengthError(false);
 
-          {/* Screen info component */}
-          <Animatable.View animation="fadeInUp" delay={500}>
-            <ScreenInfo info="If you need to contact us for any reason, don't hesitate to reach out." />
-          </Animatable.View>
+        if (!email && !isUserAuthenticated) {
+            setEmailError('Veuillez entrer votre email');
+            hasError = true;
+        }
 
-          {/* Vertical spacer */}
-          <View style={styles.verticalSpacer} />
-          <View style={styles.verticalSpacer} />
+        {isUserAuthenticated && setEmail(userAuthEmail); }
 
-          {/* Text input component */}
-          <Animatable.View animation="fadeInUp" delay={700}>
-            <TextInput label="Email" placeholder="Enter your email" />
-          </Animatable.View>
+        if (!message) {
+            setMessageError('Veuillez entrer votre message');
+            hasError = true;
+        } else if (message.length < 20 || message.length > 1000) {
+            setShowLengthError(true);
+            setMessageLengthError('Le message doit contenir entre 20 et 1000 caractères');
+            hasError = true;
+        }
 
-          {/* Vertical spacer */}
-          <View style={styles.verticalSpacer} />
+        if (!hasError) {
+            try {
+                await userSendEmail({
+                    uid,
+                    email,
+                    message,
+                });
+                setEmail('');
+                setMessage('');
+            } catch (error) {
+                console.error("Erreur lors de l'envoi de l'email :", error);
+            }
+        }
+    };
 
-          {/* Textarea component */}
-          <Animatable.View animation="fadeInUp" delay={900}>
-            <TextArea
-              label="Message"
-              placeholder="Enter your message here..."
-            />
-          </Animatable.View>
-
-          {/* Vertical spacer */}
-          <View style={styles.verticalSpacer} />
-
-          {/* Link component */}
-          <Animatable.View animation="fadeInUp" delay={1100}>
-            <Link label="Want to upload a file?" />
-          </Animatable.View>
-
-          {/* Vertical spacer */}
-          <View style={styles.verticalSpacer} />
-
-          {/* Button component */}
-          <Animatable.View animation="fadeInUp" delay={1300}>
-            <Button label="Send Us" />
-          </Animatable.View>
-
-          {/* Or divider component */}
-          <Animatable.View animation="fadeInUp" delay={1500}>
-            <OrDivider label="Or get help via" />
-          </Animatable.View>
-
-          {/* Help icons wrapper */}
-          <View style={styles.helpIconsWrapper}>
-            <Animatable.View animation="bounceIn" delay={1700}>
-              <TouchableOpacity
-                style={[
-                  styles.helpIconWrapper,
-                  {backgroundColor: theme.secondary},
-                ]}>
-                <Image
-                  source={require('../../assets/icons/png/contact-us/headphone.png')}
-                  style={styles.helpIconImage}
-                />
-              </TouchableOpacity>
+    return (
+        <View style={[styles.mainWrapper, { backgroundColor: theme.accent }]}>
+            <Animatable.View animation="fadeInUp" delay={100} style={[styles.formWrapper, { backgroundColor: theme.primary }]}>
+                <ScrollView showsVerticalScrollIndicator={false} bounces={false} contentContainerStyle={styles.scrollViewContentContainerStyle}>
+                    <Animatable.View animation="fadeInUp" delay={300}><ScreenTitle title={ContactUsData[0].label} /></Animatable.View>
+                    <Animatable.View animation="fadeInUp" delay={500}><ScreenInfo info={ContactUsData[1].info} /></Animatable.View>
+                    <View style={styles.verticalSpacer} />
+                    <View style={styles.verticalSpacer} />
+                    <Animatable.View animation="fadeInUp" delay={700}>
+                        <TextInput
+                            label={ContactUsData[2].inputLabel}
+                            placeholder={isUserAuthenticated ? 'Votre email' : 'Enter your email'}
+                            value={isUserAuthenticated ? userAuthEmail : email}
+                            onChangeText={(text) => setEmail(text)}
+                            autoCapitalize="none"
+                            keyboardType="email-address"
+                            disabled={isUserAuthenticated}
+                        />
+                        {emailError && <Text style={styles.errorMessage}>{emailError}</Text>}
+                    </Animatable.View>
+                    <View style={styles.verticalSpacer} />
+                    <Animatable.View animation="fadeInUp" delay={900}>
+                        <TextArea
+                            label={ContactUsData[3].inputLabel}
+                            placeholder={ContactUsData[3].placeholder}
+                            value={message}
+                            onChangeText={(text) => setMessage(text)}
+                            autoCapitalize="none"
+                            keyboardType="default"
+                        />
+                        {messageError && <Text style={styles.errorMessage}>{messageError}</Text>}
+                        {emptyFieldsError && <Text style={styles.errorMessage}>{emptyFieldsError}</Text>}
+                        {showLengthError && <Text style={styles.errorMessage}>{messageLengthError}</Text>}
+                    </Animatable.View>
+                    <View style={styles.verticalSpacer} />
+                    <Animatable.View animation="fadeInUp" delay={1300}>
+                        <Button label={ContactUsData[5].submit} onPress={handleEmailSend} />
+                    </Animatable.View>
+                </ScrollView>
             </Animatable.View>
-
-            <Animatable.View animation="bounceIn" delay={1900}>
-              <TouchableOpacity
-                style={[
-                  styles.helpIconWrapper,
-                  {backgroundColor: theme.secondary},
-                ]}>
-                <Image
-                  source={require('../../assets/icons/png/contact-us/faqs.png')}
-                  style={styles.helpIconImage}
-                />
-              </TouchableOpacity>
-            </Animatable.View>
-
-            <Animatable.View animation="bounceIn" delay={2100}>
-              <TouchableOpacity
-                style={[
-                  styles.helpIconWrapper,
-                  {backgroundColor: theme.secondary},
-                ]}>
-                <Image
-                  source={require('../../assets/icons/png/contact-us/location_pin.png')}
-                  style={styles.helpIconImage}
-                />
-              </TouchableOpacity>
-            </Animatable.View>
-          </View>
-        </ScrollView>
-      </Animatable.View>
-    </View>
-  );
+        </View>
+    );
 };
 
-// Exporting
 export default ContactUs;

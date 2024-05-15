@@ -15,7 +15,6 @@ import {
 } from '@react-navigation/drawer';
 import { SvgXml } from 'react-native-svg';
 import AuthStack from '../../stacks/AuthStack';
-import Contacts from '../../../screens/Contacts';
 import HomeBottomTab from '../../tabs/HomeBottomTab';
 import SupportStack from '../../stacks/SupportStack';
 import PoliciesStack from '../../stacks/PoliciesStack';
@@ -30,8 +29,6 @@ import ic_paper_dark_green from '../../../assets/icons/svg/ic_paper_dark_green';
 import ic_paper_light_grey from '../../../assets/icons/svg/ic_paper_light_grey';
 import ic_login_dark_green from '../../../assets/icons/svg/ic_login_dark_green';
 import ic_login_light_grey from '../../../assets/icons/svg/ic_login_light_grey';
-import ic_users_dark_green from '../../../assets/icons/svg/ic_users_dark_green';
-import ic_users_light_grey from '../../../assets/icons/svg/ic_users_light_grey';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import ic_person_dark_green from '../../../assets/icons/svg/ic_person_dark_green';
 import ic_person_light_grey from '../../../assets/icons/svg/ic_person_light_grey';
@@ -44,7 +41,8 @@ import MyProfileStack from '../../stacks/MyProfileStack';
 const Drawer = createDrawerNavigator();
 
 // Custom drawer content component
-const CustomDrawerContent = props => {
+const CustomDrawerContent = (props) => {
+  const { drawerHeader, drawerFooter } = props; // Déstructure drawerHeader de props
   // Using context
   const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
@@ -56,35 +54,44 @@ const CustomDrawerContent = props => {
     <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
       {/* Header image background */}
       <ImageBackground
-        source={require('../../../assets/images/backgrounds/liquid-cheese-background.png')}
-        style={styles.drawerHeaderImageBackground}>
-        <View style={[styles.logoWrapper, { backgroundColor: theme.primary }]}>
+        source={drawerHeader[0].ImageBackground}
+        style={styles.drawerHeaderImageBackground}
+      >
+        <View
+          style={[
+            styles.logoWrapper,
+            { backgroundColor: theme.primary },
+          ]}
+        >
           <Image
             source={
               isLightTheme
-                ? require('../../../assets/images/logos/logo_light.png')
-                : require('../../../assets/images/logos/logo_dark.png')
+                ? drawerHeader[0].logo_light
+                : drawerHeader[0].logo_dark
             }
             style={styles.logo}
           />
         </View>
         <View>
-          <Text style={styles.brandName}>PlantMart</Text>
-          <Text style={styles.brandSlogan}>World of indoor plants!</Text>
+          <Text style={styles.brandName}>{drawerHeader[0].brandName}</Text>
+          <Text style={styles.brandSlogan}>
+            {drawerHeader[0].brandSlogan}
+          </Text>
         </View>
       </ImageBackground>
 
       {/* Drawer item list */}
       <DrawerContentScrollView
         bounces={false}
-        showsVerticalScrollIndicator={false}>
+        showsVerticalScrollIndicator={false}
+      >
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
 
       {/* Custom drawer item */}
       <View>
         <DrawerItem
-          label="App Version 3.0.0 - March, 2024"
+          label={drawerFooter[0].label}
           labelStyle={[
             styles.drawerItemLabel,
             { color: theme.textLowContrast, alignSelf: 'center' },
@@ -103,14 +110,14 @@ const HomeDrawer = () => {
   // Storing theme config according to the theme mode
   const theme = isLightTheme ? lightTheme : darkTheme;
 
-      // Using custom hook
-      const { isUserAuthenticated, userAuthUid } = useAuthCheck();
+  // Using custom hook
+  const { isUserAuthenticated, userAuthUid } = useAuthCheck();
 
-      // Navigation
-      const navigation = useNavigation();
+  // Navigation
+  const navigation = useNavigation();
 
-      // Drawer data
-      const { drawerHeader, drawerLabel, drawerFooter } = DrawerData;
+  // Drawer data
+  const { drawerHeader, drawerLabel, drawerFooter } = DrawerData;
 
   // Retuning
   return (
@@ -137,7 +144,8 @@ const HomeDrawer = () => {
         headerLeft: () => (
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={styles.leftArrowIcon}>
+            style={styles.leftArrowIcon}
+          >
             <SvgXml
               xml={ic_arrow_left_white}
               width={STANDARD_VECTOR_ICON_SIZE}
@@ -146,7 +154,8 @@ const HomeDrawer = () => {
           </TouchableOpacity>
         ),
       })}
-      drawerContent={props => <CustomDrawerContent {...props} />}>
+      drawerContent={(props) => <CustomDrawerContent {...props} drawerHeader={drawerHeader} drawerFooter={drawerFooter} />}
+    >
       <Drawer.Screen
         name="HomeBottomTab"
         component={HomeBottomTab}
@@ -264,29 +273,6 @@ const HomeDrawer = () => {
         />
       )}
 
-      <Drawer.Screen
-        name="Contacts"
-        component={Contacts}
-        options={{
-          headerShown: true,
-          drawerLabel: 'Contacts',
-          drawerIcon: ({ focused }) =>
-            focused ? (
-              <SvgXml
-                xml={ic_users_dark_green}
-                width={STANDARD_VECTOR_ICON_SIZE}
-                height={STANDARD_VECTOR_ICON_SIZE}
-              />
-            ) : (
-              <SvgXml
-                xml={ic_users_light_grey}
-                width={STANDARD_VECTOR_ICON_SIZE}
-                height={STANDARD_VECTOR_ICON_SIZE}
-              />
-            ),
-          drawerLabelStyle: styles.drawerItemLabel,
-        }}
-      />
     </Drawer.Navigator>
   );
 };

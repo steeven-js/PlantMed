@@ -15,6 +15,8 @@ import ic_home_light_green from '../../../assets/icons/svg/ic_home_light_green';
 import ic_gear_light_green from '../../../assets/icons/svg/ic_gear_light_green';
 import ic_person_dark_green from '../../../assets/icons/svg/ic_person_dark_green';
 import ic_person_light_green from '../../../assets/icons/svg/ic_person_light_green';
+import useAuthCheck from '../../../functions/authCheck';
+import AuthStack from '../../stacks/AuthStack';
 
 // Creating bottom tab navigator
 const Tab = createBottomTabNavigator();
@@ -26,6 +28,8 @@ const HomeBottomTab = () => {
 
   // Storing theme config according to the theme mode
   const theme = isLightTheme ? lightTheme : darkTheme;
+
+  const { isUserAuthenticated, userId } = useAuthCheck();
 
   // Screen options
   const screenOptions = {
@@ -82,26 +86,49 @@ const HomeBottomTab = () => {
             ),
         }}
       />
-      <Tab.Screen
-        name="My Profile Stack"
-        component={MyProfileStack}
-        options={{
-          tabBarIcon: ({ focused }) =>
-            focused ? (
-              <SvgXml
-                xml={ic_person_dark_green}
-                width={STANDARD_VECTOR_ICON_SIZE}
-                height={STANDARD_VECTOR_ICON_SIZE}
-              />
-            ) : (
-              <SvgXml
-                xml={ic_person_light_green}
-                width={STANDARD_VECTOR_ICON_SIZE}
-                height={STANDARD_VECTOR_ICON_SIZE}
-              />
-            ),
-        }}
-      />
+      {isUserAuthenticated === false || userId === '' ? (
+        <Tab.Screen
+          name="Auth Stack"
+          component={AuthStack}
+          options={{
+            tabBarIcon: ({ focused }) =>
+              focused ? (
+                <SvgXml
+                  xml={ic_person_dark_green}
+                  width={STANDARD_VECTOR_ICON_SIZE}
+                  height={STANDARD_VECTOR_ICON_SIZE}
+                />
+              ) : (
+                <SvgXml
+                  xml={ic_person_light_green}
+                  width={STANDARD_VECTOR_ICON_SIZE}
+                  height={STANDARD_VECTOR_ICON_SIZE}
+                />
+              ),
+          }}
+        />
+      ) : (
+        <Tab.Screen
+          name="My Profile Stack"
+          component={MyProfileStack}
+          options={{
+            tabBarIcon: ({ focused }) =>
+              focused ? (
+                <SvgXml
+                  xml={ic_person_dark_green}
+                  width={STANDARD_VECTOR_ICON_SIZE}
+                  height={STANDARD_VECTOR_ICON_SIZE}
+                />
+              ) : (
+                <SvgXml
+                  xml={ic_person_light_green}
+                  width={STANDARD_VECTOR_ICON_SIZE}
+                  height={STANDARD_VECTOR_ICON_SIZE}
+                />
+              ),
+          }}
+        />
+      )}
       <Tab.Screen
         name="Settings Stack"
         component={SettingsStack}
