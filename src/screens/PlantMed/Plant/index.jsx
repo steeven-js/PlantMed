@@ -5,6 +5,7 @@ import {
   Text,
   ScrollView,
   ActivityIndicator,
+  Linking,
 } from 'react-native';
 import React, { useEffect } from 'react';
 import styles from './styles';
@@ -12,9 +13,6 @@ import { SvgXml } from 'react-native-svg';
 import { useContext } from 'react';
 import ic_star from '../../../assets/icons/svg/ic_star';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
-import ic_plus_dark_green from '../../../assets/icons/svg/ic_plus_dark_green';
-import ic_heart_dark_green from '../../../assets/icons/svg/ic_heart_dark_green';
-import ic_minus_dark_green from '../../../assets/icons/svg/ic_minus_dark_green';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
@@ -144,7 +142,7 @@ const Plant = ({ route }) => {
       {/* Product details wrapper */}
       <View style={styles.productDetailsOuterWrapper}>
         <ScrollView
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={true}
           bounces={false}
           style={[
             styles.productDetailsScrollView,
@@ -155,101 +153,14 @@ const Plant = ({ route }) => {
               <Text
                 style={[styles.productTitle, { color: theme.textHighContrast }]}
                 numberOfLines={1}>
-                Alocasia macrorrhiza Stingray Plant
+                {plantData.name}
               </Text>
-            </View>
-            <TouchableOpacity
-              style={[
-                styles.heartIconWrapper,
-                { backgroundColor: theme.secondary },
-              ]}>
-              <SvgXml
-                xml={ic_heart_dark_green}
-                width={STANDARD_VECTOR_ICON_SIZE}
-                height={STANDARD_VECTOR_ICON_SIZE}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/* Rating */}
-          <TouchableOpacity
-            style={styles.ratingWrapper}
-            onPress={() => navigation.navigate('Product Reviews')}>
-            <SvgXml
-              xml={ic_star}
-              width={STANDARD_VECTOR_ICON_SIZE * 0.9}
-              height={STANDARD_VECTOR_ICON_SIZE * 0.9}
-            />
-            <Text style={[styles.rating, { color: theme.accent }]}>4.8</Text>
-            <Text style={[styles.outOf, { color: theme.textLowContrast }]}>
-              out of
-            </Text>
-            <Text
-              style={[styles.ratingThreshold, { color: theme.textHighContrast }]}>
-              5.0
-            </Text>
-            <Text style={[styles.totalRating, { color: theme.textHighContrast }]}>
-              (177)
-            </Text>
-          </TouchableOpacity>
-
-          {/* Pricing and quantity */}
-          <View>
-            <Text
-              style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
-              Price
-            </Text>
-            <View style={styles.productPriceAndQuantityWrapper}>
-              <Text style={[styles.productPrice, { color: theme.accent }]}>
-                $10.07
-              </Text>
-              {/* Quantity wrapper */}
-              <View
-                style={[
-                  styles.productQuantityWrapper,
-                  { borderColor: theme.accent },
-                ]}>
-                {/* Plus icon wrapper */}
-                <TouchableOpacity
-                  style={[
-                    styles.plusIconWrapper,
-                    { backgroundColor: theme.secondary },
-                  ]}>
-                  <SvgXml
-                    xml={ic_plus_dark_green}
-                    width={STANDARD_VECTOR_ICON_SIZE * 0.9}
-                    height={STANDARD_VECTOR_ICON_SIZE * 0.9}
-                  />
-                </TouchableOpacity>
-
-                {/* Quantity */}
-                <Text
-                  style={[
-                    styles.productQuantity,
-                    { color: theme.textHighContrast },
-                  ]}>
-                  1
-                </Text>
-
-                {/* Minus icon wrapper */}
-                <TouchableOpacity
-                  style={[
-                    styles.minusIconWrapper,
-                    { backgroundColor: theme.secondary },
-                  ]}>
-                  <SvgXml
-                    xml={ic_minus_dark_green}
-                    width={STANDARD_VECTOR_ICON_SIZE * 0.9}
-                    height={STANDARD_VECTOR_ICON_SIZE * 0.9}
-                  />
-                </TouchableOpacity>
-              </View>
             </View>
           </View>
 
-          {/* Plant care */}
+          {/* Information scientifiques*/}
           <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
-            Plant care
+            Information scientifiques
           </Text>
 
           {/* Horizontal ScrollView */}
@@ -260,53 +171,40 @@ const Plant = ({ route }) => {
               showsHorizontalScrollIndicator={false}>
               <View style={styles.plantCareWrapper}>
                 <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
-                  Temperature
+                  Nom scientifique
                 </Text>
                 <Text
                   style={[
                     styles.plantCareAmount,
                     { color: theme.textLowContrast },
                   ]}>
-                  25 - 30 degree celsius
+                  {plantData.nscient}
                 </Text>
               </View>
 
               <View style={styles.plantCareWrapper}>
                 <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
-                  Water
+                  Famille
                 </Text>
                 <Text
                   style={[
                     styles.plantCareAmount,
                     { color: theme.textLowContrast },
                   ]}>
-                  Medium(2 times/day)
+                  {plantData.famille}
                 </Text>
               </View>
 
               <View style={styles.plantCareWrapper}>
                 <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
-                  Humidity
+                  Genre
                 </Text>
                 <Text
                   style={[
                     styles.plantCareAmount,
                     { color: theme.textLowContrast },
                   ]}>
-                  25 - 30 degree celsius
-                </Text>
-              </View>
-
-              <View style={styles.plantCareWrapper}>
-                <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
-                  Sunlight
-                </Text>
-                <Text
-                  style={[
-                    styles.plantCareAmount,
-                    { color: theme.textLowContrast },
-                  ]}>
-                  Very low(Upto 1 hour)
+                  {plantData.genre}
                 </Text>
               </View>
             </ScrollView>
@@ -318,12 +216,64 @@ const Plant = ({ route }) => {
           </Text>
 
           <Text style={[styles.description, { color: theme.textLowContrast }]}>
-            Alocasia macrorrhiza 'Stingray' is a unique and striking tropical
-            plant known for its distinct leaf shape resembling a stingray. It
-            belongs to the Araceae family and is native to Southeast Asia.
-            'Stingray' is a cultivar of the Alocasia macrorrhiza species and is
-            popular among plant enthusiasts for its attractive foliage.
+            {plantData.description}
           </Text>
+
+          {/* Habitat */}
+          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
+            Habitat
+          </Text>
+
+          <Text style={[styles.description, { color: theme.textLowContrast }]}>
+            {plantData.habitat}
+          </Text>
+
+          {/* Propriete */}
+          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
+            Propriete
+          </Text>
+
+          <Text style={[styles.description, { color: theme.textLowContrast }]}>
+            {plantData.propriete}
+          </Text>
+
+          {/* Precaution */}
+          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
+            Propriete
+          </Text>
+
+          <Text style={[styles.description, { color: theme.textLowContrast }]}>
+            {plantData.precaution}
+          </Text>
+
+          {/* UsageInterne */}
+          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
+            UsageInterne
+          </Text>
+
+          <Text style={[styles.description, { color: theme.textLowContrast }]}>
+            {plantData.usageInterne}
+          </Text>
+
+          {/* UsageExterne */}
+          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
+            UsageExterne
+          </Text>
+
+          <Text style={[styles.description, { color: theme.textLowContrast }]}>
+            {plantData.usageExterne}
+          </Text>
+
+          {/* Source */}
+          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
+            Source
+          </Text>
+
+          <TouchableOpacity onPress={() => Linking.openURL(plantData?.source)}>
+            <Text style={[styles.description, { color: theme.textLowContrast }]}>
+              {plantData?.source}
+            </Text>
+          </TouchableOpacity>
         </ScrollView>
       </View>
     </View>
