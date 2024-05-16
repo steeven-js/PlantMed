@@ -35,11 +35,11 @@ const App = () => {
     <Provider store={store}>
       <ThemeContextProvider>
         <NavigationContainer>
-          <Toast />
           <Statusbar barStyle="light-content" />
           <SafeAreaView style={AppStyles.safeAreaView}>
             <HomeDrawer />
           </SafeAreaView>
+          <Toast />
         </NavigationContainer>
       </ThemeContextProvider>
     </Provider>

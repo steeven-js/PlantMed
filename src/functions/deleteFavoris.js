@@ -4,7 +4,7 @@ import { ShowToast } from './toast';
 
 const deleteOnePlantFavoris = async ({ uid, plantId }) => {
     try {
-        const userDocRef = firestore().collection('userFavoris').doc(uid);
+        const userDocRef = firestore().collection('userPlantFavoris').doc(uid);
         const userDoc = await userDocRef.get();
 
         if (userDoc.exists) {
@@ -35,7 +35,7 @@ const deleteOnePlantFavoris = async ({ uid, plantId }) => {
 
 const deleteAllPlantsFavoris = async ({ uid }) => {
     try {
-        const userDocRef = firestore().collection('userFavoris').doc(uid);
+        const userDocRef = firestore().collection('userPlantFavoris').doc(uid);
         await userDocRef.update({ plantIds: [] });
         ShowToast({
             type: 'error',

@@ -1,131 +1,146 @@
 import {
   View,
-  FlatList,
   TouchableOpacity,
   Image,
   Text,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './styles';
-import {SvgXml} from 'react-native-svg';
-import {useContext, useRef, useState} from 'react';
+import { SvgXml } from 'react-native-svg';
+import { useContext } from 'react';
 import ic_star from '../../../assets/icons/svg/ic_star';
-import {ThemeContext} from '../../../theming/contexts/ThemeContext';
-import GridViewProductsData from '../../../data/GridViewProductsData';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import ic_plus_dark_green from '../../../assets/icons/svg/ic_plus_dark_green';
 import ic_heart_dark_green from '../../../assets/icons/svg/ic_heart_dark_green';
 import ic_minus_dark_green from '../../../assets/icons/svg/ic_minus_dark_green';
-import {SCREEN_WIDTH, STANDARD_VECTOR_ICON_SIZE} from '../../../config/Constants';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
+import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { sharePlant } from '../../../functions/share';
+import { addOrRemovePlantFavoris } from '../../../functions/addOrRemove';
+import ic_share from '../../../assets/icons/svg/ic_share';
+import ic_star_white from '../../../assets/icons/svg/ic_star_white';
+import { useUserPlantsFavoris } from '../../../functions/loadUserFavoris';
 
 // Functional component
-const Plant = ({navigation}) => {
+const Plant = ({ route }) => {
   // Using context
-  const {isLightTheme, lightTheme, darkTheme} = useContext(ThemeContext);
+  const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
   // Getting theme config according to the theme mode
   const theme = isLightTheme ? lightTheme : darkTheme;
 
-  // Local states
-  const [activeScrollIndex, setActiveScrollIndex] = useState(0);
+  const { plantId, setTitle } = route.params;
+  const plantData = useSelector((state) => state.plants.plantsData.find(plant => plant.id === plantId));
+  const isLoading = useSelector((state) => state.plants.isLoading);
+  const uid = useSelector((state) => state.auth.uid);
 
-  // useRef hooks
-  const verticalFlatList = useRef(null);
-  const horizontalFlatList = useRef(null);
+  // Récupérer la navigation
+  const navigation = useNavigation();
 
-  // Scrolling FlatLists
-  const scrollToIndex = index => {
-    // Updating state
-    setActiveScrollIndex(index);
+  useEffect(() => {
+    navigation.setOptions({ title: plantData.name });
+  }, [plantData, setTitle, navigation]);
 
-    // Scrolling active thumbnail image to the specified index
-    verticalFlatList?.current?.scrollToIndex({
-      index,
-      animated: true,
-      viewPosition: 0.5,
-    });
+  // Image URL
+  const imageURL =
+    plantData.media && plantData.media.length > 0 ? plantData.media[0].original_url : null;
 
-    // Scrolling large image to specific offset based on active scroll index
-    horizontalFlatList?.current?.scrollToOffset({
-      offset: SCREEN_WIDTH * 0.5 * index,
-      animated: true,
-    });
+  // Partager une plante
+  const handleShare = () => {
+    sharePlant(plantId);
   };
 
-  // Method to render large image
-  const _renderLargeImages = ({item, index}) => (
-    <View key={index} style={[styles.largeImageWrapper]}>
-      <Image source={item.productImage} style={styles.largeImage} />
-    </View>
-  );
+  // Use useUserPlantsFavoris to fetch user's favorites
+  const userPlantsFavoris = useUserPlantsFavoris(uid);
 
-  // Method to render thumbnail image
-  const _renderThumbnailImages = ({item, index}) => (
-    <TouchableOpacity
-      onPress={() => scrollToIndex(index)}
-      key={index}
-      style={[
-        styles.thumbnailImageWrapper,
-        {
-          backgroundColor:
-            activeScrollIndex === index ? theme.accentLightest : theme.primary,
-          borderColor:
-            activeScrollIndex === index ? theme.accent : theme.accentLightest,
-        },
-      ]}>
-      <Image source={item.productImage} style={styles.thumbnailImage} />
-    </TouchableOpacity>
-  );
+  // Si plantId est dans userFavoris, alors la plante est en favoris sinon non
+  // console.log('userPlantsFavoris:', userPlantsFavoris);
+  const isFavoris = userPlantsFavoris && userPlantsFavoris.userPlantsFavoris && userPlantsFavoris.userPlantsFavoris.includes && userPlantsFavoris.userPlantsFavoris.includes(plantId);
+  // console.log('isFavoris:', isFavoris);
+
+  // Ajouter ou supprimer une plante des favoris
+  const handleaddOrRemovePlantFavoris = async () => {
+    await addOrRemovePlantFavoris({ uid, data: plantData, plantId });
+  };
 
   // Returning
   return (
-    <View style={[styles.mainWrapper, {backgroundColor: theme.primary}]}>
-      <View style={styles.flatListsWrapper}>
-        {/* Vertical FlatList */}
-        <View
-          style={[
-            styles.verticalFlatListWrapper,
-            {backgroundColor: theme.secondary},
-          ]}>
-          <FlatList
-            ref={verticalFlatList}
-            bounces={false}
-            showsVerticalScrollIndicator={false}
-            data={GridViewProductsData}
-            keyExtractor={item => item.id}
-            scrollEnabled
-            renderItem={_renderThumbnailImages}
-            style={styles.verticalFlatList}
-            contentContainerStyle={styles.verticalFlatListContentContainerStyle}
-          />
-        </View>
+    <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
 
-        {/* Horizontal FlatList */}
-        <View
-          style={[
-            styles.horizontalFlatListWrapper,
-            {backgroundColor: theme.accentLightest},
-          ]}>
-          <FlatList
-            ref={horizontalFlatList}
-            bounces={false}
-            pagingEnabled={true}
-            showsHorizontalScrollIndicator={false}
-            data={GridViewProductsData}
-            keyExtractor={item => item.id}
-            horizontal
-            scrollEnabled
-            renderItem={_renderLargeImages}
-            onMomentumScrollEnd={ev => {
-              scrollToIndex(
-                Math.round(
-                  ev.nativeEvent.contentOffset.x / (SCREEN_WIDTH * 0.5),
-                ),
-              );
-            }}
+      <View style={styles.fullWidthBannerImageWrapper}>
+        {/* Banner */}
+        {imageURL ? (
+          <Image
+            source={
+              imageURL
+                ? { uri: imageURL }
+                : require('../../../assets/images/banners/home/808_x_338.png')
+            }
+            style={[styles.bannerImage, { backgroundColor: theme.secondary }]}
           />
+        ) : (
+          <ActivityIndicator
+            size="large"
+            color={theme.textHighContrast}
+            style={[
+              styles.mainWrapper,
+              { justifyContent: 'center', alignItems: 'center' },
+            ]}
+          />
+        )}
+
+        <View style={styles.imageIcons}>
+          <View style={styles.imageIconsItem}>
+            <TouchableOpacity
+              onPress={isLoading ? undefined : handleShare}
+            >
+              {isLoading ? (
+                <ActivityIndicator
+                  size="large"
+                  color={theme.textHighContrast}
+                />
+              ) : (
+                <SvgXml
+                  xml={ic_share}
+                  width={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                  height={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                />
+              )}
+            </TouchableOpacity>
+          </View>
+          <View style={styles.imageIconsItem}>
+            <TouchableOpacity
+              onPress={
+                isLoading
+                  ? undefined
+                  : uid
+                    ? handleaddOrRemovePlantFavoris
+                    : () =>
+                      navigation.navigate('Auth Stack', {
+                        screen: 'Login',
+                      })
+              }
+            >
+              {isLoading ? (
+                <ActivityIndicator
+                  size="large"
+                  color={theme.textHighContrast}
+                />
+              ) : (
+                <SvgXml
+                  xml={isFavoris ? ic_star : ic_star_white}
+                  width={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                  height={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
+
       {/* Product details wrapper */}
       <View style={styles.productDetailsOuterWrapper}>
         <ScrollView
@@ -133,12 +148,12 @@ const Plant = ({navigation}) => {
           bounces={false}
           style={[
             styles.productDetailsScrollView,
-            {backgroundColor: theme.primary},
+            { backgroundColor: theme.primary },
           ]}>
           <View style={styles.productTitleAndHeartIconWrapper}>
             <View style={styles.productTitleWrapper}>
               <Text
-                style={[styles.productTitle, {color: theme.textHighContrast}]}
+                style={[styles.productTitle, { color: theme.textHighContrast }]}
                 numberOfLines={1}>
                 Alocasia macrorrhiza Stingray Plant
               </Text>
@@ -146,7 +161,7 @@ const Plant = ({navigation}) => {
             <TouchableOpacity
               style={[
                 styles.heartIconWrapper,
-                {backgroundColor: theme.secondary},
+                { backgroundColor: theme.secondary },
               ]}>
               <SvgXml
                 xml={ic_heart_dark_green}
@@ -165,15 +180,15 @@ const Plant = ({navigation}) => {
               width={STANDARD_VECTOR_ICON_SIZE * 0.9}
               height={STANDARD_VECTOR_ICON_SIZE * 0.9}
             />
-            <Text style={[styles.rating, {color: theme.accent}]}>4.8</Text>
-            <Text style={[styles.outOf, {color: theme.textLowContrast}]}>
+            <Text style={[styles.rating, { color: theme.accent }]}>4.8</Text>
+            <Text style={[styles.outOf, { color: theme.textLowContrast }]}>
               out of
             </Text>
             <Text
-              style={[styles.ratingThreshold, {color: theme.textHighContrast}]}>
+              style={[styles.ratingThreshold, { color: theme.textHighContrast }]}>
               5.0
             </Text>
-            <Text style={[styles.totalRating, {color: theme.textHighContrast}]}>
+            <Text style={[styles.totalRating, { color: theme.textHighContrast }]}>
               (177)
             </Text>
           </TouchableOpacity>
@@ -181,24 +196,24 @@ const Plant = ({navigation}) => {
           {/* Pricing and quantity */}
           <View>
             <Text
-              style={[styles.sectionTitle, {color: theme.textHighContrast}]}>
+              style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
               Price
             </Text>
             <View style={styles.productPriceAndQuantityWrapper}>
-              <Text style={[styles.productPrice, {color: theme.accent}]}>
+              <Text style={[styles.productPrice, { color: theme.accent }]}>
                 $10.07
               </Text>
               {/* Quantity wrapper */}
               <View
                 style={[
                   styles.productQuantityWrapper,
-                  {borderColor: theme.accent},
+                  { borderColor: theme.accent },
                 ]}>
                 {/* Plus icon wrapper */}
                 <TouchableOpacity
                   style={[
                     styles.plusIconWrapper,
-                    {backgroundColor: theme.secondary},
+                    { backgroundColor: theme.secondary },
                   ]}>
                   <SvgXml
                     xml={ic_plus_dark_green}
@@ -211,7 +226,7 @@ const Plant = ({navigation}) => {
                 <Text
                   style={[
                     styles.productQuantity,
-                    {color: theme.textHighContrast},
+                    { color: theme.textHighContrast },
                   ]}>
                   1
                 </Text>
@@ -220,7 +235,7 @@ const Plant = ({navigation}) => {
                 <TouchableOpacity
                   style={[
                     styles.minusIconWrapper,
-                    {backgroundColor: theme.secondary},
+                    { backgroundColor: theme.secondary },
                   ]}>
                   <SvgXml
                     xml={ic_minus_dark_green}
@@ -233,7 +248,7 @@ const Plant = ({navigation}) => {
           </View>
 
           {/* Plant care */}
-          <Text style={[styles.sectionTitle, {color: theme.textHighContrast}]}>
+          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
             Plant care
           </Text>
 
@@ -244,52 +259,52 @@ const Plant = ({navigation}) => {
               bounces={false}
               showsHorizontalScrollIndicator={false}>
               <View style={styles.plantCareWrapper}>
-                <Text style={[styles.plantCareTitle, {color: theme.accent}]}>
+                <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
                   Temperature
                 </Text>
                 <Text
                   style={[
                     styles.plantCareAmount,
-                    {color: theme.textLowContrast},
+                    { color: theme.textLowContrast },
                   ]}>
                   25 - 30 degree celsius
                 </Text>
               </View>
 
               <View style={styles.plantCareWrapper}>
-                <Text style={[styles.plantCareTitle, {color: theme.accent}]}>
+                <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
                   Water
                 </Text>
                 <Text
                   style={[
                     styles.plantCareAmount,
-                    {color: theme.textLowContrast},
+                    { color: theme.textLowContrast },
                   ]}>
                   Medium(2 times/day)
                 </Text>
               </View>
 
               <View style={styles.plantCareWrapper}>
-                <Text style={[styles.plantCareTitle, {color: theme.accent}]}>
+                <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
                   Humidity
                 </Text>
                 <Text
                   style={[
                     styles.plantCareAmount,
-                    {color: theme.textLowContrast},
+                    { color: theme.textLowContrast },
                   ]}>
                   25 - 30 degree celsius
                 </Text>
               </View>
 
               <View style={styles.plantCareWrapper}>
-                <Text style={[styles.plantCareTitle, {color: theme.accent}]}>
+                <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
                   Sunlight
                 </Text>
                 <Text
                   style={[
                     styles.plantCareAmount,
-                    {color: theme.textLowContrast},
+                    { color: theme.textLowContrast },
                   ]}>
                   Very low(Upto 1 hour)
                 </Text>
@@ -298,11 +313,11 @@ const Plant = ({navigation}) => {
           </View>
 
           {/* Description */}
-          <Text style={[styles.sectionTitle, {color: theme.textHighContrast}]}>
+          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
             Description
           </Text>
 
-          <Text style={[styles.description, {color: theme.textLowContrast}]}>
+          <Text style={[styles.description, { color: theme.textLowContrast }]}>
             Alocasia macrorrhiza 'Stingray' is a unique and striking tropical
             plant known for its distinct leaf shape resembling a stingray. It
             belongs to the Araceae family and is native to Southeast Asia.

@@ -1,11 +1,10 @@
 import firestore from '@react-native-firebase/firestore';
-
 import { ShowToast } from './toast';
 
 export const addOrRemovePlantFavoris = async ({ uid, data, plantId }) => {
     try {
         const plantName = data.name;
-        const userDocRef = firestore().collection('userFavoris').doc(uid);
+        const userDocRef = firestore().collection('userPlantFavoris').doc(uid);
         const userDoc = await userDocRef.get();
 
         if (userDoc.exists) {
@@ -72,27 +71,22 @@ export const addOrRemovePlantFavoris = async ({ uid, data, plantId }) => {
     }
 };
 
-export const addOrRemoveSymptomFavoris = async ({
-    uid,
-    symptomName,
-    symptomId,
-}) => {
+export const addOrRemoveSymptomFavoris = async ({ uid, data, symptomId }) => {
     try {
-        const userDocRef = firestore()
-            .collection('userSymptomFavoris')
-            .doc(uid);
+        const symptomName = data.name;
+        const userDocRef = firestore().collection('userSymptomFavoris').doc(uid);
         const userDoc = await userDocRef.get();
 
         if (userDoc.exists) {
-            const userSymptomData = userDoc.data();
-            if (userSymptomData.symptomIds) {
-                const existingSymptomIndex =
-                    userSymptomData.symptomIds.findIndex(
-                        (entry) => entry.symptomId === symptomId,
-                    );
+            const userData = userDoc.data();
+
+            if (userData.symptomIds) {
+                const existingSymptomIndex = userData.symptomIds.findIndex(
+                    (entry) => entry.symptomId === symptomId,
+                );
 
                 if (existingSymptomIndex !== -1) {
-                    userSymptomData.symptomIds.splice(existingSymptomIndex, 1);
+                    userData.symptomIds.splice(existingSymptomIndex, 1);
                     ShowToast({
                         type: 'error',
                         position: 'top',
@@ -101,7 +95,7 @@ export const addOrRemoveSymptomFavoris = async ({
                         autoHide: true,
                     });
                 } else {
-                    userSymptomData.symptomIds.push({
+                    userData.symptomIds.push({
                         symptomId: symptomId,
                         name: symptomName,
                     });
@@ -114,9 +108,7 @@ export const addOrRemoveSymptomFavoris = async ({
                     });
                 }
             } else {
-                userSymptomData.symptomIds = [
-                    { symptomId: symptomId, name: symptomName },
-                ];
+                userData.symptomIds = [{ symptomId: symptomId, name: symptomName }];
                 ShowToast({
                     type: 'info',
                     position: 'top',
@@ -125,7 +117,8 @@ export const addOrRemoveSymptomFavoris = async ({
                     autoHide: true,
                 });
             }
-            await userDocRef.set(userSymptomData);
+
+            await userDocRef.set(userData);
             console.log('Document mis à jour avec succès');
         } else {
             await userDocRef.set({

@@ -10,7 +10,7 @@ export const useUserPlantsFavoris = (userId) => {
         const fetchData = async () => {
             try {
                 const documentSnapshot = await firestore()
-                    .collection('userFavoris')
+                    .collection('userPlantFavoris')
                     .doc(userId)
                     .get();
 
@@ -43,7 +43,7 @@ export const useUserPlantsFavoris = (userId) => {
         fetchData();
 
         const unsubscribe = firestore()
-            .collection('userFavoris')
+            .collection('userPlantFavoris')
             .doc(userId)
             .onSnapshot(() => {
                 fetchData();

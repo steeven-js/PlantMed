@@ -18,9 +18,9 @@ import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import ic_share from '../../../assets/icons/svg/ic_share';
-import { sharePlant } from '../../../functions/share';
+import { shareSymptom } from '../../../functions/share';
 import { useUserSymptomsFavoris } from '../../../functions/loadUserFavoris';
-import { addOrRemovePlantFavoris } from '../../../functions/addOrRemove';
+import { addOrRemoveSymptomFavoris } from '../../../functions/addOrRemove';
 import ic_star_white from '../../../assets/icons/svg/ic_star_white';
 
 // Functional component
@@ -49,20 +49,20 @@ const Symptom = ({ route }) => {
 
   // Partager une plante
   const handleShare = () => {
-    sharePlant(symptomId);
+    shareSymptom(symptomId);
   };
 
   // Use useUserPlantsFavoris to fetch user's favorites
   const userSymptomsFavoris = useUserSymptomsFavoris(uid);
 
   // Si plantId est dans userFavoris, alors la plante est en favoris sinon non
-  // console.log('userPlantsFavoris:', userPlantsFavoris);
+  // console.log('userSymptomsFavoris:', userSymptomsFavoris);
   const isFavoris = userSymptomsFavoris && userSymptomsFavoris.userSymptomsFavoris && userSymptomsFavoris.userSymptomsFavoris.includes && userSymptomsFavoris.userSymptomsFavoris.includes(symptomId);
-  // console.log('isFavoris:', isFavoris);
+  console.log('isFavoris:', isFavoris);
 
-  // Ajouter ou supprimer une plante des favoris
-  const handleaddOrRemovePlantFavoris = async () => {
-    await addOrRemovePlantFavoris({ uid, data: symptomData, symptomId });
+    // Ajouter ou supprimer une plante des favoris
+    const handleaddOrRemoveSymptomFavoris = async () => {
+      await addOrRemoveSymptomFavoris({ uid, data: symptomData, symptomId });
   };
 
   // Returning
@@ -116,7 +116,7 @@ const Symptom = ({ route }) => {
                 isLoading
                   ? undefined
                   : uid
-                    ? handleaddOrRemovePlantFavoris
+                    ? handleaddOrRemoveSymptomFavoris
                     : () =>
                       navigation.navigate('Auth Stack', {
                         screen: 'Login',
