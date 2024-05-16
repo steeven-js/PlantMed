@@ -119,7 +119,7 @@ const MyProfile = () => {
                 <NavigationLink
                   leftIcon={item.leftIcon}
                   label={item.label}
-                  onPress={() => navigation.navigate('PlantMed Stack', { screen: 'Mes favoris' })}
+                  onPress={() => navigation.navigate('Mes favoris')}
                 />
                 {index !== MyProfileData.length - 1 && (
                   <View style={styles.verticalSpacer} />

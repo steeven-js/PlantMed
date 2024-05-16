@@ -9,7 +9,6 @@ import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import Plant from '../../../screens/PlantMed/plant';
 import Symptom from '../../../screens/PlantMed/symptom';
-import Favoris from '../../../screens/PlantMed/favoris';
 import PlantMed from '../../../screens/PlantMed';
 
 // Creating stack navigator
@@ -54,7 +53,6 @@ const PlantMedStack = () => {
             <Stack.Screen name="PlantMed" component={PlantMed} />
             <Stack.Screen name="Symptom" component={Symptom} />
             <Stack.Screen name="Plant" component={Plant} />
-            <Stack.Screen name="Mes favoris" component={Favoris} />
         </Stack.Navigator>
     );
 };

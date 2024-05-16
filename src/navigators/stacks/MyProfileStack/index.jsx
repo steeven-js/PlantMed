@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useContext } from 'react';
 import { TouchableOpacity } from 'react-native';
@@ -12,6 +11,7 @@ import handleLogout from '../../../functions/handleLogout';
 import MyProfile from '../../../screens/MyProfile';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from '../styles';
+import Favoris from '../../../screens/PlantMed/favoris';
 
 // Creating stack navigator
 const Stack = createStackNavigator();
@@ -24,11 +24,8 @@ const MyProfileStack = () => {
     // Storing theme config according to the theme mode
     const theme = isLightTheme ? lightTheme : darkTheme;
 
-    // Navigation
-    const navigation = useNavigation();
-
     // Screen options
-    const screenOptions = ({ route }) => ({
+    const screenOptions = ({ navigation }) => ({
         headerTitleAlign: 'center',
         headerTitleStyle: [styles.headerTitle],
         headerTintColor: IndependentColors.white,
@@ -42,13 +39,7 @@ const MyProfileStack = () => {
         ],
         headerLeft: () => (
             <TouchableOpacity
-                onPress={() => {
-                    if (route.name === 'My Profile') {
-                        navigation.navigate('Home Stack');
-                    } else {
-                        navigation.navigate('My Profile');
-                    }
-                }}
+                onPress={() => navigation.goBack()}
                 style={styles.leftArrowIcon}
             >
                 <SvgXml
@@ -71,12 +62,13 @@ const MyProfileStack = () => {
 
     // Returning
     return (
-        <Stack.Navigator screenOptions={screenOptions}>
+        <Stack.Navigator initialRouteName="My Profile" screenOptions={screenOptions}>
             <Stack.Screen
                 name="My Profile"
                 component={MyProfile}
                 options={{ title: 'Mon profil' }}
             />
+            <Stack.Screen name="Mes favoris" component={Favoris} />
         </Stack.Navigator>
     );
 };
