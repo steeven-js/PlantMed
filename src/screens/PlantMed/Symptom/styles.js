@@ -205,10 +205,12 @@ export default StyleSheet.create({
     marginHorizontal: STANDARD_SPACING * 3,
   },
   bannerImage: {
-    width: null,
-    height: null,
+    width: '100%',
+    height: '100%',
     flex: STANDARD_FLEX,
-    resizeMode: 'cover',
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'contain',
   },
   productWrapper: {
     marginHorizontal: STANDARD_SPACING * 3,
