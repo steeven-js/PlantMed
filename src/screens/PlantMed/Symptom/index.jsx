@@ -1,24 +1,27 @@
 import {
   View,
-  FlatList,
   TouchableOpacity,
   Image,
   Text,
   ScrollView,
+  Linking,
+  ActivityIndicator,
 } from 'react-native';
 import React, { useEffect } from 'react';
 import styles from './styles';
 import { SvgXml } from 'react-native-svg';
-import { useContext, useRef, useState } from 'react';
+import { useContext } from 'react';
 import ic_star from '../../../assets/icons/svg/ic_star';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
-import GridViewProductsData from '../../../data/GridViewProductsData';
-import ic_plus_dark_green from '../../../assets/icons/svg/ic_plus_dark_green';
 import ic_heart_dark_green from '../../../assets/icons/svg/ic_heart_dark_green';
-import ic_minus_dark_green from '../../../assets/icons/svg/ic_minus_dark_green';
-import { SCREEN_WIDTH, STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import ic_share from '../../../assets/icons/svg/ic_share';
+import { sharePlant } from '../../../functions/share';
+import { useUserSymptomsFavoris } from '../../../functions/loadUserFavoris';
+import { addOrRemovePlantFavoris } from '../../../functions/addOrRemove';
+import ic_star_white from '../../../assets/icons/svg/ic_star_white';
 
 // Functional component
 const Symptom = ({ route }) => {
@@ -30,6 +33,8 @@ const Symptom = ({ route }) => {
 
   const { symptomId, setTitle } = route.params;
   const symptomData = useSelector((state) => state.symptoms.symptomsData.find(symptom => symptom.id === symptomId));
+  const isLoading = useSelector((state) => state.symptoms.isLoading);
+  const uid = useSelector((state) => state.auth.uid);
 
   // Récupérer la navigation
   const navigation = useNavigation();
@@ -38,106 +43,103 @@ const Symptom = ({ route }) => {
     navigation.setOptions({ title: symptomData.name });
   }, [symptomData, setTitle, navigation]);
 
-  // Local states
-  const [activeScrollIndex, setActiveScrollIndex] = useState(0);
+  // Image URL
+  const imageURL =
+    symptomData.media && symptomData.media.length > 0 ? symptomData.media[0].original_url : null;
 
-  // useRef hooks
-  const verticalFlatList = useRef(null);
-  const horizontalFlatList = useRef(null);
-
-  // Scrolling FlatLists
-  const scrollToIndex = index => {
-    // Updating state
-    setActiveScrollIndex(index);
-
-    // Scrolling active thumbnail image to the specified index
-    verticalFlatList?.current?.scrollToIndex({
-      index,
-      animated: true,
-      viewPosition: 0.5,
-    });
-
-    // Scrolling large image to specific offset based on active scroll index
-    horizontalFlatList?.current?.scrollToOffset({
-      offset: SCREEN_WIDTH * 0.5 * index,
-      animated: true,
-    });
+  // Partager une plante
+  const handleShare = () => {
+    sharePlant(symptomId);
   };
 
-  // Method to render large image
-  const _renderLargeImages = ({ item, index }) => (
-    <View key={index} style={[styles.largeImageWrapper]}>
-      <Image source={item.productImage} style={styles.largeImage} />
-    </View>
-  );
+  // Use useUserPlantsFavoris to fetch user's favorites
+  const userSymptomsFavoris = useUserSymptomsFavoris(uid);
 
-  // Method to render thumbnail image
-  const _renderThumbnailImages = ({ item, index }) => (
-    <TouchableOpacity
-      onPress={() => scrollToIndex(index)}
-      key={index}
-      style={[
-        styles.thumbnailImageWrapper,
-        {
-          backgroundColor:
-            activeScrollIndex === index ? theme.accentLightest : theme.primary,
-          borderColor:
-            activeScrollIndex === index ? theme.accent : theme.accentLightest,
-        },
-      ]}>
-      <Image source={item.productImage} style={styles.thumbnailImage} />
-    </TouchableOpacity>
-  );
+  // Si plantId est dans userFavoris, alors la plante est en favoris sinon non
+  // console.log('userPlantsFavoris:', userPlantsFavoris);
+  const isFavoris = userSymptomsFavoris && userSymptomsFavoris.userSymptomsFavoris && userSymptomsFavoris.userSymptomsFavoris.includes && userSymptomsFavoris.userSymptomsFavoris.includes(symptomId);
+  // console.log('isFavoris:', isFavoris);
+
+  // Ajouter ou supprimer une plante des favoris
+  const handleaddOrRemovePlantFavoris = async () => {
+    await addOrRemovePlantFavoris({ uid, data: symptomData, symptomId });
+  };
 
   // Returning
   return (
     <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
-      <View style={styles.flatListsWrapper}>
-        {/* Vertical FlatList */}
-        <View
-          style={[
-            styles.verticalFlatListWrapper,
-            { backgroundColor: theme.secondary },
-          ]}>
-          <FlatList
-            ref={verticalFlatList}
-            bounces={false}
-            showsVerticalScrollIndicator={false}
-            data={GridViewProductsData}
-            keyExtractor={item => item.id}
-            scrollEnabled
-            renderItem={_renderThumbnailImages}
-            style={styles.verticalFlatList}
-            contentContainerStyle={styles.verticalFlatListContentContainerStyle}
-          />
-        </View>
 
-        {/* Horizontal FlatList */}
-        <View
-          style={[
-            styles.horizontalFlatListWrapper,
-            { backgroundColor: theme.accentLightest },
-          ]}>
-          <FlatList
-            ref={horizontalFlatList}
-            bounces={false}
-            pagingEnabled={true}
-            showsHorizontalScrollIndicator={false}
-            data={GridViewProductsData}
-            keyExtractor={item => item.id}
-            horizontal
-            scrollEnabled
-            renderItem={_renderLargeImages}
-            onMomentumScrollEnd={ev => {
-              scrollToIndex(
-                Math.round(
-                  ev.nativeEvent.contentOffset.x / (SCREEN_WIDTH * 0.5),
-                ),
-              );
-            }}
+      <View style={styles.fullWidthBannerImageWrapper}>
+        {/* Banner */}
+        {imageURL ? (
+          <Image
+            source={
+              imageURL
+                ? { uri: imageURL }
+                : require('../../../assets/images/banners/home/808_x_338.png')
+            }
+            style={styles.bannerImage}
           />
+        ) : (
+          <ActivityIndicator
+            size="large"
+            color={theme.textHighContrast}
+            style={[
+              styles.mainWrapper,
+              { justifyContent: 'center', alignItems: 'center' },
+            ]}
+          />
+        )}
+
+        <View style={styles.imageIcons}>
+          <View style={styles.imageIconsItem}>
+            <TouchableOpacity
+              onPress={isLoading ? undefined : handleShare}
+            >
+              {isLoading ? (
+                <ActivityIndicator
+                  size="large"
+                  color={theme.textHighContrast}
+                />
+              ) : (
+                <SvgXml
+                  xml={ic_share}
+                  width={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                  height={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                />
+              )}
+            </TouchableOpacity>
+          </View>
+          <View style={styles.imageIconsItem}>
+            <TouchableOpacity
+              onPress={
+                isLoading
+                  ? undefined
+                  : uid
+                    ? handleaddOrRemovePlantFavoris
+                    : () =>
+                      navigation.navigate('Auth Stack', {
+                        screen: 'Login',
+                      })
+              }
+            >
+              {isLoading ? (
+                <ActivityIndicator
+                  size="large"
+                  color={theme.textHighContrast}
+                />
+              ) : (
+                <SvgXml
+                  xml={isFavoris ? ic_star : ic_star_white}
+                  width={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                  height={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
+
       {/* Product details wrapper */}
       <View style={styles.productDetailsOuterWrapper}>
         <ScrollView
@@ -147,6 +149,7 @@ const Symptom = ({ route }) => {
             styles.productDetailsScrollView,
             { backgroundColor: theme.primary },
           ]}>
+
           <View style={styles.productTitleAndHeartIconWrapper}>
             <View style={styles.productTitleWrapper}>
               <Text
@@ -189,60 +192,6 @@ const Symptom = ({ route }) => {
               (177)
             </Text>
           </TouchableOpacity>
-
-          {/* Pricing and quantity */}
-          <View>
-            <Text
-              style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
-              Price
-            </Text>
-            <View style={styles.productPriceAndQuantityWrapper}>
-              <Text style={[styles.productPrice, { color: theme.accent }]}>
-                $10.07
-              </Text>
-              {/* Quantity wrapper */}
-              <View
-                style={[
-                  styles.productQuantityWrapper,
-                  { borderColor: theme.accent },
-                ]}>
-                {/* Plus icon wrapper */}
-                <TouchableOpacity
-                  style={[
-                    styles.plusIconWrapper,
-                    { backgroundColor: theme.secondary },
-                  ]}>
-                  <SvgXml
-                    xml={ic_plus_dark_green}
-                    width={STANDARD_VECTOR_ICON_SIZE * 0.9}
-                    height={STANDARD_VECTOR_ICON_SIZE * 0.9}
-                  />
-                </TouchableOpacity>
-
-                {/* Quantity */}
-                <Text
-                  style={[
-                    styles.productQuantity,
-                    { color: theme.textHighContrast },
-                  ]}>
-                  1
-                </Text>
-
-                {/* Minus icon wrapper */}
-                <TouchableOpacity
-                  style={[
-                    styles.minusIconWrapper,
-                    { backgroundColor: theme.secondary },
-                  ]}>
-                  <SvgXml
-                    xml={ic_minus_dark_green}
-                    width={STANDARD_VECTOR_ICON_SIZE * 0.9}
-                    height={STANDARD_VECTOR_ICON_SIZE * 0.9}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
 
           {/* Plant care */}
           <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
@@ -315,12 +264,22 @@ const Symptom = ({ route }) => {
           </Text>
 
           <Text style={[styles.description, { color: theme.textLowContrast }]}>
-            Alocasia macrorrhiza 'Stingray' is a unique and striking tropical
-            plant known for its distinct leaf shape resembling a stingray. It
-            belongs to the Araceae family and is native to Southeast Asia.
-            'Stingray' is a cultivar of the Alocasia macrorrhiza species and is
-            popular among plant enthusiasts for its attractive foliage.
+            {symptomData.description}
           </Text>
+
+          {/* source */}
+          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
+            Source
+          </Text>
+
+          {symptomData?.source && (
+            <TouchableOpacity onPress={() => Linking.openURL(symptomData?.source)}>
+              <Text style={[styles.description, { color: theme.textLowContrast }]}>
+                {symptomData.source}
+              </Text>
+            </TouchableOpacity>
+          )}
+
         </ScrollView>
       </View>
     </View>
