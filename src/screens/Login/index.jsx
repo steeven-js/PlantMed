@@ -221,44 +221,6 @@ const Login = () => {
                         )}
                     </Animatable.View>
 
-                    {/* Or divider component */}
-                    {/* <Animatable.View animation="fadeInUp" delay={1500}>
-                        <OrDivider label="or login with" />
-                    </Animatable.View> */}
-
-                    {/* Social media icons wrapper */}
-                    {/* <View style={styles.socialMediaIconsWrapper}>
-                        <Animatable.View animation="bounceIn" delay={1700}>
-                            <TouchableOpacity>
-                                <SvgXml
-                                    xml={ic_facebook}
-                                    width={STANDARD_SOCIAL_ICON_SIZE}
-                                    height={STANDARD_SOCIAL_ICON_SIZE}
-                                />
-                            </TouchableOpacity>
-                        </Animatable.View>
-
-                        <Animatable.View animation="bounceIn" delay={1900}>
-                            <TouchableOpacity>
-                                <SvgXml
-                                    xml={ic_twitter}
-                                    width={STANDARD_SOCIAL_ICON_SIZE}
-                                    height={STANDARD_SOCIAL_ICON_SIZE}
-                                />
-                            </TouchableOpacity>
-                        </Animatable.View>
-
-                        <Animatable.View animation="bounceIn" delay={2100}>
-                            <TouchableOpacity>
-                                <SvgXml
-                                    xml={ic_google}
-                                    width={STANDARD_SOCIAL_ICON_SIZE}
-                                    height={STANDARD_SOCIAL_ICON_SIZE}
-                                />
-                            </TouchableOpacity>
-                        </Animatable.View>
-                    </View> */}
-
                     {/* Vertical spacer */}
                     <View style={styles.verticalSpacer} />
 
