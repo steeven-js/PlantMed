@@ -16,12 +16,12 @@ const ListItem = ({ item, title, theme }) => {
         if (item && item.name) {
             if (title === 'Plantes') {
                 navigation.navigate('PlantMed Stack', {
-                    screen: 'Plant',
+                    screen: 'PlantView',
                     params: { plantId: item.id, plantName: item.name },
                 });
             } else if (title === 'Symptômes') {
                 navigation.navigate('PlantMed Stack', {
-                    screen: 'Symptom',
+                    screen: 'SymptomView',
                     params: { symptomId: item.id, symptomName: item.name },
                 });
             } else {

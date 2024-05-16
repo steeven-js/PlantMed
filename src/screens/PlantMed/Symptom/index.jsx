@@ -13,7 +13,6 @@ import { SvgXml } from 'react-native-svg';
 import { useContext } from 'react';
 import ic_star from '../../../assets/icons/svg/ic_star';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
-import ic_heart_dark_green from '../../../assets/icons/svg/ic_heart_dark_green';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
@@ -41,7 +40,7 @@ const Symptom = ({ route }) => {
 
   useEffect(() => {
     navigation.setOptions({ title: symptomData.name });
-  }, [symptomData, setTitle, navigation]);
+  }, [symptomData, navigation, setTitle]);
 
   // Image URL
   const imageURL =
@@ -58,11 +57,11 @@ const Symptom = ({ route }) => {
   // Si plantId est dans userFavoris, alors la plante est en favoris sinon non
   // console.log('userSymptomsFavoris:', userSymptomsFavoris);
   const isFavoris = userSymptomsFavoris && userSymptomsFavoris.userSymptomsFavoris && userSymptomsFavoris.userSymptomsFavoris.includes && userSymptomsFavoris.userSymptomsFavoris.includes(symptomId);
-  console.log('isFavoris:', isFavoris);
+  // console.log('isFavoris:', isFavoris);
 
-    // Ajouter ou supprimer une plante des favoris
-    const handleaddOrRemoveSymptomFavoris = async () => {
-      await addOrRemoveSymptomFavoris({ uid, data: symptomData, symptomId });
+  // Ajouter ou supprimer une plante des favoris
+  const handleaddOrRemoveSymptomFavoris = async () => {
+    await addOrRemoveSymptomFavoris({ uid, data: symptomData, symptomId });
   };
 
   // Returning
@@ -79,7 +78,7 @@ const Symptom = ({ route }) => {
                 : require('../../../assets/images/banners/home/808_x_338.png')
             }
             style={[styles.bannerImage, { backgroundColor: theme.secondary }]}
-            />
+          />
         ) : (
           <ActivityIndicator
             size="large"
@@ -158,104 +157,6 @@ const Symptom = ({ route }) => {
                 {symptomData.name}
               </Text>
             </View>
-            <TouchableOpacity
-              style={[
-                styles.heartIconWrapper,
-                { backgroundColor: theme.secondary },
-              ]}>
-              <SvgXml
-                xml={ic_heart_dark_green}
-                width={STANDARD_VECTOR_ICON_SIZE}
-                height={STANDARD_VECTOR_ICON_SIZE}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/* Rating */}
-          <TouchableOpacity
-            style={styles.ratingWrapper}
-            onPress={() => navigation.navigate('Product Reviews')}>
-            <SvgXml
-              xml={ic_star}
-              width={STANDARD_VECTOR_ICON_SIZE * 0.9}
-              height={STANDARD_VECTOR_ICON_SIZE * 0.9}
-            />
-            <Text style={[styles.rating, { color: theme.accent }]}>4.8</Text>
-            <Text style={[styles.outOf, { color: theme.textLowContrast }]}>
-              out of
-            </Text>
-            <Text
-              style={[styles.ratingThreshold, { color: theme.textHighContrast }]}>
-              5.0
-            </Text>
-            <Text style={[styles.totalRating, { color: theme.textHighContrast }]}>
-              (177)
-            </Text>
-          </TouchableOpacity>
-
-          {/* Plant care */}
-          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
-            Plant care
-          </Text>
-
-          {/* Horizontal ScrollView */}
-          <View>
-            <ScrollView
-              horizontal
-              bounces={false}
-              showsHorizontalScrollIndicator={false}>
-              <View style={styles.plantCareWrapper}>
-                <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
-                  Temperature
-                </Text>
-                <Text
-                  style={[
-                    styles.plantCareAmount,
-                    { color: theme.textLowContrast },
-                  ]}>
-                  25 - 30 degree celsius
-                </Text>
-              </View>
-
-              <View style={styles.plantCareWrapper}>
-                <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
-                  Water
-                </Text>
-                <Text
-                  style={[
-                    styles.plantCareAmount,
-                    { color: theme.textLowContrast },
-                  ]}>
-                  Medium(2 times/day)
-                </Text>
-              </View>
-
-              <View style={styles.plantCareWrapper}>
-                <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
-                  Humidity
-                </Text>
-                <Text
-                  style={[
-                    styles.plantCareAmount,
-                    { color: theme.textLowContrast },
-                  ]}>
-                  25 - 30 degree celsius
-                </Text>
-              </View>
-
-              <View style={styles.plantCareWrapper}>
-                <Text style={[styles.plantCareTitle, { color: theme.accent }]}>
-                  Sunlight
-                </Text>
-                <Text
-                  style={[
-                    styles.plantCareAmount,
-                    { color: theme.textLowContrast },
-                  ]}>
-                  Very low(Upto 1 hour)
-                </Text>
-              </View>
-            </ScrollView>
           </View>
 
           {/* Description */}
@@ -266,6 +167,33 @@ const Symptom = ({ route }) => {
           <Text style={[styles.description, { color: theme.textLowContrast }]}>
             {symptomData.description}
           </Text>
+
+
+          {/* Plant care */}
+          <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
+            Plantes associées
+          </Text>
+
+          {/* Horizontal ScrollView */}
+          <View>
+            <ScrollView
+              horizontal
+              bounces={false}
+              showsHorizontalScrollIndicator={false}>
+
+              {symptomData.plants.map((plant) => (
+                <View style={styles.plantCareWrapper}>
+                  <Text
+                    style={[
+                      styles.plantCareAmount,
+                      { color: theme.textLowContrast },
+                    ]}>
+                    {plant.name}
+                  </Text>
+                </View>
+              ))}
+            </ScrollView>
+          </View>
 
           {/* source */}
           <Text style={[styles.sectionTitle, { color: theme.textHighContrast }]}>
