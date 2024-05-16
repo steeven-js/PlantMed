@@ -1,159 +1,71 @@
-import styles from './styles';
-import {
-    STANDARD_USER_AVATAR_WRAPPER_SIZE,
-    STANDARD_VECTOR_ICON_SIZE,
-} from '../../config/Constants';
-import { useContext } from 'react';
-import { SvgXml } from 'react-native-svg';
-import Link from '../../components/links/Link';
+import { useIsFocused } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import React, { useContext, useEffect } from 'react';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import av_woman_4 from '../../assets/avatars/svg/av_woman_4';
-import { ThemeContext } from '../../theming/contexts/ThemeContext';
-import SectionTitle from '../../components/headings/SectionTitle';
-import GridViewProductsData from '../../data/GridViewProductsData';
-import ic_drawer_menu from '../../assets/icons/svg/ic_drawer_menu';
-import GridViewProduct from '../../components/cards/GridViewProduct';
-import SearchTextInput from '../../components/inputs/SearchTextInput';
-import { View, TouchableOpacity, ScrollView, Image } from 'react-native';
 
-// Functional component
-const Home = ({ navigation }) => {
+// Importez le hook useIsFocused
+import SearchTextInput from '../../components/inputs/SearchTextInput';
+import { useLoadingState, useSearchState } from '../../hooks';
+import { ThemeContext } from '../../theming/contexts/ThemeContext';
+import HomeContent from './HomeContent';
+import HomeHeader from './HomeHeader';
+import SearchResults from './SearchResults';
+import styles from './styles';
+
+const Home = () => {
     // Using context
     const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
     // Storing theme config according to the theme mode
     const theme = isLightTheme ? lightTheme : darkTheme;
 
-    // Returning
+    const { search, setSearch } = useSearchState();
+    const { isLoading, setIsLoading } = useLoadingState();
+
+    // Navigation
+    const navigation = useNavigation();
+
+    const isFocused = useIsFocused(); // Utilisez le hook useIsFocused pour détecter si l'écran est au premier plan
+
+    // Utilisez useEffect pour réinitialiser la recherche lorsque l'écran perd le focus
+    useEffect(() => {
+        if (!isFocused) {
+            setSearch('');
+        }
+    }, [isFocused, setSearch]);
+
     return (
         <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
             <Animatable.View animation="fadeInUp" delay={100}>
-                <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
-                    {/* Header */}
-                    <View style={styles.header}>
-                        {/* Hamburger menu */}
-                        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                            <SvgXml
-                                xml={ic_drawer_menu}
-                                width={STANDARD_VECTOR_ICON_SIZE * 2}
-                                height={STANDARD_VECTOR_ICON_SIZE * 2}
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    bounces={false}
+                >
+                    <HomeHeader
+                        navigation={navigation}
+                        setIsLoading={setIsLoading}
+                    />
+                    <SearchTextInput value={search} onChangeText={setSearch} />
+                    {isLoading ? (
+                        <View style={styles.activityIndicatorContainer}>
+                            <ActivityIndicator
+                                size="large"
+                                color={theme.primary}
                             />
-                        </TouchableOpacity>
-
-                        {/* Avatar */}
-                        <SvgXml
-                            xml={av_woman_4}
-                            width={STANDARD_USER_AVATAR_WRAPPER_SIZE}
-                            height={STANDARD_USER_AVATAR_WRAPPER_SIZE}
+                        </View>
+                    ) : (
+                        <SearchResults
+                            search={search}
+                            setIsLoading={setIsLoading}
+                            theme={theme}
                         />
-                    </View>
-
-                    {/* Search text input component */}
-                    <SearchTextInput />
-
-                    {/* Vertical spacer */}
-                    <View style={styles.verticalSpacer} />
-
-                    {/* Banner 3 */}
-                    <View style={styles.fullWidthBannerImageWrapper}>
-                        <Image
-                            source={require('../../assets/images/banners/home/808_x_338.png')}
-                            style={styles.bannerImage}
-                        />
-                    </View>
-
-                    {/* Vertical spacer */}
-                    <View style={styles.verticalSpacer} />
-
-                    {/* Section title & link wrapper */}
-                    <View style={styles.sectionTitleAndLinkWrapper}>
-                        {/* Section title component */}
-                        <SectionTitle title="Best seller" />
-
-                        {/* Link component */}
-                        <Link
-                            label="See all"
-                            onPress={() => navigation.navigate('Grid View Products')}
-                        />
-                    </View>
-
-                    {/* Horizontal scroll view */}
-                    <View>
-                        <ScrollView
-                            horizontal
-                            showsHorizontalScrollIndicator={false}
-                            bounces={false}
-                            contentContainerStyle={
-                                styles.horizontalScrollViewContentContainerStyle
-                            }>
-                            {GridViewProductsData.map((product, index) => (
-                                <View key={index} style={styles.productWrapper}>
-                                    <GridViewProduct
-                                        productImage={product.productImage}
-                                        productTitle={product.productTitle}
-                                        productPrice={product.productPrice}
-                                        rating={product.rating}
-                                        onPress={() => navigation.navigate('Product')}
-                                    />
-                                </View>
-                            ))}
-                        </ScrollView>
-                    </View>
-
-                    {/* Banner 3 */}
-                    <View style={styles.fullWidthBannerImageWrapper}>
-                        <Image
-                            source={require('../../assets/images/banners/home/808_x_338.png')}
-                            style={styles.bannerImage}
-                        />
-                    </View>
-
-                    {/* Vertical spacer */}
-                    <View style={styles.verticalSpacer} />
-
-                    {/* Section title & link wrapper */}
-                    <View style={styles.sectionTitleAndLinkWrapper}>
-                        {/* Section title component */}
-                        <SectionTitle title="New arrivals" />
-
-                        {/* Link component */}
-                        <Link
-                            label="See all"
-                            onPress={() => navigation.navigate('Grid View Products')}
-                        />
-                    </View>
-
-                    {/* Horizontal scroll view */}
-                    <View>
-                        <ScrollView
-                            horizontal
-                            showsHorizontalScrollIndicator={false}
-                            bounces={false}
-                            contentContainerStyle={
-                                styles.horizontalScrollViewContentContainerStyle
-                            }>
-                            {GridViewProductsData.map((product, index) => (
-                                <View key={index} style={styles.productWrapper}>
-                                    <GridViewProduct
-                                        productImage={product.productImage}
-                                        productTitle={product.productTitle}
-                                        productPrice={product.productPrice}
-                                        rating={product.rating}
-                                        onPress={() => navigation.navigate('Product')}
-                                    />
-                                </View>
-                            ))}
-                        </ScrollView>
-                    </View>
-
-                    {/* Vertical spacer */}
-                    <View style={styles.verticalSpacer} />
-
+                    )}
+                    <HomeContent theme={theme} />
                 </ScrollView>
             </Animatable.View>
         </View>
     );
 };
 
-// Exporting
 export default Home;

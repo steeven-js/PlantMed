@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
-const Plant = ({ route }) => {
+const PlantTest = ({ route }) => {
     const { plantId, setTitle } = route.params;
     const plantData = useSelector(state => state.plants.plantsData.find(plant => plant.id === plantId));
     // console.log('plantData', plantData);
@@ -22,4 +22,4 @@ const Plant = ({ route }) => {
     );
 };
 
-export default Plant;
+export default PlantTest;

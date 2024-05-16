@@ -7,9 +7,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
-import Plant from '../../../screens/PlantMed/plant';
-import Symptom from '../../../screens/PlantMed/symptom';
 import PlantMed from '../../../screens/PlantMed';
+import GridViewSymptoms from '../../../screens/GridViewSymptoms';
+import GridViewPlants from '../../../screens/GridViewPlants';
+import Product from '../../../screens/Product';
+import ProductReviews from '../../../screens/ProductReviews';
+import Symptom from '../../../screens/PlantMed/Symptom';
+import Plant from '../../../screens/PlantMed/Plant';
+
 
 // Creating stack navigator
 const Stack = createStackNavigator();
@@ -51,8 +56,12 @@ const PlantMedStack = () => {
     return (
         <Stack.Navigator initialRouteName="PlantMed" screenOptions={screenOptions}>
             <Stack.Screen name="PlantMed" component={PlantMed} />
-            <Stack.Screen name="Symptom" component={Symptom} />
-            <Stack.Screen name="Plant" component={Plant} />
+            <Stack.Screen name="SymptomsList" component={GridViewSymptoms} options={{ title: 'Usage thérapeutique' }} />
+            <Stack.Screen name="PlantsList" component={GridViewPlants} options={{ title: 'Plantes médicinales' }} />
+            <Stack.Screen name="SymptomView" component={Symptom} />
+            <Stack.Screen name="PlantView" component={Plant} />
+            <Stack.Screen name="Product" component={Product} />
+            <Stack.Screen name="Product Reviews" component={ProductReviews} />
         </Stack.Navigator>
     );
 };

@@ -3,10 +3,8 @@ import { useContext } from 'react';
 import { SvgXml } from 'react-native-svg';
 import Home from '../../../screens/Home';
 import { TouchableOpacity } from 'react-native';
-import Product from '../../../screens/Product';
 import Categories from '../../../screens/Categories';
 import { IndependentColors } from '../../../config/Colors';
-import ProductReviews from '../../../screens/ProductReviews';
 import { createStackNavigator } from '@react-navigation/stack';
 import ListViewProducts from '../../../screens/ListViewProducts';
 import GridViewProducts from '../../../screens/GridViewProducts';
@@ -14,9 +12,7 @@ import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import useFetchPlants from '../../../hooks/useFetchPlants';
-import GridViewProducts2 from '../../../screens/GridViewProducts2';
 import useFetchSymptomes from '../../../hooks/useFetchSymptoms';
-import GridViewProducts3 from '../../../screens/GridViewProducts3';
 
 // Creating stack navigator
 const Stack = createStackNavigator();
@@ -69,8 +65,6 @@ const HomeStack = () => {
       <Stack.Screen name="Categories" component={Categories} />
       <Stack.Screen name="List View Products" component={ListViewProducts} />
       <Stack.Screen name="Grid View Products" component={GridViewProducts} />
-      <Stack.Screen name="Product" component={Product} />
-      <Stack.Screen name="Product Reviews" component={ProductReviews} />
     </Stack.Navigator>
   );
 };

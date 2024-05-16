@@ -1,25 +1,26 @@
 import styles from './styles';
-import {useContext} from 'react';
-import {View} from 'react-native';
-import {scale} from 'react-native-size-matters';
-import {FlatGrid} from 'react-native-super-grid';
+import { useContext } from 'react';
+import { View } from 'react-native';
+import { scale } from 'react-native-size-matters';
+import { FlatGrid } from 'react-native-super-grid';
 import * as Animatable from 'react-native-animatable';
-import {STANDARD_SPACING} from '../../config/Constants';
-import {ThemeContext} from '../../theming/contexts/ThemeContext';
-import GridViewProductsData from '../../data/GridViewProductsData';
-import GridViewProduct from '../../components/cards/GridViewProduct';
+import { STANDARD_SPACING } from '../../../config/Constants';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
+import GridViewProduct from '../../../components/cards/GridViewProduct';
+import { useSelector } from 'react-redux';
 
-// Functional component
-const GridViewProducts = ({navigation}) => {
+const GridHomePlants = ({ navigation, route }) => {
   // Using context
-  const {isLightTheme, lightTheme, darkTheme} = useContext(ThemeContext);
+  const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
   // Storing theme config according to the theme mode
   const theme = isLightTheme ? lightTheme : darkTheme;
 
-  // Returning
+  const { plantId } = route.params;
+  const plantData = useSelector(state => state.plants.plantsData.find(plant => plant.id === plantId));
+
   return (
-    <View style={[styles.mainWrapper, {backgroundColor: theme.primary}]}>
+    <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
       {/* Flatgrid wrapper */}
       <Animatable.View
         animation="fadeInUp"
@@ -28,13 +29,13 @@ const GridViewProducts = ({navigation}) => {
         {/* Flatgrid */}
         <FlatGrid
           itemDimension={scale(130)}
-          data={GridViewProductsData}
+          data={plantData}
           style={styles.flatGrid}
           spacing={STANDARD_SPACING * 3}
           bounces={false}
           showsVerticalScrollIndicator={false}
           keyExtractor={item => item.id}
-          renderItem={({item}) => (
+          renderItem={({ item }) => (
             <GridViewProduct
               productImage={item.productImage}
               productTitle={item.productTitle}
@@ -49,5 +50,4 @@ const GridViewProducts = ({navigation}) => {
   );
 };
 
-// Exporting
-export default GridViewProducts;
+export default GridHomePlants;

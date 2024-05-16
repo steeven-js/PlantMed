@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
-const Symptom = ({ route }) => {
+const SymptomTest = ({ route }) => {
     const { symptomId, setTitle } = route.params;
     const symptomData = useSelector((state) => state.symptoms.symptomsData.find(symptom => symptom.id === symptomId));
 
@@ -21,4 +21,4 @@ const Symptom = ({ route }) => {
     );
 };
 
-export default Symptom;
+export default SymptomTest;
