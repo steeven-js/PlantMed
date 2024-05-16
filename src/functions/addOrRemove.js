@@ -42,7 +42,7 @@ export const addOrRemovePlantFavoris = async ({ uid, data, plantId }) => {
                 ShowToast({
                     type: 'info',
                     position: 'top',
-                    text1: 'Liste de favoris créée',
+                    text1: 'Plante ajoutée aux favoris',
                     visibilityTime: 3000,
                     autoHide: true,
                 });
@@ -57,7 +57,7 @@ export const addOrRemovePlantFavoris = async ({ uid, data, plantId }) => {
             ShowToast({
                 type: 'info',
                 position: 'top',
-                text1: 'Document utilisateur créé',
+                text1: 'Plante ajoutée aux favoris',
                 visibilityTime: 3000,
                 autoHide: true,
             });
@@ -112,7 +112,7 @@ export const addOrRemoveSymptomFavoris = async ({ uid, data, symptomId }) => {
                 ShowToast({
                     type: 'info',
                     position: 'top',
-                    text1: 'Liste de symptômes favoris créée',
+                    text1: 'Symptôme ajouté aux favoris',
                     visibilityTime: 3000,
                     autoHide: true,
                 });
@@ -127,7 +127,7 @@ export const addOrRemoveSymptomFavoris = async ({ uid, data, symptomId }) => {
             ShowToast({
                 type: 'info',
                 position: 'top',
-                text1: 'Document utilisateur créé',
+                text1: 'Symptôme ajouté aux favoris',
                 visibilityTime: 3000,
                 autoHide: true,
             });
