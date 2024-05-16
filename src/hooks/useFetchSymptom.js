@@ -1,57 +1,42 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const useFetchPlant = (plantId) => {
+const useFetchSymptom = (symptomId) => {
     // États pour stocker les données, l'état de chargement et les erreurs
-    const [data, setData] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [data, setData] = useState([]); // Stocker les données récupérées
+    const [isLoading, setIsLoading] = useState(false); // Indiquer si les données sont en cours de chargement
+    const [error, setError] = useState(null); // Stocker les erreurs rencontrées lors du chargement des données
 
-    // Point de terminaison pour récupérer les données de la plante
-    const endpoint = `https://apimonremede.jsprod.fr/api/plants/${plantId}`;
+    // URL de l'API pour récupérer les symptômes en fonction de l'identifiant du symptôme
+    const endpoint = `https://apimonremede.jsprod.fr/api/symptomes/${symptomId}`;
 
-    // Fonction pour récupérer les données de la plante
+    // Fonction fetchData pour effectuer une requête et récupérer les données des symptômes
     const fetchData = useCallback(async () => {
-        setIsLoading(true); // Début du chargement
-        setError(null); // Réinitialiser l'erreur
+        setIsLoading(true); // Définir isLoading à true pour indiquer le début du chargement
 
         try {
-            const response = await fetch(endpoint);
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const result = await response.json();
-            setData(result); // Mise à jour des données de la plante
+            const response = await fetch(endpoint); // Effectuer une requête pour récupérer les données
+            const result = await response.json(); // Convertir la réponse en JSON
+            setData(result); // Mettre à jour les données avec les données récupérées
         } catch (fetchError) {
-            setError(fetchError.message); // Gestion des erreurs
+            setError(fetchError); // Enregistrer l'erreur en cas d'échec de la requête
+            console.error(fetchError); // Afficher l'erreur dans la console
         } finally {
-            setIsLoading(false); // Fin du chargement
+            setIsLoading(false); // Définir isLoading à false pour indiquer la fin du chargement, quelle que soit l'issue
         }
-    }, [endpoint]);
+    }, [endpoint]); // Utiliser useCallback pour éviter les re-render inutiles en fonction des changements de l'endpoint
 
-    // Utilisation de useEffect pour exécuter fetchData lorsque plantId ou fetchData changent
+    // Utiliser useEffect pour effectuer la requête lors du premier rendu ou lorsque symptomId change
     useEffect(() => {
-        let isMounted = true;
+        fetchData(); // Appeler la fonction fetchData pour récupérer les données des symptômes
+    }, [symptomId, fetchData]); // Passer symptomId et fetchData comme dépendances de useEffect
 
-        const fetchDataSafe = async () => {
-            await fetchData();
-            if (!isMounted) {return;}
-        };
+    // Fonction refetch pour recharger les données des symptômes
+    const refetch = () => {
+        fetchData(); // Appeler la fonction fetchData pour recharger les données
+    };
 
-        fetchDataSafe();
-
-        return () => {
-            isMounted = false;
-        };
-    }, [plantId, fetchData]);
-
-    // Fonction pour recharger les données de la plante
-    const refetch = useCallback(() => {
-        fetchData();
-    }, [fetchData]);
-
-    return { data, isLoading, error, refetch }; // Retourne les données de la plante, l'état de chargement, l'erreur et la fonction de rechargement
+    // Retourner les données des symptômes, l'état de chargement, les erreurs et la fonction de rechargement
+    return { data, isLoading, error, refetch };
 };
 
-export default useFetchPlant;
+export default useFetchSymptom; // Exporter le hook useFetchSymptom

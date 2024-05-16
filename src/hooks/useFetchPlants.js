@@ -1,31 +1,32 @@
-import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setPlantsData, setPlantsLoading, setPlantsError } from '../redux/reducer/plants';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { setPlantsData, setPlantsLoading } from '../redux/reducer/plants';
 
 const useFetchPlants = () => {
+    const [plants, setPlants] = useState([]);
+    const [isPlantsLoading, setIsPlantsLoading] = useState(false);
+    const [plantsError, setPlantsError] = useState(null);
+
     const dispatch = useDispatch();
-    const plants = useSelector((state) => state.plants.plantsData);
-    const isPlantsLoading = useSelector((state) => state.plants.isLoading);
-    const plantsError = useSelector((state) => state.plants.error);
 
     const endpoint = 'https://apimonremede.jsprod.fr/api/plants';
 
     const fetchData = useCallback(async () => {
-        dispatch(setPlantsLoading(true));
-        dispatch(setPlantsError(null));
+        setIsPlantsLoading(true);
 
         try {
             const response = await fetch(endpoint);
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
             const result = await response.json();
+            setPlants(result);
             dispatch(setPlantsData(result));
-        } catch (error) {
-            dispatch(setPlantsError(error.message));
-        } finally {
             dispatch(setPlantsLoading(false));
+        } catch (error) {
+            setPlantsError(error);
+            dispatch(setPlantsLoading(false));
+            console.error(error);
+        } finally {
+            setIsPlantsLoading(false);
         }
     }, [dispatch]);
 
@@ -33,9 +34,9 @@ const useFetchPlants = () => {
         fetchData();
     }, [fetchData]);
 
-    const plantsRefetch = useCallback(() => {
+    const plantsRefetch = () => {
         fetchData();
-    }, [fetchData]);
+    };
 
     return { plants, isPlantsLoading, plantsError, plantsRefetch };
 };

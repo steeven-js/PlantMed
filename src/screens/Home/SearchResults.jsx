@@ -12,7 +12,7 @@ const SearchResults = ({ search, theme }) => {
     const [searching, setSearching] = useState(false);
 
     // Récupérer les données de plantes et de symptômes depuis Redux
-    const plantData = useSelector((state) => state.plants.plantData);
+    const plantData = useSelector((state) => state.plants.plantsData);
     const symptomsData = useSelector((state) => state.symptoms.symptomsData);
 
     useEffect(() => {

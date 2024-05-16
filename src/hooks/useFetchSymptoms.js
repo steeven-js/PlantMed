@@ -1,31 +1,32 @@
-import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSymptomsData, setSymptomsLoading, setSymptomsError } from '../redux/reducer/symptoms';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { setSymptomsData, setSymptomsLoading } from '../redux/reducer/symptoms';
 
 const useFetchSymptoms = () => {
+    const [symptoms, setSymptoms] = useState([]);
+    const [plantsError, setPlantsError] = useState(null);
+    const [isSymptomsLoading, setIsSymptomsLoading] = useState(false);
+
     const dispatch = useDispatch();
-    const symptomsData = useSelector((state) => state.symptoms.symptomsData);
-    const isSymptomsLoading = useSelector((state) => state.symptoms.isLoading);
-    const symptomsError = useSelector((state) => state.symptoms.error);
 
     const endpoint = 'https://apimonremede.jsprod.fr/api/symptomes';
 
     const fetchData = useCallback(async () => {
-        dispatch(setSymptomsLoading(true));
-        dispatch(setSymptomsError(null));
+        setIsSymptomsLoading(true);
 
         try {
             const response = await fetch(endpoint);
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
             const result = await response.json();
+            setSymptoms(result);
             dispatch(setSymptomsData(result));
-        } catch (error) {
-            dispatch(setSymptomsError(error.message));
-        } finally {
             dispatch(setSymptomsLoading(false));
+        } catch (error) {
+            setPlantsError(error);
+            dispatch(setSymptomsLoading(false));
+            console.error(error);
+        } finally {
+            setIsSymptomsLoading(false);
         }
     }, [dispatch]);
 
@@ -33,11 +34,11 @@ const useFetchSymptoms = () => {
         fetchData();
     }, [fetchData]);
 
-    const symptomsRefetch = useCallback(() => {
+    const symptomsRefetch = () => {
         fetchData();
-    }, [fetchData]);
+    };
 
-    return { symptomsData, isSymptomsLoading, symptomsError, symptomsRefetch }; // Utilisation du même nom de variable
+    return { symptoms, isSymptomsLoading, plantsError, symptomsRefetch };
 };
 
 export default useFetchSymptoms;

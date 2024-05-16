@@ -1,108 +1,230 @@
-import styles from './styles';
-import {
-  STANDARD_USER_AVATAR_WRAPPER_SIZE,
-  STANDARD_VECTOR_ICON_SIZE,
-} from '../../config/Constants';
-import {useContext} from 'react';
-import {View} from 'react-native';
-import {SvgXml} from 'react-native-svg';
-import Link from '../../components/links/Link';
-import Button from '../../components/buttons/Button';
+import { useContext, useState } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import TextInput from '../../components/inputs/TextInput';
+import { SvgXml } from 'react-native-svg';
+import * as ImagePicker from 'react-native-image-picker';
+import { useSelector } from 'react-redux';
+import useEditProfile from '../../hooks/userEditProfile';
+
 import av_woman_4 from '../../assets/avatars/svg/av_woman_4';
-import {ThemeContext} from '../../theming/contexts/ThemeContext';
 import ic_edit_dark_green from '../../assets/icons/svg/ic_edit_dark_green';
+import Button from '../../components/buttons/Button';
+import TextInput from '../../components/inputs/TextInput';
+import Link from '../../components/links/Link';
+import {
+    STANDARD_USER_AVATAR_WRAPPER_SIZE,
+    STANDARD_VECTOR_ICON_SIZE,
+} from '../../config/Constants';
+import { ThemeContext } from '../../theming/contexts/ThemeContext';
+import styles from './styles';
+import useAuthCheck from '../../functions/authCheck';
 
 // Functional component
-const EditProfile = ({navigation}) => {
-  // Using context
-  const {isLightTheme, lightTheme, darkTheme} = useContext(ThemeContext);
+const EditProfile = ({ navigation }) => {
+    // Using context
+    const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
-  // Storing theme config according to the theme mode
-  const theme = isLightTheme ? lightTheme : darkTheme;
+    // Storing theme config according to the theme mode
+    const theme = isLightTheme ? lightTheme : darkTheme;
 
-  // Returning
-  return (
-    <View style={[styles.mainWrapper, {backgroundColor: theme.accent}]}>
-      {/* Form wrapper */}
-      <Animatable.View
-        animation="fadeInUp"
-        delay={100}
-        style={[styles.formWrapper, {backgroundColor: theme.primary}]}>
-        {/* Avatar wrapper */}
-        <Animatable.View
-          animation="fadeInUp"
-          delay={300}
-          style={styles.avatarWrapper}>
-          {/* Avatar */}
-          <SvgXml
-            xml={av_woman_4}
-            width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
-            height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
-          />
+    // AuthCheck
+    const { isUserAuthenticated, userAuthEmail } = useAuthCheck();
 
-          {/* Camera icon wrapper */}
-          <Animatable.View
-            animation="bounceIn"
-            delay={1700}
-            style={[
-              styles.cameraIconWrapper,
-              {backgroundColor: theme.accentLightest},
-            ]}>
-            <SvgXml
-              xml={ic_edit_dark_green}
-              width={STANDARD_VECTOR_ICON_SIZE}
-              height={STANDARD_VECTOR_ICON_SIZE}
-            />
-          </Animatable.View>
-        </Animatable.View>
+    // Utilisation de useEditProfile
+    const { displayName, updateDisplayName, updateAvatar } = useEditProfile();
 
-        {/* Vertical spacer */}
-        <View style={styles.verticalSpacer} />
+    // State local pour stocker le nouveau nom d'affichage et l'URL de l'avatar
+    const [newDisplayName, setNewDisplayName] = useState('');
 
-        {/* Text input component */}
-        <Animatable.View animation="fadeInUp" delay={700}>
-          <TextInput label="Name" placeholder="Enter your name" />
-        </Animatable.View>
+    // State local pour gérer l'état de la soumission du formulaire
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-        {/* Vertical spacer */}
-        <View style={styles.verticalSpacer} />
+    // Selecting the avatarUrl from the Redux store
+    const avatarUrl = useSelector(state => state.auth.avatarUrl);
 
-        {/* Text input component */}
-        <Animatable.View animation="fadeInUp" delay={900}>
-          <TextInput label="Email" placeholder="Enter your email" />
-        </Animatable.View>
+    // Fonction pour changer l'avatar
+    const handleOpenGallery = () => {
+        // Configuration de l'image à choisir dans la galerie
+        const options = {
+            mediaType: 'photo',
+            quality: 0.5,
+        };
 
-        {/* Vertical spacer */}
-        <View style={styles.verticalSpacer} />
+        // Ouvrir la galerie
+        ImagePicker.launchImageLibrary(options, response => {
+            if (response.didCancel) {
+                // L'utilisateur a annulé la sélection de l'image
+                console.log('Sélection de l\'image annulée');
+            } else if (response.error) {
+                // Une erreur s'est produite lors de la sélection de l'image
+                console.error('Erreur lors de la sélection de l\'image :', response.error);
+            } else {
+                // L'image a été sélectionnée avec succès
+                const selectedUri = response.assets[0].uri; // Utilisez response.assets[0].uri
+                if (selectedUri) {
+                    console.log('URI de l\'image sélectionnée :', selectedUri); // Ajoutez ce log
+                    // Mettre à jour l'avatar en appelant updateAvatar
+                    updateAvatar(selectedUri);
+                } else {
+                    console.error('URI de l\'image sélectionnée est undefined');
+                }
+            }
+        });
+    };
 
-        {/* Text input component */}
-        <Animatable.View animation="fadeInUp" delay={1100}>
-          <TextInput
-            label="Phone number"
-            placeholder="Enter your phone number"
-          />
-        </Animatable.View>
+    // Fonction de gestion de la soumission du formulaire
+    const handleSubmit = async () => {
+        try {
+            // Définir l'état de soumission sur true pour indiquer que le formulaire est en cours de soumission
+            setIsSubmitting(true);
 
-        {/* Vertical spacer */}
-        <View style={styles.verticalSpacer} />
+            // Mettez à jour le nom d'affichage avec la fonction updateDisplayName
+            await updateDisplayName(newDisplayName);
 
-        {/* Link component */}
-        <Animatable.View animation="fadeInUp" delay={1300}>
-          <Link label="Want to change password?" />
-        </Animatable.View>
+            // Réinitialiser le champ de saisie après la soumission réussie
+            setNewDisplayName('');
 
-        {/* Vertical spacer */}
-        <View style={styles.verticalSpacer} />
+            // Affichez un message de succès
+            console.log('Nom d\'affichage mis à jour avec succès !');
+        } catch (error) {
+            // Affichez une erreur s'il y a un problème lors de la mise à jour du nom d'affichage
+            console.error('Erreur lors de la mise à jour du nom d\'affichage :', error);
+        } finally {
+            // Définir l'état de soumission sur false une fois la soumission terminée (qu'elle réussisse ou échoue)
+            setIsSubmitting(false);
+        }
+    };
 
-        {/* Button component */}
-        <Animatable.View animation="fadeInUp" delay={1500}>
-          <Button label="Submit & Save" />
-        </Animatable.View>
-      </Animatable.View>
-    </View>
-  );
+    // Function to check if the form can be submitted
+    const canSubmitForm = () => {
+        // Disable form submission if newDisplayName is empty
+        return newDisplayName.trim() !== '';
+    };
+
+    // Returning
+    return (
+        <>
+            {!isUserAuthenticated ? (
+                <Animatable.View
+                    animation="fadeInUp"
+                    delay={100}
+                    style={[styles.formWrapper, { backgroundColor: theme.primary }]}
+                >
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: theme.textHighContrast }} > Vous devez être connecté pour voir vos favoris </Text>
+                        <View style={styles.verticalSpacer} />
+                        <Button label="Se connecter" onPress={() => navigation.navigate('Auth Stack', { screen: 'Login' })} />
+                    </View>
+                </Animatable.View>
+            ) : (
+                <View style={[styles.mainWrapper, { backgroundColor: theme.accent }]}>
+                    {/* Form wrapper */}
+                    <Animatable.View
+                        animation="fadeInUp"
+                        delay={100}
+                        style={[styles.formWrapper, { backgroundColor: theme.primary }]}
+                    >
+                        {/* Avatar wrapper */}
+                        <Animatable.View
+                            animation="fadeInUp"
+                            delay={300}
+                            style={styles.avatarWrapper}
+                        >
+                            {/* Afficher l'avatar sélectionné s'il y en a un */}
+                            {avatarUrl ? (
+                                <Image
+                                    source={{ uri: avatarUrl }}
+                                    style={{
+                                        width: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2,
+                                        height: STANDARD_USER_AVATAR_WRAPPER_SIZE * 2,
+                                        borderRadius: STANDARD_USER_AVATAR_WRAPPER_SIZE,
+                                    }}
+                                />
+                            ) : (
+                                // Sinon, afficher l'avatar par défaut
+                                <SvgXml
+                                    xml={av_woman_4}
+                                    width={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
+                                    height={STANDARD_USER_AVATAR_WRAPPER_SIZE * 2}
+                                />
+                            )}
+
+                            {/* Camera icon wrapper */}
+                            <Animatable.View
+                                animation="bounceIn"
+                                delay={1700}
+                                style={[
+                                    styles.cameraIconWrapper,
+                                    { backgroundColor: theme.accentLightest },
+                                ]}
+                            >
+                                <TouchableOpacity onPress={handleOpenGallery}>
+                                    <SvgXml
+                                        xml={ic_edit_dark_green}
+                                        width={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                                        height={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                                    />
+                                </TouchableOpacity>
+                            </Animatable.View>
+                        </Animatable.View>
+
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Text input component */}
+                        <Animatable.View animation="fadeInUp" delay={700}>
+                            <TextInput
+                                label="Name"
+                                value={newDisplayName !== '' ? newDisplayName : displayName}
+                                onChangeText={setNewDisplayName} // Mettre à jour le nouveau nom d'affichage lors de la saisie
+                                placeholder="Votre pseudo"
+                                keyboardType={'default'}
+                            />
+                        </Animatable.View>
+
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Text input component */}
+                        {isUserAuthenticated && (
+                            <Animatable.View animation="fadeInUp" delay={900}>
+                                <TextInput
+                                    label="Email"
+                                    value={userAuthEmail}
+                                    placeholder="Votre adresse e-mail"
+                                    disabled={true}
+                                />
+                            </Animatable.View>
+                        )}
+
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Link component */}
+                        <Animatable.View animation="fadeInUp" delay={1100}>
+                            <Link label="Want to change password?" />
+                        </Animatable.View>
+
+                        {/* Vertical spacer */}
+                        <View style={styles.verticalSpacer} />
+
+                        {/* Button component */}
+                        <Animatable.View animation="fadeInUp" delay={1300}>
+                            <Button
+                                label="Submit & Save"
+                                onPress={handleSubmit}
+                                disabled={isSubmitting || !canSubmitForm()}
+                            />
+                        </Animatable.View>
+                    </Animatable.View>
+                </View>
+            )}
+        </>
+    );
+
 };
 
 // Exporting
