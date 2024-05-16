@@ -54,7 +54,7 @@ const PlantMedStack = () => {
             <Stack.Screen name="PlantMed" component={PlantMed} />
             <Stack.Screen name="Symptom" component={Symptom} />
             <Stack.Screen name="Plant" component={Plant} />
-            <Stack.Screen name="Favoris" component={Favoris} />
+            <Stack.Screen name="Mes favoris" component={Favoris} />
         </Stack.Navigator>
     );
 };
