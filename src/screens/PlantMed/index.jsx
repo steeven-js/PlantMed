@@ -1,20 +1,12 @@
 import styles from './styles';
-import {
-    STANDARD_USER_AVATAR_WRAPPER_SIZE,
-    STANDARD_VECTOR_ICON_SIZE,
-} from '../../config/Constants';
 import { useContext, useEffect } from 'react';
-import { SvgXml } from 'react-native-svg';
 import Link from '../../components/links/Link';
 import * as Animatable from 'react-native-animatable';
-import av_woman_4 from '../../assets/avatars/svg/av_woman_4';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import SectionTitle from '../../components/headings/SectionTitle';
-import ic_drawer_menu from '../../assets/icons/svg/ic_drawer_menu';
 import GridViewSymptoms from '../../components/cards/GridViewSymptom';
 import GridViewPlants from '../../components/cards/GridViewPlant';
-import SearchTextInput from '../../components/inputs/SearchTextInput';
-import { View, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, ScrollView, Image } from 'react-native';
 import { useSelector } from 'react-redux';
 
 const PlantMed = ({ navigation }) => {
@@ -35,27 +27,6 @@ const PlantMed = ({ navigation }) => {
         <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
             <Animatable.View animation="fadeInUp" delay={100}>
                 <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
-                    {/* Header */}
-                    <View style={styles.header}>
-                        {/* Hamburger menu */}
-                        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                            <SvgXml
-                                xml={ic_drawer_menu}
-                                width={STANDARD_VECTOR_ICON_SIZE * 2}
-                                height={STANDARD_VECTOR_ICON_SIZE * 2}
-                            />
-                        </TouchableOpacity>
-
-                        {/* Avatar */}
-                        <SvgXml
-                            xml={av_woman_4}
-                            width={STANDARD_USER_AVATAR_WRAPPER_SIZE}
-                            height={STANDARD_USER_AVATAR_WRAPPER_SIZE}
-                        />
-                    </View>
-
-                    {/* Search text input component */}
-                    <SearchTextInput />
 
                     {/* Vertical spacer */}
                     <View style={styles.verticalSpacer} />
@@ -74,11 +45,11 @@ const PlantMed = ({ navigation }) => {
                     {/* Section title & link wrapper */}
                     <View style={styles.sectionTitleAndLinkWrapper}>
                         {/* Section title component */}
-                        <SectionTitle title="Best seller" />
+                        <SectionTitle title="Usage thérapeutique" />
 
                         {/* Link component */}
                         <Link
-                            label="See all"
+                            label="Tous voir"
                             onPress={() => navigation.navigate('SymptomsList')}
                         />
                     </View>
@@ -122,11 +93,11 @@ const PlantMed = ({ navigation }) => {
                     {/* Section title & link wrapper */}
                     <View style={styles.sectionTitleAndLinkWrapper}>
                         {/* Section title component */}
-                        <SectionTitle title="New arrivals" />
+                        <SectionTitle title="Plantes médicinales" />
 
                         {/* Link component */}
                         <Link
-                            label="See all"
+                            label="Tout voir"
                             onPress={() => navigation.navigate('PlantsList')}
                         />
                     </View>
