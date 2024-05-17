@@ -182,7 +182,7 @@ const Symptom = ({ route }) => {
               showsHorizontalScrollIndicator={false}>
 
               {symptomData.plants.map((plant) => (
-                <View style={styles.plantCareWrapper}>
+                <View key={plant.id} style={styles.plantCareWrapper}>
                   <Text
                     style={[
                       styles.plantCareAmount,

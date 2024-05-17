@@ -27,7 +27,7 @@ const PlantMedStack = () => {
     const theme = isLightTheme ? lightTheme : darkTheme;
 
     // Screen options
-    const screenOptions = ({ navigation }) => ({
+    const screenOptions = ({ navigation, route }) => ({
         headerTitleAlign: 'center',
         headerTitleStyle: [styles.headerTitle],
         headerTintColor: IndependentColors.white,
