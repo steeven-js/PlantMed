@@ -1,13 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import SectionTitle from '../../../components/headings/SectionTitle';
 import Link from '../../../components/links/Link';
-import { IndependentColors } from '../../../config/Colors';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from './styles';
+import GridViewSymptom from '../../../components/cards/GridViewSymptom';
 
 const HomeCategoriesSection = ({ homeData }) => {
     // Using context
@@ -43,82 +43,34 @@ const HomeCategoriesSection = ({ homeData }) => {
                 {/* Link component */}
                 <Link
                     label={homeData[0].link}
-                    // onPress={navigateAndPerformAction1}
+                // onPress={navigateAndPerformAction1}
                 />
             </View>
 
-            {/* Vertical spacer */}
-            <View style={styles.verticalSpacer} />
-
-            {/* Categories label scrollview wrapper */}
+            {/* Horizontal scroll view */}
             <View>
-                {/* Categories label scrollview */}
                 <ScrollView
                     horizontal
-                    bounces={false}
                     showsHorizontalScrollIndicator={false}
+                    bounces={false}
                     contentContainerStyle={
                         styles.horizontalScrollViewContentContainerStyle
                     }
                 >
-                    {randomSymptoms.map((item, index) => {
-                        return index === 0 ? (
-                            <TouchableOpacity
-                                key={index}
-                                style={[
-                                    styles.categoryLabelWrapper,
-                                    { backgroundColor: theme.accent },
-                                ]}
-                                onPress={() => navigation.navigate('SymptomsList')}
-                            >
-                                <Text
-                                    style={[
-                                        styles.categoryLabel,
-                                        {
-                                            color: IndependentColors.white,
-                                        },
-                                    ]}
-                                >
-                                    Tous voir
-                                </Text>
-                            </TouchableOpacity>
-                        ) : (
-                            <TouchableOpacity
-                                key={item.id}
-                                style={[
-                                    styles.categoryLabelWrapper,
-                                    {
-                                        backgroundColor: theme.secondary,
-                                    },
-                                ]}
-                                onPress={() =>
-                                    navigation.navigate('PlantMed Stack', {
-                                        screen: 'SymptomView',
-                                        params: {
-                                            symptomId: item.id,
-                                            symptomName: item.name,
-                                        },
-                                    })
+                    {randomSymptoms.length > 0 && randomSymptoms.map((item, index) => (
+                        <View key={index} style={styles.productWrapper} theme={theme}>
+                            <GridViewSymptom
+                                symptomImage={
+                                    item.media && item.media.length > 0
+                                        ? { uri: item.media[0].original_url }
+                                        : require('../../../assets/images/banners/home/808_x_338.png')
                                 }
-                            >
-                                <Text
-                                    style={[
-                                        styles.categoryLabel,
-                                        {
-                                            color: theme.textLowContrast,
-                                        },
-                                    ]}
-                                >
-                                    {item.name}
-                                </Text>
-                            </TouchableOpacity>
-                        );
-                    })}
+                                symptomTitle={item.name}
+                                onPress={() => navigation.navigate('SymptomView', { symptomId: item.id })}
+                            />
+                        </View>
+                    ))}
                 </ScrollView>
-
-                {/* Vertical spacer */}
-                <View style={styles.verticalSpacer} />
-
             </View>
         </>
     );

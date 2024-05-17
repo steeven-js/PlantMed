@@ -5,8 +5,8 @@ import SectionTitle from '../../../components/headings/SectionTitle';
 import Link from '../../../components/links/Link';
 import styles from './styles';
 import useFetchPlantsSpecials from '../../../hooks/useFetchPlantsSpecials';
-import PlantGridView from '../../components/cards/PlantGridView';
 import { navigateAndPerformAction } from '../../../functions/navigationComplex';
+import GridViewPlant from '../../../components/cards/GridViewPlant';
 
 const HomeBestSellerView = ({ theme, homeData }) => {
     // Navigation
@@ -60,7 +60,7 @@ const HomeBestSellerView = ({ theme, homeData }) => {
                         <>
                             {bestSellerPlants.length > 0 && bestSellerPlants.map((plant, index) => (
                                 <View key={index} style={styles.productWrapper}>
-                                    <PlantGridView
+                                    <GridViewPlant
                                         plantImage={
                                             plant.media && plant.media.length > 0
                                                 ? { uri: plant.media[0].original_url }
