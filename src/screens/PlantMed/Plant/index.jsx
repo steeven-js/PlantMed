@@ -53,10 +53,6 @@ const Plant = ({ route }) => {
     navigation.setOptions({ title: plantData.name });
   }, [plantData, setTitle, navigation]);
 
-  // Image URL
-  const imageURL =
-    plantData.media && plantData.media.length > 0 ? plantData.media[0].original_url : null;
-
   // Tab navigator
   const Tab = createMaterialTopTabNavigator();
 
@@ -95,12 +91,12 @@ const Plant = ({ route }) => {
     <>
       <View style={styles.fullWidthBannerImageWrapper}>
         {/* Banner */}
-        {imageURL ? (
+        {plantData ? (
           <Image
             source={
-              imageURL
-                ? { uri: imageURL }
-                : require('../../../assets/images/banners/home/808_x_338.png')
+              plantData.media && plantData.media.length > 0
+              ? { uri: plantData.media[0].original_url }
+              : require('../../../assets/images/banners/home/808_x_338.png')
             }
             style={styles.bannerImage}
           />

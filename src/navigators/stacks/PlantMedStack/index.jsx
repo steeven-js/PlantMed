@@ -7,15 +7,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
-import GridViewSymptoms from '../../../screens/GridViewSymptoms';
-import GridViewPlants from '../../../screens/GridViewPlants';
-import Product from '../../../screens/Product';
-import ProductReviews from '../../../screens/ProductReviews';
 import Symptom from '../../../screens/PlantMed/Symptom';
 import Plant from '../../../screens/PlantMed/Plant';
 import Favoris from '../../../screens/PlantMed/favoris';
 import PlantMedTab from '../../tabs/PlantMedTab';
 import { getFocusedRouteNameFromRoute, useNavigation } from '@react-navigation/native';
+import GridViewSymptoms from '../../../screens/PlantMed/GridViewSymptoms';
+import GridViewPlants from '../../../screens/PlantMed/GridViewPlants';
 
 
 // Creating stack navigator
@@ -92,8 +90,6 @@ const PlantMedStack = () => {
             <Stack.Screen name="SymptomView" component={Symptom} />
             <Stack.Screen name="PlantView" component={Plant} />
             <Stack.Screen name="Favoris" component={Favoris} />
-            <Stack.Screen name="Product" component={Product} />
-            <Stack.Screen name="Product Reviews" component={ProductReviews} />
         </Stack.Navigator>
     );
 };

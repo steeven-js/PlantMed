@@ -52,10 +52,6 @@ const Symptom = ({ route }) => {
     navigation.setOptions({ title: symptomData.name });
   }, [symptomData, navigation, setTitle]);
 
-  // Image URL
-  const imageURL =
-    symptomData.media && symptomData.media.length > 0 ? symptomData.media[0].original_url : null;
-
   // Tab navigator
   const Tab = createMaterialTopTabNavigator();
 
@@ -94,12 +90,12 @@ const Symptom = ({ route }) => {
     <>
       {/* Banner 3 */}
       <View style={styles.fullWidthBannerImageWrapper}>
-        {imageURL ? (
+        {symptomData ? (
           <Image
             source={
-              imageURL
-                ? { uri: imageURL }
-                : require('../../../assets/images/banners/home/808_x_338.png')
+              symptomData.media && symptomData.media.length > 0
+                  ? { uri: symptomData.media[0].original_url }
+                  : require('../../../assets/images/banners/home/808_x_338.png')
             }
             style={[styles.bannerImage, { backgroundColor: theme.secondary }]}
           />

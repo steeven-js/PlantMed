@@ -10,9 +10,9 @@ import ic_plant_light_green from '../../../assets/icons/svg/ic_plant_dark_light_
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import ic_info_light_green from '../../../assets/icons/svg/ic_info_light_green';
-import GridViewSymptoms from '../../../screens/GridViewSymptoms';
-import GridHomePlants from '../../../screens/PlantMed/GridHomePlants';
+import GridViewSymptoms from '../../../screens/PlantMed/GridViewSymptoms';
 import Favoris from '../../../screens/PlantMed/favoris';
+import GridViewPlants from '../../../screens/PlantMed/GridViewPlants';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -60,7 +60,7 @@ const PlantMedTab = ({ onTabChange }) => {
             />
             <Tab.Screen
                 name="Plants"
-                component={GridHomePlants}
+                component={GridViewPlants}
                 options={{
                     tabBarIcon: ({ focused }) =>
                         focused ? (

@@ -3,11 +3,8 @@ import { useContext } from 'react';
 import { SvgXml } from 'react-native-svg';
 import Home from '../../../screens/Home';
 import { TouchableOpacity } from 'react-native';
-import Categories from '../../../screens/Categories';
 import { IndependentColors } from '../../../config/Colors';
 import { createStackNavigator } from '@react-navigation/stack';
-import ListViewProducts from '../../../screens/ListViewProducts';
-import GridViewProducts from '../../../screens/GridViewProducts';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
@@ -62,9 +59,6 @@ const HomeStack = () => {
         component={Home}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Categories" component={Categories} />
-      <Stack.Screen name="List View Products" component={ListViewProducts} />
-      <Stack.Screen name="Grid View Products" component={GridViewProducts} />
     </Stack.Navigator>
   );
 };

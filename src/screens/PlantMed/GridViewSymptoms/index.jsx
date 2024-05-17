@@ -4,23 +4,27 @@ import { View } from 'react-native';
 import { scale } from 'react-native-size-matters';
 import { FlatGrid } from 'react-native-super-grid';
 import * as Animatable from 'react-native-animatable';
-import { STANDARD_SPACING } from '../../config/Constants';
-import { ThemeContext } from '../../theming/contexts/ThemeContext';
-import GridViewPlant from '../../components/cards/GridViewPlant';
+import { STANDARD_SPACING } from '../../../config/Constants';
 import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import GridViewSymptom from '../../../components/cards/GridViewSymptom';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 
 // Functional component
-const GridViewPlants = ({ navigation }) => {
+const GridViewSymptoms = ({ route }) => {
   // Using context
   const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
 
   // Storing theme config according to the theme mode
   const theme = isLightTheme ? lightTheme : darkTheme;
 
-  const plantsData = useSelector((state) => state.plants.plantsData);
+  const symptomsData = useSelector((state) => state.symptoms.symptomsData);
+
+  // Récupérer la navigation
+  const navigation = useNavigation();
 
   useEffect(() => {
-  }, [plantsData]);
+  }, [symptomsData]);
 
   // Returning
   return (
@@ -33,21 +37,21 @@ const GridViewPlants = ({ navigation }) => {
         {/* Flatgrid */}
         <FlatGrid
           itemDimension={scale(130)}
-          data={plantsData}
+          data={symptomsData}
           style={styles.flatGrid}
           spacing={STANDARD_SPACING * 3}
           bounces={false}
           showsVerticalScrollIndicator={false}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
-            <GridViewPlant
-              plantImage={
+            <GridViewSymptom
+              symptomImage={
                 item.media && item.media.length > 0
                   ? { uri: item.media[0].original_url }
                   : null
               }
-              plantTitle={item.name}
-              onPress={() => navigation.navigate('PlantView', { plantId: item.id })}
+              symptomTitle={item.name}
+              onPress={() => navigation.navigate('SymptomView', { symptomId: item.id })}
             />
           )}
         />
@@ -57,4 +61,4 @@ const GridViewPlants = ({ navigation }) => {
 };
 
 // Exporting
-export default GridViewPlants;
+export default GridViewSymptoms;
