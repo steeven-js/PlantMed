@@ -30,7 +30,7 @@ const GridViewPlant = ({
       {/* Product title */}
       <Text
         style={[styles.plantTitle, {color: theme.textHighContrast}]}
-        numberOfLines={3}
+        numberOfLines={1}
         ellipsizeMode="tail">
         {plantTitle}
       </Text>

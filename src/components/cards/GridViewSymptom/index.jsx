@@ -30,7 +30,7 @@ const GridViewSymptom = ({
       {/* Product title */}
       <Text
         style={[styles.symptomTitle, {color: theme.textHighContrast}]}
-        numberOfLines={3}
+        numberOfLines={1}
         ellipsizeMode="tail">
         {symptomTitle}
       </Text>

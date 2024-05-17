@@ -76,7 +76,11 @@ const Favoris = () => {
                                 {plantsData.map((item, index) => (
                                     <View key={index} style={styles.productWrapper}>
                                         <GridViewPlant
-                                            plantImage={item.image ? { uri: item.image } : require('../../assets/images/banners/home/808_x_338.png')}
+                                            plantImage={
+                                                item.media && item.media.length > 0
+                                                    ? { uri: item.media[0].original_url }
+                                                    : require('../../assets/images/banners/home/808_x_338.png') // Corrected closing parenthesis
+                                            }
                                             plantTitle={item.name || ''}
                                             touchOptions={true}
                                             onPressOption={() => deleteOnePlant(item.id)}
@@ -106,7 +110,11 @@ const Favoris = () => {
                                 {symptomsData.map((item, index) => (
                                     <View key={index} style={styles.productWrapper}>
                                         <GridViewSymptom
-                                            symptomImage={item.image ? { uri: item.image } : require('../../assets/images/banners/home/808_x_338.png')}
+                                            symptomImage={
+                                                item.media && item.media.length > 0
+                                                    ? { uri: item.media[0].original_url }
+                                                    : require('../../assets/images/banners/home/808_x_338.png') // Corrected closing parenthesis
+                                            }
                                             symptomTitle={item.name || ''}
                                             touchOptions={true}
                                             onPressOption={() => deleteOneSymptom(item.id)}

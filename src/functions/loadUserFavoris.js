@@ -1,10 +1,10 @@
-import axios from 'axios';
 import firestore from '@react-native-firebase/firestore';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const useUserPlantsFavoris = (userId) => {
     const [userFavoris, setUserFavoris] = useState([]);
-    const [plantsData, setPlantsData] = useState([]);
+    const plantsData = useSelector((state) => state.plants.plantsData);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -16,24 +16,8 @@ export const useUserPlantsFavoris = (userId) => {
 
                 const userFavorisData = documentSnapshot.data();
                 if (userFavorisData && userFavorisData.plantIds) {
-                    const userPlantIds = userFavorisData.plantIds.map(
-                        (item) => item.plantId,
-                    );
+                    const userPlantIds = userFavorisData.plantIds.map((item) => item.plantId);
                     setUserFavoris(userPlantIds);
-                    const fetchedPlantsData = await Promise.all(userPlantIds.map(async (plantId) => {
-                        try {
-                            const response = await axios.get(`https://apimonremede.jsprod.fr/api/plants/${plantId}`);
-                            return {
-                                id: plantId,
-                                name: response.data.name,
-                                image: response.data.media && response.data.media.length > 0 ? response.data.media[0].original_url : null,
-                            };
-                        } catch (error) {
-                            // console.error('Error fetching plant data:', error);
-                            return null;
-                        }
-                    }));
-                    setPlantsData(fetchedPlantsData.filter(data => data !== null));
                 }
             } catch (error) {
                 console.error('Error fetching user favoris:', error);
@@ -52,12 +36,14 @@ export const useUserPlantsFavoris = (userId) => {
         return () => unsubscribe();
     }, [userId]);
 
-    return { userPlantsFavoris: userFavoris, plantsData };
+    const userPlantsData = userFavoris.map(plantId => plantsData.find(plant => plant.id === plantId)).filter(plant => plant);
+
+    return { userPlantsFavoris: userFavoris, plantsData: userPlantsData };
 };
 
 export const useUserSymptomsFavoris = (userId) => {
     const [userFavoris, setUserFavoris] = useState([]);
-    const [symptomsData, setSymptomsData] = useState([]);
+    const symptomsData = useSelector((state) => state.symptoms.symptomsData);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -73,20 +59,6 @@ export const useUserSymptomsFavoris = (userId) => {
                         (item) => item.symptomId,
                     );
                     setUserFavoris(userSymptomIds);
-                    const fetchedSymptomsData = await Promise.all(userSymptomIds.map(async (symptomId) => {
-                        try {
-                            const response = await axios.get(`https://apimonremede.jsprod.fr/api/symptomes/${symptomId}`);
-                            return {
-                                id: symptomId,
-                                name: response.data.name,
-                                image: response.data.media && response.data.media.length > 0 ? response.data.media[0].original_url : null,
-                            };
-                        } catch (error) {
-                            // console.error('Error fetching symptom data:', error);
-                            return null;
-                        }
-                    }));
-                    setSymptomsData(fetchedSymptomsData.filter(data => data !== null));
                 }
             } catch (error) {
                 console.error('Error fetching user favoris:', error);
@@ -105,5 +77,7 @@ export const useUserSymptomsFavoris = (userId) => {
         return () => unsubscribe();
     }, [userId]);
 
-    return { userSymptomsFavoris: userFavoris, symptomsData };
+    const userSymptomsData = userFavoris.map(symptomId => symptomsData.find(symptom => symptom.id === symptomId)).filter(symptom => symptom);
+
+    return { userSymptomsFavoris: userFavoris, symptomsData: userSymptomsData };
 };
