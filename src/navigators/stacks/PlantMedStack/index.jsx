@@ -7,13 +7,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
-import PlantMed from '../../../screens/PlantMed';
 import GridViewSymptoms from '../../../screens/GridViewSymptoms';
 import GridViewPlants from '../../../screens/GridViewPlants';
 import Product from '../../../screens/Product';
 import ProductReviews from '../../../screens/ProductReviews';
 import Symptom from '../../../screens/PlantMed/Symptom';
 import Plant from '../../../screens/PlantMed/Plant';
+import Favoris from '../../../screens/PlantMed/favoris';
+import PlantMedTab from '../../tabs/PlantMedTab';
 
 
 // Creating stack navigator
@@ -27,16 +28,7 @@ const PlantMedStack = () => {
     const theme = isLightTheme ? lightTheme : darkTheme;
 
     // Screen options
-    const screenOptions = ({ navigation, route }) => {
-
-        const handleBack = () => {
-            // Redirection logic
-            if (route.params.originRoute === 'Home') {
-                navigation.navigate('PlantMed');
-            } else {
-                navigation.goBack();
-            }
-        };
+    const screenOptions = ({ navigation }) => {
 
         // Header options
         return {
@@ -53,7 +45,7 @@ const PlantMedStack = () => {
             ],
             headerLeft: () => (
                 <TouchableOpacity
-                    onPress={ handleBack}
+                    onPress={ () => navigation.goBack() }
                     style={styles.leftArrowIcon}>
                     <SvgXml
                         xml={ic_arrow_left_white}
@@ -69,11 +61,12 @@ const PlantMedStack = () => {
     // Returning
     return (
         <Stack.Navigator initialRouteName="PlantMed" screenOptions={screenOptions}>
-            <Stack.Screen name="PlantMed" component={PlantMed} />
+            <Stack.Screen name="PlantMedTab" component={PlantMedTab} />
             <Stack.Screen name="SymptomsList" component={GridViewSymptoms} options={{ title: 'Usage thérapeutique' }} />
             <Stack.Screen name="PlantsList" component={GridViewPlants} options={{ title: 'Plantes médicinales' }} />
             <Stack.Screen name="SymptomView" component={Symptom} />
             <Stack.Screen name="PlantView" component={Plant} />
+            <Stack.Screen name="Favoris" component={Favoris} />
             <Stack.Screen name="Product" component={Product} />
             <Stack.Screen name="Product Reviews" component={ProductReviews} />
         </Stack.Navigator>

@@ -6,8 +6,8 @@ import { FlatGrid } from 'react-native-super-grid';
 import * as Animatable from 'react-native-animatable';
 import { STANDARD_SPACING } from '../../../config/Constants';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
-import GridViewProduct from '../../../components/cards/GridViewProduct';
 import { useSelector } from 'react-redux';
+import GridViewPlant from '../../../components/cards/GridViewPlant';
 
 const GridHomePlants = ({ navigation, route }) => {
   // Using context
@@ -16,8 +16,7 @@ const GridHomePlants = ({ navigation, route }) => {
   // Storing theme config according to the theme mode
   const theme = isLightTheme ? lightTheme : darkTheme;
 
-  const { plantId } = route.params;
-  const plantData = useSelector(state => state.plants.plantsData.find(plant => plant.id === plantId));
+  const plantData = useSelector(state => state.plants.plantsData);
 
   return (
     <View style={[styles.mainWrapper, { backgroundColor: theme.primary }]}>
@@ -36,12 +35,14 @@ const GridHomePlants = ({ navigation, route }) => {
           showsVerticalScrollIndicator={false}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
-            <GridViewProduct
-              productImage={item.productImage}
-              productTitle={item.productTitle}
-              productPrice={item.productPrice}
-              rating={item.rating}
-              onPress={() => navigation.navigate('Product')}
+            <GridViewPlant
+              plantImage={
+                item.media && item.media.length > 0
+                  ? { uri: item.media[0].original_url }
+                  : null
+              }
+              plantTitle={item.name}
+              onPress={() => navigation.navigate('PlantView', { plantId: item.id })}
             />
           )}
         />
