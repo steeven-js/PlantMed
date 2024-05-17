@@ -15,6 +15,7 @@ import Symptom from '../../../screens/PlantMed/Symptom';
 import Plant from '../../../screens/PlantMed/Plant';
 import Favoris from '../../../screens/PlantMed/favoris';
 import PlantMedTab from '../../tabs/PlantMedTab';
+import { getFocusedRouteNameFromRoute, useNavigation } from '@react-navigation/native';
 
 
 // Creating stack navigator
@@ -27,11 +28,28 @@ const PlantMedStack = () => {
     // Storing theme config according to the theme mode
     const theme = isLightTheme ? lightTheme : darkTheme;
 
-    // Screen options
-    const screenOptions = ({ navigation }) => {
+    // Navigation
+    const navigation = useNavigation();
 
+    // Get header title according to the route
+    const getHeaderTitle = (route) => {
+        const routeName = getFocusedRouteNameFromRoute(route) ?? 'Symptoms';
+        switch (routeName) {
+            case 'Symptoms':
+                return 'Usages thérapeutiques';
+            case 'Plants':
+                return 'Plantes médicinales';
+            case 'Favoris':
+                return 'Mes favoris';
+        }
+    };
+
+    // Screen options
+    const screenOptions = ({ route }) => {
+        const routeName = getFocusedRouteNameFromRoute(route);
         // Header options
         return {
+            headerTitle: routeName ? getHeaderTitle(route) : null,
             headerTitleAlign: 'center',
             headerTitleStyle: [styles.headerTitle],
             headerTintColor: IndependentColors.white,
@@ -45,8 +63,15 @@ const PlantMedStack = () => {
             ],
             headerLeft: () => (
                 <TouchableOpacity
-                    onPress={ () => navigation.goBack() }
-                    style={styles.leftArrowIcon}>
+                    onPress={() => {
+                        if (route.name === 'PlantMedTab') {
+                            navigation.navigate('Home Stack');
+                        } else {
+                            navigation.navigate('PlantMedTab');
+                        }
+                    }}
+                    style={styles.leftArrowIcon}
+                >
                     <SvgXml
                         xml={ic_arrow_left_white}
                         width={STANDARD_VECTOR_ICON_SIZE}
@@ -62,8 +87,8 @@ const PlantMedStack = () => {
     return (
         <Stack.Navigator initialRouteName="PlantMed" screenOptions={screenOptions}>
             <Stack.Screen name="PlantMedTab" component={PlantMedTab} />
-            <Stack.Screen name="SymptomsList" component={GridViewSymptoms} options={{ title: 'Usage thérapeutique' }} />
-            <Stack.Screen name="PlantsList" component={GridViewPlants} options={{ title: 'Plantes médicinales' }} />
+            <Stack.Screen name="SymptomsList" component={GridViewSymptoms} />
+            <Stack.Screen name="PlantsList" component={GridViewPlants} />
             <Stack.Screen name="SymptomView" component={Symptom} />
             <Stack.Screen name="PlantView" component={Plant} />
             <Stack.Screen name="Favoris" component={Favoris} />
