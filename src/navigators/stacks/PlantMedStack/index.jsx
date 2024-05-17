@@ -27,30 +27,48 @@ const PlantMedStack = () => {
     const theme = isLightTheme ? lightTheme : darkTheme;
 
     // Screen options
-    const screenOptions = ({ navigation, route }) => ({
-        headerTitleAlign: 'center',
-        headerTitleStyle: [styles.headerTitle],
-        headerTintColor: IndependentColors.white,
-        headerStyle: [
-            {
-                backgroundColor: theme.accent,
-                elevation: 0,
-                shadowOpacity: 0,
-                borderBottomWidth: 0,
-            },
-        ],
-        headerLeft: () => (
-            <TouchableOpacity
-                onPress={() => navigation.goBack()}
-                style={styles.leftArrowIcon}>
-                <SvgXml
-                    xml={ic_arrow_left_white}
-                    width={STANDARD_VECTOR_ICON_SIZE}
-                    height={STANDARD_VECTOR_ICON_SIZE}
-                />
-            </TouchableOpacity>
-        ),
-    });
+    const screenOptions = ({ navigation, route }) => {
+
+        const handleBack = () => {
+            // Redirection logic
+            if (route.name === 'SymptomsList' || route.name === 'PlantsList') {
+                navigation.navigate('PlantMed');
+            } else if (route.name === 'SymptomView') {
+                navigation.navigate('SymptomsList');
+            } else if (route.name === 'PlantView') {
+                navigation.navigate('PlantsList');
+            } else if (route.name === 'PlantMed') {
+                navigation.navigate('Home Stack');
+            }
+        };
+
+        // Header options
+        return {
+            headerTitleAlign: 'center',
+            headerTitleStyle: [styles.headerTitle],
+            headerTintColor: IndependentColors.white,
+            headerStyle: [
+                {
+                    backgroundColor: theme.accent,
+                    elevation: 0,
+                    shadowOpacity: 0,
+                    borderBottomWidth: 0,
+                },
+            ],
+            headerLeft: () => (
+                <TouchableOpacity
+                    onPress={ handleBack}
+                    style={styles.leftArrowIcon}>
+                    <SvgXml
+                        xml={ic_arrow_left_white}
+                        width={STANDARD_VECTOR_ICON_SIZE}
+                        height={STANDARD_VECTOR_ICON_SIZE}
+                    />
+                </TouchableOpacity>
+            ),
+        };
+    };
+
 
     // Returning
     return (

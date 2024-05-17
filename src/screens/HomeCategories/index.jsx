@@ -69,7 +69,7 @@ const HomeCategoriesSection = ({ homeData }) => {
                                     styles.categoryLabelWrapper,
                                     { backgroundColor: theme.accent },
                                 ]}
-                                onPress={() => navigation.navigate('Symptoms')}
+                                onPress={() => navigation.navigate('SymptomsList')}
                             >
                                 <Text
                                     style={[

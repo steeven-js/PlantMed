@@ -1,13 +1,14 @@
-// import { useNavigation } from '@react-navigation/native';
-import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { ScrollView, View } from 'react-native';
 
 import SectionTitle from '../../components/headings/SectionTitle';
 import Link from '../../components/links/Link';
 import styles from './styles';
+import GridViewPlant from '../../components/cards/GridViewPlant';
 
 const HomeMostPopularView = ({ theme, homeData, mostPopularPlants, isLoading, error }) => {
     // Navigation
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
 
     return (
         <>
@@ -22,9 +23,12 @@ const HomeMostPopularView = ({ theme, homeData, mostPopularPlants, isLoading, er
                 {/* Link component */}
                 <Link
                     label={homeData[1].link}
-                    // onPress={navigateAndPerformAction1}
+                // onPress={navigateAndPerformAction1}
                 />
             </View>
+
+            {/* Vertical spacer */}
+            <View style={styles.verticalSpacer} />
 
             {/* Horizontal scroll view */}
             <View>
@@ -34,23 +38,20 @@ const HomeMostPopularView = ({ theme, homeData, mostPopularPlants, isLoading, er
                     bounces={false}
                     contentContainerStyle={
                         styles.horizontalScrollViewContentContainerStyle
-                    }
-                >
-                    {isLoading ? (
-                        <View style={styles.productWrapper}>
-                            <ActivityIndicator size="large" color={theme.activityIndicator} />
+                    }>
+                    {mostPopularPlants.map((item, index) => (
+                        <View key={index} style={styles.productWrapper}>
+                            <GridViewPlant
+                                plantImage={
+                                    item.media && item.media.length > 0
+                                        ? { uri: item.media[0].original_url }
+                                        : null
+                                }
+                                plantTitle={item.name}
+                                onPress={() => navigation.navigate('PlantView', { plantId: item.id })}
+                            />
                         </View>
-                    ) : (
-                        <>
-                            {mostPopularPlants.length > 0 && mostPopularPlants.map((plant, index) => (
-                                <View key={index} style={styles.productWrapper}>
-                                    <Text style={{ color: theme.textLowContrast }}>{plant.name}</Text>
-                                </View>
-                            ))}
-                        </>
-                    )}
-                    {/* Afficher les erreurs */}
-                    {error && <Text style={{ color: theme.textHighContrast }}>Error: {error.message}</Text>}
+                    ))}
                 </ScrollView>
             </View>
         </>

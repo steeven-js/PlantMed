@@ -30,7 +30,7 @@ const HomeContent = ({ theme }) => {
             />
             {/* <HomeBannerSection2 theme={theme} /> */}
             {/* <HomeBestSellerView theme={theme} homeData={homeData} /> */}
-            {/* <HomeBannerSection2 theme={theme} /> */}
+            <HomeBannerSection2 theme={theme} />
             {/* <HomeNewArrivalsView theme={theme} homeData={homeData} /> */}
             {/* <HomeBannerSection2 theme={theme} /> */}
             <HomeRecentlyViewedView
