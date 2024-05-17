@@ -34,8 +34,8 @@ export default StyleSheet.create({
     ],
   },
   plantImage: {
-    width: scale(150),
-    height: scale(150),
+    width: scale(120),
+    height: scale(120),
     resizeMode: 'cover',
     alignSelf: 'center',
     position: 'absolute',
