@@ -11,7 +11,7 @@ import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import ic_info_light_green from '../../../assets/icons/svg/ic_info_light_green';
 import GridViewSymptoms from '../../../screens/PlantMed/GridViewSymptoms';
-import Favoris from '../../../screens/PlantMed/favoris';
+import Favoris from '../../../screens/PlantMed/Favoris/favoris';
 import GridViewPlants from '../../../screens/PlantMed/GridViewPlants';
 
 const Tab = createMaterialTopTabNavigator();

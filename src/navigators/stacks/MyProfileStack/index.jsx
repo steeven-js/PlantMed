@@ -10,7 +10,7 @@ import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import handleLogout from '../../../functions/handleLogout';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from '../styles';
-import Favoris from '../../../screens/PlantMed/favoris';
+import Favoris from '../../../screens/PlantMed/Favoris/favoris';
 import MyProfile from '../../../screens/Auth/MyProfile';
 
 // Creating stack navigator

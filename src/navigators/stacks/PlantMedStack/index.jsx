@@ -9,7 +9,7 @@ import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import Symptom from '../../../screens/PlantMed/Symptom';
 import Plant from '../../../screens/PlantMed/Plant';
-import Favoris from '../../../screens/PlantMed/favoris';
+import Favoris from '../../../screens/PlantMed/Favoris/favoris';
 import PlantMedTab from '../../tabs/PlantMedTab';
 import { getFocusedRouteNameFromRoute, useNavigation } from '@react-navigation/native';
 import GridViewSymptoms from '../../../screens/PlantMed/GridViewSymptoms';

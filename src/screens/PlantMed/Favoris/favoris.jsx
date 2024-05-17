@@ -1,15 +1,15 @@
 import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
-import Button from '../../components/buttons/Button';
+import Button from '../../../components/buttons/Button';
 import React, { useContext, useEffect } from 'react';
-import { useUserPlantsFavoris, useUserSymptomsFavoris } from '../../functions/loadUserFavoris';
-import { ThemeContext } from '../../theming/contexts/ThemeContext';
-import useAuthCheck from '../../functions/authCheck';
-import styles from './styles';
-import SectionTitle from '../../components/headings/SectionTitle';
-import { deleteOnePlantFavoris, deleteOneSymptomFavoris } from '../../functions/deleteFavoris';
+import { useUserPlantsFavoris, useUserSymptomsFavoris } from '../../../functions/loadUserFavoris';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
+import useAuthCheck from '../../../functions/authCheck';
+import styles from '../styles';
+import SectionTitle from '../../../components/headings/SectionTitle';
+import { deleteOnePlantFavoris, deleteOneSymptomFavoris } from '../../../functions/deleteFavoris';
 import { useNavigation } from '@react-navigation/native';
-import GridViewSymptom from '../../components/cards/GridViewSymptom';
-import GridViewPlant from '../../components/cards/GridViewPlant';
+import GridViewSymptom from '../../../components/cards/GridViewSymptom';
+import GridViewPlant from '../../../components/cards/GridViewPlant';
 
 const Favoris = () => {
     // Utilisation de useNavigation
@@ -79,7 +79,7 @@ const Favoris = () => {
                                             plantImage={
                                                 item.media && item.media.length > 0
                                                     ? { uri: item.media[0].original_url }
-                                                    : require('../../assets/images/banners/home/808_x_338.png') // Corrected closing parenthesis
+                                                    : require('../../../assets/images/banners/home/808_x_338.png')
                                             }
                                             plantTitle={item.name || ''}
                                             touchOptions={true}
@@ -113,7 +113,7 @@ const Favoris = () => {
                                             symptomImage={
                                                 item.media && item.media.length > 0
                                                     ? { uri: item.media[0].original_url }
-                                                    : require('../../assets/images/banners/home/808_x_338.png') // Corrected closing parenthesis
+                                                    : require('../../../assets/images/banners/home/808_x_338.png') // Corrected closing parenthesis
                                             }
                                             symptomTitle={item.name || ''}
                                             touchOptions={true}
