@@ -31,14 +31,10 @@ const PlantMedStack = () => {
 
         const handleBack = () => {
             // Redirection logic
-            if (route.name === 'SymptomsList' || route.name === 'PlantsList') {
+            if (route.params.originRoute === 'Home') {
                 navigation.navigate('PlantMed');
-            } else if (route.name === 'SymptomView') {
-                navigation.navigate('SymptomsList');
-            } else if (route.name === 'PlantView') {
-                navigation.navigate('PlantsList');
-            } else if (route.name === 'PlantMed') {
-                navigation.navigate('Home Stack');
+            } else {
+                navigation.goBack();
             }
         };
 

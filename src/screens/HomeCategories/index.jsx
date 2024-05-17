@@ -97,6 +97,7 @@ const HomeCategoriesSection = ({ homeData }) => {
                                         params: {
                                             symptomId: item.id,
                                             symptomName: item.name,
+                                            originRoute: 'Home',
                                         },
                                     })
                                 }
