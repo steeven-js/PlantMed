@@ -1,12 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 
-import SectionTitle from '../../components/headings/SectionTitle';
-import Link from '../../components/links/Link';
+import SectionTitle from '../../../components/headings/SectionTitle';
+import Link from '../../../components/links/Link';
 import styles from './styles';
 import PlantGridView from '../../components/cards/PlantGridView';
-import useFetchPlantsSpecials from '../../hooks/useFetchPlantsSpecials';
-import { navigateAndPerformAction } from '../../functions/navigationComplex';
+import useFetchPlantsSpecials from '../../../hooks/useFetchPlantsSpecials';
+import { navigateAndPerformAction } from '../../../functions/navigationComplex';
 
 const HomeNewArrivalsView = ({ theme, homeData }) => {
     // Navigation

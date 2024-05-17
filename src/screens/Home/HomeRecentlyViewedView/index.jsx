@@ -1,10 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, View } from 'react-native';
 
-import SectionTitle from '../../components/headings/SectionTitle';
-import Link from '../../components/links/Link';
+import SectionTitle from '../../../components/headings/SectionTitle';
+import Link from '../../../components/links/Link';
 import styles from './styles';
-import GridViewPlant from '../../components/cards/GridViewPlant';
+import GridViewPlant from '../../../components/cards/GridViewPlant';
 
 const HomeRecentlyViewedView = ({ theme, homeData, recentlyViewedPlants, isLoading, error }) => {
     // Navigation

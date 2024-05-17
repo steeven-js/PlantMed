@@ -1,7 +1,7 @@
 const ConfidentialiteData = `
 ### Date d'entrée en vigueur : 05 Février 2024
 
-Cette Politique de Confidentialité décrit la manière dont les informations sont collectées, utilisées et partagées lorsque vous utilisez l'application mobile de plantes médicinales (ci-après dénommée "l'Application").
+Cette Politique de Confidentialité décrit la manière dont les informations sont collectées, utilisées et partagées lorsque vous utilisez l'application mobile de plantes médicinales (ci-après dénommée "PlantMed").
 
 ### Collecte et Utilisation des Informations
 

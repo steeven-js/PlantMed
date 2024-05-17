@@ -6,7 +6,7 @@ import {
     POPPINS_REGULAR,
     STANDARD_FLEX,
     STANDARD_SPACING,
-} from '../../config/Constants';
+} from '../../../config/Constants';
 
 // Creating & exporting stylesheet
 export default StyleSheet.create({

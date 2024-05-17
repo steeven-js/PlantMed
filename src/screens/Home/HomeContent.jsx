@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import HomeCategoriesSection from '../HomeCategories';
-import HomeMostPopularView from '../HomeMostPopularView';
-import HomeRecentlyViewedView from '../HomeRecentlyViewedView';
+import HomeCategoriesSection from './HomeCategories';
+import HomeMostPopularView from './HomeMostPopularView';
+import HomeRecentlyViewedView from './HomeRecentlyViewedView';
 import { HomeData } from '../../data/AppData';
-import HomeBannerSection2 from '../HomeBannerSection2';
+import HomeBannerSection2 from './HomeBannerSection2';
 import { useSelector } from 'react-redux';
 import { selectError, selectIsLoading, selectMostPopularPlants, selectRecentlyViewedPlants } from '../../redux/reducer/selectors';
 

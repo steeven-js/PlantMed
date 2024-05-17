@@ -1,9 +1,9 @@
 import { ScrollView, View } from 'react-native';
 
-import OutletCard from '../../components/cards/OutletCard';
-import SectionTitle from '../../components/headings/SectionTitle';
-import Link from '../../components/links/Link';
-import GlobalOutletsData from '../../data/GlobalOutletsData';
+import OutletCard from '../../../components/cards/OutletCard';
+import SectionTitle from '../../../components/headings/SectionTitle';
+import Link from '../../../components/links/Link';
+import GlobalOutletsData from '../../../data/GlobalOutletsData';
 import styles from './styles';
 
 const HomeGlobalOutletsView = ({homeData}) => {

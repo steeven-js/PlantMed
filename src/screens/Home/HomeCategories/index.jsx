@@ -3,10 +3,10 @@ import React, { useContext } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import SectionTitle from '../../components/headings/SectionTitle';
-import Link from '../../components/links/Link';
-import { IndependentColors } from '../../config/Colors';
-import { ThemeContext } from '../../theming/contexts/ThemeContext';
+import SectionTitle from '../../../components/headings/SectionTitle';
+import Link from '../../../components/links/Link';
+import { IndependentColors } from '../../../config/Colors';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from './styles';
 
 const HomeCategoriesSection = ({ homeData }) => {
