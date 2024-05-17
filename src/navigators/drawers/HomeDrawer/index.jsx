@@ -160,7 +160,7 @@ const HomeDrawer = () => {
         name="HomeBottomTab"
         component={HomeBottomTab}
         options={{
-          drawerLabel: 'Home',
+          drawerLabel: drawerLabel[0].trad,
           drawerIcon: ({ focused }) =>
             focused ? (
               <SvgXml
@@ -183,7 +183,7 @@ const HomeDrawer = () => {
         name="SupportStack"
         component={SupportStack}
         options={{
-          drawerLabel: 'Help & Support',
+          drawerLabel: drawerLabel[1].trad,
           drawerIcon: ({ focused }) =>
             focused ? (
               <SvgXml
@@ -206,7 +206,7 @@ const HomeDrawer = () => {
         name="PoliciesStack"
         component={PoliciesStack}
         options={{
-          drawerLabel: 'Legal Policies',
+          drawerLabel: drawerLabel[2].trad,
           drawerIcon: ({ focused }) =>
             focused ? (
               <SvgXml
