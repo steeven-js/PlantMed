@@ -7,13 +7,13 @@ import { SvgXml } from 'react-native-svg';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import { IndependentColors } from '../../../config/Colors';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
-import EditProfile from '../../../screens/EditProfile';
-import ResetPassword from '../../../screens/ResetPassword';
 import Settings from '../../../screens/Settings';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from '../styles';
 import { SettingsData } from '../../../data/AppData';
 import useAuthCheck from '../../../functions/authCheck';
+import EditProfile from '../../../screens/Auth/EditProfile';
+import ResetPassword from '../../../screens/Auth/ResetPassword';
 
 // Creating stack navigator
 const Stack = createStackNavigator();

@@ -4,20 +4,20 @@ import * as Animatable from 'react-native-animatable';
 import { SvgXml } from 'react-native-svg';
 import * as ImagePicker from 'react-native-image-picker';
 import { useSelector } from 'react-redux';
-import useEditProfile from '../../hooks/userEditProfile';
+import useEditProfile from '../../../hooks/userEditProfile';
 
-import av_woman_4 from '../../assets/avatars/svg/av_woman_4';
-import ic_edit_dark_green from '../../assets/icons/svg/ic_edit_dark_green';
-import Button from '../../components/buttons/Button';
-import TextInput from '../../components/inputs/TextInput';
-import Link from '../../components/links/Link';
+import av_woman_4 from '../../../assets/avatars/svg/av_woman_4';
+import ic_edit_dark_green from '../../../assets/icons/svg/ic_edit_dark_green';
+import Button from '../../../components/buttons/Button';
+import TextInput from '../../../components/inputs/TextInput';
+import Link from '../../../components/links/Link';
 import {
     STANDARD_USER_AVATAR_WRAPPER_SIZE,
     STANDARD_VECTOR_ICON_SIZE,
-} from '../../config/Constants';
-import { ThemeContext } from '../../theming/contexts/ThemeContext';
+} from '../../../config/Constants';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from './styles';
-import useAuthCheck from '../../functions/authCheck';
+import useAuthCheck from '../../../functions/authCheck';
 
 // Functional component
 const EditProfile = ({ navigation }) => {

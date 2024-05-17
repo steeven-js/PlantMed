@@ -5,7 +5,7 @@ import {
     SCREEN_WIDTH,
     STANDARD_FLEX,
     STANDARD_SPACING,
-} from '../../config/Constants';
+} from '../../../config/Constants';
 
 // Creating & exporting stylesheet
 export default StyleSheet.create({

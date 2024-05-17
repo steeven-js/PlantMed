@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import { ThemeContext } from '../../theming/contexts/ThemeContext';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from './styles';
-import PasswordTextInput from '../../components/inputs/PasswordTextInput';
-import Link from '../../components/links/Link';
-import ScreenInfo from '../../components/paragraphs/ScreenInfo';
-import ScreenTitle from '../../components/headings/ScreenTitle';
-import useChangePassword from '../../hooks/userChangePassword';
-import Button from '../../components/buttons/Button';
+import PasswordTextInput from '../../../components/inputs/PasswordTextInput';
+import Link from '../../../components/links/Link';
+import ScreenInfo from '../../../components/paragraphs/ScreenInfo';
+import ScreenTitle from '../../../components/headings/ScreenTitle';
+import useChangePassword from '../../../hooks/userChangePassword';
+import Button from '../../../components/buttons/Button';
 
 // Functional component
 const ResetPassword = ({ route }) => {

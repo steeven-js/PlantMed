@@ -5,20 +5,20 @@ import { ScrollView, Text, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { useDispatch } from 'react-redux';
 
-import Button from '../../components/buttons/Button';
-import ScreenTitle from '../../components/headings/ScreenTitle';
-import PasswordTextInput from '../../components/inputs/PasswordTextInput';
-import TextInput from '../../components/inputs/TextInput';
-import Link from '../../components/links/Link';
-import Question from '../../components/paragraphs/Question';
-import ScreenInfo from '../../components/paragraphs/ScreenInfo';
-import { ShowToast } from '../../functions/toast';
+import Button from '../../../components/buttons/Button';
+import ScreenTitle from '../../../components/headings/ScreenTitle';
+import PasswordTextInput from '../../../components/inputs/PasswordTextInput';
+import TextInput from '../../../components/inputs/TextInput';
+import Link from '../../../components/links/Link';
+import Question from '../../../components/paragraphs/Question';
+import ScreenInfo from '../../../components/paragraphs/ScreenInfo';
+import { ShowToast } from '../../../functions/toast';
 import {
     setUserDisplayName,
     setUserEmail,
     setUserId,
-} from '../../redux/reducer/auth';
-import { ThemeContext } from '../../theming/contexts/ThemeContext';
+} from '../../../redux/reducer/auth';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from './styles';
 
 // Functional component

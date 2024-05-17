@@ -6,7 +6,7 @@ import {
     STANDARD_FLEX,
     STANDARD_SPACING,
     STANDARD_VECTOR_ICON_WRAPPER_SIZE,
-} from '../../config/Constants';
+} from '../../../config/Constants';
 
 // Creating & exporting stylesheet
 export default StyleSheet.create({

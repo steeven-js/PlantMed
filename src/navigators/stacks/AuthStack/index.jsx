@@ -7,10 +7,10 @@ import { SvgXml } from 'react-native-svg';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import { IndependentColors } from '../../../config/Colors';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
-import Login from '../../../screens/Login';
-import Register from '../../../screens/Register';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from '../styles';
+import Login from '../../../screens/Auth/Login';
+import Register from '../../../screens/Auth/Register';
 
 // Creating stack navigator
 const Stack = createStackNavigator();

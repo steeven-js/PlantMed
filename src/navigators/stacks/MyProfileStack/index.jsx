@@ -8,10 +8,10 @@ import ic_logout_dark_white from '../../../assets/icons/svg/ic_logout_dark_white
 import { IndependentColors } from '../../../config/Colors';
 import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
 import handleLogout from '../../../functions/handleLogout';
-import MyProfile from '../../../screens/MyProfile';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from '../styles';
 import Favoris from '../../../screens/PlantMed/favoris';
+import MyProfile from '../../../screens/Auth/MyProfile';
 
 // Creating stack navigator
 const Stack = createStackNavigator();

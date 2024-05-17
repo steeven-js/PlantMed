@@ -13,22 +13,22 @@ import Modal from 'react-native-modal';
 import { SvgXml } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
 
-import ic_close_dark_green from '../../assets/icons/svg/ic_close_dark_green';
-import Button from '../../components/buttons/Button';
-import ScreenTitle from '../../components/headings/ScreenTitle';
-import PasswordTextInput from '../../components/inputs/PasswordTextInput';
-import TextInput from '../../components/inputs/TextInput';
-import Link from '../../components/links/Link';
-import Question from '../../components/paragraphs/Question';
-import ScreenInfo from '../../components/paragraphs/ScreenInfo';
-import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
-import { ShowToast } from '../../functions/toast';
+import ic_close_dark_green from '../../../assets/icons/svg/ic_close_dark_green';
+import Button from '../../../components/buttons/Button';
+import ScreenTitle from '../../../components/headings/ScreenTitle';
+import PasswordTextInput from '../../../components/inputs/PasswordTextInput';
+import TextInput from '../../../components/inputs/TextInput';
+import Link from '../../../components/links/Link';
+import Question from '../../../components/paragraphs/Question';
+import ScreenInfo from '../../../components/paragraphs/ScreenInfo';
+import { STANDARD_VECTOR_ICON_SIZE } from '../../../config/Constants';
+import { ShowToast } from '../../../functions/toast';
 import {
     setUserDisplayName,
     setUserEmail,
     setUserId,
-} from '../../redux/reducer/auth';
-import { ThemeContext } from '../../theming/contexts/ThemeContext';
+} from '../../../redux/reducer/auth';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from './styles';
 
 // Functional component

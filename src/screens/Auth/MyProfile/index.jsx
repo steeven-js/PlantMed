@@ -5,12 +5,12 @@ import * as Animatable from 'react-native-animatable';
 import { SvgXml } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 
-import av_man_2 from '../../assets/avatars/svg/av_man_2';
-import NavigationLink from '../../components/links/NavigationLink';
-import { STANDARD_USER_AVATAR_WRAPPER_SIZE } from '../../config/Constants';
-import MyProfileData from '../../data/MyProfileData';
-import useAuthCheck from '../../functions/authCheck';
-import { ThemeContext } from '../../theming/contexts/ThemeContext';
+import av_man_2 from '../../../assets/avatars/svg/av_man_2';
+import NavigationLink from '../../../components/links/NavigationLink';
+import { STANDARD_USER_AVATAR_WRAPPER_SIZE } from '../../../config/Constants';
+import MyProfileData from '../../../data/MyProfileData';
+import useAuthCheck from '../../../functions/authCheck';
+import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from './styles';
 
 // Import du hook d'authentification
