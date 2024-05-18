@@ -19,6 +19,7 @@ const HomeContent = ({ theme }) => {
 
     return (
         <View>
+            <HomeBannerSection2 theme={theme} />
             <HomeCategoriesSection theme={theme} homeData={homeData} />
             <HomeBannerSection2 theme={theme} />
             <HomeMostPopularView
