@@ -83,7 +83,7 @@ const PlantMedStack = () => {
 
     // Returning
     return (
-        <Stack.Navigator initialRouteName="PlantMed" screenOptions={screenOptions}>
+        <Stack.Navigator initialRouteName="PlantMedTab" screenOptions={screenOptions}>
             <Stack.Screen name="PlantMedTab" component={PlantMedTab} />
             <Stack.Screen name="SymptomsList" component={GridViewSymptoms} />
             <Stack.Screen name="PlantsList" component={GridViewPlants} />
