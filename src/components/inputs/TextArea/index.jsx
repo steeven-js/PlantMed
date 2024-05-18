@@ -4,7 +4,14 @@ import {Text, TextInput as RNTextInput} from 'react-native';
 import {ThemeContext} from '../../../theming/contexts/ThemeContext';
 
 // Functional component
-const TextArea = ({label, placeholder}) => {
+const TextArea = ({
+  label,
+  placeholder,
+  value,
+  onChangeText,
+  autoCapitalize,
+  keyboardType,
+}) => {
   // Using context
   const {isLightTheme, lightTheme, darkTheme} = useContext(ThemeContext);
 
@@ -20,6 +27,10 @@ const TextArea = ({label, placeholder}) => {
       </Text>
       {/* Text input */}
       <RNTextInput
+        value={value}
+        onChangeText={onChangeText}
+        autoCapitalize={autoCapitalize}
+        keyboardType={keyboardType}
         placeholder={placeholder}
         placeholderTextColor={theme.textLowContrast}
         numberOfLines={10}
