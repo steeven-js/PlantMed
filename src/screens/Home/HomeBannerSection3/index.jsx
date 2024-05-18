@@ -2,7 +2,7 @@ import { Image, View } from 'react-native';
 
 import styles from './styles';
 
-const HomeBannerSection2 = ({ banner }) => {
+const HomeBannerSection3 = ({ banner }) => {
 
     return (
         <View style={styles.fullWidthBannerImageWrapper}>
@@ -14,4 +14,4 @@ const HomeBannerSection2 = ({ banner }) => {
     );
 };
 
-export default HomeBannerSection2;
+export default HomeBannerSection3;

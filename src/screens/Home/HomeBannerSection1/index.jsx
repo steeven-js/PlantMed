@@ -1,21 +1,17 @@
+import React from 'react';
 import { Image, View } from 'react-native';
 
 import styles from './styles';
 
-const HomeBannerSection1 = () => {
-    return (
-        <>
-            {/* Vertical spacer */}
-            <View style={styles.verticalSpacer} />
+const HomeBannerSection1 = ({ banner }) => {
 
-            {/* Banner 1 */}
-            <View style={styles.bannerImageWrapper}>
-                <Image
-                    source={require('../../assets/images/banners/home/556_x_287.png')}
-                    style={styles.bannerImage}
-                />
-            </View>
-        </>
+    return (
+        <View style={styles.fullWidthBannerImageWrapper}>
+            <Image
+                source={{uri: banner}}
+                style={styles.bannerImage}
+            />
+        </View>
     );
 };
 
