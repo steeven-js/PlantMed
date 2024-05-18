@@ -27,10 +27,6 @@ const HomeContent = ({ theme }) => {
     const banner2 = banners && banners.length > 0 ? banners[1].media[0].original_url : null;
     const banner3 = banners && banners.length > 0 ? banners[2].media[0].original_url : null;
 
-    console.log('banner1:', banner1);
-    console.log('banner2:', banner2);
-    console.log('banner3:', banner3);
-
     return (
         <View>
             <HomeBannerSection1 theme={theme} banner={banner1} />

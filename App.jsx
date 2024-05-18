@@ -4,11 +4,15 @@ import Splash from './src/screens/Splash';
 import { SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Statusbar from './src/components/others/Statusbar';
-import HomeDrawer from './src/navigators/drawers/HomeDrawer';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { ThemeContextProvider } from './src/theming/context_providers/ThemeContextProvider';
 import store from './src/redux/store';
 import Toast from 'react-native-toast-message';
+import Welcome from './src/screens/Welcome/Index';
+import LaunchApp from './src/screens/launchApp';
+
+const Stack = createStackNavigator();
 
 // Functional component
 const App = () => {
@@ -37,7 +41,12 @@ const App = () => {
         <NavigationContainer>
           <Statusbar barStyle="light-content" />
           <SafeAreaView style={AppStyles.safeAreaView}>
-            <HomeDrawer />
+            <Stack.Navigator initialRouteName="Welcome" screenOptions={{
+              headerShown: false,
+            }}>
+              <Stack.Screen name="Welcome" component={Welcome} />
+              <Stack.Screen name="LaunchApp" component={LaunchApp} />
+            </Stack.Navigator>
           </SafeAreaView>
           <Toast />
         </NavigationContainer>

@@ -48,7 +48,7 @@ const HomeRecentlyViewedView = ({ theme, homeData, recentlyViewedPlants, isLoadi
                                         : null
                                 }
                                 plantTitle={item.name}
-                                onPress={() => navigation.navigate('PlantView', { plantId: item.id })}
+                                onPress={() => navigation.navigate('PlantMed Stack', { screen: 'PlantView', params: { plantId: item.id } })}
                             />
                         </View>
                     ))}

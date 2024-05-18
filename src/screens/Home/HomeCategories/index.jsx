@@ -66,7 +66,7 @@ const HomeCategoriesSection = ({ homeData }) => {
                                         : require('../../../assets/images/banners/home/808_x_338.png')
                                 }
                                 symptomTitle={item.name}
-                                onPress={() => navigation.navigate('SymptomView', { symptomId: item.id })}
+                                onPress={() => navigation.navigate('PlantMed Stack', { screen: 'SymptomView', params: { symptomId: item.id } })}
                             />
                         </View>
                     ))}
