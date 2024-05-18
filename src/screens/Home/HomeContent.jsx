@@ -7,7 +7,7 @@ import HomeRecentlyViewedView from './HomeRecentlyViewedView';
 import { HomeData } from '../../data/AppData';
 import HomeBannerSection2 from './HomeBannerSection2';
 import { useSelector } from 'react-redux';
-import { selectError, selectIsLoading, selectMostPopularPlants, selectRecentlyViewedPlants } from '../../redux/reducer/selectors';
+import { selectBanners, selectError, selectIsLoading, selectMostPopularPlants, selectRecentlyViewedPlants } from '../../redux/reducer/selectors';
 
 const HomeContent = ({ theme }) => {
     const homeData = HomeData;
@@ -16,6 +16,9 @@ const HomeContent = ({ theme }) => {
     const recentlyViewedPlants = useSelector(selectRecentlyViewedPlants);
     const isLoading = useSelector(selectIsLoading);
     const error = useSelector(selectError);
+    const banners = useSelector(selectBanners);
+
+    console.log('banners', banners);
 
     return (
         <View>

@@ -10,6 +10,7 @@ import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import ic_arrow_left_white from '../../../assets/icons/svg/ic_arrow_left_white';
 import useFetchPlants from '../../../hooks/useFetchPlants';
 import useFetchSymptomes from '../../../hooks/useFetchSymptoms';
+import useFetchBanners from '../../../hooks/useFetchBanners';
 
 // Creating stack navigator
 const Stack = createStackNavigator();
@@ -24,6 +25,7 @@ const HomeStack = () => {
 
   useFetchPlants();
   useFetchSymptomes();
+  useFetchBanners();
 
   // Screen options
   const screenOptions = ({ navigation }) => ({

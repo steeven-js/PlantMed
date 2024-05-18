@@ -21,6 +21,7 @@ const Home = () => {
     const theme = isLightTheme ? lightTheme : darkTheme;
 
     const { search, setSearch } = useSearchState();
+
     const { isLoading, setIsLoading } = useLoadingState();
 
     // Navigation

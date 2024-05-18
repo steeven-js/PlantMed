@@ -1,27 +1,30 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { setBannersLoading } from '../redux/reducer/banners';
+
+import { setBannersData, setBannersLoading, setBannersError } from '../redux/reducer/banners';
 
 const useFetchBanners = () => {
-    const [banners, setBanners] = useState([]);
+    const [banners, setBannersState] = useState([]);
     const [isBannersLoading, setIsBannersLoading] = useState(false);
-    const [bannersError, setBannersError] = useState(null);
+    const [bannersError, setBannersErrorState] = useState(null);
 
     const dispatch = useDispatch();
 
-    const endpoint = 'https://apimonremede.jsprod.fr/api/banners';
+    const endpoint = 'http://127.0.0.1:8000/api/banners';
 
     const fetchData = useCallback(async () => {
         setIsBannersLoading(true);
+        dispatch(setBannersLoading(true));
 
         try {
             const response = await axios.get(endpoint);
             const result = response.data;
-            setBanners(result);
-            dispatch(setBanners(result));
+            setBannersState(result);
+            dispatch(setBannersData(result));
         } catch (error) {
-            setBannersError(error);
+            setBannersErrorState(error);
+            dispatch(setBannersError(error));
             console.error(error);
         } finally {
             setIsBannersLoading(false);
