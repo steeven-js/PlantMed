@@ -39,7 +39,7 @@ const HomeBottomTab = () => {
       borderTopWidth: 0,
       backgroundColor: theme.primary,
       elevation: 0,
-      height: scale(50),
+      height: scale(80),
     },
   };
 

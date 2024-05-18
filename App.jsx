@@ -1,7 +1,5 @@
-import AppStyles from './AppStyles';
 import { Provider } from 'react-redux';
 import Splash from './src/screens/Splash';
-import { SafeAreaView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Statusbar from './src/components/others/Statusbar';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -40,14 +38,12 @@ const App = () => {
       <ThemeContextProvider>
         <NavigationContainer>
           <Statusbar barStyle="light-content" />
-          <SafeAreaView style={AppStyles.safeAreaView}>
             <Stack.Navigator initialRouteName="Welcome" screenOptions={{
               headerShown: false,
             }}>
               <Stack.Screen name="Welcome" component={Welcome} />
               <Stack.Screen name="LaunchApp" component={LaunchApp} />
             </Stack.Navigator>
-          </SafeAreaView>
           <Toast />
         </NavigationContainer>
       </ThemeContextProvider>
