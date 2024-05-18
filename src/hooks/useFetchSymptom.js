@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const useFetchSymptom = (symptomId) => {
     // États pour stocker les données, l'état de chargement et les erreurs
@@ -14,8 +15,8 @@ const useFetchSymptom = (symptomId) => {
         setIsLoading(true); // Définir isLoading à true pour indiquer le début du chargement
 
         try {
-            const response = await fetch(endpoint); // Effectuer une requête pour récupérer les données
-            const result = await response.json(); // Convertir la réponse en JSON
+            const response = await axios.get(endpoint); // Effectuer une requête pour récupérer les données
+            const result = response.data; // Récupérer les données de la réponse
             setData(result); // Mettre à jour les données avec les données récupérées
         } catch (fetchError) {
             setError(fetchError); // Enregistrer l'erreur en cas d'échec de la requête

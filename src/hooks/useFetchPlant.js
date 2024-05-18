@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const useFetchPlant = (plantId) => {
     const [data, setData] = useState([]); // Données de la plante
@@ -12,8 +13,8 @@ const useFetchPlant = (plantId) => {
         setIsLoading(true); // Début du chargement
 
         try {
-            const response = await fetch(endpoint);
-            const result = await response.json();
+            const response = await axios.get(endpoint);
+            const result = response.data;
             setData(result); // Mise à jour des données de la plante
         } catch (fetchError) {
             setError(fetchError); // Gestion des erreurs

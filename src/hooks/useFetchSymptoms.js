@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 import { setSymptomsData, setSymptomsLoading } from '../redux/reducer/symptoms';
 
@@ -14,19 +15,19 @@ const useFetchSymptoms = () => {
 
     const fetchData = useCallback(async () => {
         setIsSymptomsLoading(true);
+        dispatch(setSymptomsLoading(true));
 
         try {
-            const response = await fetch(endpoint);
-            const result = await response.json();
+            const response = await axios.get(endpoint);
+            const result = response.data;
             setSymptoms(result);
             dispatch(setSymptomsData(result));
-            dispatch(setSymptomsLoading(false));
         } catch (error) {
             setPlantsError(error);
-            dispatch(setSymptomsLoading(false));
             console.error(error);
         } finally {
             setIsSymptomsLoading(false);
+            dispatch(setSymptomsLoading(false));
         }
     }, [dispatch]);
 

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 import { setPlantsData, setPlantsLoading } from '../redux/reducer/plants';
 
@@ -14,19 +15,19 @@ const useFetchPlants = () => {
 
     const fetchData = useCallback(async () => {
         setIsPlantsLoading(true);
+        dispatch(setPlantsLoading(true));
 
         try {
-            const response = await fetch(endpoint);
-            const result = await response.json();
+            const response = await axios.get(endpoint);
+            const result = response.data;
             setPlants(result);
             dispatch(setPlantsData(result));
-            dispatch(setPlantsLoading(false));
         } catch (error) {
             setPlantsError(error);
-            dispatch(setPlantsLoading(false));
             console.error(error);
         } finally {
             setIsPlantsLoading(false);
+            dispatch(setPlantsLoading(false));
         }
     }, [dispatch]);
 

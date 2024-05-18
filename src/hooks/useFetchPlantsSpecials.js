@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const useFetchPlantsSpecials = () => {
     const [mostPopularPlants, setMostPopularPlants] = useState([]);
@@ -14,8 +15,8 @@ const useFetchPlantsSpecials = () => {
         setIsPlantsLoading(true);
 
         try {
-            const response = await fetch(endpoint);
-            const data = await response.json();
+            const response = await axios.get(endpoint);
+            const data = response.data;
 
             const mostPopularData = data.filter(plant => plant.mostPopular === 1);
             setMostPopularPlants(mostPopularData);
@@ -33,7 +34,6 @@ const useFetchPlantsSpecials = () => {
         } finally {
             setIsPlantsLoading(false);
         }
-
     }, []);
 
     useEffect(() => {
