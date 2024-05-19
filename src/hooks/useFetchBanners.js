@@ -11,7 +11,7 @@ const useFetchBanners = () => {
 
     const dispatch = useDispatch();
 
-    const endpoint = 'http://127.0.0.1:8000/api/banners';
+    const endpoint = 'https://apimonremede.jsprod.fr/api/banners';
 
     const fetchData = useCallback(async () => {
         setIsBannersLoading(true);
