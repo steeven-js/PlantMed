@@ -156,7 +156,7 @@ const WelcomePage3 = ({
                         unfillColor="#FFFFFF"
                         iconStyle={{ borderColor: 'red' }}
                         innerIconStyle={{ borderWidth: 2 }}
-                        textStyle={{ fontFamily: 'JosefinSans-Regular' }}
+                        textStyle={{ fontFamily: 'JosefinSans-Regular', color: theme.textLowContrast}}
                         isChecked={isCheckboxChecked}
                         onPress={onCheckboxToggle}
                     />
