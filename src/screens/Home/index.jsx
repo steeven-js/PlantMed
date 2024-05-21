@@ -29,26 +29,6 @@ const Home = () => {
 
     const isFocused = useIsFocused(); // Utilisez le hook useIsFocused pour détecter si l'écran est au premier plan
 
-    async function query(data) {
-        const response = await fetch(
-            'http://localhost:3000/api/v1/prediction/85bfa79b-21af-4eff-8122-fcc88fdd28b6',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            }
-        );
-        const result = await response.json();
-        return result;
-    }
-
-    query({'question': 'Hey, how are you?'}).then((response) => {
-        console.log(response);
-    });
-
-
     // Utilisez useEffect pour réinitialiser la recherche lorsque l'écran perd le focus
     useEffect(() => {
         if (!isFocused) {
