@@ -502,7 +502,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.plantmed;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jsprod.plantmed;
 				PRODUCT_NAME = PlantMed;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -538,7 +538,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.plantmed;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jsprod.plantmed;
 				PRODUCT_NAME = PlantMed;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

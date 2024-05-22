@@ -26,5 +26,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:485456459649:ios:2c42c2c292dccf421eda80</string>
+	<key>DATABASE_URL</key>
+	<string>https://plantmedapp-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

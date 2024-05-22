@@ -1,4 +1,4 @@
-package com.plantmed
+package com.jsprod.plantmed
 
 import android.app.Application
 import com.facebook.react.PackageList

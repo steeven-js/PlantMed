@@ -75,13 +75,13 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.plantmed"
+    namespace "com.jsprod.plantmed"
     defaultConfig {
-        applicationId "com.plantmed"
+        applicationId "com.jsprod.plantmed"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 5
-        versionName "1.0.4"
+        versionCode 1
+        versionName "1.0.0"
     }
     signingConfigs {
         debug {
