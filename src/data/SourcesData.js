@@ -3,7 +3,6 @@ export const sourcesData = [
     {
         title: 'Sources de Données sur les Plantes',
         sources: [
-            'Wikipédia',
             'Amélie',
             'Doctissimo',
             'Medisite',
@@ -31,7 +30,6 @@ export const sourcesData = [
     {
         title: "Sources d'Informations sur les Symptômes",
         sources: [
-            'Wikipédia',
             'Amélie',
             'Doctissimo',
             'Medisite',

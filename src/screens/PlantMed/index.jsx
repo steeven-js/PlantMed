@@ -120,7 +120,7 @@ const PlantMed = ({ navigation }) => {
                                             : null
                                         }
                                         plantTitle={plant.name}
-                                        onPress={() => navigation.navigate('PlantView', { plantId: plant.id })}
+                                        onPress={() => navigation.navigate('PlantView', { plantId: plant.id, plantName: plant.name })}
                                     />
                                 </View>
                             ))}
