@@ -1,22 +1,21 @@
 {
   "project_info": {
-    "project_number": "485456459649",
-    "firebase_url": "https://plantmedapp-default-rtdb.firebaseio.com",
-    "project_id": "plantmedapp",
-    "storage_bucket": "plantmedapp.appspot.com"
+    "project_number": "764027539626",
+    "project_id": "plantmed-app",
+    "storage_bucket": "plantmed-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:485456459649:android:f0a6c72bf9803ffe1eda80",
+        "mobilesdk_app_id": "1:764027539626:android:4466f0ac1dca1c8b0900d3",
         "android_client_info": {
-          "package_name": "com.plantmed"
+          "package_name": "com.jsprod.plantmed"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA3Ef75aoPIeZGl2JlMxY1C65RItNM6Yy8"
+          "current_key": "AIzaSyDZYH7EvwN7zJK55UHptOEHxPXC2p9rG64"
         }
       ],
       "services": {

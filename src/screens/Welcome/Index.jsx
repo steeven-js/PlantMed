@@ -11,6 +11,7 @@ import ScreenInfo from '../../components/paragraphs/ScreenInfo';
 import WelcomeData from '../../data/Welcome';
 import Button from '../../components/buttons/Button';
 import styles from './styles';
+import { FONT_SIZE_XS, POPPINS_REGULAR } from '../../config/Constants';
 
 
 const Welcome = () => {
@@ -156,7 +157,7 @@ const WelcomePage3 = ({
                         unfillColor="#FFFFFF"
                         iconStyle={{ borderColor: 'red' }}
                         innerIconStyle={{ borderWidth: 2 }}
-                        textStyle={{ fontFamily: 'JosefinSans-Regular', color: theme.textLowContrast}}
+                        textStyle={{ fontFamily: POPPINS_REGULAR, fontSize: FONT_SIZE_XS, color: theme.textLowContrast}}
                         isChecked={isCheckboxChecked}
                         onPress={onCheckboxToggle}
                     />

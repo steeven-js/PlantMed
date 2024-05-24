@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyDtDSZ7YxeNRd0dpb6MPxVZVzQA5StNvGU</string>
+	<string>AIzaSyC4EEiQgaDf9cr6ARfGAAcuxRP7TME-drE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>485456459649</string>
+	<string>764027539626</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.plantmed</string>
+	<string>com.jsprod.plantmed</string>
 	<key>PROJECT_ID</key>
-	<string>plantmedapp</string>
+	<string>plantmed-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>plantmedapp.appspot.com</string>
+	<string>plantmed-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,8 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:485456459649:ios:2c42c2c292dccf421eda80</string>
-	<key>DATABASE_URL</key>
-	<string>https://plantmedapp-default-rtdb.firebaseio.com</string>
+	<string>1:764027539626:ios:96c3a3ffa9a9dac30900d3</string>
 </dict>
 </plist>
