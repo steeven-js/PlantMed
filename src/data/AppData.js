@@ -72,7 +72,7 @@ export const DrawerData = {
     drawerFooter: [
         {
             id: 1,
-            label: 'App Version 1.5 - Avril, 2024',
+            label: 'App Version 1.0.2 - Avril, 2024',
         },
     ],
 };

@@ -12,6 +12,7 @@ import {
   POPPINS_MEDIUM,
   POPPINS_SEMIBOLD,
   FONT_SIZE_MD,
+  FONT_SIZE_XXS,
 } from '../../../config/Constants';
 import {IndependentColors} from '../../../config/Colors';
 
@@ -58,7 +59,7 @@ export default StyleSheet.create({
   },
   drawerItemLabel: {
     fontFamily: POPPINS_MEDIUM,
-    fontSize: FONT_SIZE_XS,
+    fontSize: FONT_SIZE_XXS,
   },
   leftArrowIcon: {
     marginLeft: STANDARD_SPACING * 3,
