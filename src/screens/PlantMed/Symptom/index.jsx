@@ -94,8 +94,8 @@ const Symptom = ({ route }) => {
           <Image
             source={
               symptomData.media && symptomData.media.length > 0
-                  ? { uri: symptomData.media[0].original_url }
-                  : require('../../../assets/images/banners/home/808_x_338.png')
+                ? { uri: symptomData.media[0].original_url }
+                : require('../../../assets/images/banners/home/808_x_338.png')
             }
             style={[styles.bannerImage, { backgroundColor: theme.secondary }]}
           />
@@ -324,32 +324,35 @@ const Symptom = ({ route }) => {
           Listes des plantes associées à ce symptôme
         </Text>
         <View style={styles.flatGridWrapper}>
-          {/* Flatgrid */}
-          <FlatGrid
-            itemDimension={scale(130)}
-            data={symptomData.plants || []}
-            style={styles.flatGrid}
-            spacing={STANDARD_SPACING * 3}
-            bounces={false}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <GridViewPlant
-                plantImage={
-                  item.media && item.media.length > 0
-                    ? { uri: item.media[0].original_url }
-                    : require('../../../assets/images/banners/home/808_x_338.png')
-                }
-                plantTitle={item.name}
-                onPress={() =>
-                  navigation.navigate('PlantView', {
-                    plantId: item.id,
-                    plantName: item.name,
-                  })
-                }
-              />
-            )}
-          />
+          {symptomData.plants && symptomData.plants.length > 0 ? (
+            <FlatGrid
+              itemDimension={scale(130)}
+              data={symptomData.plants}
+              style={styles.flatGrid}
+              spacing={STANDARD_SPACING * 3}
+              bounces={false}
+              showsVerticalScrollIndicator={false}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <GridViewPlant
+                  plantImage={
+                    item.media && item.media.length > 0
+                      ? { uri: item.media[0].original_url }
+                      : require('../../../assets/images/banners/home/808_x_338.png')
+                  }
+                  plantTitle={item.name}
+                  onPress={() =>
+                    navigation.navigate('PlantView', {
+                      plantId: item.id,
+                      plantName: item.name,
+                    })
+                  }
+                />
+              )}
+            />
+          ) : (
+            <ActivityIndicator size="large" color="#0000ff" />
+          )}
         </View>
       </View>
     );

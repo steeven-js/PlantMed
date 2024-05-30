@@ -50,8 +50,13 @@ const Plant = ({ route }) => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    navigation.setOptions({ title: plantData.name });
+    if (plantData && plantData.name) {
+      navigation.setOptions({ title: plantData.name });
+    } else if (plantData === null) {
+      navigation.setOptions({ title: 'plantmed' });
+    }
   }, [plantData, setTitle, navigation]);
+
 
   // Tab navigator
   const Tab = createMaterialTopTabNavigator();
