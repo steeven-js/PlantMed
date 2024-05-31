@@ -51,10 +51,10 @@ const App = () => {
             <Stack.Screen name="Welcome" component={Welcome} />
             <Stack.Screen name="LaunchApp" component={LaunchApp} />
           </Stack.Navigator>
-            <BannerAd
-              unitId={adUnitId}
-              size={BannerAdSize.ADAPTIVE_BANNER}
-            />
+          <BannerAd
+            unitId={adUnitId}
+            size={BannerAdSize.ADAPTIVE_BANNER}
+          />
           <Toast />
         </NavigationContainer>
       </ThemeContextProvider>
