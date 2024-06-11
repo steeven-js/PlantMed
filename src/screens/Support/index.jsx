@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { SvgXml } from 'react-native-svg';
@@ -11,6 +11,7 @@ import { STANDARD_VECTOR_ICON_SIZE } from '../../config/Constants';
 import { ThemeContext } from '../../theming/contexts/ThemeContext';
 import styles from './styles';
 import { SupportData } from '../../data/AppData';
+import ic_chat_dark_green from '../../assets/icons/svg/ic_chat_dark_green';
 
 // Functional component
 const Support = () => {
@@ -25,6 +26,12 @@ const Support = () => {
 
     // Data
     const { hedaer, subHeader, item } = SupportData;
+
+    // Navigate to the chats screen
+    const _navigateToChatsScreen = useCallback(
+        () => navigation.navigate('Chats'),
+        [navigation],
+    );
 
     // Returning
     return (
@@ -52,6 +59,50 @@ const Support = () => {
                 animation="fadeInUp"
                 style={styles.supportContentWrapper}
             >
+                {/* Support list item */}
+                <Animatable.View delay={2300} animation="fadeInUp">
+                    <TouchableOpacity
+                        activeOpacity={1}
+                        style={[
+                            styles.supportListItem,
+                            { backgroundColor: theme.primary },
+                        ]}
+                        onPress={_navigateToChatsScreen}>
+                        {/* Support icon wrapper */}
+                        <View
+                            style={[
+                                styles.supportIconWrapper,
+                                { backgroundColor: theme.accentLightest },
+                            ]}>
+                            <SvgXml
+                                xml={ic_chat_dark_green}
+                                width={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                                height={STANDARD_VECTOR_ICON_SIZE * 1.5}
+                            />
+                        </View>
+                        {/* Support title & subtitle wrapper */}
+                        <View>
+                            {/* Title */}
+                            <Text
+                                style={[
+                                    styles.supportTypeTitle,
+                                    { color: theme.textHighContrast },
+                                ]}>
+                                Live Chat
+                            </Text>
+
+                            {/* Subtitle */}
+                            <Text
+                                style={[
+                                    styles.supportTypeTitleInfo,
+                                    { color: theme.textLowContrast },
+                                ]}>
+                                Start a Conversation right now!
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                </Animatable.View>
+
                 {/* Support content header */}
                 <Animatable.View
                     delay={700}

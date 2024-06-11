@@ -70,6 +70,41 @@ Dans le répertoire du projet, vous pouvez exécuter les commandes suivantes :
     npx eslint --init
     ```
 
+1. Supprimez les pods et le dossier `Podfile.lock` :
+
+```bash
+rm -rf ios/Pods
+rm ios/Podfile.lock
+```
+
+2. Supprimez les dossiers `DerivedData` de Xcode (ceci peut prendre un peu de temps) :
+
+```bash
+rm -rf ~/Library/Developer/Xcode/DerivedData
+```
+
+3. Réinstallez les pods :
+
+```bash
+cd ios
+pod install
+cd ..
+```
+
+1. Nettoyez le cache de CocoaPods :
+
+```bash
+pod cache clean --all
+```
+
+1. Réinstallez les pods :
+
+```bash
+cd ios
+pod install --repo-update
+cd ..
+```
+
 ### Pour commencer
 
 Pour commencer à travailler sur le projet, vous pouvez exécuter les commandes suivantes :

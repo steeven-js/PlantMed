@@ -19,6 +19,25 @@ const adUnitId = Platform.OS === 'ios'
   ? 'ca-app-pub-2536948516491703/5832444748'
   : 'ca-app-pub-2536948516491703/8832931036';
 
+async function query(data) {
+  const response = await fetch(
+    'http://localhost:3000/api/v1/prediction/c24bbcf3-5107-4b8c-954a-8b2d29c25bf5',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }
+  );
+  const result = await response.json();
+  return result;
+}
+
+query({ 'question': 'Hey, how are you?' }).then((response) => {
+  console.log(response);
+});
+
 // Functional component
 const App = () => {
   // Local states

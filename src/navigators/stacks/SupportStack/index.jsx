@@ -12,6 +12,7 @@ import Faqs from '../../../screens/Faqs';
 import Support from '../../../screens/Support';
 import { ThemeContext } from '../../../theming/contexts/ThemeContext';
 import styles from '../styles';
+import Chats from '../../../screens/Chats';
 
 // Creating stack navigator
 const Stack = createStackNavigator();
@@ -70,6 +71,11 @@ const SupportStack = () => {
     return (
         <Stack.Navigator screenOptions={screenOptions}>
             <Stack.Screen name="Help & Support" component={Support} />
+            <Stack.Screen
+                name="Chats"
+                component={Chats}
+                options={{ headerShown: false }}
+            />
             <Stack.Screen name="ContactUs" component={ContactUs} />
             <Stack.Screen name="Faqs" component={Faqs} />
         </Stack.Navigator>
