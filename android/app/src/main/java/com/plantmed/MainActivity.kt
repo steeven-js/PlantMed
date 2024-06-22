@@ -1,4 +1,4 @@
-package com.jsprod.plantmed
+package com.plantmed
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
