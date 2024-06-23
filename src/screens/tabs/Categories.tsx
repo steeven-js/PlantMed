@@ -56,6 +56,7 @@ const Categories: React.FC = () => {
   }, []);
 
   const renderCategories = (): JSX.Element | null => {
+    const normalize = (str: string) => str.toLowerCase().trim();
     if (categories?.length) {
       return (
         <View
@@ -67,9 +68,14 @@ const Categories: React.FC = () => {
           }}
         >
           {categories.map((item, index) => {
-            const dataFilter = plantsData?.plantmed.filter(
-              e => e && e.symptoms.includes(item.name),
-            );
+            const dataFilter = plantsData?.plantmed.filter(e => {
+              if (Array.isArray(e.symptoms)) {
+                return e.symptoms.some(
+                  symptom => normalize(symptom) === normalize(item.name),
+                );
+              }
+              return false;
+            });
             const qty = dataFilter?.length ?? 0;
             return (
               <TouchableOpacity

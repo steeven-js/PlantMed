@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {ReactNode, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -24,6 +24,14 @@ import {queryHooks} from '../../store/slices/apiSlice';
 type ViewableItemsChanged = {
   viewableItems: Array<ViewToken>;
   changed: Array<ViewToken>;
+};
+
+type ItemType = {
+  title_line_1: ReactNode;
+  id: number;
+  name: string;
+  image: string;
+  promotion: string;
 };
 
 const Home: React.FC = () => {
@@ -114,7 +122,7 @@ const Home: React.FC = () => {
       });
   }, []);
 
-  const renderCarouselItem = ({item}) => {
+  const renderCarouselItem = ({item}: {item: ItemType}) => {
     const products = plantsData?.plantmed.filter(plant => {
       return plant.promotion === item.promotion;
     });
@@ -162,7 +170,7 @@ const Home: React.FC = () => {
               {item.title_line_1}
             </text.H1>
             <text.H1 style={{textTransform: 'capitalize'}}>
-              {item.title_line_2}
+              {item.title_line_1}
             </text.H1>
             <View
               style={{
@@ -198,8 +206,8 @@ const Home: React.FC = () => {
 
   const renderFlatList = () => {
     return (
-      <FlatList
-        data={carousel}
+      <FlatList<ItemType>
+        data={carousel as unknown as ItemType[]}
         horizontal={true}
         pagingEnabled={true}
         bounces={false}
@@ -268,6 +276,8 @@ const Home: React.FC = () => {
   };
 
   const renderCategories = (): JSX.Element => {
+    const normalize = (str: string) => str.toLowerCase().trim();
+
     return (
       <ScrollView
         horizontal={true}
@@ -285,9 +295,16 @@ const Home: React.FC = () => {
       >
         {categories.map((item, index, array) => {
           const isLast = index === array.length - 1;
-          const dataFilter = plantsData?.plantmed.filter(
-            e => e && e.symptoms.includes(item.name),
-          );
+
+          const dataFilter = plantsData?.plantmed.filter(e => {
+            if (Array.isArray(e.symptoms)) {
+              return e.symptoms.some(
+                symptom => normalize(symptom) === normalize(item.name),
+              );
+            }
+            return false;
+          });
+
           const qty = dataFilter?.length ?? 0;
           return (
             <items.CategoryItem
