@@ -49,10 +49,10 @@ const Header: React.FC<HeaderType> = ({
   } = queryHooks.useGetPlantmedQuery();
 
   const featuredQuantity = plantsData?.plantmed.filter(
-    item => item.isFeatured,
+    item => item.is_featured,
   ).length;
   const bestQuantity = plantsData?.plantmed.filter(
-    item => item.isBestSeller,
+    item => item.is_best_seller,
   ).length;
 
   const route = useRoute();
@@ -257,7 +257,7 @@ const Header: React.FC<HeaderType> = ({
                 navigation.navigate('Shop', {
                   title: 'Best sellers',
                   products:
-                    plantsData?.plantmed.filter(item => item.isBestSeller) ??
+                    plantsData?.plantmed.filter(item => item.is_best_seller) ??
                     [],
                 });
               }}
@@ -270,7 +270,7 @@ const Header: React.FC<HeaderType> = ({
                 navigation.navigate('Shop', {
                   title: 'Featured products',
                   products:
-                    plantsData?.plantmed.filter(item => item.isFeatured) ?? [],
+                    plantsData?.plantmed.filter(item => item.is_featured) ?? [],
                 });
               }}
             />

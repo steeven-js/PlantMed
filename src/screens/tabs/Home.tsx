@@ -77,10 +77,14 @@ const Home: React.FC = () => {
   }).current;
 
   let bestSellers =
-    plantsData?.plantmed.filter(item => item.isBestSeller == true) || [];
+    plantsData?.plantmed.filter(item => item.is_best_seller == true) || [];
+
+  console.log('plantsData', plantsData);
 
   let featured =
-    plantsData?.plantmed.filter(item => item.isFeatured == true) || [];
+    plantsData?.plantmed.filter(item => item.is_featured == true) || [];
+
+  console.log('featured', featured);
 
   let carousel = carouselData?.carousel || [];
 

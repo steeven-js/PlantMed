@@ -21,8 +21,8 @@ export type PlantmedType = {
   precaution: string;
   sources: string[];
   symptoms: string;
-  isBestseller: boolean;
-  isFeatured: boolean;
+  is_best_seller: boolean;
+  is_featured: boolean;
   oldPrice?: number;
   quantity?: number;
   reviews: ReviewType[];
