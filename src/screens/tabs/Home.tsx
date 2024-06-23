@@ -79,12 +79,8 @@ const Home: React.FC = () => {
   let bestSellers =
     plantsData?.plantmed.filter(item => item.is_best_seller == true) || [];
 
-  console.log('plantsData', plantsData);
-
   let featured =
     plantsData?.plantmed.filter(item => item.is_featured == true) || [];
-
-  console.log('featured', featured);
 
   let carousel = carouselData?.carousel || [];
 
