@@ -107,29 +107,35 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
               alignSelf: 'center',
             }}
           >
-            {item.images.map((_, current, array) => {
-              const last = current === array.length - 1;
-              return (
-                <View
-                  key={current}
-                  style={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: 5,
-                    backgroundColor:
-                      activeIndex === current
-                        ? theme.colors.mainColor
-                        : theme.colors.white,
-                    borderColor:
-                      activeIndex === current
-                        ? theme.colors.mainColor
-                        : theme.colors.antiFlashWhite,
-                    marginRight: last ? 0 : 10,
-                    borderWidth: 1,
-                  }}
-                />
-              );
-            })}
+            {item.images.map(
+              (
+                _: any,
+                current: React.Key | null | undefined,
+                array: string | any[],
+              ) => {
+                const last = current === array.length - 1;
+                return (
+                  <View
+                    key={current}
+                    style={{
+                      width: 10,
+                      height: 10,
+                      borderRadius: 5,
+                      backgroundColor:
+                        activeIndex === current
+                          ? theme.colors.mainColor
+                          : theme.colors.white,
+                      borderColor:
+                        activeIndex === current
+                          ? theme.colors.mainColor
+                          : theme.colors.antiFlashWhite,
+                      marginRight: last ? 0 : 10,
+                      borderWidth: 1,
+                    }}
+                  />
+                );
+              },
+            )}
           </View>
         );
       }

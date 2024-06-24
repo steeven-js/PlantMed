@@ -103,7 +103,7 @@ const Shop: React.FC<ShopScreenProps> = ({route}) => {
       case 'Sale':
         return a.oldPrice === b.oldPrice ? 0 : a.oldPrice ? -1 : 1;
       case 'Featured':
-        return a.isFeatured === b.isFeatured ? 0 : a.isFeatured ? -1 : 1;
+        return a.is_featured === b.is_featured ? 0 : a.is_featured ? -1 : 1;
       default:
         return 0;
     }
