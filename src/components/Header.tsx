@@ -340,7 +340,7 @@ const Header: React.FC<HeaderType> = ({
               textTransform: 'capitalize',
             }}
           >
-            search
+            Recherche
           </Text>
         </TouchableOpacity>
       );

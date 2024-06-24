@@ -81,8 +81,8 @@ const Categories: React.FC = () => {
               <TouchableOpacity
                 key={index}
                 style={{
-                  width: utils.responsiveWidth(160, true),
-                  height: utils.responsiveWidth(160, true),
+                  width: utils.responsiveWidth(150, true),
+                  height: utils.responsiveWidth(150, true),
                   marginBottom: 18,
                   justifyContent: 'space-between',
                 }}
@@ -136,7 +136,7 @@ const Categories: React.FC = () => {
                       style={{
                         fontSize: Platform.OS === 'ios' ? 18 : 16,
                         color: '#50858B',
-                        textTransform: 'capitalize',
+                        // textTransform: 'capitalize',
                         ...theme.fonts.DM_Sans_500Medium,
                       }}
                     >
@@ -146,8 +146,8 @@ const Categories: React.FC = () => {
                   <Text
                     numberOfLines={1}
                     style={{
-                      fontSize: Platform.OS === 'ios' ? 20 : 18,
-                      textTransform: 'capitalize',
+                      fontSize: Platform.OS === 'ios' ? 18 : 16,
+                      // textTransform: 'capitalize',
                       backgroundColor: 'rgba(255, 255, 255, 0.9)',
                       color: theme.colors.mainColor,
                       ...theme.fonts.DM_Sans_700Bold,
