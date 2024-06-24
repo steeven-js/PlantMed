@@ -46,7 +46,7 @@ const TabNavigator: React.FC = () => {
 
   const getTitle = (): string | null => {
     if (currentTabScreen === 'Profile') {
-      return 'My profile';
+      return 'Mon profil';
     }
 
     // if (currentTabScreen === 'Order') {
@@ -54,7 +54,7 @@ const TabNavigator: React.FC = () => {
     // }
 
     if (currentTabScreen === 'Wishlist') {
-      return 'Wishlist';
+      return 'Favoris';
     }
 
     return null;

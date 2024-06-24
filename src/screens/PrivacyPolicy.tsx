@@ -10,27 +10,50 @@ import {utils} from '../utils';
 const policy = [
   {
     id: 1,
-    title: 'Terms',
+    title: "Date d'entrée en vigueur : 05 Février 2024",
     description:
-      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      "Cette Politique de Confidentialité décrit la manière dont les informations sont collectées, utilisées et partagées lorsque vous utilisez l'application mobile de plantes médicinales (ci-après dénommée 'PlantMed').",
   },
   {
     id: 2,
-    title: 'Use license',
+    title: 'Collecte et Utilisation des Informations',
     description:
-      ' Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      "Nous ne collectons aucune information personnelle identifiable lorsque vous utilisez l'Application. Toutefois, l'Application peut collecter automatiquement certaines informations non personnelles, telles que le type de dispositif mobile que vous utilisez, l'identifiant unique de votre appareil, la version du système d'exploitation de votre appareil et des informations sur la manière dont vous utilisez l'Application. Ces informations sont utilisées dans le but d'améliorer la fonctionnalité de l'Application et de fournir un service de meilleure qualité.",
   },
   {
     id: 3,
-    title: 'Disclaimer',
+    title: 'Partage des Informations',
     description:
-      'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      "Nous ne partageons aucune information personnelle identifiable collectée par le biais de l'Application. Nous pouvons partager des informations non personnelles avec des fournisseurs de services tiers engagés pour nous aider à exploiter et à améliorer l'Application. Ces tiers n'ont pas le droit d'utiliser les informations que nous leur fournissons à d'autres fins que celles de nous aider.",
+  },
+  {
+    id: 4,
+    title: 'Sécurité',
+    description:
+      "Nous prenons des mesures raisonnables pour protéger les informations non personnelles collectées par le biais de l'Application contre la perte, le vol, l'accès non autorisé, la divulgation, la modification ou la destruction.",
+  },
+  {
+    id: 5,
+    title: 'Modifications de la Politique de Confidentialité',
+    description:
+      'Nous nous réservons le droit de mettre à jour cette Politique de Confidentialité à tout moment. Nous vous recommandons de consulter régulièrement cette page pour prendre connaissance de toute modification. Les modifications apportées à cette Politique de Confidentialité entrent en vigueur dès leur publication sur cette page.',
+  },
+  {
+    id: 6,
+    title: 'Contactez-nous',
+    description:
+      "Si vous avez des questions ou des préoccupations concernant cette Politique de Confidentialité, veuillez nous contacter à contact@jsprod.fr. En utilisant l'Application, vous consentez à cette Politique de Confidentialité.",
   },
 ];
 
 const PrivacyPolicy: React.FC = () => {
   const renderHeader = (): JSX.Element => {
-    return <components.Header goBackIcon={true} title='Privacy Policy' />;
+    return (
+      <components.Header
+        goBackIcon={true}
+        title='Politique de confidentialité'
+      />
+    );
   };
 
   const renderContent = (): JSX.Element => {
