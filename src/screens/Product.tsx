@@ -59,7 +59,6 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
         goBackIcon={true}
         basketIcon={true}
         bottomLine={true}
-        title={item.name}
       />
     );
   };

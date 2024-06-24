@@ -23,6 +23,7 @@ export type PlantmedType = {
   symptoms: string;
   is_best_seller: boolean;
   is_featured: boolean;
+  categories: string;
   oldPrice?: number;
   quantity?: number;
   reviews: ReviewType[];
