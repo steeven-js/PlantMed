@@ -101,7 +101,7 @@ const PlantCard: React.FC<Props> = ({
           source={{uri: item.image}}
           style={{
             width: utils.responsiveWidth(138, true),
-            aspectRatio: 138 / 170,
+            aspectRatio: 138 / 138,
             marginRight: isLast ? 20 : 14,
             marginBottom: utils.responsiveHeight(14),
           }}
@@ -161,7 +161,7 @@ const PlantCard: React.FC<Props> = ({
           source={{uri: item.image}}
           style={{
             width: width,
-            aspectRatio: 200 / 250,
+            aspectRatio: 150 / 150,
             marginRight: isLast ? 20 : 14,
             marginBottom: utils.responsiveHeight(14),
           }}

@@ -8,6 +8,8 @@ export const colors = {
   imageBackground: '#FAFAFA',
   transparent: 'transparent',
   sombre: 'rgba(0, 0, 0, 0.5)',
+
+  red: '#FF0000',
 };
 
 export const theme = {colors};

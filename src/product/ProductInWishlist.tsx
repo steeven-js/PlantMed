@@ -24,12 +24,8 @@ const ProductInWishlist: React.FC<Props> = ({
   const itemExist = (item: PlantmedType) =>
     wishlist.find(i => i.id === item.id);
 
-  const fillColor = itemExist(item)
-    ? theme.colors.steelTeal
-    : theme.colors.transparent;
-  const strokeColor = itemExist(item)
-    ? theme.colors.steelTeal
-    : theme.colors.textColor;
+  const fillColor = itemExist(item) ? theme.colors.red : theme.colors.white;
+  const strokeColor = itemExist(item) ? theme.colors.red : theme.colors.red;
 
   const itemExistMessage = () => {
     return Alert.alert(
