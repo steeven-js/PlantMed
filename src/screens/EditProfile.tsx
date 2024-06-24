@@ -26,35 +26,23 @@ const EditProfile: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>(user?.name || '');
   const [email, setEmail] = useState<string>(user?.email || '');
-  // const [phoneNumber, setPhoneNumber] = useState<string>(
-  //   user?.phoneNumber || '',
-  // );
   const [location, setLocation] = useState<string>(user?.location || '');
 
   const handleNameChange = handleTextChange(setName);
   const handleEmailChange = handleTextChange(setEmail);
   const handleLocationChange = handleTextChange(setLocation);
-  // const handlePhoneNumberChange = handleTextChange(setPhoneNumber);
 
   const updatedUser = {name, location};
 
   const nameInputRef = useRef<TextInput>(null);
   const emailInputRef = useRef<TextInput>(null);
   const locationInputRef = useRef<TextInput>(null);
-  // const phoneNumberInputRef = useRef<TextInput>(null);
-
-  // useEffect(() => {
-  //   if (!user) {
-  //     navigation.navigate('SignIn');
-  //   }
-  // }, [user, navigation]);
 
   useEffect(() => {
     if (loading) {
       nameInputRef.current?.blur();
       emailInputRef.current?.blur();
       locationInputRef.current?.blur();
-      // phoneNumberInputRef.current?.blur();
     }
   }, [loading]);
 
@@ -84,7 +72,12 @@ const EditProfile: React.FC = () => {
   };
 
   const renderHeader = (): JSX.Element => {
-    return <components.Header title='Edit personal info' goBackIcon={true} />;
+    return (
+      <components.Header
+        title='Modifier les informations personnelles'
+        goBackIcon={true}
+      />
+    );
   };
 
   const renderUserInfo = (): JSX.Element => {
@@ -99,11 +92,11 @@ const EditProfile: React.FC = () => {
     return (
       <View style={{paddingHorizontal: 20}}>
         <custom.InputField
-          label='Name'
+          label='Nom'
           value={name}
           keyboardType='default'
           innerRef={nameInputRef}
-          placeholder={'enter name'}
+          placeholder={'entrez votre nom'}
           onChangeText={handleNameChange}
           containerStyle={{marginBottom: utils.responsiveHeight(20)}}
         />
@@ -111,28 +104,18 @@ const EditProfile: React.FC = () => {
           value={email}
           label='Email'
           innerRef={emailInputRef}
-          placeholder={'enter email'}
+          placeholder={'entrez votre email'}
           keyboardType='email-address'
           onChangeText={handleEmailChange}
           editable={user?.email ? false : true}
           containerStyle={{marginBottom: utils.responsiveHeight(20)}}
         />
-        {/* <custom.InputField
-          value={phoneNumber}
-          label='Phone number'
-          keyboardType='phone-pad'
-          innerRef={phoneNumberInputRef}
-          placeholder={'enter phone number'}
-          editable={user?.phoneNumber ? false : true}
-          onChangeText={handlePhoneNumberChange}
-          containerStyle={{marginBottom: utils.responsiveHeight(20)}}
-        /> */}
         <custom.InputField
-          label='Location'
+          label='Localisation'
           value={location}
           keyboardType='default'
           innerRef={locationInputRef}
-          placeholder={'enter location'}
+          placeholder={'entrez votre localisation'}
           onChangeText={handleLocationChange}
           containerStyle={{marginBottom: utils.responsiveHeight(20)}}
         />
@@ -143,7 +126,7 @@ const EditProfile: React.FC = () => {
   const renderButton = (): JSX.Element => {
     return (
       <components.Button
-        title='Save changes'
+        title='Enregistrer les modifications'
         loading={loading}
         onPress={() => {
           validation(updatedUser) ? handleUpdate() : null;

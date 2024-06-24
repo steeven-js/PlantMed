@@ -17,7 +17,7 @@ import {ENDPOINTS, CONFIG} from '../config';
 import {validateEmail} from '../validation/validateEmail';
 import {handleTextChange} from '../utils/handleTextChange';
 
-const Connexion: React.FC = () => {
+const SignIn: React.FC = () => {
   const dispatch = hooks.useAppDispatch();
   const navigation = hooks.useAppNavigation();
 
@@ -239,4 +239,4 @@ const Connexion: React.FC = () => {
   );
 };
 
-export default Connexion;
+export default SignIn;

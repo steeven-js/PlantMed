@@ -31,7 +31,7 @@ const Profile: React.FC = () => {
   //   async function init() {
   //     try {
   //       await initConnection();
-  //       await getProducts({skus: sku});
+  //       await getProducts({ skus: sku });
   //     } catch (err) {
   //       console.warn(err);
   //     }
@@ -44,11 +44,11 @@ const Profile: React.FC = () => {
       const receipt = currentPurchase.transactionReceipt;
       if (receipt) {
         finishTransaction({purchase: currentPurchase, isConsumable: true});
-        Alert.alert('Purchase Successful', 'Thank you for your purchase!');
+        Alert.alert('Achat réussi', 'Merci pour votre achat!');
       }
     }
     if (currentPurchaseError) {
-      Alert.alert('Purchase Error', currentPurchaseError.message);
+      Alert.alert("Erreur d'achat", currentPurchaseError.message);
     }
   }, [currentPurchase, currentPurchaseError]);
 
@@ -76,7 +76,7 @@ const Profile: React.FC = () => {
     return (
       <View style={{paddingLeft: 20}}>
         <items.ProfileItem
-          title={'Personal info'}
+          title={'Informations personnelles'}
           onPress={() => {
             navigation.navigate('EditProfile');
           }}
@@ -85,7 +85,7 @@ const Profile: React.FC = () => {
           containerStyle={{marginBottom: utils.responsiveHeight(10)}}
         />
         <items.ProfileItem
-          title='Privacy Policy'
+          title='Politique de confidentialité'
           onPress={() => {
             navigation.navigate('PrivacyPolicy');
           }}
@@ -103,7 +103,7 @@ const Profile: React.FC = () => {
           containerStyle={{marginBottom: utils.responsiveHeight(6)}}
         />
         <items.ProfileItem
-          title='Sign out'
+          title='Déconnexion'
           onPress={() => {
             navigation.navigate('LogOut');
           }}
@@ -111,7 +111,7 @@ const Profile: React.FC = () => {
           containerStyle={{marginBottom: utils.responsiveHeight(10)}}
         />
         <items.ProfileItem
-          title='Delete account'
+          title='Supprimer le compte'
           onPress={() => {
             navigation.navigate('DeleteAccount');
           }}

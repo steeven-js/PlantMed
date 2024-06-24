@@ -16,7 +16,7 @@ import {validateName} from '../validation/validateName';
 import {validateEmail} from '../validation/validateEmail';
 import {handleTextChange} from '../utils/handleTextChange';
 
-const Inscription: React.FC = () => {
+const SignUp: React.FC = () => {
   const navigation = hooks.useAppNavigation();
 
   const [name, setName] = useState<string>('');
@@ -201,4 +201,4 @@ const Inscription: React.FC = () => {
   );
 };
 
-export default Inscription;
+export default SignUp;

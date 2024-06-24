@@ -32,7 +32,7 @@ const LogOut: React.FC = () => {
           }}
         />
         <text.H2 numberOfLines={2}>
-          Are you sure you{'\n'}want to sign out ?
+          Êtes-vous sûr de vouloir {'\n'} vous déconnecter ?
         </text.H2>
       </ScrollView>
     );
@@ -42,7 +42,7 @@ const LogOut: React.FC = () => {
     return (
       <View style={{padding: 20}}>
         <components.Button
-          title='cancel'
+          title='Annuler'
           containerStyle={{marginBottom: utils.responsiveHeight(14)}}
           touchableOpacityStyle={{backgroundColor: theme.colors.steelTeal}}
           onPress={() => {
@@ -50,7 +50,7 @@ const LogOut: React.FC = () => {
           }}
         />
         <components.Button
-          title='Sure'
+          title='Oui'
           touchableOpacityStyle={{backgroundColor: theme.colors.pastelMint}}
           onPress={() => {
             dispatch(actions.logOut());

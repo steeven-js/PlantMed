@@ -83,11 +83,11 @@ const SignUpAccountCreated: React.FC<SignUpAccountCreatedScreenProps> = ({
             marginBottom: utils.responsiveHeight(14),
           }}
         >
-          Account Created!
+          Compte Créé!
         </text.H2>
         <text.T16>
-          Your account had been created {'\n'}
-          successfully.
+          Votre compte a été créé {'\n'}
+          avec succès.
         </text.T16>
       </ScrollView>
     );
