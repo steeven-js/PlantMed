@@ -40,18 +40,22 @@ const SignUpAccountCreated: React.FC<SignUpAccountCreatedScreenProps> = ({
 
       navigation.reset({
         index: 0,
-        routes: [{name: 'Search'}],
+        routes: [{name: 'TabNavigator'}],
       });
 
       alert.somethingWentWrong();
     } catch (error: any) {
       navigation.reset({
         index: 0,
-        routes: [{name: 'SignIn'}],
+        routes: [{name: 'TabNavigator'}],
       });
       alert.somethingWentWrong();
     } finally {
       setLoading(false);
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'TabNavigator'}],
+      });
     }
   };
 

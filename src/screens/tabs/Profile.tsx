@@ -20,24 +20,24 @@ const Profile: React.FC = () => {
     products,
     currentPurchase,
     currentPurchaseError,
-    initConnection,
+    // initConnection,
     getProducts,
     finishTransaction,
   } = useIAP();
 
-  console.log('initConnection', initConnection);
+  // console.log('initConnection', initConnection);
 
-  useEffect(() => {
-    async function init() {
-      try {
-        await initConnection();
-        await getProducts({skus: sku});
-      } catch (err) {
-        console.warn(err);
-      }
-    }
-    init();
-  }, []);
+  // useEffect(() => {
+  //   async function init() {
+  //     try {
+  //       await initConnection();
+  //       await getProducts({skus: sku});
+  //     } catch (err) {
+  //       console.warn(err);
+  //     }
+  //   }
+  //   init();
+  // }, []);
 
   useEffect(() => {
     if (currentPurchase) {
@@ -57,7 +57,7 @@ const Profile: React.FC = () => {
       await requestPurchase({sku: sku[0]});
     } catch (err) {
       console.warn(err);
-      Alert.alert('Purchase Error', err.message);
+      // Alert.alert('Purchase Error', err.message);
     }
   };
 

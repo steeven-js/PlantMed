@@ -17,7 +17,7 @@ import {ENDPOINTS, CONFIG} from '../config';
 import {validateEmail} from '../validation/validateEmail';
 import {handleTextChange} from '../utils/handleTextChange';
 
-const SignIn: React.FC = () => {
+const Connexion: React.FC = () => {
   const dispatch = hooks.useAppDispatch();
   const navigation = hooks.useAppNavigation();
 
@@ -85,7 +85,7 @@ const SignIn: React.FC = () => {
           marginBottom: utils.responsiveHeight(14),
         }}
       >
-        Welcome back
+        Bienvenue
       </text.H1>
     );
   };
@@ -96,7 +96,7 @@ const SignIn: React.FC = () => {
         style={{marginBottom: utils.responsiveHeight(40)}}
         numberOfLines={1}
       >
-        Sign in to your account
+        Connectez-vous à votre compte
       </text.T16>
     );
   };
@@ -108,19 +108,19 @@ const SignIn: React.FC = () => {
           label='email'
           value={email}
           innerRef={emailInputRef}
-          placeholder='enter email'
+          placeholder='entrez votre email'
           keyboardType='email-address'
           onChangeText={handleEmailChange}
           checkIcon={validateEmail(email, true)}
           containerStyle={{marginBottom: utils.responsiveHeight(20)}}
         />
         <custom.InputField
-          label='password'
+          label='mot de passe'
           value={password}
           eyeOffIcon={true}
           keyboardType='default'
           innerRef={passwordInputRef}
-          placeholder='enter password'
+          placeholder='entrez votre mot de passe'
           secureTextEntry={secureTextEntry}
           onChangeText={handlePasswordChange}
           setSecureTextEntry={setSecureTextEntry}
@@ -159,7 +159,7 @@ const SignIn: React.FC = () => {
             {rememberMe && <svg.RememberCheckSvg />}
           </View>
           <text.T14 style={{marginLeft: 10}} numberOfLines={1}>
-            Remember me
+            Se souvenir de moi
           </text.T14>
         </TouchableOpacity>
         <TouchableOpacity
@@ -168,7 +168,7 @@ const SignIn: React.FC = () => {
           }}
         >
           <text.T16 numberOfLines={1} style={{color: theme.colors.mainColor}}>
-            Forgot password?
+            Mot de passe oublié?
           </text.T16>
         </TouchableOpacity>
       </View>
@@ -178,7 +178,7 @@ const SignIn: React.FC = () => {
   const renderButton = (): JSX.Element => {
     return (
       <components.Button
-        title='Sign in'
+        title='Connexion'
         onPress={() => {
           validation(user) ? handleSignIn() : null;
         }}
@@ -190,10 +190,10 @@ const SignIn: React.FC = () => {
   const renderIfYouDontHaveAnAccount = (): JSX.Element => {
     return (
       <View style={{flexDirection: 'row', padding: 20}}>
-        <text.T16 numberOfLines={1}>Don’t have an account? </text.T16>
+        <text.T16 numberOfLines={1}>Vous n'avez pas de compte? </text.T16>
         <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
           <text.T16 style={{color: theme.colors.mainColor}} numberOfLines={1}>
-            Sign up
+            Inscrivez-vous
           </text.T16>
         </TouchableOpacity>
       </View>
@@ -239,4 +239,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default Connexion;

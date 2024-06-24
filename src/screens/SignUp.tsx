@@ -16,7 +16,7 @@ import {validateName} from '../validation/validateName';
 import {validateEmail} from '../validation/validateEmail';
 import {handleTextChange} from '../utils/handleTextChange';
 
-const SignUp: React.FC = () => {
+const Inscription: React.FC = () => {
   const navigation = hooks.useAppNavigation();
 
   const [name, setName] = useState<string>('');
@@ -87,7 +87,7 @@ const SignUp: React.FC = () => {
           marginBottom: utils.responsiveHeight(40),
         }}
       >
-        Sign up
+        Inscription
       </text.H1>
     );
   };
@@ -96,11 +96,11 @@ const SignUp: React.FC = () => {
     return (
       <React.Fragment>
         <custom.InputField
-          label='name'
+          label='nom'
           value={name}
           keyboardType='default'
           innerRef={nameInputRef}
-          placeholder='enter name'
+          placeholder='entrez votre nom'
           onChangeText={handleNameChange}
           checkIcon={validateName(name, true)}
           containerStyle={{marginBottom: utils.responsiveHeight(20)}}
@@ -109,19 +109,19 @@ const SignUp: React.FC = () => {
           label='email'
           value={email}
           innerRef={emailInputRef}
-          placeholder='enter email'
+          placeholder='entrez votre email'
           keyboardType='email-address'
           onChangeText={handleEmailChange}
           checkIcon={validateEmail(email, true)}
           containerStyle={{marginBottom: utils.responsiveHeight(20)}}
         />
         <custom.InputField
-          label='password'
+          label='mot de passe'
           value={password}
           eyeOffIcon={true}
           keyboardType='default'
           innerRef={passwordInputRef}
-          placeholder='enter password'
+          placeholder='entrez votre mot de passe'
           secureTextEntry={secureTextEntry}
           onChangeText={handlePasswordChange}
           setSecureTextEntry={setSecureTextEntry}
@@ -131,9 +131,9 @@ const SignUp: React.FC = () => {
           eyeOffIcon={true}
           keyboardType='default'
           value={confirmPassword}
-          label='confirm password'
+          label='confirmer mot de passe'
           innerRef={confirmPasswordInputRef}
-          placeholder='enter confirm password'
+          placeholder='confirmez votre mot de passe'
           secureTextEntry={confirmSecureTextEntry}
           onChangeText={handleConfirmPasswordChange}
           setSecureTextEntry={setConfirmSecureTextEntry}
@@ -146,7 +146,7 @@ const SignUp: React.FC = () => {
   const renderButton = (): JSX.Element => {
     return (
       <components.Button
-        title={'sign up'}
+        title={'inscription'}
         onPress={() => {
           validation({name, email, password, confirmPassword})
             ? handleCreateUser()
@@ -160,10 +160,10 @@ const SignUp: React.FC = () => {
   const renderIfYouHaveAccount = (): JSX.Element => {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center', padding: 20}}>
-        <text.T16 numberOfLines={1}>Already have an account? </text.T16>
+        <text.T16 numberOfLines={1}>Vous avez déjà un compte? </text.T16>
         <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
           <text.T16 style={{color: theme.colors.mainColor}} numberOfLines={1}>
-            Sign in.
+            Connectez-vous.
           </text.T16>
         </TouchableOpacity>
       </View>
@@ -201,4 +201,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default Inscription;
