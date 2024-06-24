@@ -83,7 +83,7 @@ const Categories: React.FC = () => {
                 style={{
                   width: utils.responsiveWidth(160, true),
                   height: utils.responsiveWidth(160, true),
-                  marginBottom: 14,
+                  marginBottom: 18,
                   justifyContent: 'space-between',
                 }}
                 onPress={() => {
@@ -146,10 +146,11 @@ const Categories: React.FC = () => {
                   <Text
                     numberOfLines={1}
                     style={{
-                      fontSize: Platform.OS === 'ios' ? 18 : 16,
-                      color: theme.colors.mainColor,
+                      fontSize: Platform.OS === 'ios' ? 20 : 18,
                       textTransform: 'capitalize',
-                      ...theme.fonts.DM_Sans_500Medium,
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                      color: theme.colors.mainColor,
+                      ...theme.fonts.DM_Sans_700Bold,
                     }}
                   >
                     {item.name}

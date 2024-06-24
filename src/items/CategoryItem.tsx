@@ -70,7 +70,7 @@ const CategoryItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
             style={{
               fontSize: 18,
               color: theme.colors.steelTeal,
-              ...theme.fonts.DM_Sans_500Medium,
+              ...theme.fonts.DM_Sans_700Bold,
             }}
           >
             {qty}
@@ -79,9 +79,10 @@ const CategoryItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
         <Text
           numberOfLines={1}
           style={{
-            fontSize: 16,
-            color: '#50858B',
-            ...theme.fonts.DM_Sans_500Medium,
+            fontSize: 18,
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            color: theme.colors.mainColor,
+            ...theme.fonts.DM_Sans_700Bold,
           }}
         >
           {item.name}
