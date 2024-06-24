@@ -28,6 +28,7 @@ type ViewableItemsChanged = {
 
 type ItemType = {
   title_line_1: ReactNode;
+  title_line_2: ReactNode;
   id: number;
   name: string;
   image: string;
@@ -170,7 +171,7 @@ const Home: React.FC = () => {
               {item.title_line_1}
             </text.H1>
             <text.H1 style={{textTransform: 'capitalize'}}>
-              {item.title_line_1}
+              {item.title_line_2}
             </text.H1>
             <View
               style={{

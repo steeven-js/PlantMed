@@ -1,9 +1,9 @@
-const LOCALHOST = 'http://127.0.0.1:8000/';
-// const DOMAIN = 'https://admin-plantmedapp.jsprod.fr/';
+// const LOCALHOST = 'http://127.0.0.1:8000/';
+const DOMAIN = 'https://admin-plantmedapp.jsprod.fr/';
 // const DOMAIN = 'https://everbloom.rn-admin.site/';
 
-// export const BASE_URL = DOMAIN;
-export const BASE_URL = LOCALHOST;
+export const BASE_URL = DOMAIN;
+// export const BASE_URL = LOCALHOST;
 
 // ############ GET DATA ############ //
 export const GET_USER = `${BASE_URL}api/user`;
