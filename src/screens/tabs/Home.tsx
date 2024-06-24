@@ -148,7 +148,7 @@ const Home: React.FC = () => {
           }
 
           navigation.navigate('Shop', {
-            title: 'Shop',
+            title: 'Plante du jour',
             products: products || [],
           });
         }}
