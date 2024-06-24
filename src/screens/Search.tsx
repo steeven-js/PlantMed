@@ -62,7 +62,7 @@ const Search: React.FC = () => {
         <View style={{flex: 1, height: 40, marginRight: 20}}>
           <TextInput
             ref={ref}
-            placeholder='Enter product name'
+            placeholder='Nom de la plante'
             clearButtonMode='always'
             placeholderTextColor={`${theme.colors.textColor}80`}
             autoCapitalize='none'
@@ -95,7 +95,7 @@ const Search: React.FC = () => {
               fontSize: Platform.OS === 'ios' ? 14 : 12,
             }}
           >
-            Cancel
+            Annuler
           </Text>
         </TouchableOpacity>
       </View>

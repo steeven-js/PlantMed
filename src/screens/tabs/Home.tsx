@@ -301,14 +301,14 @@ const Home: React.FC = () => {
     return (
       <View style={{marginBottom: utils.responsiveHeight(50)}}>
         <components.BlockHeading
-          title='Best sellers'
+          title='Les plus consultées'
           containerStyle={{
             paddingHorizontal: 20,
             marginBottom: 11,
           }}
           viewAllOnPress={() => {
             navigation.navigate('Shop', {
-              title: 'Best sellers',
+              title: 'Les plus consultées',
               products: bestSellers,
             });
           }}
@@ -387,14 +387,14 @@ const Home: React.FC = () => {
     return (
       <View style={{marginBottom: utils.responsiveHeight(20)}}>
         <components.BlockHeading
-          title='Featured products'
+          title='Plantes en vedette'
           containerStyle={{
             paddingHorizontal: 20,
             marginBottom: utils.rsHeight(11),
           }}
           viewAllOnPress={() => {
             navigation.navigate('Shop', {
-              title: 'Featured',
+              title: 'Plantes en vedette',
               products: featured,
             });
           }}

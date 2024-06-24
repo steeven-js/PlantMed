@@ -220,7 +220,7 @@ const Header: React.FC<HeaderType> = ({
             </TouchableOpacity>
             {/* MENU */}
             <items.BurgerMenuItem
-              title='>  Categories'
+              title='>  Usages thérapeutiques'
               onPress={() => {
                 setShowModal(false);
                 dispatch(actions.setScreen('Category'));
@@ -251,11 +251,11 @@ const Header: React.FC<HeaderType> = ({
             /> */}
             <items.BurgerMenuItem
               qty={`${bestQuantity}`}
-              title={'>  Best sellers'}
+              title={'>  Les plus consultées'}
               onPress={() => {
                 setShowModal(false);
                 navigation.navigate('Shop', {
-                  title: 'Best sellers',
+                  title: 'Les plus consultées',
                   products:
                     plantsData?.plantmed.filter(item => item.is_best_seller) ??
                     [],
@@ -264,11 +264,11 @@ const Header: React.FC<HeaderType> = ({
             />
             <items.BurgerMenuItem
               qty={`${featuredQuantity}`}
-              title={'>  Featured products'}
+              title={'>  Plantes en vedette'}
               onPress={() => {
                 setShowModal(false);
                 navigation.navigate('Shop', {
-                  title: 'Featured products',
+                  title: 'Plantes en vedette',
                   products:
                     plantsData?.plantmed.filter(item => item.is_featured) ?? [],
                 });
