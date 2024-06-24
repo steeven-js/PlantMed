@@ -243,6 +243,7 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
         >
           <text.T16
             style={{
+              paddingBottom: 20,
               color: theme.colors.textColor,
             }}
           >
@@ -268,6 +269,7 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
         >
           <text.T16
             style={{
+              paddingBottom: 20,
               color: theme.colors.textColor,
             }}
           >
@@ -275,7 +277,7 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
           </text.T16>
         </View>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             navigation.navigate('Source', {
               source: item.sources,
@@ -292,7 +294,7 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
           >
             {'Sources >'}
           </text.H5>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     );
   };
@@ -359,6 +361,7 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
         >
           <text.T16
             style={{
+              paddingBottom: 20,
               color: theme.colors.textColor,
             }}
           >
@@ -384,6 +387,7 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
         >
           <text.T16
             style={{
+              paddingBottom: 20,
               color: theme.colors.textColor,
             }}
           >
