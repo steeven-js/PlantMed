@@ -37,7 +37,7 @@ const BottomTabBar: React.FC = () => {
         const iconColor =
           item.name === currentTabScreen
             ? '#CFF5CE'
-            : `${theme.colors.white}35`;
+            : `${theme.colors.white}90`;
         const backgroundColor =
           item.name === currentTabScreen ? '#000' : theme.colors.transparent;
 
