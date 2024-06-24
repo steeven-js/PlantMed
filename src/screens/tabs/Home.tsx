@@ -173,32 +173,6 @@ const Home: React.FC = () => {
             <text.H1 style={{textTransform: 'capitalize'}}>
               {item.title_line_2}
             </text.H1>
-            <View
-              style={{
-                marginTop: 30,
-                backgroundColor: theme.colors.pastelMint,
-                alignSelf: 'flex-start',
-                paddingHorizontal: 20,
-                paddingVertical: 8,
-                borderRadius: 50,
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: 6,
-              }}
-            >
-              <svg.ShoppingCartSvg />
-              <Text
-                style={{
-                  ...theme.fonts.DM_Sans_500Medium,
-                  fontSize: Platform.OS === 'ios' ? 12 : 10,
-                  lineHeight: Platform.OS === 'ios' ? 12 * 1.7 : 10 * 1.7,
-                  color: theme.colors.mainColor,
-                }}
-                numberOfLines={1}
-              >
-                Shop Now
-              </Text>
-            </View>
           </View>
         </custom.ImageBackground>
       </TouchableOpacity>
@@ -382,7 +356,7 @@ const Home: React.FC = () => {
             }
 
             navigation.navigate('Shop', {
-              title: 'Shop',
+              title: 'Plantes du jour',
               products: products,
             });
           }}

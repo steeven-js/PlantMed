@@ -31,7 +31,11 @@ const BlockHeading: React.FC<Props> = ({
           onPress={viewAllOnPress}
           style={{flexDirection: 'row', alignItems: 'center'}}
         >
-          <svg.ViewAllSvg />
+          <text.H3
+            style={{color: theme.colors.mainColor, textTransform: 'capitalize'}}
+          >
+            Tout voir {'>'}
+          </text.H3>
         </TouchableOpacity>
       )}
     </View>
