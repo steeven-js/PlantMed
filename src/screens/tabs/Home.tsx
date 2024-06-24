@@ -167,12 +167,12 @@ const Home: React.FC = () => {
           imageStyle={{backgroundColor: theme.colors.imageBackground}}
         >
           <View style={{marginBottom: 30}}>
-            <text.H1 style={{textTransform: 'capitalize'}}>
+            <text.H1 style={{backgroundColor: theme.colors.whiteTransparent}}>
               {item.title_line_1}
             </text.H1>
-            <text.H1 style={{textTransform: 'capitalize'}}>
+            {/* <text.H2 style={{textTransform: 'capitalize'}}>
               {item.title_line_2}
-            </text.H1>
+            </text.H2> */}
           </View>
         </custom.ImageBackground>
       </TouchableOpacity>
