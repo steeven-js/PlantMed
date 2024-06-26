@@ -1,4 +1,4 @@
-import React, {ReactNode, useRef, useState} from 'react';
+import React, {ReactNode, useMemo, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -250,6 +250,17 @@ const Home: React.FC = () => {
     return null;
   };
 
+  // Fonction pour sélectionner aléatoirement 10 catégories
+  const getRandomCategories = (categories: any[], count: number) => {
+    const shuffled = [...categories].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  };
+
+  // Utilisez useMemo pour ne pas recalculer à chaque rendu
+  const randomCategories = useMemo(() => {
+    return getRandomCategories(categories, 10);
+  }, [categories]);
+
   const renderCategories = (): JSX.Element => {
     const normalize = (str: string) => str.toLowerCase().trim();
 
@@ -268,7 +279,7 @@ const Home: React.FC = () => {
           flexGrow: 0,
         }}
       >
-        {categories.map((item, index, array) => {
+        {randomCategories.map((item, index, array) => {
           const isLast = index === array.length - 1;
 
           const dataFilter = plantsData?.plantmed.filter(e => {
