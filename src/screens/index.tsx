@@ -16,6 +16,7 @@ import EditProfile from './EditProfile';
 import OrderFailed from './OrderFailed';
 import Description from './Description';
 import NewPassword from './NewPassword';
+import Subscription from './Subscription';
 import MyPromocodes from './MyPromocodes';
 import LeaveAReview from './LeaveAReview';
 import OrderHistory from './OrderHistory';
@@ -61,6 +62,7 @@ export const screens = {
   SendEmailOtp,
   MyPromocodes,
   LeaveAReview,
+  Subscription,
   SendPhoneOtp,
   DeleteAccount,
   PhoneVerified,

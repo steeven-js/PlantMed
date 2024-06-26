@@ -124,6 +124,11 @@ const StackNavigator: React.FC = () => {
           options={{headerShown: false}}
         />
         <RootStack.Screen
+          name='Subscription'
+          component={screens.Subscription}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
           name='MyPromocodes'
           component={screens.MyPromocodes}
           options={{headerShown: false}}

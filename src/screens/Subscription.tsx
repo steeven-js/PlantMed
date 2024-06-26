@@ -13,17 +13,11 @@ import {custom} from '../custom';
 import {theme} from '../constants';
 import {components} from '../components';
 import {utils} from '../utils';
-import {hooks} from '../hooks';
+import {SubscriptionScreenProps} from '../types/ScreenProps';
 
-const Prenium: React.FC = () => {
-  const navigation = hooks.useAppNavigation();
-
-  const goToSub = () => {
-    navigation.navigate('Subscription');
-  };
-
+const Subscription: React.FC<SubscriptionScreenProps> = () => {
   const renderHeader = (): JSX.Element => {
-    return <components.Header goBackIcon={true} title='Prenium' />;
+    return <components.Header goBackIcon={true} title='Subscription' />;
   };
 
   const renderContent = (): JSX.Element => {
@@ -36,18 +30,7 @@ const Prenium: React.FC = () => {
           paddingBottom: utils.responsiveHeight(20),
         }}
       >
-        <TouchableOpacity onPress={goToSub}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <Text style={{fontSize: 18}}>Subscription</Text>
-          </View>
-        </TouchableOpacity>
+        <></>
       </ScrollView>
     );
   };
@@ -69,4 +52,4 @@ const Prenium: React.FC = () => {
   );
 };
 
-export default Prenium;
+export default Subscription;
