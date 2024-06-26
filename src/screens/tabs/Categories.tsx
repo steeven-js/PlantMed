@@ -63,7 +63,7 @@ const Categories: React.FC = () => {
           style={{
             flexWrap: 'wrap',
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            justifyContent: 'space-around',
             marginBottom: utils.responsiveHeight(40 - 14),
           }}
         >
@@ -81,10 +81,10 @@ const Categories: React.FC = () => {
               <TouchableOpacity
                 key={index}
                 style={{
-                  width: utils.responsiveWidth(150, true),
-                  height: utils.responsiveWidth(150, true),
-                  marginBottom: 18,
-                  justifyContent: 'space-between',
+                  width: utils.responsiveWidth(120, true),
+                  height: utils.responsiveWidth(120, true),
+                  marginBottom: 40,
+                  justifyContent: 'space-around',
                 }}
                 onPress={() => {
                   if (qty > 0) {
@@ -108,7 +108,6 @@ const Categories: React.FC = () => {
                     width: '100%',
                     height: '100%',
                     justifyContent: 'space-between',
-                    paddingHorizontal: 14,
                     paddingTop: 14,
                     paddingBottom: 12,
                   }}
@@ -134,7 +133,7 @@ const Categories: React.FC = () => {
                     <Text
                       numberOfLines={1}
                       style={{
-                        fontSize: Platform.OS === 'ios' ? 18 : 16,
+                        fontSize: Platform.OS === 'ios' ? 16 : 14,
                         color: '#50858B',
                         // textTransform: 'capitalize',
                         ...theme.fonts.DM_Sans_500Medium,
@@ -144,9 +143,9 @@ const Categories: React.FC = () => {
                     </Text>
                   </View>
                   <Text
-                    numberOfLines={1}
+                    numberOfLines={2}
                     style={{
-                      fontSize: Platform.OS === 'ios' ? 18 : 16,
+                      fontSize: Platform.OS === 'ios' ? 16 : 14,
                       // textTransform: 'capitalize',
                       backgroundColor: 'rgba(255, 255, 255, 0.9)',
                       color: theme.colors.mainColor,

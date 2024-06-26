@@ -32,8 +32,8 @@ const CategoryItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
   return (
     <TouchableOpacity
       style={{
-        width: utils.responsiveWidth(150),
-        height: utils.responsiveWidth(150),
+        width: utils.responsiveWidth(120, true),
+        height: utils.responsiveWidth(120, true),
         marginRight: isLast ? 20 : 14,
       }}
       onPress={onPress}
@@ -66,9 +66,9 @@ const CategoryItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
           }}
         >
           <Text
-            numberOfLines={1}
+            numberOfLines={2}
             style={{
-              fontSize: 18,
+              fontSize: 16,
               color: theme.colors.steelTeal,
               ...theme.fonts.DM_Sans_700Bold,
             }}
@@ -77,9 +77,9 @@ const CategoryItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
           </Text>
         </View>
         <Text
-          numberOfLines={1}
+          numberOfLines={2}
           style={{
-            fontSize: 18,
+            fontSize: 16,
             backgroundColor: 'rgba(255, 255, 255, 0.9)',
             color: theme.colors.mainColor,
             ...theme.fonts.DM_Sans_700Bold,
