@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   Platform,
   TouchableOpacity,
   Linking,
+  Alert,
 } from 'react-native';
 
 import {text} from '../text';
@@ -15,12 +16,43 @@ import {components} from '../components';
 import {utils} from '../utils';
 import {hooks} from '../hooks';
 import Button from '../components/Button';
+import {requestPurchase, useIAP} from 'react-native-iap';
 
 const Prenium: React.FC = () => {
   const navigation = hooks.useAppNavigation();
 
-  const goToSub = () => {
-    navigation.navigate('Subscription');
+  const sku = 'com.plantmed.botanica';
+
+  const {
+    connected,
+    products,
+    currentPurchase,
+    currentPurchaseError,
+    // initConnection,
+    getProducts,
+    finishTransaction,
+  } = useIAP();
+
+  useEffect(() => {
+    if (currentPurchase) {
+      const receipt = currentPurchase.transactionReceipt;
+      if (receipt) {
+        finishTransaction({purchase: currentPurchase, isConsumable: true});
+        Alert.alert('Achat réussi', 'Merci pour votre achat!');
+      }
+    }
+    // if (currentPurchaseError) {
+    //   Alert.alert("Erreur d'achat", currentPurchaseError.message);
+    // }
+  }, [currentPurchase]);
+
+  const handlePurchase = async () => {
+    try {
+      await requestPurchase({sku: sku[0]});
+    } catch (err: any) {
+      console.warn(err);
+      Alert.alert('Purchase Error', err.message);
+    }
   };
 
   const renderHeader = (): JSX.Element => {
@@ -64,7 +96,12 @@ const Prenium: React.FC = () => {
             - Accès à des vidéos et des tutoriels exclusifs pour approfondir vos
             connaissances.
           </Text>
-          <Button title="S'abonner maintenant" onPress={() => {}} />
+          <Button
+            title="S'abonner maintenant"
+            onPress={() => {
+              handlePurchase();
+            }}
+          />
         </View>
       </ScrollView>
     );

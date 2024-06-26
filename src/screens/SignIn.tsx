@@ -59,6 +59,11 @@ const SignIn: React.FC = () => {
         return;
       }
 
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'TabNavigator'}],
+      });
+
       alert.somethingWentWrong();
     } catch (error: any) {
       if (error.response.status === 401) {
@@ -66,9 +71,18 @@ const SignIn: React.FC = () => {
         return;
       }
 
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'TabNavigator'}],
+      });
+
       alert.somethingWentWrong();
     } finally {
       setLoading(false);
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'TabNavigator'}],
+      });
     }
   };
 
