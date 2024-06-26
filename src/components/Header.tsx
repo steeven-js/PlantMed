@@ -198,6 +198,13 @@ const Header: React.FC<HeaderType> = ({
             </TouchableOpacity>
             {/* MENU */}
             <items.BurgerMenuItem
+              title={'>  Prenium'}
+              onPress={() => {
+                setShowModal(false);
+                navigation.navigate('Prenium');
+              }}
+            />
+            <items.BurgerMenuItem
               title='>  Usages thérapeutiques'
               onPress={() => {
                 setShowModal(false);
@@ -241,13 +248,6 @@ const Header: React.FC<HeaderType> = ({
               onPress={() => {
                 setShowModal(false);
                 navigation.navigate('Sources');
-              }}
-            />
-            <items.BurgerMenuItem
-              title={'>  Prenium'}
-              onPress={() => {
-                setShowModal(false);
-                navigation.navigate('Prenium');
               }}
             />
             <items.BurgerMenuItem
