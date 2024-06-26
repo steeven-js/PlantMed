@@ -65,6 +65,9 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         warnAfter: 100,
       },
+      immutableCheck: {
+        warnAfter: 100,
+      },
     }).concat(apiSlice.middleware),
 });
 
