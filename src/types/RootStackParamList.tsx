@@ -29,6 +29,7 @@ export type RootStackParamList = {
   ConfirmationCode: undefined;
   MyTestsAndDiagnostics: undefined;
   PrivacyPolicy: undefined;
+  Sources: undefined;
   LanguageList: undefined;
   Reviews: {reviews: ReviewType[]};
   MyPromocodesEmpty: undefined;

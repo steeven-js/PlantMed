@@ -93,6 +93,15 @@ const Profile: React.FC = () => {
           goNavigation={true}
           containerStyle={{marginBottom: utils.responsiveHeight(6)}}
         />
+        <items.SourcesItem
+          title='Sources'
+          onPress={() => {
+            navigation.navigate('Sources');
+          }}
+          icon={<svg.FileTextSvg />}
+          goNavigation={true}
+          containerStyle={{marginBottom: utils.responsiveHeight(6)}}
+        />
         <items.ProfileItem
           title='Premium'
           onPress={() => {

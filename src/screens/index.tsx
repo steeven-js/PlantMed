@@ -7,11 +7,12 @@ import Filter from './Filter';
 import Source from './Source';
 import Reviews from './Reviews';
 import Product from './Product';
+import Sources from './Sources';
 import Checkout from './Checkout';
 import InfoSaved from './InfoSaved';
 import Onboarding from './Onboarding';
-import OrderFailed from './OrderFailed';
 import EditProfile from './EditProfile';
+import OrderFailed from './OrderFailed';
 import Description from './Description';
 import NewPassword from './NewPassword';
 import MyPromocodes from './MyPromocodes';
@@ -43,6 +44,7 @@ export const screens = {
   Source,
   Reviews,
   Product,
+  Sources,
   Checkout,
   InfoSaved,
   Onboarding,
