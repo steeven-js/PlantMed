@@ -244,6 +244,13 @@ const Header: React.FC<HeaderType> = ({
               }}
             />
             <items.BurgerMenuItem
+              title={'>  Prenium'}
+              onPress={() => {
+                setShowModal(false);
+                navigation.navigate('Prenium');
+              }}
+            />
+            <items.BurgerMenuItem
               title={'>  Support'}
               onPress={() => {
                 Alert.alert(

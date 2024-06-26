@@ -119,6 +119,11 @@ const StackNavigator: React.FC = () => {
           options={{headerShown: false}}
         />
         <RootStack.Screen
+          name='Prenium'
+          component={screens.Prenium}
+          options={{headerShown: false}}
+        />
+        <RootStack.Screen
           name='MyPromocodes'
           component={screens.MyPromocodes}
           options={{headerShown: false}}

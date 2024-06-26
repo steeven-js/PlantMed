@@ -30,6 +30,7 @@ export type RootStackParamList = {
   MyTestsAndDiagnostics: undefined;
   PrivacyPolicy: undefined;
   Sources: undefined;
+  Prenium: undefined;
   LanguageList: undefined;
   Reviews: {reviews: ReviewType[]};
   MyPromocodesEmpty: undefined;

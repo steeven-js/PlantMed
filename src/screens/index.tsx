@@ -8,6 +8,7 @@ import Source from './Source';
 import Reviews from './Reviews';
 import Product from './Product';
 import Sources from './Sources';
+import Prenium from './Prenium';
 import Checkout from './Checkout';
 import InfoSaved from './InfoSaved';
 import Onboarding from './Onboarding';
@@ -45,6 +46,7 @@ export const screens = {
   Reviews,
   Product,
   Sources,
+  Prenium,
   Checkout,
   InfoSaved,
   Onboarding,
