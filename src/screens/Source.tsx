@@ -25,24 +25,28 @@ const Source: React.FC<SourceScreenProps> = ({route}) => {
   const openLink = (url: string) => {
     Linking.openURL(url).catch(err => console.error("Couldn't load page", err));
   };
-  // console.log('source', source);
+
   const renderSource = (): JSX.Element => {
+    if (!source || !Array.isArray(source) || source.length === 0) {
+      return <text.H5>Aucune source disponible.</text.H5>;
+    }
+
     return (
       <View>
-        {source.map((item, index) => (
-          <TouchableOpacity key={index} onPress={() => openLink(item)}>
-            <text.T16
+        {(source as any[]).map((item, index) => {
+          const url = typeof item === 'string' ? item : item.url;
+          return (
+            <TouchableOpacity
               key={index}
-              style={{
-                lineHeight: 24, // 1.5 times the default line height (16)
-                fontSize: 16,
-                marginBottom: 8,
-              }}
+              onPress={() => openLink(url)}
+              style={{marginBottom: 10}}
             >
-              • {item}
-            </text.T16>
-          </TouchableOpacity>
-        ))}
+              <text.H5 style={{color: 'blue', textDecorationLine: 'underline'}}>
+                {url}
+              </text.H5>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     );
   };
