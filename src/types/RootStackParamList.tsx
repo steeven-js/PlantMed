@@ -1,4 +1,4 @@
-import {PlantmedType, ProductType} from '../types';
+import {PlantMedType, ProductType} from '../types';
 import {UserType} from './UserType';
 import {ReviewType} from './ReviewType';
 
@@ -18,9 +18,11 @@ export type RootStackParamList = {
   Onboarding: undefined;
   EditProfile: undefined;
   OrderFailed: undefined;
-  Plant: {plant: PlantmedType};
+  Plant_: {plant: ProductType};
+  Plant: {plant: PlantMedType};
   OrderHistory: undefined;
-  Shop: {title: string; products: PlantmedType[]};
+  Shop: {title: string; products: ProductType[]};
+  PlantMedList: {title: string; products: PlantMedType[]};
   MyPromocodes: undefined;
   TabNavigator: undefined;
   LeaveAReview: {productId: number};
@@ -29,14 +31,10 @@ export type RootStackParamList = {
   ConfirmationCode: undefined;
   MyTestsAndDiagnostics: undefined;
   PrivacyPolicy: undefined;
-  Sources: undefined;
-  Prenium: undefined;
-  Subscription: undefined;
   LanguageList: undefined;
   Reviews: {reviews: ReviewType[]};
   MyPromocodesEmpty: undefined;
   ModalScreen: undefined;
-  Source: {source: string[]; title: string};
   Description: {description: string; title: string};
   CheckoutPaymentMethod: undefined;
   CheckoutShippingDetails: undefined;
@@ -48,6 +46,10 @@ export type RootStackParamList = {
   PasswordChanged: undefined;
   AccountCreatedFailed: undefined;
   ShippingAndPaymentInfo: undefined;
+  Source: {source: string[]; title: string};
+  Sources: undefined;
+  Prenium: undefined;
+  TermsOfUse: undefined;
 
   /* VERIFICATION */
   SignUpAccountCreated: {email?: string; password?: string};
@@ -63,4 +65,5 @@ export type RootStackParamList = {
   VerifyEmailForgot: {email?: string};
   SendEmailOtpForgot: undefined;
   Product: {item: ProductType};
+  PlantMed: {item: PlantMedType};
 };

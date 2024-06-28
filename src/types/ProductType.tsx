@@ -7,6 +7,7 @@ export type ProductType = {
   rating: number;
   image: string;
   images: string[];
+  isBestSeller: boolean;
   potTypes: string[];
   sizes: string[];
   size: string;
@@ -14,8 +15,8 @@ export type ProductType = {
   color: string;
   description: string;
   categories: string;
-  is_best_seller: boolean;
-  is_featured: boolean;
+  isBestseller: boolean;
+  isFeatured: boolean;
   oldPrice?: number;
   quantity?: number;
   reviews: ReviewType[];
@@ -24,14 +25,4 @@ export type ProductType = {
   plantTypes: string[];
   isNew: boolean;
   isTop: boolean;
-  isBestSeller: boolean;
-  habitat: string;
-  propriete: string;
-  usageInterne: string;
-  usageExterne: string;
-  precaution: string;
-  sources: string[];
-  symptoms: string;
-  product: string[];
-  title: string;
 };

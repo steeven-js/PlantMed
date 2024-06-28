@@ -1,4 +1,4 @@
-import React, {ReactNode, useMemo, useRef, useState} from 'react';
+import React, {useMemo, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -26,15 +26,6 @@ type ViewableItemsChanged = {
   changed: Array<ViewToken>;
 };
 
-type ItemType = {
-  title_line_1: ReactNode;
-  title_line_2: ReactNode;
-  id: number;
-  name: string;
-  image: string;
-  promotion: string;
-};
-
 const Home: React.FC = () => {
   const navigation = hooks.useAppNavigation();
 
@@ -44,7 +35,7 @@ const Home: React.FC = () => {
     isLoading: plantsLoading,
     refetch: refetchPlants,
   } = queryHooks.useGetPlantmedQuery();
-  // console.log('plantsData', plantsData);
+
   const {
     data: bannersData,
     error: bannersError,
@@ -123,7 +114,18 @@ const Home: React.FC = () => {
       });
   }, []);
 
-  const renderCarouselItem = ({item}: {item: ItemType}) => {
+  // Fonction pour sélectionner aléatoirement 10 catégories
+  const getRandomCategories = (categories: any[], count: number) => {
+    const shuffled = [...categories].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  };
+
+  // Utilisez useMemo pour ne pas recalculer à chaque rendu
+  const randomCategories = useMemo(() => {
+    return getRandomCategories(categories, 10);
+  }, [categories]);
+
+  const renderCarouselItem = ({item}) => {
     const products = plantsData?.plantmed.filter(plant => {
       return plant.promotion === item.promotion;
     });
@@ -147,7 +149,7 @@ const Home: React.FC = () => {
             return;
           }
 
-          navigation.navigate('Shop', {
+          navigation.navigate('PlantMedList', {
             title: 'Plante du jour',
             products: products || [],
           });
@@ -181,8 +183,8 @@ const Home: React.FC = () => {
 
   const renderFlatList = () => {
     return (
-      <FlatList<ItemType>
-        data={carousel as unknown as ItemType[]}
+      <FlatList
+        data={carousel}
         horizontal={true}
         pagingEnabled={true}
         bounces={false}
@@ -250,20 +252,7 @@ const Home: React.FC = () => {
     return null;
   };
 
-  // Fonction pour sélectionner aléatoirement 10 catégories
-  const getRandomCategories = (categories: any[], count: number) => {
-    const shuffled = [...categories].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count);
-  };
-
-  // Utilisez useMemo pour ne pas recalculer à chaque rendu
-  const randomCategories = useMemo(() => {
-    return getRandomCategories(categories, 10);
-  }, [categories]);
-
   const renderCategories = (): JSX.Element => {
-    const normalize = (str: string) => str.toLowerCase().trim();
-
     return (
       <ScrollView
         horizontal={true}
@@ -281,19 +270,12 @@ const Home: React.FC = () => {
       >
         {randomCategories.map((item, index, array) => {
           const isLast = index === array.length - 1;
-
-          const dataFilter = plantsData?.plantmed.filter(e => {
-            if (Array.isArray(e.symptoms)) {
-              return e.symptoms.some(
-                symptom => normalize(symptom) === normalize(item.name),
-              );
-            }
-            return false;
-          });
-
+          const dataFilter = plantsData?.plantmed.filter(
+            e => e && e.symptoms.includes(item.name),
+          );
           const qty = dataFilter?.length ?? 0;
           return (
-            <items.CategoryItem
+            <items.SymptomItem
               item={item}
               isLast={isLast}
               qty={qty}
@@ -318,7 +300,7 @@ const Home: React.FC = () => {
             marginBottom: 11,
           }}
           viewAllOnPress={() => {
-            navigation.navigate('Shop', {
+            navigation.navigate('PlantMedList', {
               title: 'Les plus consultées',
               products: bestSellers,
             });
@@ -334,7 +316,7 @@ const Home: React.FC = () => {
           {bestSellers?.map((item, index, array) => {
             const isLast = index === array.length - 1;
             return (
-              <items.ProductCard
+              <items.PlantmedCard
                 item={item}
                 key={item.id.toString()}
                 version={3}
@@ -366,8 +348,8 @@ const Home: React.FC = () => {
               return;
             }
 
-            navigation.navigate('Shop', {
-              title: 'Plantes du jour',
+            navigation.navigate('PlantMedList', {
+              title: 'PlantMedList',
               products: products,
             });
           }}
@@ -404,7 +386,7 @@ const Home: React.FC = () => {
             marginBottom: utils.rsHeight(11),
           }}
           viewAllOnPress={() => {
-            navigation.navigate('Shop', {
+            navigation.navigate('PlantMedList', {
               title: 'Plantes en vedette',
               products: featured,
             });
@@ -420,7 +402,7 @@ const Home: React.FC = () => {
           {featured?.map((item, index, array) => {
             const isLast = index === array.length - 1;
             return (
-              <items.ProductCard
+              <items.PlantmedCard
                 item={item}
                 key={item.id.toString()}
                 version={2}
@@ -439,22 +421,28 @@ const Home: React.FC = () => {
     if (isLoading) return <components.Loader />;
 
     return (
-      <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-          paddingBottom: utils.responsiveHeight(20),
-        }}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-        showsVerticalScrollIndicator={false}
+      <custom.ImageBackground
+        style={{flex: 1}}
+        resizeMode='stretch'
+        source={require('../../assets/bg/02.png')}
       >
-        {renderCarousel()}
-        {renderCategories()}
-        {renderBestSellers()}
-        {renderBanner()}
-        {renderFeatured()}
-      </ScrollView>
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            paddingBottom: utils.responsiveHeight(20),
+          }}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          showsVerticalScrollIndicator={false}
+        >
+          {renderCarousel()}
+          {renderCategories()}
+          {renderBestSellers()}
+          {renderBanner()}
+          {renderFeatured()}
+        </ScrollView>
+      </custom.ImageBackground>
     );
   };
 

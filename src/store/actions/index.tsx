@@ -27,6 +27,8 @@ import {removeFromWishlist} from '../slices/wishlistSlice';
 import {setSelectedPlantTypes} from '../slices/filterSlice';
 import {setSelectedCategories} from '../slices/filterSlice';
 import {setDashboard, setDoctorList} from '../slices/versionSlice';
+import {addToPlantMedWishlist} from '../slices/plantmedWishlistSlice';
+import {removeFromPlantMedWishlist} from '../slices/plantmedWishlistSlice';
 
 export const actions = {
   setTag,
@@ -59,4 +61,6 @@ export const actions = {
   setSelectedPotTypes,
   setSelectedCategories,
   setSelectedPlantTypes,
+  addToPlantMedWishlist,
+  removeFromPlantMedWishlist,
 };

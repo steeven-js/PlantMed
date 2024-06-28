@@ -3,9 +3,9 @@ import {View, Text} from 'react-native';
 
 import {utils} from '../utils';
 import {theme} from '../constants';
-import {PlantmedType} from '../types';
+import {ProductType} from '../types';
 
-type Props = {item: PlantmedType; containerStyle?: object};
+type Props = {item: ProductType; containerStyle?: object};
 
 const PlantSale: React.FC<Props> = ({
   item,

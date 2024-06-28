@@ -41,9 +41,19 @@ export type ShopScreenProps = NativeStackScreenProps<
   'Shop'
 >;
 
+export type PlantMedListScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'PlantMedList'
+>;
+
 export type ProductScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'Product'
+>;
+
+export type PlantMedScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'PlantMed'
 >;
 
 export type LeaveAReviewScreenProps = NativeStackScreenProps<
@@ -59,11 +69,6 @@ export type DescriptionScreenProps = NativeStackScreenProps<
 export type SourceScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'Source'
->;
-
-export type SubscriptionScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  'Subscription'
 >;
 
 export type WebScreenProps = NativeStackScreenProps<RootStackParamList, 'Web'>;

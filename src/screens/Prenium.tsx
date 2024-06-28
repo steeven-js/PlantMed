@@ -14,49 +14,19 @@ import {custom} from '../custom';
 import {theme} from '../constants';
 import {components} from '../components';
 import {utils} from '../utils';
-import {hooks} from '../hooks';
 import Button from '../components/Button';
-import {requestPurchase, useIAP} from 'react-native-iap';
 
 const Prenium: React.FC = () => {
-  const navigation = hooks.useAppNavigation();
-
-  const sku = 'com.plantmed.botanica';
-
-  const {
-    connected,
-    products,
-    currentPurchase,
-    currentPurchaseError,
-    // initConnection,
-    getProducts,
-    finishTransaction,
-  } = useIAP();
-
-  useEffect(() => {
-    if (currentPurchase) {
-      const receipt = currentPurchase.transactionReceipt;
-      if (receipt) {
-        finishTransaction({purchase: currentPurchase, isConsumable: true});
-        Alert.alert('Achat réussi', 'Merci pour votre achat!');
-      }
-    }
-    // if (currentPurchaseError) {
-    //   Alert.alert("Erreur d'achat", currentPurchaseError.message);
-    // }
-  }, [currentPurchase]);
-
-  const handlePurchase = async () => {
-    try {
-      await requestPurchase({sku: sku[0]});
-    } catch (err: any) {
-      console.warn(err);
-      Alert.alert('Purchase Error', err.message);
-    }
+  const renderHeader = (): JSX.Element => {
+    return <components.Header goBackIcon={true} title='Premium' />;
   };
 
-  const renderHeader = (): JSX.Element => {
-    return <components.Header goBackIcon={true} title='Prenium' />;
+  const openPrivacyPolicy = () => {
+    Linking.openURL('https://votreapp.com/privacy-policy');
+  };
+
+  const openTermsOfUse = () => {
+    Linking.openURL('https://votreapp.com/terms-of-use');
   };
 
   const renderContent = (): JSX.Element => {
@@ -72,6 +42,9 @@ const Prenium: React.FC = () => {
         <View style={{marginBottom: 20}}>
           <Text style={{fontSize: 24, fontWeight: 'bold', marginBottom: 10}}>
             Devenez Membre Premium!
+          </Text>
+          <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 10}}>
+            Abonnement Premium Plantes Médicinales
           </Text>
           <Text style={{fontSize: 16, marginBottom: 20}}>
             Pour seulement 1,99 € par mois, profitez d'un accès exclusif à des
@@ -96,12 +69,30 @@ const Prenium: React.FC = () => {
             - Accès à des vidéos et des tutoriels exclusifs pour approfondir vos
             connaissances.
           </Text>
+          <Text style={{fontSize: 16, fontWeight: 'bold', marginBottom: 10}}>
+            Durée de l'abonnement : 1 mois
+          </Text>
+          <Text style={{fontSize: 16, fontWeight: 'bold', marginBottom: 20}}>
+            Prix : 1,99 € par mois (renouvellement automatique)
+          </Text>
           <Button
             title="S'abonner maintenant"
             onPress={() => {
-              handlePurchase();
+              console.log('Subscribe');
             }}
           />
+          <View style={{marginTop: 20}}>
+            <TouchableOpacity onPress={openPrivacyPolicy}>
+              <Text style={{color: 'blue', textDecorationLine: 'underline'}}>
+                Politique de confidentialité
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={openTermsOfUse} style={{marginTop: 10}}>
+              <Text style={{color: 'blue', textDecorationLine: 'underline'}}>
+                Conditions d'utilisation
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     );

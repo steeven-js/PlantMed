@@ -8,14 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* PlantMedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PlantMedTests.m */; };
+		0AA46DDB7C134045AE19D41F /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6046B5AC043C472F9E868C07 /* Inter-Bold.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-PlantMed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-PlantMed.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		5E1492B12C27364C00968F02 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E1492B02C27364C00968F02 /* StoreKit.framework */; };
-		6132EF182BDFF13200BBE14D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */; };
+		47A09BBFE51B43EB8CB8E3A4 /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16747A17898E47D9847F32DB /* DMSans-Regular.ttf */; };
+		5D260B3E9EF046C8BA14DAA6 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82B0349E156F4A5AB2978096 /* Inter-Medium.ttf */; };
+		5E3C23772C2DE96700B2B06A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3C23762C2DE96700B2B06A /* StoreKit.framework */; };
 		7699B88040F8A987B510C191 /* libPods-PlantMed-PlantMedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-PlantMed-PlantMedTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		D3D3DEE7E79347CF9879EDE1 /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16D99C13CE934C209704B855 /* DMSans-Bold.ttf */; };
+		F20F620EE5A34D2EB2C1B505 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38B3FE068A334825BD4DFB16 /* DMSans-Medium.ttf */; };
+		F91506B4D8A44673BBD91EBF /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2473975AFD0A4A99A016F4F7 /* Inter-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,14 +43,19 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PlantMed/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PlantMed/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PlantMed/main.m; sourceTree = "<group>"; };
+		16747A17898E47D9847F32DB /* DMSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Regular.ttf"; path = "../src/assets/fonts/DMSans-Regular.ttf"; sourceTree = "<group>"; };
+		16D99C13CE934C209704B855 /* DMSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Bold.ttf"; path = "../src/assets/fonts/DMSans-Bold.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-PlantMed-PlantMedTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlantMed-PlantMedTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2473975AFD0A4A99A016F4F7 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-SemiBold.ttf"; path = "../src/assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		38B3FE068A334825BD4DFB16 /* DMSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DMSans-Medium.ttf"; path = "../src/assets/fonts/DMSans-Medium.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-PlantMed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlantMed.debug.xcconfig"; path = "Target Support Files/Pods-PlantMed/Pods-PlantMed.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-PlantMed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlantMed.release.xcconfig"; path = "Target Support Files/Pods-PlantMed/Pods-PlantMed.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-PlantMed-PlantMedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlantMed-PlantMedTests.debug.xcconfig"; path = "Target Support Files/Pods-PlantMed-PlantMedTests/Pods-PlantMed-PlantMedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-PlantMed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlantMed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E1492B02C27364C00968F02 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = PlantMed/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		5E3C23762C2DE96700B2B06A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		6046B5AC043C472F9E868C07 /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../src/assets/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PlantMed/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		82B0349E156F4A5AB2978096 /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../src/assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-PlantMed-PlantMedTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlantMed-PlantMedTests.release.xcconfig"; path = "Target Support Files/Pods-PlantMed-PlantMedTests/Pods-PlantMed-PlantMedTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -64,7 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C80B921A6F3F58F76C31292 /* libPods-PlantMed.a in Frameworks */,
-				5E1492B12C27364C00968F02 /* StoreKit.framework in Frameworks */,
+				5E3C23772C2DE96700B2B06A /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,12 +114,25 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5E1492B02C27364C00968F02 /* StoreKit.framework */,
+				5E3C23762C2DE96700B2B06A /* StoreKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-PlantMed.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-PlantMed-PlantMedTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55EFD70613F64C1FA010BEC6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				16D99C13CE934C209704B855 /* DMSans-Bold.ttf */,
+				38B3FE068A334825BD4DFB16 /* DMSans-Medium.ttf */,
+				16747A17898E47D9847F32DB /* DMSans-Regular.ttf */,
+				6046B5AC043C472F9E868C07 /* Inter-Bold.ttf */,
+				82B0349E156F4A5AB2978096 /* Inter-Medium.ttf */,
+				2473975AFD0A4A99A016F4F7 /* Inter-SemiBold.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -122,13 +145,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */,
 				13B07FAE1A68108700A75B9A /* PlantMed */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* PlantMedTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				55EFD70613F64C1FA010BEC6 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -248,9 +271,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6132EF182BDFF13200BBE14D /* PrivacyInfo.xcprivacy in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D3D3DEE7E79347CF9879EDE1 /* DMSans-Bold.ttf in Resources */,
+				F20F620EE5A34D2EB2C1B505 /* DMSans-Medium.ttf in Resources */,
+				47A09BBFE51B43EB8CB8E3A4 /* DMSans-Regular.ttf in Resources */,
+				0AA46DDB7C134045AE19D41F /* Inter-Bold.ttf in Resources */,
+				5D260B3E9EF046C8BA14DAA6 /* Inter-Medium.ttf in Resources */,
+				F91506B4D8A44673BBD91EBF /* Inter-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +502,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = 7Q6MN7W987;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PlantMed/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
@@ -488,7 +515,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jsprod.plantmed;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = PlantMed;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -594,7 +621,8 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					" ",
+					"-Wl",
+					"-ld_classic",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
@@ -665,7 +693,8 @@
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					" ",
+					"-Wl",
+					"-ld_classic",
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;

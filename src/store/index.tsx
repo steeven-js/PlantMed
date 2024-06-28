@@ -24,6 +24,7 @@ import {paymentSlice} from './slices/paymentSlice';
 import {versionSlice} from './slices/versionSlice';
 import {wishlistSlice} from './slices/wishlistSlice';
 import {promocodeSlice} from './slices/promocodeSlice';
+import {plantmedWishlistSlice} from './slices/plantmedWishlistSlice';
 
 const rootReducer = combineReducers({
   tabSlice: tabSlice.reducer,
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   paymentSlice: paymentSlice.reducer,
   wishlistSlice: wishlistSlice.reducer,
   promocodeSlice: promocodeSlice.reducer,
+  plantmedWishlistSlice: plantmedWishlistSlice.reducer,
 });
 
 const persistConfig = {
@@ -52,6 +54,7 @@ const persistConfig = {
     'wishlistSlice',
     'promocodeSlice',
     'rememberMeSlice',
+    'plantmedWishlistSlice',
   ],
 };
 

@@ -5,7 +5,6 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {theme} from '../constants';
 
 type SafeAreaViewProps = {
-  style?: ViewStyle;
   containerStyle?: ViewStyle;
   statusBarColor?: string;
   children: React.ReactNode;
@@ -15,25 +14,24 @@ type SafeAreaViewProps = {
 
 const SafeAreaView: React.FC<SafeAreaViewProps> = ({
   children,
-  style,
+  containerStyle,
   insets = [],
   statusBarColor = 'transparent',
   statusBarStyle = 'dark-content',
 }) => {
   const safeAreaInsets = useSafeAreaInsets();
 
-  const containerStyle: ViewStyle = {
-    flex: 1,
-    backgroundColor: theme.colors.white,
-    paddingTop: insets.includes('top') ? safeAreaInsets.top : 0,
-    paddingBottom: insets.includes('bottom') ? safeAreaInsets.bottom : 0,
-    paddingLeft: insets.includes('left') ? safeAreaInsets.left : 0,
-    paddingRight: insets.includes('right') ? safeAreaInsets.right : 0,
-    ...style,
-  };
-
   return (
-    <View style={containerStyle}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: theme.colors.white,
+        paddingTop: insets.includes('top') ? safeAreaInsets.top : 0,
+        paddingBottom: insets.includes('bottom') ? safeAreaInsets.bottom : 0,
+        paddingLeft: insets.includes('left') ? safeAreaInsets.left : 0,
+        paddingRight: insets.includes('right') ? safeAreaInsets.right : 0,
+        ...containerStyle,
+      }}>
       <StatusBar
         backgroundColor={Platform.OS === 'android' ? statusBarColor : undefined}
         barStyle={statusBarStyle}

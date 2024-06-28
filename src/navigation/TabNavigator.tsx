@@ -5,7 +5,9 @@ import Home from '../screens/tabs/Home';
 import Order from '../screens/tabs/Order';
 import Profile from '../screens/tabs/Profile';
 import Wishlist from '../screens/tabs/Wishlist';
+import Symptoms from '../screens/tabs/Symptoms';
 import Categories from '../screens/tabs/Categories';
+import PlantWishlist from '../screens/tabs/PlantWishlist';
 
 import {hooks} from '../hooks';
 import {custom} from '../custom';
@@ -14,23 +16,15 @@ import {actions} from '../store/actions';
 import {components} from '../components';
 import BottomTabBar from './BottomTabBar';
 import {queryHooks} from '../store/slices/apiSlice';
-import SignIn from '../screens/SignIn';
 
 const TabNavigator: React.FC = () => {
   const dispatch = hooks.useAppDispatch();
-  const navigation = hooks.useAppNavigation();
   const user = hooks.useAppSelector(state => state.userSlice.user);
   const currentTabScreen = hooks.useAppSelector(state => state.tabSlice.screen);
 
   const tabs = getTabs();
 
   console.log('user', JSON.stringify(user, null, 2));
-
-  // useEffect(() => {
-  //   if (!user) {
-  //     navigation.navigate('SignIn');
-  //   }
-  // }, [user, navigation]);
 
   const {
     data: userData,
@@ -49,12 +43,12 @@ const TabNavigator: React.FC = () => {
       return 'Mon profil';
     }
 
-    // if (currentTabScreen === 'Order') {
-    //   return 'Order';
-    // }
+    if (currentTabScreen === 'Order') {
+      return 'Order';
+    }
 
     if (currentTabScreen === 'Wishlist') {
-      return 'Favoris';
+      return 'Mes favoris';
     }
 
     return null;
@@ -85,11 +79,10 @@ const TabNavigator: React.FC = () => {
     return (
       <View style={{flex: 1}}>
         {currentTabScreen === tabs[0].name && <Home />}
-        {currentTabScreen === tabs[1].name && <Categories />}
-        {/* {currentTabScreen === tabs[2].name && <Order />} */}
-        {currentTabScreen === tabs[2].name && <Wishlist />}
-        {/* {currentTabScreen === tabs[3].name && <Profile />} */}
-        {currentTabScreen === tabs[3].name && (user ? <Profile /> : <SignIn />)}
+        {/* {currentTabScreen === tabs[1].name && <Categories />} */}
+        {currentTabScreen === tabs[1].name && <Symptoms />}
+        {currentTabScreen === tabs[2].name && <PlantWishlist />}
+        {currentTabScreen === tabs[3].name && <Profile />}
       </View>
     );
   };

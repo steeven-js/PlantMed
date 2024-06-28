@@ -15,6 +15,7 @@ import Loader from './Loader';
 import {utils} from '../utils';
 import {items} from '../items';
 import {hooks} from '../hooks';
+import {custom} from '../custom';
 import {svg} from '../assets/svg';
 import {theme} from '../constants';
 import {HeaderType} from '../types';
@@ -36,6 +37,9 @@ const Header: React.FC<HeaderType> = ({
   const navigation = hooks.useAppNavigation();
 
   const user = useAppSelector(state => state.userSlice.user);
+  const cart = useAppSelector(state => state.cartSlice.list);
+
+  const subtotal = useAppSelector(state => state.cartSlice.subtotal);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -45,14 +49,36 @@ const Header: React.FC<HeaderType> = ({
     isLoading: plantsLoading,
   } = queryHooks.useGetPlantmedQuery();
 
+  const newQuantity = plantsData?.plantmed.filter(item => item.isNew).length;
   const featuredQuantity = plantsData?.plantmed.filter(
     item => item.is_featured,
+  ).length;
+  const saleQuantity = plantsData?.plantmed.filter(
+    item => item.oldPrice,
   ).length;
   const bestQuantity = plantsData?.plantmed.filter(
     item => item.is_best_seller,
   ).length;
 
+  const route = useRoute();
+
   const isLoading = plantsLoading;
+
+  const handleOnPress = () => {
+    if (cart.length > 0) {
+      dispatch(actions.setScreen('Order'));
+      route.name === 'Shop' && navigation.navigate('TabNavigator');
+      route.name === 'Product' && navigation.navigate('TabNavigator');
+    }
+    if (cart.length === 0) {
+      Alert.alert('Your cart is empty', 'Please add some items to your cart', [
+        {
+          text: 'OK',
+          onPress: () => console.log('OK Pressed'),
+        },
+      ]);
+    }
+  };
 
   const renderGoBack = (): JSX.Element | null => {
     if (goBackIcon && navigation.canGoBack()) {
@@ -115,157 +141,156 @@ const Header: React.FC<HeaderType> = ({
             paddingBottom: utils.homeIndicatorHeight(),
           }}
         >
-          {/* CLOSE BUTTON */}
-          <TouchableOpacity
-            style={{
-              alignSelf: 'flex-end',
-              paddingHorizontal: 10,
-              paddingTop: 10,
-            }}
-            onPress={() => {
-              setShowModal(false);
-            }}
+          <custom.ImageBackground
+            style={{flex: 1}}
+            resizeMode='stretch'
+            source={require('../assets/bg/02.png')}
           >
-            <svg.CloseSvg />
-          </TouchableOpacity>
-          <ScrollView
-            contentContainerStyle={{
-              flexGrow: 1,
-              paddingTop: utils.responsiveHeight(40),
-              paddingBottom: utils.responsiveHeight(20),
-            }}
-            showsVerticalScrollIndicator={false}
-          >
-            {/* USER INFO */}
-            {/* <UserData /> */}
-
+            {/* CLOSE BUTTON */}
             <TouchableOpacity
               style={{
-                paddingHorizontal: 20,
-                borderBottomWidth: 1,
-                borderBottomColor: theme.colors.antiFlashWhite,
-                paddingBottom: utils.responsiveHeight(32),
-                marginBottom: utils.responsiveHeight(20),
-                flexDirection: 'row',
-                alignItems: 'center',
+                alignSelf: 'flex-end',
+                paddingHorizontal: 10,
+                paddingTop: 10,
               }}
               onPress={() => {
                 setShowModal(false);
-                user
-                  ? navigation.navigate('EditProfile')
-                  : navigation.navigate('SignIn');
               }}
             >
-              {/* <Gravatar email={user?.email || ''} size={40 * 2} /> */}
-              {user ? (
-                <>
-                  <View>
-                    <Text
-                      style={{
-                        color: theme.colors.mainColor,
-                        ...theme.fonts.Inter_600SemiBold,
-                        fontSize: Platform.OS === 'ios' ? 14 : 12,
-                        textTransform: 'capitalize',
-                        marginBottom: 4,
-                      }}
-                      numberOfLines={1}
-                    >
-                      {user?.name || ''}
-                    </Text>
-                    <Text
-                      style={{
-                        ...theme.fonts.DM_Sans_400Regular,
-                        color: theme.colors.textColor,
-                        fontSize: Platform.OS === 'ios' ? 14 : 12,
-                      }}
-                      numberOfLines={1}
-                    >
-                      {user?.email || ''}
-                    </Text>
-                  </View>
-                </>
-              ) : (
-                <Text
-                  style={{
-                    ...theme.fonts.DM_Sans_400Regular,
-                    color: theme.colors.textColor,
-                    fontSize: Platform.OS === 'ios' ? 14 : 12,
-                  }}
-                >
-                  Sign In
-                </Text>
-              )}
+              <svg.CloseSvg />
             </TouchableOpacity>
-            {/* MENU */}
-            <items.BurgerMenuItem
-              title={'>  Prenium'}
-              onPress={() => {
-                setShowModal(false);
-                navigation.navigate('Prenium');
+            <ScrollView
+              contentContainerStyle={{
+                flexGrow: 1,
+                paddingTop: utils.responsiveHeight(40),
+                paddingBottom: utils.responsiveHeight(20),
               }}
-            />
-            <items.BurgerMenuItem
-              title='>  Usages thérapeutiques'
-              onPress={() => {
-                setShowModal(false);
-                dispatch(actions.setScreen('Category'));
-              }}
-            />
-            <items.BurgerMenuItem
-              qty={`${bestQuantity}`}
-              title={'>  Les plus consultées'}
-              onPress={() => {
-                setShowModal(false);
-                navigation.navigate('Shop', {
-                  title: 'Les plus consultées',
-                  products:
-                    plantsData?.plantmed.filter(item => item.is_best_seller) ??
-                    [],
-                });
-              }}
-            />
-            <items.BurgerMenuItem
-              qty={`${featuredQuantity}`}
-              title={'>  Plantes en vedette'}
-              onPress={() => {
-                setShowModal(false);
-                navigation.navigate('Shop', {
-                  title: 'Plantes en vedette',
-                  products:
-                    plantsData?.plantmed.filter(item => item.is_featured) ?? [],
-                });
-              }}
-            />
-            <items.BurgerMenuItem
-              title={'>  Politique de confidentialité'}
-              onPress={() => {
-                setShowModal(false);
-                navigation.navigate('PrivacyPolicy');
-              }}
-            />
-            <items.BurgerMenuItem
-              title={'>  Sources'}
-              onPress={() => {
-                setShowModal(false);
-                navigation.navigate('Sources');
-              }}
-            />
-            <items.BurgerMenuItem
-              title={'>  Support'}
-              onPress={() => {
-                Alert.alert(
-                  'Contact us',
-                  'Please contact us via email at contact@jsprod.fr',
-                  [
-                    {
-                      text: 'OK',
-                      onPress: () => console.log('OK Pressed'),
-                    },
-                  ],
-                );
-              }}
-            />
-          </ScrollView>
+              showsVerticalScrollIndicator={false}
+            >
+              {/* USER INFO */}
+              {/* <UserData /> */}
+
+              <TouchableOpacity
+                style={{
+                  paddingHorizontal: 20,
+                  borderBottomWidth: 1,
+                  borderBottomColor: theme.colors.antiFlashWhite,
+                  paddingBottom: utils.responsiveHeight(32),
+                  marginBottom: utils.responsiveHeight(20),
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+                onPress={() => {
+                  setShowModal(false);
+                  navigation.navigate('EditProfile');
+                }}
+              >
+                {/* <Gravatar email={user?.email || ''} size={40 * 2} /> */}
+                <View>
+                  <Text
+                    style={{
+                      color: theme.colors.mainColor,
+                      ...theme.fonts.Inter_600SemiBold,
+                      fontSize: Platform.OS === 'ios' ? 14 : 12,
+                      textTransform: 'capitalize',
+                      marginBottom: 4,
+                    }}
+                    numberOfLines={1}
+                  >
+                    {user?.name || ''}
+                  </Text>
+                  <Text
+                    style={{
+                      ...theme.fonts.DM_Sans_400Regular,
+                      color: theme.colors.textColor,
+                      fontSize: Platform.OS === 'ios' ? 14 : 12,
+                    }}
+                    numberOfLines={1}
+                  >
+                    {user?.email || ''}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              {/* MENU */}
+              <items.BurgerMenuItem
+                title={'>  Prenium'}
+                onPress={() => {
+                  setShowModal(false);
+                  navigation.navigate('Prenium');
+                }}
+              />
+              <items.BurgerMenuItem
+                title='>  Usages thérapeutiques'
+                onPress={() => {
+                  setShowModal(false);
+                  dispatch(actions.setScreen('Category'));
+                }}
+              />
+              <items.BurgerMenuItem
+                qty={`${bestQuantity}`}
+                title={'>  Les plus consultées'}
+                onPress={() => {
+                  setShowModal(false);
+                  navigation.navigate('PlantMedList', {
+                    title: 'Les plus consultées',
+                    products:
+                      plantsData?.plantmed.filter(
+                        item => item.is_best_seller,
+                      ) ?? [],
+                  });
+                }}
+              />
+              <items.BurgerMenuItem
+                qty={`${featuredQuantity}`}
+                title={'>  Plantes en vedette'}
+                onPress={() => {
+                  setShowModal(false);
+                  navigation.navigate('PlantMedList', {
+                    title: 'Plantes en vedette',
+                    products:
+                      plantsData?.plantmed.filter(item => item.is_featured) ??
+                      [],
+                  });
+                }}
+              />
+              <items.BurgerMenuItem
+                title={">  Conditions d'utilisation"}
+                onPress={() => {
+                  setShowModal(false);
+                  navigation.navigate('TermsOfUse');
+                }}
+              />
+              <items.BurgerMenuItem
+                title={'>  Politique de confidentialité'}
+                onPress={() => {
+                  setShowModal(false);
+                  navigation.navigate('PrivacyPolicy');
+                }}
+              />
+              <items.BurgerMenuItem
+                title={'>  Sources'}
+                onPress={() => {
+                  setShowModal(false);
+                  navigation.navigate('Sources');
+                }}
+              />
+              <items.BurgerMenuItem
+                title={'>  Support'}
+                onPress={() => {
+                  Alert.alert(
+                    'Contact us',
+                    'Please contact us via email at contact@jsprod.com',
+                    [
+                      {
+                        text: 'OK',
+                        onPress: () => console.log('OK Pressed'),
+                      },
+                    ],
+                  );
+                }}
+              />
+            </ScrollView>
+          </custom.ImageBackground>
         </View>
       </Modal>
     );
@@ -316,7 +341,7 @@ const Header: React.FC<HeaderType> = ({
               textTransform: 'capitalize',
             }}
           >
-            Recherche
+            search
           </Text>
         </TouchableOpacity>
       );
@@ -345,6 +370,49 @@ const Header: React.FC<HeaderType> = ({
     return null;
   };
 
+  const renderBasket = (): JSX.Element | null => {
+    if (basketIcon) {
+      return (
+        <TouchableOpacity
+          onPress={handleOnPress}
+          style={{
+            right: 0,
+            position: 'absolute',
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingHorizontal: 20,
+          }}
+        >
+          <View
+            style={{
+              height: 22,
+              borderRadius: 11,
+              paddingHorizontal: 7,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: theme.colors.mainColor,
+            }}
+          >
+            <Text
+              style={{
+                color: theme.colors.white,
+                ...theme.fonts.DM_Sans_700Bold,
+                fontSize: Platform.OS === 'ios' ? 10 : 8,
+              }}
+              numberOfLines={1}
+            >
+              {cart.length > 0 ? `$${subtotal.toFixed(2)}` : '$0'}
+            </Text>
+          </View>
+          <svg.BasketSvg />
+        </TouchableOpacity>
+      );
+    }
+
+    return null;
+  };
+
   const renderContent = (): JSX.Element => {
     const containerStyle: ViewStyle = {
       flexDirection: 'row',
@@ -361,14 +429,19 @@ const Header: React.FC<HeaderType> = ({
     }
 
     return (
-      <View style={{...containerStyle}}>
-        {renderGoBack()}
-        {renderBurgerIcon()}
-        {renderTitle()}
-        {renderSearch()}
-        {/* {renderBasket()} */}
-        {renderBurgerMenu()}
-      </View>
+      <custom.ImageBackground
+        resizeMode='stretch'
+        source={require('../assets/bg/02.png')}
+      >
+        <View style={{...containerStyle}}>
+          {renderGoBack()}
+          {renderBurgerIcon()}
+          {renderTitle()}
+          {renderSearch()}
+          {/* {renderBasket()} */}
+          {renderBurgerMenu()}
+        </View>
+      </custom.ImageBackground>
     );
   };
 

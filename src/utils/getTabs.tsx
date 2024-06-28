@@ -125,11 +125,6 @@ const getTabs = () => {
       name: 'Category',
       icon: CategoryTabSvg,
     },
-    // {
-    //   id: 3,
-    //   name: 'Order',
-    //   icon: CartTabSvg,
-    // },
     {
       id: 3,
       name: 'Wishlist',

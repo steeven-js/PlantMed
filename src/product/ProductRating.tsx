@@ -34,27 +34,27 @@ const ProductRating: React.FC<Props> = ({rating, style}) => {
     );
   };
 
-  // const renderRatingText = () => {
-  //   return (
-  //     <Text
-  //       style={{
-  //         color: theme.colors.textColor,
-  //         marginLeft: 4,
-  //         fontSize: Platform.OS === 'ios' ? 12 : 10,
-  //         lineHeight: Platform.OS === 'ios' ? 12 * 1.7 : 10 * 1.7,
-  //         ...theme.fonts.DM_Sans_400Regular,
-  //       }}
-  //       numberOfLines={1}
-  //     >
-  //       {rating.toFixed(1).replace('.', ',')}
-  //     </Text>
-  //   );
-  // };
+  const renderRatingText = () => {
+    return (
+      <Text
+        style={{
+          color: theme.colors.textColor,
+          marginLeft: 4,
+          fontSize: Platform.OS === 'ios' ? 12 : 10,
+          lineHeight: Platform.OS === 'ios' ? 12 * 1.7 : 10 * 1.7,
+          ...theme.fonts.DM_Sans_400Regular,
+        }}
+        numberOfLines={1}
+      >
+        {rating.toFixed(1).replace('.', ',')}
+      </Text>
+    );
+  };
 
   return (
     <View style={{flexDirection: 'row', alignItems: 'center', ...style}}>
       {renderStarSvg()}
-      {/* {renderRatingText()} */}
+      {renderRatingText()}
     </View>
   );
 };

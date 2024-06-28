@@ -5,13 +5,13 @@ import {utils} from '../utils';
 import {hooks} from '../hooks';
 import {custom} from '../custom';
 import {theme} from '../constants';
-import {CategoryType, PlantmedType} from '../types';
+import {ProductType, CategoryType} from '../types';
 
 type Props = {
   qty: number;
   isLast: boolean;
   item: CategoryType;
-  dataFilter: PlantmedType[] | undefined;
+  dataFilter: ProductType[] | undefined;
 };
 
 const CategoryItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
@@ -32,8 +32,8 @@ const CategoryItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
   return (
     <TouchableOpacity
       style={{
-        width: utils.responsiveWidth(120, true),
-        height: utils.responsiveWidth(120, true),
+        width: utils.responsiveWidth(90),
+        height: utils.responsiveWidth(90),
         marginRight: isLast ? 20 : 14,
       }}
       onPress={onPress}
@@ -58,31 +58,32 @@ const CategoryItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
             backgroundColor: '#CFF5CE',
             alignSelf: 'flex-start',
             borderRadius: 50,
-            width: 40,
-            height: 40,
+            width: 16,
+            height: 14,
             justifyContent: 'center',
             alignItems: 'center',
             marginBottom: 'auto',
           }}
         >
           <Text
-            numberOfLines={2}
+            numberOfLines={1}
             style={{
-              fontSize: 16,
-              color: theme.colors.steelTeal,
-              ...theme.fonts.DM_Sans_700Bold,
+              fontSize: 8,
+              color: '#50858B',
+              ...theme.fonts.DM_Sans_400Regular,
             }}
           >
             {qty}
           </Text>
         </View>
         <Text
-          numberOfLines={2}
+          numberOfLines={1}
           style={{
-            fontSize: 16,
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            fontSize: Platform.OS === 'ios' ? 10 : 8,
+            textTransform: 'capitalize',
             color: theme.colors.mainColor,
-            ...theme.fonts.DM_Sans_700Bold,
+            ...theme.fonts.DM_Sans_400Regular,
+            lineHeight: 10 * 1.5,
           }}
         >
           {item.name}

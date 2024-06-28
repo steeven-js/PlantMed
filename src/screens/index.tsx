@@ -3,23 +3,25 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import LogOut from './LogOut';
 import Search from './Search';
-import Filter from './Filter';
 import Source from './Source';
-import Reviews from './Reviews';
-import Product from './Product';
+import Filter from './Filter';
 import Sources from './Sources';
+import Reviews from './Reviews';
 import Prenium from './Prenium';
+import Product from './Product';
 import Checkout from './Checkout';
+import PlantMed from './PlantMed';
 import InfoSaved from './InfoSaved';
+import TermsOfUse from './TermsOfUse';
 import Onboarding from './Onboarding';
 import EditProfile from './EditProfile';
-import OrderFailed from './OrderFailed';
 import Description from './Description';
+import OrderFailed from './OrderFailed';
 import NewPassword from './NewPassword';
-import Subscription from './Subscription';
 import MyPromocodes from './MyPromocodes';
 import LeaveAReview from './LeaveAReview';
 import OrderHistory from './OrderHistory';
+import PlantMedList from './PlantMedList';
 import PrivacyPolicy from './PrivacyPolicy';
 import DeleteAccount from './DeleteAccount';
 import OrderSuccessful from './OrderSuccessful';
@@ -40,33 +42,35 @@ export const screens = {
   Shop,
   SignIn,
   SignUp,
+  Source,
   LogOut,
   Search,
   Filter,
-  Source,
+  Sources,
   Reviews,
   Product,
-  Sources,
   Prenium,
+  PlantMed,
   Checkout,
   InfoSaved,
+  TermsOfUse,
   Onboarding,
+  EditProfile,
   OrderFailed,
   VerifyPhone,
   Description,
   NewPassword,
-  EditProfile,
   VerifyEmail,
+  PlantMedList,
   OrderHistory,
   TabNavigator,
   SendEmailOtp,
   MyPromocodes,
   LeaveAReview,
-  Subscription,
   SendPhoneOtp,
-  DeleteAccount,
   PhoneVerified,
   EmailVerified,
+  DeleteAccount,
   PrivacyPolicy,
   OrderSuccessful,
   VerifyEmailForgot,

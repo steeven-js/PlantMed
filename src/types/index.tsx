@@ -7,12 +7,12 @@ import type {ColorType} from './ColorType';
 import type {BannerType} from './BannerType';
 import type {HeaderType} from './HeaderType';
 import type {ReviewType} from './ReviewType';
+import type {SymptomType} from './SymptomType';
 import type {ProductType} from './ProductType';
 import type {CategoryType} from './CategoryType';
 import type {CarouselType} from './CarouselType';
+import type {PlantMedType} from './PlantMedType';
 import type {PromocodeType} from './PromocodeType';
-import type {PlantmedType} from './PlantmedType';
-import type {SymptomType} from './SymptomType';
 
 export type ViewableItemsChanged = {
   viewableItems: Array<ViewToken>;
@@ -37,7 +37,7 @@ export type {
   ProductType,
   SymptomType,
   CarouselType,
-  PlantmedType,
+  PlantMedType,
   CategoryType,
   PromocodeType,
 };

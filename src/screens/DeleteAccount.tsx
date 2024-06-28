@@ -69,11 +69,10 @@ const DeleteAccount: React.FC = () => {
             marginBottom: utils.responsiveHeight(14),
           }}
         >
-          Êtes-vous sûr de vouloir {'\n'} supprimer votre compte?
+          Are you sure you want{'\n'}to delete your account?
         </text.H2>
         <text.T16>
-          Cette action est irréversible. {'\n'}Toutes vos données seront
-          perdues.
+          This action is irreversible.{'\n'}All your data will be lost.
         </text.T16>
       </ScrollView>
     );
@@ -83,7 +82,7 @@ const DeleteAccount: React.FC = () => {
     return (
       <View style={{padding: 20}}>
         <components.Button
-          title='Annuler'
+          title='cancel'
           containerStyle={{marginBottom: utils.responsiveHeight(14)}}
           touchableOpacityStyle={{backgroundColor: theme.colors.steelTeal}}
           onPress={() => {
@@ -91,7 +90,7 @@ const DeleteAccount: React.FC = () => {
           }}
         />
         <components.Button
-          title='Confirmer'
+          title='Sure'
           loading={loading}
           touchableOpacityStyle={{backgroundColor: theme.colors.pastelMint}}
           onPress={() => {

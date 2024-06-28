@@ -10,7 +10,7 @@ import {
   ProductType,
   CategoryType,
   PromocodeType,
-  PlantmedType,
+  PlantMedType,
   SymptomType,
 } from '../../types';
 
@@ -81,9 +81,9 @@ export const apiSlice = createApi({
       }),
     }),
     // ############ GET PLANTMED ############ //
-    getPlantmed: builder.query<{plantmed: PlantmedType[]}, void>({
+    getPlantmed: builder.query<{plantmed: PlantMedType[]}, void>({
       query: () => ENDPOINTS.GET_PLANTMED,
-      transformResponse: (response: PlantmedType) => ({
+      transformResponse: (response: PlantMedType) => ({
         plantmed: Array.isArray(response) ? response : [],
       }),
     }),

@@ -97,8 +97,7 @@ const SignIn: React.FC = () => {
         style={{
           textTransform: 'capitalize',
           marginBottom: utils.responsiveHeight(14),
-        }}
-      >
+        }}>
         Bienvenue
       </text.H1>
     );
@@ -108,8 +107,7 @@ const SignIn: React.FC = () => {
     return (
       <text.T16
         style={{marginBottom: utils.responsiveHeight(40)}}
-        numberOfLines={1}
-      >
+        numberOfLines={1}>
         Connectez-vous à votre compte
       </text.T16>
     );
@@ -119,22 +117,22 @@ const SignIn: React.FC = () => {
     return (
       <React.Fragment>
         <custom.InputField
-          label='email'
+          label="email"
           value={email}
           innerRef={emailInputRef}
-          placeholder='entrez votre email'
-          keyboardType='email-address'
+          placeholder="entrez votre email"
+          keyboardType="email-address"
           onChangeText={handleEmailChange}
           checkIcon={validateEmail(email, true)}
           containerStyle={{marginBottom: utils.responsiveHeight(20)}}
         />
         <custom.InputField
-          label='mot de passe'
+          label="mot de passe"
           value={password}
           eyeOffIcon={true}
-          keyboardType='default'
+          keyboardType="default"
           innerRef={passwordInputRef}
-          placeholder='entrez votre mot de passe'
+          placeholder="entrez votre mot de passe"
           secureTextEntry={secureTextEntry}
           onChangeText={handlePasswordChange}
           setSecureTextEntry={setSecureTextEntry}
@@ -150,14 +148,12 @@ const SignIn: React.FC = () => {
         style={{
           ...theme.flex.rowCenterSpaceBetween,
           marginBottom: utils.responsiveHeight(30),
-        }}
-      >
+        }}>
         <TouchableOpacity
           style={{...theme.flex.rowCenter}}
           onPress={() => {
             dispatch(actions.setRememberMe(!rememberMe));
-          }}
-        >
+          }}>
           <View
             style={{
               width: 18,
@@ -168,8 +164,7 @@ const SignIn: React.FC = () => {
               justifyContent: 'center',
               backgroundColor: theme.colors.white,
               borderColor: theme.colors.antiFlashWhite,
-            }}
-          >
+            }}>
             {rememberMe && <svg.RememberCheckSvg />}
           </View>
           <text.T14 style={{marginLeft: 10}} numberOfLines={1}>
@@ -179,8 +174,7 @@ const SignIn: React.FC = () => {
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('SendEmailOtpForgot');
-          }}
-        >
+          }}>
           <text.T16 numberOfLines={1} style={{color: theme.colors.mainColor}}>
             Mot de passe oublié?
           </text.T16>
@@ -192,7 +186,7 @@ const SignIn: React.FC = () => {
   const renderButton = (): JSX.Element => {
     return (
       <components.Button
-        title='Connexion'
+        title="Connexion"
         onPress={() => {
           validation(user) ? handleSignIn() : null;
         }}
@@ -232,8 +226,7 @@ const SignIn: React.FC = () => {
           flexGrow: 1,
           padding: 20,
           justifyContent: 'center',
-        }}
-      >
+        }}>
         {renderTitle()}
         {renderDescription()}
         {renderInputFields()}
@@ -245,11 +238,18 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <custom.SafeAreaView insets={['top', 'bottom']}>
-      {renderHeader()}
-      {renderContent()}
-      {renderIfYouDontHaveAnAccount()}
-    </custom.SafeAreaView>
+    <custom.ImageBackground
+      style={{flex: 1}}
+      resizeMode="stretch"
+      source={require('../assets/bg/02.png')}>
+      <custom.SafeAreaView
+        insets={['top', 'bottom']}
+        containerStyle={{backgroundColor: theme.colors.transparent}}>
+        {renderHeader()}
+        {renderContent()}
+        {renderIfYouDontHaveAnAccount()}
+      </custom.SafeAreaView>
+    </custom.ImageBackground>
   );
 };
 

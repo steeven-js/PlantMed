@@ -34,8 +34,7 @@ const ImageBackground: React.FC<Props> = ({
           : resizeMode === 'contain'
           ? FastImage.resizeMode.contain
           : FastImage.resizeMode.stretch
-      }
-    >
+      }>
       {children}
     </ImageProgress>
   );

@@ -103,7 +103,7 @@ const Shop: React.FC<ShopScreenProps> = ({route}) => {
       case 'Sale':
         return a.oldPrice === b.oldPrice ? 0 : a.oldPrice ? -1 : 1;
       case 'Featured':
-        return a.is_featured === b.is_featured ? 0 : a.is_featured ? -1 : 1;
+        return a.isFeatured === b.isFeatured ? 0 : a.isFeatured ? -1 : 1;
       default:
         return 0;
     }
@@ -117,54 +117,54 @@ const Shop: React.FC<ShopScreenProps> = ({route}) => {
           dispatch(actions.resetFilters());
           navigation.goBack();
         }}
-        // bottomLine={true}
-        // basketIcon={true}
+        bottomLine={true}
+        basketIcon={true}
       />
     );
   };
 
-  // const renderOptions = (): JSX.Element => {
-  //   return (
-  //     <View
-  //       style={{
-  //         flexDirection: 'row',
-  //         justifyContent: 'space-between',
-  //         alignItems: 'center',
-  //       }}
-  //     >
-  //       <TouchableOpacity
-  //         style={{
-  //           paddingTop: 20,
-  //           paddingRight: 20,
-  //           paddingBottom: 14,
-  //           paddingHorizontal: 20,
-  //           flexDirection: 'row',
-  //           alignItems: 'center',
-  //           justifyContent: 'flex-start',
-  //         }}
-  //         onPress={() => navigation.navigate('Filter')}
-  //       >
-  //         <svg.FiltersSvg />
-  //         {/* <text.T14 style={{marginLeft: 8}}>Filters</text.T14> */}
-  //       </TouchableOpacity>
-  //       <TouchableOpacity
-  //         style={{
-  //           paddingTop: 20,
-  //           paddingHorizontal: 20,
-  //           paddingBottom: 14,
-  //           paddingLeft: 20,
-  //           flexDirection: 'row',
-  //           alignItems: 'center',
-  //           justifyContent: 'flex-start',
-  //         }}
-  //         onPress={() => setShowModal(true)}
-  //       >
-  //         {/* <text.T14 style={{marginRight: 7}}>Sorting by</text.T14> */}
-  //         <svg.SortingBySvg />
-  //       </TouchableOpacity>
-  //     </View>
-  //   );
-  // };
+  const renderOptions = (): JSX.Element => {
+    return (
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            paddingTop: 20,
+            paddingRight: 20,
+            paddingBottom: 14,
+            paddingHorizontal: 20,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}
+          onPress={() => navigation.navigate('Filter')}
+        >
+          <svg.FiltersSvg />
+          {/* <text.T14 style={{marginLeft: 8}}>Filters</text.T14> */}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            paddingTop: 20,
+            paddingHorizontal: 20,
+            paddingBottom: 14,
+            paddingLeft: 20,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}
+          onPress={() => setShowModal(true)}
+        >
+          {/* <text.T14 style={{marginRight: 7}}>Sorting by</text.T14> */}
+          <svg.SortingBySvg />
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   const renderContent = (): JSX.Element | null => {
     if (filteredProducts.length === 0) return <components.NoData />;
@@ -270,7 +270,7 @@ const Shop: React.FC<ShopScreenProps> = ({route}) => {
   return (
     <custom.SafeAreaView insets={['top', 'bottom']}>
       {renderHeader()}
-      {/* {renderOptions()} */}
+      {renderOptions()}
       {renderContent()}
       {renderModal()}
     </custom.SafeAreaView>

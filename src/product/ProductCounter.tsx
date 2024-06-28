@@ -3,11 +3,11 @@ import {View, Text, TouchableOpacity, Platform} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 
 import {theme} from '../constants';
-import {PlantmedType} from '../types';
+import {ProductType} from '../types';
 import {hooks} from '../hooks';
 import {actions} from '../store/actions';
 
-type Props = {item: PlantmedType};
+type Props = {item: ProductType};
 
 const ProductCounter: React.FC<Props> = ({item}): JSX.Element => {
   const dispatch = hooks.useAppDispatch();

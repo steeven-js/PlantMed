@@ -26,15 +26,12 @@ import {ProductType, ViewableItemsChanged} from '../types';
 
 const Product: React.FC<ProductScreenProps> = ({route}) => {
   const {item} = route.params;
-  // console.log('item', item);
   const {responsiveHeight} = utils;
 
   const user = hooks.useAppSelector(state => state.userSlice.user);
 
   const dispatch = hooks.useAppDispatch();
   const navigation = hooks.useAppNavigation();
-
-  const [tab, setTab] = useState(0);
 
   const viewabilityConfig = useRef({
     viewAreaCoveragePercentThreshold: 50,
@@ -49,6 +46,52 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
 
   const cart = hooks.useAppSelector(state => state.cartSlice.list);
   const exist = (item: ProductType) => cart.find(i => i.id === item.id);
+
+  // ############ QUERIES ############ //
+
+  const {
+    data: colorsData,
+    error: colorsError,
+    isLoading: colorsLoading,
+  } = queryHooks.useGetColorsQuery();
+
+  const {
+    data: reviewsData,
+    error: reviewsError,
+    isLoading: reviewsLoading,
+    refetch: refetchReviews,
+  } = queryHooks.useGetReviewsQuery(item?.id || 0);
+
+  const {
+    data: ordersData,
+    error: ordersError,
+    isLoading: ordersLoading,
+  } = queryHooks.useGetOrdersQuery(user?.id || 0);
+
+  const ifInOrderExist = ordersData?.orders.find((order: any) =>
+    order.products.find((product: ProductType) => product.id === item.id),
+  );
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      refetchReviews();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  // ############ STATUS ############ //
+
+  const isError = colorsError || reviewsError;
+  const isLoading = colorsLoading || reviewsLoading;
+
+  const [selectedColor, setSelectedColor] = useState<string>(item.color || '');
+
+  const colors = colorsData?.colors?.filter(color =>
+    item.colors?.includes(color.name),
+  );
+
+  const modifedItem = {...item, color: selectedColor};
 
   // ############ COMPONENTS ############ //
 
@@ -80,9 +123,7 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
               resizeMode='contain'
               source={{uri: item}}
               style={{
-                // aspectRatio: 375 / 500,
-                // aspectRatio: 335 / 165,
-                aspectRatio: 700 / 500,
+                aspectRatio: 375 / 500,
                 width: theme.sizes.deviceWidth,
                 backgroundColor: theme.colors.imageBackground,
               }}
@@ -106,35 +147,29 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
               alignSelf: 'center',
             }}
           >
-            {item.images.map(
-              (
-                _: any,
-                current: React.Key | null | undefined,
-                array: string | any[],
-              ) => {
-                const last = current === array.length - 1;
-                return (
-                  <View
-                    key={current}
-                    style={{
-                      width: 10,
-                      height: 10,
-                      borderRadius: 5,
-                      backgroundColor:
-                        activeIndex === current
-                          ? theme.colors.mainColor
-                          : theme.colors.white,
-                      borderColor:
-                        activeIndex === current
-                          ? theme.colors.mainColor
-                          : theme.colors.antiFlashWhite,
-                      marginRight: last ? 0 : 10,
-                      borderWidth: 1,
-                    }}
-                  />
-                );
-              },
-            )}
+            {item.images.map((_, current, array) => {
+              const last = current === array.length - 1;
+              return (
+                <View
+                  key={current}
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: 5,
+                    backgroundColor:
+                      activeIndex === current
+                        ? theme.colors.mainColor
+                        : theme.colors.white,
+                    borderColor:
+                      activeIndex === current
+                        ? theme.colors.mainColor
+                        : theme.colors.antiFlashWhite,
+                    marginRight: last ? 0 : 10,
+                    borderWidth: 1,
+                  }}
+                />
+              );
+            })}
           </View>
         );
       }
@@ -171,54 +206,102 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
     return null;
   };
 
-  const renderTabs = (): JSX.Element => {
-    const tabs = ['Description', 'Propriétés', 'Usages', 'Précautions'];
-
+  const renderNameWithRating = (): JSX.Element => {
     return (
       <View
         style={{
+          paddingHorizontal: 20,
+          marginBottom: utils.rsHeight(30),
           ...theme.flex.rowCenterSpaceBetween,
-          marginHorizontal: 20,
-          marginBottom: utils.responsiveHeight(20),
         }}
       >
-        {tabs.map((item, index) => {
-          return (
-            <TouchableOpacity
-              key={index}
-              style={{
-                paddingHorizontal: 10,
-                borderWidth: 1,
-                paddingVertical: 20,
-                borderRadius: 10,
-                borderColor:
-                  tab === index
-                    ? theme.colors.steelTeal
-                    : theme.colors.transparent,
-                backgroundColor:
-                  tab === index
-                    ? `${theme.colors.white}50`
-                    : theme.colors.transparent,
-              }}
-              onPress={() => setTab(index)}
-            >
-              <Text
+        <text.H3 numberOfLines={1}>{item.name}</text.H3>
+        <product.ProductRating rating={item.rating} />
+      </View>
+    );
+  };
+
+  const renderPriceWithQuantity = (): JSX.Element => {
+    return (
+      <View
+        style={{
+          marginLeft: 20,
+          paddingLeft: 20,
+          marginBottom: 30,
+          borderTopWidth: 1,
+          borderLeftWidth: 1,
+          borderBottomWidth: 1,
+          borderTopLeftRadius: 10,
+          borderBottomLeftRadius: 10,
+          borderColor: theme.colors.antiFlashWhite,
+          ...theme.flex.rowCenterSpaceBetween,
+        }}
+      >
+        <Text
+          style={{
+            ...theme.fonts.DM_Sans_700Bold,
+            fontSize: Platform.OS === 'ios' ? 20 : 18,
+            color: theme.colors.mainColor,
+          }}
+        >
+          ${item.price}
+        </Text>
+        <product.ProductCounterInner item={modifedItem} />
+      </View>
+    );
+  };
+
+  const renderColors = (): JSX.Element => {
+    return (
+      <View
+        style={{
+          paddingHorizontal: 20,
+          marginBottom: utils.responsiveHeight(30),
+        }}
+      >
+        <text.H5
+          style={{
+            color: theme.colors.mainColor,
+            marginRight: 32,
+            marginTop: 10,
+            marginBottom: utils.rsHeight(20),
+          }}
+        >
+          Color
+        </text.H5>
+        <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
+          {colors?.map((color, index) => {
+            const colorItem = colorsData?.colors.find(
+              item => item.name === color.name,
+            );
+            const code: string = colorItem ? colorItem.code : '';
+            return (
+              <TouchableOpacity
+                key={index}
                 style={{
-                  ...theme.fonts.DM_Sans_500Medium,
-                  fontSize: Platform.OS === 'ios' ? 11 : 10,
-                  textTransform: 'uppercase',
-                  color:
-                    tab === index
-                      ? theme.colors.mainColor
-                      : theme.colors.textColor,
+                  width: 30,
+                  height: 30,
+                  borderRadius: 15,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  backgroundColor: code,
+                  justifyContent: 'center',
                 }}
-                numberOfLines={1}
+                onPress={() => {
+                  if (!exist(item)) {
+                    setSelectedColor(color.name);
+                  }
+
+                  if (exist(item)) {
+                    alert.alreadyAdded();
+                  }
+                }}
               >
-                {item}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
+                {selectedColor === color.name && <svg.CheckSvg />}
+              </TouchableOpacity>
+            );
+          })}
+        </View>
       </View>
     );
   };
@@ -228,252 +311,117 @@ const Product: React.FC<ProductScreenProps> = ({route}) => {
       <View
         style={{
           paddingHorizontal: 20,
-          marginBottom: utils.responsiveHeight(24),
+          marginBottom: 30,
         }}
       >
-        <text.H5
-          style={{
-            textTransform: 'capitalize',
-            color: theme.colors.mainColor,
-            marginBottom: utils.responsiveHeight(10),
-          }}
-        >
+        <text.H5 style={{marginBottom: 14, color: theme.colors.mainColor}}>
           Description
         </text.H5>
-        <View
+        <text.T16
           style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: utils.responsiveHeight(6),
+            color: theme.colors.textColor,
+            marginBottom: utils.responsiveHeight(14),
           }}
+          numberOfLines={6}
         >
-          <text.T16
-            style={{
-              paddingBottom: 20,
-              color: theme.colors.textColor,
-            }}
-          >
-            {item.description}
-          </text.T16>
-        </View>
-
-        <text.H5
-          style={{
-            textTransform: 'capitalize',
-            color: theme.colors.mainColor,
-            marginBottom: utils.responsiveHeight(10),
-          }}
-        >
-          Habitat
-        </text.H5>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: utils.responsiveHeight(6),
-          }}
-        >
-          <text.T16
-            style={{
-              paddingBottom: 20,
-              color: theme.colors.textColor,
-            }}
-          >
-            {item.habitat}
-          </text.T16>
-        </View>
-
+          {item.description}
+        </text.T16>
         <TouchableOpacity
-          style={{
-            paddingHorizontal: 10,
-            borderWidth: 1,
-            paddingVertical: 20,
-            borderRadius: 10,
-            borderColor: theme.colors.steelTeal,
-            backgroundColor: `${theme.colors.white}50`,
-          }}
           onPress={() => {
-            navigation.navigate('Source', {
-              source: item.sources,
+            navigation.navigate('Description', {
+              description: item.description,
               title: item.name,
             });
           }}
         >
-          <text.H5
-            style={{
-              textAlign: 'center',
-              textTransform: 'capitalize',
-              color: theme.colors.mainColor,
-              marginBottom: utils.responsiveHeight(10),
-            }}
-          >
-            {'Sources >'}
-          </text.H5>
+          <svg.ReadMoreSvg />
         </TouchableOpacity>
       </View>
     );
   };
 
-  const renderProperty = (): JSX.Element => {
+  const renderReviews = (): JSX.Element | null => {
+    if (!reviewsData?.reviews.length) return null;
+
+    const reversedReviews = [...reviewsData.reviews].reverse();
+    const slice = reversedReviews.slice(0, 2);
+
     return (
-      <View
-        style={{
-          paddingHorizontal: 20,
-          marginBottom: utils.responsiveHeight(24),
-        }}
-      >
-        <text.H5
-          style={{
-            textTransform: 'capitalize',
-            color: theme.colors.mainColor,
-            marginBottom: utils.responsiveHeight(10),
+      <View style={{paddingLeft: 20}}>
+        <components.BlockHeading
+          title={`Reviews (${reviewsData?.reviews.length})`}
+          containerStyle={{marginRight: 20, marginBottom: responsiveHeight(20)}}
+          viewAllOnPress={() => {
+            navigation.navigate('Reviews', {reviews: reviewsData?.reviews});
           }}
-        >
-          Propriétés
-        </text.H5>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: utils.responsiveHeight(6),
-          }}
-        >
-          <text.T16
-            style={{
-              color: theme.colors.textColor,
-            }}
-          >
-            {item.propriete}
-          </text.T16>
-        </View>
+          viewAllVisible={reversedReviews.length > 2}
+        />
+        {slice.map((item: any, index: number, array: any) => {
+          const isLast = index === array.length - 1;
+          return (
+            <items.ReviewItem
+              key={item.id.toString()}
+              item={item}
+              isLast={isLast}
+            />
+          );
+        })}
       </View>
     );
   };
 
-  const renderUse = (): JSX.Element => {
+  const renderButton = (): JSX.Element => {
     return (
-      <View
-        style={{
-          paddingHorizontal: 20,
-          marginBottom: utils.responsiveHeight(24),
-        }}
-      >
-        <text.H5
-          style={{
-            textTransform: 'capitalize',
-            color: theme.colors.mainColor,
-            marginBottom: utils.responsiveHeight(10),
+      <View style={{padding: 20}}>
+        <components.Button
+          title='+ ADd to cart'
+          onPress={() => {
+            if (exist(item)) {
+              alert.alreadyAdded();
+            }
+            if (!exist(item)) {
+              dispatch(addToCart(modifedItem));
+            }
           }}
-        >
-          Usages internes
-        </text.H5>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: utils.responsiveHeight(6),
+          containerStyle={{
+            paddingBottom: ifInOrderExist ? responsiveHeight(14) : 0,
           }}
-        >
-          <text.T16
-            style={{
-              paddingBottom: 20,
-              color: theme.colors.textColor,
+        />
+        {ifInOrderExist && (
+          <components.Button
+            title='Leave a review'
+            touchableOpacityStyle={{backgroundColor: theme.colors.pastelMint}}
+            onPress={() => {
+              navigation.navigate('LeaveAReview', {productId: item.id});
             }}
-          >
-            {item.usageInterne}
-          </text.T16>
-        </View>
-
-        <text.H5
-          style={{
-            textTransform: 'capitalize',
-            color: theme.colors.mainColor,
-            marginBottom: utils.responsiveHeight(10),
-          }}
-        >
-          Usages externes
-        </text.H5>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: utils.responsiveHeight(6),
-          }}
-        >
-          <text.T16
-            style={{
-              paddingBottom: 20,
-              color: theme.colors.textColor,
-            }}
-          >
-            {item.usageExterne}
-          </text.T16>
-        </View>
+            textStyle={{color: theme.colors.steelTeal}}
+          />
+        )}
       </View>
     );
-  };
-
-  const renderCaution = (): JSX.Element => {
-    return (
-      <View
-        style={{
-          paddingHorizontal: 20,
-          marginBottom: utils.responsiveHeight(24),
-        }}
-      >
-        <text.H5
-          style={{
-            textTransform: 'capitalize',
-            color: theme.colors.mainColor,
-            marginBottom: utils.responsiveHeight(10),
-          }}
-        >
-          Précautions
-        </text.H5>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: utils.responsiveHeight(6),
-          }}
-        >
-          <text.T16
-            style={{
-              color: theme.colors.textColor,
-            }}
-          >
-            {item.precaution}
-          </text.T16>
-        </View>
-      </View>
-    );
-  };
-
-  const renderTabContent = (): JSX.Element => {
-    if (tab === 0) {
-      return renderDescription();
-    } else if (tab === 1) {
-      return renderProperty();
-    } else if (tab === 2) {
-      return renderUse();
-    } else {
-      return renderCaution();
-    }
   };
 
   const renderContent = (): JSX.Element => {
+    if (isError) return <components.Error />;
+    if (isLoading) return <components.Loader />;
+
     return (
       <ScrollView
         contentContainerStyle={{flexGrow: 1}}
         showsVerticalScrollIndicator={false}
       >
         {renderCarousel()}
-        {/* {renderDescription()} */}
-        {renderTabs()}
-        {renderTabContent()}
+        {renderNameWithRating()}
+        {renderPriceWithQuantity()}
+        {renderColors()}
+        {renderDescription()}
+        {renderReviews()}
+        {renderButton()}
       </ScrollView>
     );
   };
+
+  // ############ RENDER ############ //
 
   return (
     <custom.SafeAreaView insets={['top', 'bottom']}>

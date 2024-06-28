@@ -11,6 +11,7 @@ import {components} from '../components';
 import {actions} from '../store/actions';
 import {CONFIG, ENDPOINTS} from '../config';
 import {SignUpAccountCreatedScreenProps} from '../types/ScreenProps';
+import {theme} from '../constants';
 
 const SignUpAccountCreated: React.FC<SignUpAccountCreatedScreenProps> = ({
   route,
@@ -67,8 +68,7 @@ const SignUpAccountCreated: React.FC<SignUpAccountCreatedScreenProps> = ({
           padding: 20,
           justifyContent: 'center',
         }}
-        showsVerticalScrollIndicator={false}
-      >
+        showsVerticalScrollIndicator={false}>
         <custom.Image
           source={require('../assets/icons/01.png')}
           style={{
@@ -81,8 +81,7 @@ const SignUpAccountCreated: React.FC<SignUpAccountCreatedScreenProps> = ({
           style={{
             textTransform: 'capitalize',
             marginBottom: utils.responsiveHeight(14),
-          }}
-        >
+          }}>
           Compte Créé!
         </text.H2>
         <text.T16>
@@ -97,7 +96,7 @@ const SignUpAccountCreated: React.FC<SignUpAccountCreatedScreenProps> = ({
     return (
       <components.Button
         loading={loading}
-        title='Découvrir PlantMed'
+        title="Découvrir PlantMed"
         containerStyle={{margin: 20}}
         onPress={() => {
           handleSignIn();
@@ -107,10 +106,17 @@ const SignUpAccountCreated: React.FC<SignUpAccountCreatedScreenProps> = ({
   };
 
   return (
-    <custom.SafeAreaView insets={['top', 'bottom']}>
-      {renderContent()}
-      {renderButton()}
-    </custom.SafeAreaView>
+    <custom.ImageBackground
+      style={{flex: 1}}
+      resizeMode="stretch"
+      source={require('../assets/bg/02.png')}>
+      <custom.SafeAreaView
+        insets={['top', 'bottom']}
+        containerStyle={{backgroundColor: theme.colors.transparent}}>
+        {renderContent()}
+        {renderButton()}
+      </custom.SafeAreaView>
+    </custom.ImageBackground>
   );
 };
 

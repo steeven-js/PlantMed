@@ -1,6 +1,6 @@
 import {ReviewType} from './ReviewType';
 
-export type PlantmedType = {
+export type PlantMedType = {
   id: number;
   name: string;
   price: number;
@@ -32,6 +32,4 @@ export type PlantmedType = {
   plantTypes: string[];
   isNew: boolean;
   isTop: boolean;
-  product: string[];
-  title: string;
 };

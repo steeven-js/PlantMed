@@ -6,9 +6,9 @@ import {utils} from '../utils';
 import {custom} from '../custom';
 import {theme} from '../constants';
 import {product} from '../product';
-import {PlantmedType} from '../types';
+import {ProductType} from '../types';
 
-type Props = {item: PlantmedType; containerStyle?: ViewStyle; isLast?: boolean};
+type Props = {item: ProductType; containerStyle?: ViewStyle; isLast?: boolean};
 
 const WishlistItem: React.FC<Props> = ({
   item,
@@ -39,7 +39,7 @@ const WishlistItem: React.FC<Props> = ({
         }}
         resizeMode='contain'
       >
-        {/* {item.oldPrice && (
+        {item.oldPrice && (
           <product.ProductSaleBadge
             containerStyle={{
               position: 'absolute',
@@ -48,7 +48,7 @@ const WishlistItem: React.FC<Props> = ({
               padding: 10,
             }}
           />
-        )} */}
+        )}
       </custom.ImageBackground>
       {/* BLOCK INFO */}
       <View
@@ -71,8 +71,8 @@ const WishlistItem: React.FC<Props> = ({
           }}
         >
           <product.ProductName item={item} />
-          {/* <product.ProductPrice item={item} /> */}
-          {/* <product.ProductRating rating={item.rating} /> */}
+          <product.ProductPrice item={item} />
+          <product.ProductRating rating={item.rating} />
         </View>
         <View style={{justifyContent: 'space-between'}}>
           <product.ProductInWishlist
@@ -83,13 +83,13 @@ const WishlistItem: React.FC<Props> = ({
               paddingVertical: 14,
             }}
           />
-          {/* <product.ProductInCart
+          <product.ProductInCart
             item={item}
             containerStyle={{
               paddingHorizontal: 20,
               paddingVertical: 14,
             }}
-          /> */}
+          />
         </View>
       </View>
     </TouchableOpacity>

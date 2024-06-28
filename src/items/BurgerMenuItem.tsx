@@ -39,7 +39,7 @@ const BurgerMenuItem: React.FC<Props> = ({
           color: theme.colors.mainColor,
           ...theme.fonts.DM_Sans_400Regular,
           lineHeight: 14 * 1.5,
-          fontSize: Platform.OS === 'ios' ? 18 : 16,
+          fontSize: Platform.OS === 'ios' ? 14 : 12,
           ...textStyle,
         }}
         numberOfLines={1}

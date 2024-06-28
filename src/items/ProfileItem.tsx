@@ -24,7 +24,7 @@ const ProfileItem: React.FC<Props> = ({
     <TouchableOpacity
       style={{
         paddingVertical: 14,
-        borderColor: '#E7EBEB',
+        borderColor: theme.colors.steelTeal,
         flexDirection: 'row',
         alignItems: 'center',
         borderTopLeftRadius: 10,

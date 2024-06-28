@@ -26,23 +26,29 @@ const EditProfile: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>(user?.name || '');
   const [email, setEmail] = useState<string>(user?.email || '');
+  const [phoneNumber, setPhoneNumber] = useState<string>(
+    user?.phoneNumber || '',
+  );
   const [location, setLocation] = useState<string>(user?.location || '');
 
   const handleNameChange = handleTextChange(setName);
   const handleEmailChange = handleTextChange(setEmail);
   const handleLocationChange = handleTextChange(setLocation);
+  const handlePhoneNumberChange = handleTextChange(setPhoneNumber);
 
   const updatedUser = {name, location};
 
   const nameInputRef = useRef<TextInput>(null);
   const emailInputRef = useRef<TextInput>(null);
   const locationInputRef = useRef<TextInput>(null);
+  const phoneNumberInputRef = useRef<TextInput>(null);
 
   useEffect(() => {
     if (loading) {
       nameInputRef.current?.blur();
       emailInputRef.current?.blur();
       locationInputRef.current?.blur();
+      phoneNumberInputRef.current?.blur();
     }
   }, [loading]);
 
@@ -138,17 +144,23 @@ const EditProfile: React.FC = () => {
 
   const renderContent = (): JSX.Element => {
     return (
-      <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-          paddingTop: utils.responsiveHeight(40),
-        }}
-        showsVerticalScrollIndicator={false}
+      <custom.ImageBackground
+        style={{flex: 1}}
+        resizeMode='stretch'
+        source={require('../assets/bg/02.png')}
       >
-        {renderUserInfo()}
-        {renderInputFields()}
-        {renderButton()}
-      </ScrollView>
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            paddingTop: utils.responsiveHeight(40),
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          {renderUserInfo()}
+          {renderInputFields()}
+          {renderButton()}
+        </ScrollView>
+      </custom.ImageBackground>
     );
   };
 

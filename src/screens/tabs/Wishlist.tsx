@@ -76,26 +76,26 @@ const Wishlist: React.FC = () => {
     return null;
   };
 
-  // const renderButton = (): JSX.Element | null => {
-  //   if (wishlist.length === 0) {
-  //     return (
-  //       <components.Button
-  //         title='shop now'
-  //         containerStyle={{padding: 20}}
-  //         textStyle={{color: theme.colors.steelTeal}}
-  //         touchableOpacityStyle={{backgroundColor: theme.colors.pastelMint}}
-  //         onPress={() =>
-  //           navigation.navigate('Shop', {
-  //             title: 'Shop',
-  //             products: plantsData?.plants || [],
-  //           })
-  //         }
-  //       />
-  //     );
-  //   }
+  const renderButton = (): JSX.Element | null => {
+    if (wishlist.length === 0) {
+      return (
+        <components.Button
+          title='shop now'
+          containerStyle={{padding: 20}}
+          textStyle={{color: theme.colors.steelTeal}}
+          touchableOpacityStyle={{backgroundColor: theme.colors.pastelMint}}
+          onPress={() =>
+            navigation.navigate('Shop', {
+              title: 'Shop',
+              products: plantsData?.plants || [],
+            })
+          }
+        />
+      );
+    }
 
-  //   return null;
-  // };
+    return null;
+  };
 
   const renderContent = (): JSX.Element => {
     if (plantsLoading) {
@@ -106,7 +106,7 @@ const Wishlist: React.FC = () => {
       <React.Fragment>
         {renderProducts()}
         {renderEmpty()}
-        {/* {renderButton()} */}
+        {renderButton()}
       </React.Fragment>
     );
   };

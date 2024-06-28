@@ -32,7 +32,7 @@ const LogOut: React.FC = () => {
           }}
         />
         <text.H2 numberOfLines={2}>
-          Êtes-vous sûr de vouloir {'\n'} vous déconnecter ?
+          Êtes-vous sûr de vouloir{'\n'}vous déconnecter ?
         </text.H2>
       </ScrollView>
     );
@@ -42,7 +42,7 @@ const LogOut: React.FC = () => {
     return (
       <View style={{padding: 20}}>
         <components.Button
-          title='Annuler'
+          title='annuler'
           containerStyle={{marginBottom: utils.responsiveHeight(14)}}
           touchableOpacityStyle={{backgroundColor: theme.colors.steelTeal}}
           onPress={() => {
@@ -54,7 +54,6 @@ const LogOut: React.FC = () => {
           touchableOpacityStyle={{backgroundColor: theme.colors.pastelMint}}
           onPress={() => {
             dispatch(actions.logOut());
-            navigation.navigate('TabNavigator');
           }}
           textStyle={{color: theme.colors.steelTeal}}
         />
@@ -63,10 +62,19 @@ const LogOut: React.FC = () => {
   };
 
   return (
-    <custom.SafeAreaView insets={['top', 'bottom']}>
-      {renderContent()}
-      {renderButtons()}
-    </custom.SafeAreaView>
+    <custom.ImageBackground
+      style={{flex: 1}}
+      resizeMode='stretch'
+      source={require('../assets/bg/02.png')}
+    >
+      <custom.SafeAreaView
+        insets={['top', 'bottom']}
+        containerStyle={{backgroundColor: theme.colors.transparent}}
+      >
+        {renderContent()}
+        {renderButtons()}
+      </custom.SafeAreaView>
+    </custom.ImageBackground>
   );
 };
 

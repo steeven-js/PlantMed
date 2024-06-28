@@ -6,9 +6,9 @@ import {utils} from '../utils';
 import {custom} from '../custom';
 import {theme} from '../constants';
 import {product} from '../product';
-import {PlantmedType} from '../types';
+import {ProductType} from '../types';
 
-type Props = {version: 1 | 2 | 3; item: PlantmedType; isLast?: boolean};
+type Props = {version: 1 | 2 | 3; item: ProductType; isLast?: boolean};
 
 const PlantCard: React.FC<Props> = ({
   version,
@@ -57,20 +57,20 @@ const PlantCard: React.FC<Props> = ({
             containerStyle={{marginBottom: 'auto', padding: 10}}
           />
 
-          {/* {quantity !== undefined && quantity === 0 && (
+          {quantity !== undefined && quantity === 0 && (
             <product.ProductInCart
               item={item}
               version={1}
               containerStyle={{padding: 10}}
             />
-          )} */}
+          )}
           {quantity !== undefined && quantity > 0 && (
             <product.ProductQuantity
               quantity={quantity}
               containerStyle={{padding: 10}}
             />
           )}
-          {/* {item.oldPrice && (
+          {item.oldPrice && (
             <product.ProductSaleBadge
               containerStyle={{
                 position: 'absolute',
@@ -79,7 +79,7 @@ const PlantCard: React.FC<Props> = ({
                 left: 0,
               }}
             />
-          )} */}
+          )}
         </custom.ImageBackground>
         <View
           style={{
@@ -87,7 +87,7 @@ const PlantCard: React.FC<Props> = ({
           }}
         >
           <product.ProductName item={item} style={{marginBottom: 3}} />
-          {/* <product.ProductPrice item={item} /> */}
+          <product.ProductPrice item={item} />
         </View>
       </TouchableOpacity>
     );
@@ -101,7 +101,7 @@ const PlantCard: React.FC<Props> = ({
           source={{uri: item.image}}
           style={{
             width: utils.responsiveWidth(138, true),
-            aspectRatio: 138 / 138,
+            aspectRatio: 138 / 170,
             marginRight: isLast ? 20 : 14,
             marginBottom: utils.responsiveHeight(14),
           }}
@@ -120,7 +120,7 @@ const PlantCard: React.FC<Props> = ({
             }}
           />
 
-          {/* {quantity !== undefined && quantity === 0 && (
+          {quantity !== undefined && quantity === 0 && (
             <product.ProductInCart
               item={item}
               containerStyle={{
@@ -141,11 +141,11 @@ const PlantCard: React.FC<Props> = ({
                 right: 0,
               }}
             />
-          )} */}
+          )}
         </custom.ImageBackground>
         <View style={{width: utils.rsHeight(138, true)}}>
           <product.ProductName item={item} style={{marginBottom: 3}} />
-          {/* <product.ProductPrice item={item} /> */}
+          <product.ProductPrice item={item} />
         </View>
       </TouchableOpacity>
     );
@@ -161,7 +161,7 @@ const PlantCard: React.FC<Props> = ({
           source={{uri: item.image}}
           style={{
             width: width,
-            aspectRatio: 150 / 150,
+            aspectRatio: 200 / 250,
             marginRight: isLast ? 20 : 14,
             marginBottom: utils.responsiveHeight(14),
           }}
@@ -179,7 +179,7 @@ const PlantCard: React.FC<Props> = ({
               right: 0,
             }}
           />
-          {/* <product.ProductInCart
+          <product.ProductInCart
             item={item}
             containerStyle={{
               position: 'absolute',
@@ -198,11 +198,11 @@ const PlantCard: React.FC<Props> = ({
                 right: 0,
               }}
             />
-          )} */}
+          )}
         </custom.ImageBackground>
         <View style={{width: width}}>
           <product.ProductName item={item} style={{marginBottom: 3}} />
-          {/* <product.ProductPrice item={item} /> */}
+          <product.ProductPrice item={item} />
         </View>
       </TouchableOpacity>
     );

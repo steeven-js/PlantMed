@@ -4,12 +4,12 @@ import {TouchableOpacity, Alert} from 'react-native';
 import {hooks} from '../hooks';
 import {svg} from '../assets/svg';
 import {theme} from '../constants';
-import {PlantmedType} from '../types';
+import {ProductType} from '../types';
 import {actions} from '../store/actions';
 
 type Props = {
   version?: number;
-  item: PlantmedType;
+  item: ProductType;
   containerStyle?: object;
 };
 
@@ -21,11 +21,14 @@ const ProductInWishlist: React.FC<Props> = ({
   const dispatch = hooks.useAppDispatch();
 
   const wishlist = hooks.useAppSelector(state => state.wishlistSlice.list);
-  const itemExist = (item: PlantmedType) =>
-    wishlist.find(i => i.id === item.id);
+  const itemExist = (item: ProductType) => wishlist.find(i => i.id === item.id);
 
-  const fillColor = itemExist(item) ? theme.colors.red : theme.colors.white;
-  const strokeColor = itemExist(item) ? theme.colors.red : theme.colors.red;
+  const fillColor = itemExist(item)
+    ? theme.colors.steelTeal
+    : theme.colors.transparent;
+  const strokeColor = itemExist(item)
+    ? theme.colors.steelTeal
+    : theme.colors.textColor;
 
   const itemExistMessage = () => {
     return Alert.alert(

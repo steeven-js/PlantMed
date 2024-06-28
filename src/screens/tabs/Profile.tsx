@@ -1,58 +1,42 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Alert, ScrollView} from 'react-native';
+
 import {hooks} from '../../hooks';
 import {utils} from '../../utils';
 import {items} from '../../items';
+import {custom} from '../../custom';
 import {svg} from '../../assets/svg';
 import {components} from '../../components';
-import {requestPurchase, useIAP} from 'react-native-iap';
 
 const Profile: React.FC = () => {
   const navigation = hooks.useAppNavigation();
+
   const user = hooks.useAppSelector(state => state.userSlice.user);
 
   console.log('user', JSON.stringify(user, null, 2));
-
-  const sku = 'com.plantmed.botanica';
-
-  const {
-    connected,
-    products,
-    currentPurchase,
-    currentPurchaseError,
-    // initConnection,
-    getProducts,
-    finishTransaction,
-  } = useIAP();
-
-  useEffect(() => {
-    if (currentPurchase) {
-      const receipt = currentPurchase.transactionReceipt;
-      if (receipt) {
-        finishTransaction({purchase: currentPurchase, isConsumable: true});
-        Alert.alert('Achat réussi', 'Merci pour votre achat!');
-      }
-    }
-    // if (currentPurchaseError) {
-    //   Alert.alert("Erreur d'achat", currentPurchaseError.message);
-    // }
-  }, [currentPurchase]);
-
-  const handlePurchase = async () => {
-    try {
-      await requestPurchase({sku: sku[0]});
-    } catch (err: any) {
-      console.warn(err);
-      console.log('sku', sku);
-      Alert.alert('Purchase Error', err.message);
-    }
-  };
 
   const renderUserInfo = (): JSX.Element => {
     return (
       <components.UserData
         onPress={() => {
-          navigation.navigate('EditProfile');
+          if (user) {
+            navigation.navigate('EditProfile');
+            return;
+          }
+
+          Alert.alert(
+            'Please verify your email and phone number',
+            'You need to verify your email and phone number to edit your profile.',
+            [
+              {
+                text: 'OK',
+                onPress: () => {
+                  console.log('OK Pressed');
+                },
+              },
+            ],
+            {cancelable: false},
+          );
         }}
         containerStyle={{marginBottom: utils.responsiveHeight(30)}}
       />
@@ -72,18 +56,18 @@ const Profile: React.FC = () => {
           containerStyle={{marginBottom: utils.responsiveHeight(10)}}
         />
         <items.ProfileItem
-          title='Politique de confidentialité'
+          title="Conditions d'utilisation"
           onPress={() => {
-            navigation.navigate('PrivacyPolicy');
+            navigation.navigate('TermsOfUse');
           }}
           icon={<svg.FileTextSvg />}
           goNavigation={true}
           containerStyle={{marginBottom: utils.responsiveHeight(6)}}
         />
         <items.ProfileItem
-          title='Premium'
+          title='Politique de confidentialité'
           onPress={() => {
-            handlePurchase();
+            navigation.navigate('PrivacyPolicy');
           }}
           icon={<svg.FileTextSvg />}
           goNavigation={true}
@@ -110,17 +94,23 @@ const Profile: React.FC = () => {
 
   const renderContent = (): JSX.Element => {
     return (
-      <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-          paddingTop: utils.responsiveHeight(50),
-          paddingBottom: utils.responsiveHeight(20),
-        }}
-        showsVerticalScrollIndicator={false}
+      <custom.ImageBackground
+        style={{flex: 1}}
+        resizeMode='stretch'
+        source={require('../../assets/bg/02.png')}
       >
-        {user && renderUserInfo()}
-        {renderMenu()}
-      </ScrollView>
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            paddingTop: utils.responsiveHeight(50),
+            paddingBottom: utils.responsiveHeight(20),
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          {renderUserInfo()}
+          {renderMenu()}
+        </ScrollView>
+      </custom.ImageBackground>
     );
   };
 

@@ -85,8 +85,7 @@ const SignUp: React.FC = () => {
         style={{
           textTransform: 'capitalize',
           marginBottom: utils.responsiveHeight(40),
-        }}
-      >
+        }}>
         Inscription
       </text.H1>
     );
@@ -96,32 +95,32 @@ const SignUp: React.FC = () => {
     return (
       <React.Fragment>
         <custom.InputField
-          label='nom'
+          label="nom"
           value={name}
-          keyboardType='default'
+          keyboardType="default"
           innerRef={nameInputRef}
-          placeholder='entrez votre nom'
+          placeholder="entrez votre nom"
           onChangeText={handleNameChange}
           checkIcon={validateName(name, true)}
           containerStyle={{marginBottom: utils.responsiveHeight(20)}}
         />
         <custom.InputField
-          label='email'
+          label="email"
           value={email}
           innerRef={emailInputRef}
-          placeholder='entrez votre email'
-          keyboardType='email-address'
+          placeholder="entrez votre email"
+          keyboardType="email-address"
           onChangeText={handleEmailChange}
           checkIcon={validateEmail(email, true)}
           containerStyle={{marginBottom: utils.responsiveHeight(20)}}
         />
         <custom.InputField
-          label='mot de passe'
+          label="mot de passe"
           value={password}
           eyeOffIcon={true}
-          keyboardType='default'
+          keyboardType="default"
           innerRef={passwordInputRef}
-          placeholder='entrez votre mot de passe'
+          placeholder="entrez votre mot de passe"
           secureTextEntry={secureTextEntry}
           onChangeText={handlePasswordChange}
           setSecureTextEntry={setSecureTextEntry}
@@ -129,11 +128,11 @@ const SignUp: React.FC = () => {
         />
         <custom.InputField
           eyeOffIcon={true}
-          keyboardType='default'
+          keyboardType="default"
           value={confirmPassword}
-          label='confirmer mot de passe'
+          label="confirmer mot de passe"
           innerRef={confirmPasswordInputRef}
-          placeholder='confirmez votre mot de passe'
+          placeholder="confirmez votre mot de passe"
           secureTextEntry={confirmSecureTextEntry}
           onChangeText={handleConfirmPasswordChange}
           setSecureTextEntry={setConfirmSecureTextEntry}
@@ -182,8 +181,7 @@ const SignUp: React.FC = () => {
           flexGrow: 1,
           padding: 20,
           justifyContent: 'center',
-        }}
-      >
+        }}>
         {renderTitle()}
         {renderInputFields()}
         {renderButton()}
@@ -193,11 +191,18 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <custom.SafeAreaView insets={['top', 'bottom']}>
-      {renderHeader()}
-      {renderContent()}
-      {renderIfYouHaveAccount()}
-    </custom.SafeAreaView>
+    <custom.ImageBackground
+      style={{flex: 1}}
+      resizeMode="stretch"
+      source={require('../assets/bg/02.png')}>
+      <custom.SafeAreaView
+        insets={['top', 'bottom']}
+        containerStyle={{backgroundColor: theme.colors.transparent}}>
+        {renderHeader()}
+        {renderContent()}
+        {renderIfYouHaveAccount()}
+      </custom.SafeAreaView>
+    </custom.ImageBackground>
   );
 };
 

@@ -6,6 +6,7 @@ import {utils} from '../utils';
 import {hooks} from '../hooks';
 import {custom} from '../custom';
 import {components} from '../components';
+import {theme} from '../constants';
 
 const InfoSaved: React.FC = () => {
   const navigation = hooks.useAppNavigation();
@@ -31,10 +32,11 @@ const InfoSaved: React.FC = () => {
           style={{marginBottom: utils.responsiveHeight(14)}}
           numberOfLines={1}
         >
-          Info Saved!
+          Informations sauvegardées !
         </text.H2>
         <text.T16>
-          Your personal information has been {'\n'}securely stored.
+          Vos informations personnelles ont été {'\n'}enregistrées en toute
+          sécurité.
         </text.T16>
       </ScrollView>
     );
@@ -43,7 +45,7 @@ const InfoSaved: React.FC = () => {
   const renderButton = (): JSX.Element => {
     return (
       <components.Button
-        title='Done'
+        title='Terminé'
         containerStyle={{
           padding: 20,
         }}
@@ -55,10 +57,19 @@ const InfoSaved: React.FC = () => {
   };
 
   return (
-    <custom.SafeAreaView insets={['top', 'bottom']}>
-      {renderContent()}
-      {renderButton()}
-    </custom.SafeAreaView>
+    <custom.ImageBackground
+      style={{flex: 1}}
+      resizeMode='stretch'
+      source={require('../assets/bg/02.png')}
+    >
+      <custom.SafeAreaView
+        insets={['top', 'bottom']}
+        containerStyle={{backgroundColor: theme.colors.transparent}}
+      >
+        {renderContent()}
+        {renderButton()}
+      </custom.SafeAreaView>
+    </custom.ImageBackground>
   );
 };
 

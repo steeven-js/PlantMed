@@ -24,19 +24,19 @@ const Categories: React.FC = () => {
     error: plantsError,
     isLoading: plantsLoading,
     refetch: refetchPlants,
-  } = queryHooks.useGetPlantmedQuery();
+  } = queryHooks.useGetPlantsQuery();
 
   const {
     data: categoriesData,
     error: categoriesError,
     isLoading: categoriesLoading,
     refetch: refetchCategories,
-  } = queryHooks.useGetSymptomsQuery();
+  } = queryHooks.useGetCategoriesQuery();
 
   const [refreshing, setRefreshing] = useState(false);
 
-  let categories = categoriesData?.symptoms ?? [];
-  let plants = plantsData?.plantmed ?? [];
+  let categories = categoriesData?.categories ?? [];
+  let plants = plantsData?.plants ?? [];
 
   // plants = [];
   // categories = [];
@@ -56,35 +56,29 @@ const Categories: React.FC = () => {
   }, []);
 
   const renderCategories = (): JSX.Element | null => {
-    const normalize = (str: string) => str.toLowerCase().trim();
     if (categories?.length) {
       return (
         <View
           style={{
             flexWrap: 'wrap',
             flexDirection: 'row',
-            justifyContent: 'space-around',
+            justifyContent: 'space-between',
             marginBottom: utils.responsiveHeight(40 - 14),
           }}
         >
           {categories.map((item, index) => {
-            const dataFilter = plantsData?.plantmed.filter(e => {
-              if (Array.isArray(e.symptoms)) {
-                return e.symptoms.some(
-                  symptom => normalize(symptom) === normalize(item.name),
-                );
-              }
-              return false;
-            });
+            const dataFilter = plantsData?.plants.filter(
+              e => e && e.categories.includes(item.name),
+            );
             const qty = dataFilter?.length ?? 0;
             return (
               <TouchableOpacity
                 key={index}
                 style={{
-                  width: utils.responsiveWidth(120, true),
-                  height: utils.responsiveWidth(120, true),
-                  marginBottom: 40,
-                  justifyContent: 'space-around',
+                  width: utils.responsiveWidth(160, true),
+                  height: utils.responsiveWidth(160, true),
+                  marginBottom: 14,
+                  justifyContent: 'space-between',
                 }}
                 onPress={() => {
                   if (qty > 0) {
@@ -108,6 +102,7 @@ const Categories: React.FC = () => {
                     width: '100%',
                     height: '100%',
                     justifyContent: 'space-between',
+                    paddingHorizontal: 14,
                     paddingTop: 14,
                     paddingBottom: 12,
                   }}
@@ -133,23 +128,22 @@ const Categories: React.FC = () => {
                     <Text
                       numberOfLines={1}
                       style={{
-                        fontSize: Platform.OS === 'ios' ? 16 : 14,
+                        fontSize: Platform.OS === 'ios' ? 14 : 12,
                         color: '#50858B',
-                        // textTransform: 'capitalize',
-                        ...theme.fonts.DM_Sans_500Medium,
+                        textTransform: 'capitalize',
+                        ...theme.fonts.DM_Sans_400Regular,
                       }}
                     >
                       {qty}
                     </Text>
                   </View>
                   <Text
-                    numberOfLines={2}
+                    numberOfLines={1}
                     style={{
-                      fontSize: Platform.OS === 'ios' ? 16 : 14,
-                      // textTransform: 'capitalize',
-                      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                      fontSize: Platform.OS === 'ios' ? 14 : 12,
                       color: theme.colors.mainColor,
-                      ...theme.fonts.DM_Sans_700Bold,
+                      textTransform: 'capitalize',
+                      ...theme.fonts.DM_Sans_400Regular,
                     }}
                   >
                     {item.name}
