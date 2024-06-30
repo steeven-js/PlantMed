@@ -22,20 +22,20 @@ const data: DataType[] = [
   {
     id: 1,
     image: require('../assets/images/01.jpg'),
-    title: 'Welcome\nto EverBloom!',
-    description: `Welcome to the world of lush greens\nand blooming beauty with us.`,
+    title: 'Bienvenue sur\nPlante Med !',
+    description: `Explorez le monde fascinant\ndes plantes médicinales avec nous.`,
   },
   {
     id: 2,
     image: require('../assets/images/02.jpg'),
-    title: 'Discover Your\nGreen Haven',
-    description: `Welcome to the world of lush greens\nand blooming beauty with us.`,
+    title: 'Découvrez votre\nPharmacieNaturelle',
+    description: `Apprenez à utiliser les plantes\npour votre santé au quotidien.`,
   },
   {
     id: 3,
     image: require('../assets/images/03.jpg'),
-    title: 'Bring Nature\nHome',
-    description: `Let's make your first purchase\nseamless.`,
+    title: 'Pratiquez la\nPhytothérapie',
+    description: `Commencez votre voyage vers\nune médecine naturelle et efficace.`,
   },
 ];
 
@@ -82,7 +82,7 @@ const Onboarding: React.FC = () => {
         <custom.SafeAreaView
           insets={['top', 'bottom']}
           statusBarStyle='dark-content'
-          style={{backgroundColor: theme.colors.transparent}}
+          containerStyle={{backgroundColor: theme.colors.transparent}}
         >
           <View
             style={{
