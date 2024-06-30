@@ -51,7 +51,7 @@ const Profile: React.FC = () => {
   const renderMenu = (): JSX.Element => {
     return (
       <View style={{paddingLeft: 20}}>
-        {isPrenium && (
+        {/* {isPrenium && (
           <items.ProfileItem
             title={isPrenium ? 'Compte premium' : 'Compte gratuit'}
             onPress={() => {
@@ -61,7 +61,7 @@ const Profile: React.FC = () => {
             goNavigation={true}
             containerStyle={{marginBottom: utils.responsiveHeight(10)}}
           />
-        )}
+        )} */}
         <items.ProfileItem
           title={'Informations personnelles'}
           onPress={() => {
