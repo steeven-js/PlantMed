@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -15,8 +16,21 @@ import {theme} from '../constants';
 import {components} from '../components';
 import {utils} from '../utils';
 import Button from '../components/Button';
+import {
+  initPaymentSheet,
+  presentPaymentSheet,
+  useStripe,
+} from '@stripe/stripe-react-native';
+import {CONFIG, ENDPOINTS} from '../config';
+import {hooks} from '../hooks';
 
 const Prenium: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const navigation = hooks.useAppNavigation();
+
+  const user = hooks.useAppSelector(state => state.userSlice.user);
+  const email = user?.email || '';
+
   const renderHeader = (): JSX.Element => {
     return <components.Header goBackIcon={true} title='Premium' />;
   };
@@ -27,6 +41,67 @@ const Prenium: React.FC = () => {
 
   const openTermsOfUse = () => {
     Linking.openURL('https://votreapp.com/terms-of-use');
+  };
+
+  const subscribe = async () => {
+    setLoading(true);
+    try {
+      // Appel à votre backend pour créer l'abonnement
+      const response = await axios({
+        method: 'post',
+        headers: CONFIG.headers,
+        url: ENDPOINTS.CREATE_STRIPE_SUBSCRIBE,
+        data: {email},
+      });
+
+      const {clientSecret, subscriptionId} = response.data;
+
+      // console.log('clientSecret', clientSecret);
+      // console.log('subscriptionId', subscriptionId);
+
+      // Initialiser la feuille de paiement
+      const {error} = await initPaymentSheet({
+        paymentIntentClientSecret: clientSecret,
+        merchantDisplayName: 'PlantMed',
+        returnURL: 'com.jsprod.plantmed://stripe-redirect',
+      });
+
+      if (error) {
+        Alert.alert('Erreur', error.message);
+        return;
+      }
+
+      // Présenter la feuille de paiement
+      const {error: presentError} = await presentPaymentSheet();
+
+      if (presentError) {
+        Alert.alert('Erreur', presentError.message);
+      } else {
+        Alert.alert('Succès', 'Votre abonnement a été activé avec succès !');
+
+        // Paiement réussi, mettre à jour l'utilisateur
+        const updateResponse = await axios({
+          method: 'post',
+          headers: CONFIG.headers,
+          url: ENDPOINTS.UPDATE_SUBSCRIBE_USER,
+          data: {
+            email,
+            subscriptionId,
+          },
+        });
+
+        if (response.status && updateResponse.status === 200) {
+          navigation.replace('PremiumActivated');
+          return;
+        }
+
+        // Mettre à jour l'état de l'application pour refléter le nouvel abonnement
+      }
+    } catch (error: any) {
+      Alert.alert('Erreur', error.response?.data?.error || error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const renderContent = (): JSX.Element => {
@@ -75,10 +150,12 @@ const Prenium: React.FC = () => {
           <Text style={{fontSize: 16, fontWeight: 'bold', marginBottom: 20}}>
             Prix : 1,99 € par mois (renouvellement automatique)
           </Text>
-          <Button
+          <components.Button
+            loading={loading}
             title="S'abonner maintenant"
+            containerStyle={{margin: 20}}
             onPress={() => {
-              console.log('Subscribe');
+              subscribe();
             }}
           />
           <View style={{marginTop: 20}}>

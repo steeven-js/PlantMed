@@ -31,6 +31,7 @@ export const CHANGE_PASSWORD = `${BASE_URL}api/change/password`;
 
 // ############ PUT REQUESTS ############ //
 export const UPDATE_USER = `${BASE_URL}api/user/update`;
+export const UPDATE_SUBSCRIBE_USER = `${BASE_URL}api/update-user-subscription`;
 
 // ############ SEND OTP ############ //
 export const SEND_EMAIL_OTP = `${BASE_URL}api/send/otp/email`;
@@ -42,6 +43,7 @@ export const VERIFY_EMAIL_OTP = `${BASE_URL}api/verify/otp/email`;
 
 // ############ STRIPE ############ //
 export const CREATE_STRIPE_USER = `${BASE_URL}api/create-stripe-customer`;
+export const CREATE_STRIPE_SUBSCRIBE = `${BASE_URL}api/create-checkout-session`;
 
 // ############ AUTHORIZATION_TOKEN ############ //
 export const AUTHORIZATION_TOKEN = 'aH3KCew1YsWhWqW0tqNU3ndzHb3RdblI';
@@ -81,4 +83,6 @@ export const ENDPOINTS = {
   VERIFY_PHONE_OTP,
   VERIFY_EMAIL_OTP,
   CREATE_STRIPE_USER,
+  UPDATE_SUBSCRIBE_USER,
+  CREATE_STRIPE_SUBSCRIBE,
 };

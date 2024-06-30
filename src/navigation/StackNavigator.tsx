@@ -229,6 +229,11 @@ const StackNavigator: React.FC = () => {
             component={screens.Source}
             options={{headerShown: false}}
           />
+          <RootStack.Screen
+            name='PremiumActivated'
+            component={screens.PremiumActivated}
+            options={{headerShown: false}}
+          />
         </RootStack.Group>
       )}
     </RootStack.Navigator>
