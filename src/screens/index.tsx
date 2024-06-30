@@ -29,6 +29,7 @@ import OrderSuccessful from './OrderSuccessful';
 import PremiumActivated from './PremiumActivated';
 import VerifyEmail from './verification/VerifyEmail';
 import VerifyPhone from './verification/VerifyPhone';
+import ManageSubscription from './ManageSubscription';
 import TabNavigator from '../navigation/TabNavigator';
 import SendEmailOtp from './verification/SendEmailOtp';
 import SendPhoneOtp from './verification/SendPhoneOtp';
@@ -79,6 +80,7 @@ export const screens = {
   PremiumActivated,
   VerifyEmailForgot,
   SendEmailOtpForgot,
+  ManageSubscription,
   SignUpAccountCreated,
   ShippingAndPaymentInfo,
   ForgotPasswordSentEmail,

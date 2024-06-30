@@ -52,6 +52,7 @@ export type RootStackParamList = {
   TermsOfUse: undefined;
   PremiumActivated: undefined;
   MemberAccount: undefined;
+  ManageSubscription: undefined;
 
   /* VERIFICATION */
   SignUpAccountCreated: {email?: string; password?: string};

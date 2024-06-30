@@ -239,6 +239,11 @@ const StackNavigator: React.FC = () => {
             component={screens.MemberAccount}
             options={{headerShown: false}}
           />
+          <RootStack.Screen
+            name='ManageSubscription'
+            component={screens.ManageSubscription}
+            options={{headerShown: false}}
+          />
         </RootStack.Group>
       )}
     </RootStack.Navigator>

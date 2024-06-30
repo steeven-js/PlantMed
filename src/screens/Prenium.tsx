@@ -81,7 +81,7 @@ const Prenium: React.FC = () => {
 
         // Paiement réussi, mettre à jour l'utilisateur
         const updateResponse = await axios({
-          method: 'post',
+          method: 'patch',
           headers: CONFIG.headers,
           url: ENDPOINTS.UPDATE_SUBSCRIBE_USER,
           data: {
