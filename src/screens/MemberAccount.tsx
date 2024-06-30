@@ -1,19 +1,23 @@
-import {View, Text, ScrollView} from 'react-native';
-import {custom} from '../custom';
-import {components} from '../components';
 import React from 'react';
+import {View, ScrollView} from 'react-native';
+import {custom} from '../custom';
+import {text} from '../text';
 import {utils} from '../utils';
 import {hooks} from '../hooks';
 import {theme} from '../constants';
+import {components} from '../components';
 
-const MemberAccount = () => {
+const MemberAccount: React.FC = () => {
   const navigation = hooks.useAppNavigation();
   const user = hooks.useAppSelector(state => state.userSlice.user);
   const isPremium = hooks.useAppSelector(
     state => state.userSlice.user?.isPremium,
   );
 
-  const formatDate = dateString => {
+  const formatDate = (dateString: string | number | Date | undefined) => {
+    if (!dateString) {
+      return '';
+    }
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR', {
       day: 'numeric',
@@ -47,27 +51,27 @@ const MemberAccount = () => {
           showsVerticalScrollIndicator={false}
         >
           <View style={{marginBottom: 20}}>
-            <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 10}}>
+            <text.H3 style={{marginBottom: 10}}>
               Votre compte est actuellement gratuit
-            </Text>
-            <Text style={{marginBottom: 20}}>
+            </text.H3>
+            <text.T16 style={{marginBottom: 20}}>
               Pour accéder à plus de fonctionnalités, passez à un compte Premium
-            </Text>
-            <Text style={{fontWeight: 'bold', marginBottom: 10}}>
+            </text.T16>
+            <text.H4 style={{marginBottom: 10}}>
               Avantages du compte Premium :
-            </Text>
-            <Text>• Accès illimité à toutes les fiches de plantes</Text>
-            <Text>• Guides thérapeutiques détaillés</Text>
-            <Text>• Conseils d'experts personnalisés</Text>
-            <Text>• Suppression des publicités</Text>
+            </text.H4>
+            <text.T16>• Accès illimité à toutes les fiches de plantes</text.T16>
+            <text.T16>• Guides thérapeutiques détaillés</text.T16>
+            <text.T16>• Conseils d'experts personnalisés</text.T16>
+            <text.T16>• Suppression des publicités</text.T16>
           </View>
-          <Text style={{marginBottom: 20}}>
+          <text.T16 style={{marginBottom: 20}}>
             Prix de l'abonnement Premium : 1,99 € / mois
-          </Text>
-          <Text style={{marginBottom: 20}}>
+          </text.T16>
+          <text.T16 style={{marginBottom: 20}}>
             L'abonnement se renouvelle automatiquement chaque mois. Vous pouvez
             le résilier à tout moment depuis votre compte.
-          </Text>
+          </text.T16>
           <components.Button
             title='Activer le compte Premium'
             onPress={() => {
@@ -75,11 +79,11 @@ const MemberAccount = () => {
             }}
             containerStyle={{marginBottom: 20}}
           />
-          <Text style={{fontSize: 12, color: 'gray'}}>
+          <text.T14 style={{color: 'gray'}}>
             En activant le compte Premium, vous acceptez nos Conditions
             d'utilisation et notre Politique de confidentialité. Le paiement
             sera traité via Stripe, notre partenaire de paiement sécurisé.
-          </Text>
+          </text.T14>
         </ScrollView>
       </custom.ImageBackground>
     );
@@ -101,24 +105,24 @@ const MemberAccount = () => {
           showsVerticalScrollIndicator={false}
         >
           <View style={{marginBottom: 20}}>
-            <Text style={{fontSize: 18, fontWeight: 'bold', marginBottom: 10}}>
+            <text.H3 style={{marginBottom: 10}}>
               Votre compte est actuellement Premium
-            </Text>
-            <Text style={{marginBottom: 20}}>
+            </text.H3>
+            <text.T16 style={{marginBottom: 20}}>
               Membre Premium jusqu'au {formatDate(user?.premiumExpiresAt)}
-            </Text>
-            <Text style={{marginBottom: 10}}>
+            </text.T16>
+            <text.T16 style={{marginBottom: 10}}>
               Vous bénéficiez de tous les avantages Premium :
-            </Text>
-            <Text>• Accès illimité à toutes les fiches de plantes</Text>
-            <Text>• Guides thérapeutiques détaillés</Text>
-            <Text>• Conseils d'experts personnalisés</Text>
-            <Text>• Suppression des publicités</Text>
+            </text.T16>
+            <text.T16>• Accès illimité à toutes les fiches de plantes</text.T16>
+            <text.T16>• Guides thérapeutiques détaillés</text.T16>
+            <text.T16>• Conseils d'experts personnalisés</text.T16>
+            <text.T16>• Suppression des publicités</text.T16>
           </View>
-          <Text style={{marginBottom: 20}}>
+          <text.T16 style={{marginBottom: 20}}>
             Votre abonnement se renouvellera automatiquement le{' '}
             {formatDate(user?.premiumExpiresAt)} pour 1,99 €.
-          </Text>
+          </text.T16>
           <components.Button
             title="Gérer l'abonnement"
             onPress={() => {
@@ -126,11 +130,11 @@ const MemberAccount = () => {
             }}
             containerStyle={{marginBottom: 20}}
           />
-          <Text style={{fontSize: 12, color: 'gray'}}>
+          <text.T14 style={{color: 'gray'}}>
             Vous pouvez gérer ou annuler votre abonnement à tout moment depuis
             votre compte. L'annulation prendra effet à la fin de la période de
             facturation en cours.
-          </Text>
+          </text.T14>
         </ScrollView>
       </custom.ImageBackground>
     );
