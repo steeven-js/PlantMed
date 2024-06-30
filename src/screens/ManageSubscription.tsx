@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
 import {custom} from '../custom';
 import {components} from '../components';
 import {hooks} from '../hooks';
@@ -19,43 +19,53 @@ const ManageSubscription: React.FC = () => {
   const cancelSubscription = async () => {
     setLoading(true);
     try {
+      // Appel à votre backend pour annuler l'abonnement
       const cancelResponse = await axios({
         method: 'delete',
         headers: CONFIG.headers,
         url: ENDPOINTS.CANCEL_STRIPE_SUBSCRIBE,
         data: {
           email: user?.email,
-          subscriptionId: user?.stripeSubscriptionId,
         },
       });
 
       if (cancelResponse.status === 200) {
-        const updateResponse = await axios({
-          method: 'patch',
-          headers: CONFIG.headers,
-          url: ENDPOINTS.UPDATE_SUBSCRIBE_USER,
-          data: {
-            email: user?.email,
-          },
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'TabNavigator'}],
         });
-
-        if (cancelResponse.status && updateResponse.status === 200) {
-          navigation.reset({
-            index: 0,
-            routes: [{name: 'TabNavigator'}],
-          });
-        } else {
-          throw new Error("Échec de la mise à jour de l'utilisateur");
-        }
-      } else {
-        throw new Error("Échec de l'annulation de l'abonnement");
       }
+      Alert.alert('Succès', 'Votre abonnement a été annulé avec succès !');
     } catch (error) {
       console.error("Erreur lors de l'annulation de l'abonnement:", error);
-      // Add user notification for operation failure here
+      Alert.alert(
+        'Erreur',
+        "Une erreur est survenue lors de l'annulation de l'abonnement",
+      );
     } finally {
       setLoading(false);
     }
+  };
+
+  const cancelPrenium = () => {
+    return Alert.alert(
+      'Annulation',
+      'Voulez vous vraiment annuler votre abonnement?',
+      [
+        {
+          text: 'Oui',
+          onPress: () => {
+            cancelSubscription();
+          },
+        },
+        {
+          text: 'non',
+          onPress: () => {
+            navigation.goBack();
+          },
+        },
+      ],
+    );
   };
 
   const renderHeader = (): JSX.Element => {
@@ -69,22 +79,19 @@ const ManageSubscription: React.FC = () => {
 
   const renderContent = (): JSX.Element => {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{flex: 1, justifyContent: 'center'}}>
         <text.T16 style={{marginBottom: 20, textAlign: 'center'}}>
-          {isPremium
-            ? 'Voulez-vous annuler votre abonnement Premium ?'
-            : 'Voulez-vous vous abonner à notre offre Premium ?'}
+          Voulez-vous annuler votre abonnement Premium ?
         </text.T16>
         <components.Button
           loading={loading}
-          title={isPremium ? "Annuler l'abonnement" : "S'abonner maintenant"}
+          title={"Annuler l'abonnement"}
           containerStyle={{margin: 20}}
           onPress={() => {
             if (isPremium) {
-              cancelSubscription();
+              cancelPrenium();
             } else {
-              // Add logic for subscribing
-              console.log("Logique d'abonnement à implémenter");
+              navigation.navigate('Prenium');
             }
           }}
         />

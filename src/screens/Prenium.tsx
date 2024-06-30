@@ -56,9 +56,6 @@ const Prenium: React.FC = () => {
 
       const {clientSecret, subscriptionId} = response.data;
 
-      // console.log('clientSecret', clientSecret);
-      // console.log('subscriptionId', subscriptionId);
-
       // Initialiser la feuille de paiement
       const {error} = await initPaymentSheet({
         paymentIntentClientSecret: clientSecret,
