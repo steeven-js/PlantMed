@@ -9,4 +9,8 @@ export type UserType = {
   otp?: string;
   phoneVerified?: boolean;
   emailVerified?: boolean;
+  isPremium?: boolean;
+  premiumExpiresAt?: string;
+  stripeCustomerId?: string;
+  stripeSubscriptionId?: string;
 };

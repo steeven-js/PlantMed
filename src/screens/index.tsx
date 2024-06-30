@@ -24,6 +24,7 @@ import OrderHistory from './OrderHistory';
 import PlantMedList from './PlantMedList';
 import PrivacyPolicy from './PrivacyPolicy';
 import DeleteAccount from './DeleteAccount';
+import MemberAccount from './MemberAccount';
 import OrderSuccessful from './OrderSuccessful';
 import PremiumActivated from './PremiumActivated';
 import VerifyEmail from './verification/VerifyEmail';
@@ -73,6 +74,7 @@ export const screens = {
   EmailVerified,
   DeleteAccount,
   PrivacyPolicy,
+  MemberAccount,
   OrderSuccessful,
   PremiumActivated,
   VerifyEmailForgot,

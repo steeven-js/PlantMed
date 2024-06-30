@@ -12,16 +12,19 @@ const userSlice = createSlice({
     setUser: (state, action: PayloadAction<UserType>) => {
       state.user = action.payload;
     },
-    logOut: (state) => {
+    logOut: state => {
       state.user = null;
       state.rememberMe = false;
     },
     setRememberMe: (state, action: PayloadAction<boolean>) => {
       state.rememberMe = action.payload;
     },
+    setPrenium: (state, action: PayloadAction<boolean>) => {
+      state.user!.isPremium = action.payload;
+    },
   },
 });
 
-export const {setUser, logOut, setRememberMe} = userSlice.actions;
+export const {setUser, logOut, setRememberMe, setPrenium} = userSlice.actions;
 
 export {userSlice};
