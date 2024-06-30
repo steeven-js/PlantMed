@@ -40,6 +40,9 @@ export const SEND_PHONE_OTP = `${BASE_URL}api/send/otp/phone`;
 export const VERIFY_PHONE_OTP = `${BASE_URL}api/verify/otp/phone`;
 export const VERIFY_EMAIL_OTP = `${BASE_URL}api/verify/otp/email`;
 
+// ############ STRIPE ############ //
+export const CREATE_STRIPE_USER = `${BASE_URL}api/create-stripe-customer`;
+
 // ############ AUTHORIZATION_TOKEN ############ //
 export const AUTHORIZATION_TOKEN = 'aH3KCew1YsWhWqW0tqNU3ndzHb3RdblI';
 
@@ -77,4 +80,5 @@ export const ENDPOINTS = {
   CHANGE_PASSWORD,
   VERIFY_PHONE_OTP,
   VERIFY_EMAIL_OTP,
+  CREATE_STRIPE_USER,
 };
