@@ -75,7 +75,7 @@ const MemberAccount: React.FC = () => {
           <components.Button
             title='Activer le compte Premium'
             onPress={() => {
-              'Prenium';
+              navigation.navigate('Prenium');
             }}
             containerStyle={{marginBottom: 20}}
           />
