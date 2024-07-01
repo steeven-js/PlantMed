@@ -16,6 +16,7 @@ import {PlantMedType} from '../types';
 import {components} from '../components';
 import {queryHooks} from '../store/slices/apiSlice';
 import {handleTextChange} from '../utils/handleTextChange';
+import PreniumSvg from '../assets/svg/PreniumSvg';
 
 const Search: React.FC = () => {
   const navigation = hooks.useAppNavigation();
@@ -65,7 +66,7 @@ const Search: React.FC = () => {
         <View style={{flex: 1, height: 40, marginRight: 20}}>
           <TextInput
             ref={ref}
-            placeholder='Enter product name'
+            placeholder='Rechercher une plante'
             clearButtonMode='always'
             placeholderTextColor={`${theme.colors.textColor}80`}
             autoCapitalize='none'
@@ -98,7 +99,7 @@ const Search: React.FC = () => {
               fontSize: Platform.OS === 'ios' ? 14 : 12,
             }}
           >
-            Cancel
+            Annuler
           </Text>
         </TouchableOpacity>
       </View>
@@ -119,7 +120,7 @@ const Search: React.FC = () => {
         onPress={() => {
           if (isPremium) {
             navigation.navigate('PlantMed', {item});
-          } else if (!isPremium && item.is_premium == false) {
+          } else if (!isPremium && item.is_prenium == false) {
             navigation.navigate('PlantMed', {item});
           } else {
             navigation.navigate('PreniumContent');
@@ -127,16 +128,48 @@ const Search: React.FC = () => {
         }}
       >
         <svg.SearchSmallSvg />
-        <Text
+        <View
           style={{
-            marginLeft: 10,
-            color: theme.colors.textColor,
-            ...theme.fonts.DM_Sans_400Regular,
-            fontSize: Platform.OS === 'ios' ? 14 : 12,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            width: '100%',
+            paddingHorizontal: 10,
           }}
         >
-          {item.name}
-        </Text>
+          <Text
+            style={{
+              marginLeft: 10,
+              color: theme.colors.textColor,
+              ...theme.fonts.DM_Sans_400Regular,
+              fontSize: Platform.OS === 'ios' ? 14 : 12,
+            }}
+          >
+            {item.name}
+          </Text>
+
+          <View
+            style={{
+              alignSelf: 'flex-start',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <PreniumSvg
+              width='20px'
+              height='20px'
+              fillColor={
+                item.is_prenium
+                  ? theme.colors.yellowStar
+                  : theme.colors.steelTeal
+              }
+              strokeColor={
+                item.is_prenium
+                  ? theme.colors.yellowStar
+                  : theme.colors.steelTeal
+              }
+            />
+          </View>
+        </View>
       </TouchableOpacity>
     );
   };

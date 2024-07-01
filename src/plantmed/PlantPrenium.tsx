@@ -14,7 +14,7 @@ type Props = {
 const PlantPrenium: React.FC<Props> = ({containerStyle, item}) => {
   return (
     <View style={containerStyle}>
-      {item.is_premium ? (
+      {item.is_prenium ? (
         <svg.PreniumSvg
           fillColor={theme.colors.yellowStar}
           strokeColor={theme.colors.yellowStar}

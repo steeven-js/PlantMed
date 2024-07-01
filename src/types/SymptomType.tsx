@@ -3,5 +3,5 @@ export type SymptomType = {
   name: string;
   image?: string;
   description: string;
-  is_premium: boolean;
+  is_prenium: boolean;
 };

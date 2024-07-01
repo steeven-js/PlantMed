@@ -97,7 +97,7 @@ const Symptoms: React.FC = () => {
                         title: item.name,
                         products: dataFilter ?? [],
                       });
-                    } else if (!isPremium && item.is_premium == false) {
+                    } else if (!isPremium && item.is_prenium == false) {
                       navigation.navigate('PlantMedList', {
                         title: item.name,
                         products: dataFilter ?? [],
@@ -174,12 +174,12 @@ const Symptoms: React.FC = () => {
                         width='40px'
                         height='40px'
                         fillColor={
-                          item.is_premium
+                          item.is_prenium
                             ? theme.colors.yellowStar
                             : theme.colors.steelTeal
                         }
                         strokeColor={
-                          item.is_premium
+                          item.is_prenium
                             ? theme.colors.yellowStar
                             : theme.colors.steelTeal
                         }

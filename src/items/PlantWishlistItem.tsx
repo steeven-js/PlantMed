@@ -31,7 +31,7 @@ const PlantWishlistItem: React.FC<Props> = ({
       onPress={() => {
         if (isPremium) {
           navigation.navigate('PlantMed', {item});
-        } else if (!isPremium && item.is_premium == false) {
+        } else if (!isPremium && item.is_prenium == false) {
           navigation.navigate('PlantMed', {item});
         } else {
           navigation.navigate('PreniumContent');
