@@ -28,7 +28,6 @@ const TabNavigator: React.FC = () => {
   const tabs = getTabs();
 
   console.log('user', JSON.stringify(user, null, 2));
-  console.log('isPrenium', isPrenium);
   const {
     data: userData,
     error: userError,

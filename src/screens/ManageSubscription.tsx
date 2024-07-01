@@ -7,6 +7,7 @@ import {theme} from '../constants';
 import {CONFIG, ENDPOINTS} from '../config';
 import axios from 'axios';
 import {text} from '../text';
+import {getFormatDate} from '../utils/getFormatDate';
 
 const ManageSubscription: React.FC = () => {
   const navigation = hooks.useAppNavigation();
@@ -14,6 +15,9 @@ const ManageSubscription: React.FC = () => {
   const user = hooks.useAppSelector(state => state.userSlice.user);
   const isPremium = hooks.useAppSelector(
     state => state.userSlice.user?.isPremium,
+  );
+  const cancelAtPeriodEnd = hooks.useAppSelector(
+    state => state.userSlice.user?.cancelAtPeriodEnd,
   );
 
   const cancelSubscription = async () => {
@@ -47,7 +51,7 @@ const ManageSubscription: React.FC = () => {
     }
   };
 
-  const cancelPrenium = () => {
+  const AlertCancelPrenium = () => {
     return Alert.alert(
       'Annulation',
       'Voulez vous vraiment annuler votre abonnement?',
@@ -68,6 +72,21 @@ const ManageSubscription: React.FC = () => {
     );
   };
 
+  const AlertAlreadyPrenium = () => {
+    return Alert.alert(
+      'Prenium actif',
+      'Vous avez déjà un abonnement prenium actif',
+      [
+        {
+          text: 'ok',
+          onPress: () => {
+            navigation.reset({index: 0, routes: [{name: 'TabNavigator'}]});
+          },
+        },
+      ],
+    );
+  };
+
   const renderHeader = (): JSX.Element => {
     return (
       <components.Header
@@ -81,17 +100,25 @@ const ManageSubscription: React.FC = () => {
     return (
       <View style={{flex: 1, justifyContent: 'center'}}>
         <text.T16 style={{marginBottom: 20, textAlign: 'center'}}>
-          Voulez-vous annuler votre abonnement Premium ?
+          {isPremium && cancelAtPeriodEnd == false
+            ? 'Voulez-vous annuler votre abonnement Premium ?'
+            : `Membre Premium jusqu'au ${getFormatDate(
+                user?.premiumExpiresAt,
+              )}`}
         </text.T16>
         <components.Button
           loading={loading}
-          title={"Annuler l'abonnement"}
+          title={
+            isPremium && cancelAtPeriodEnd == false
+              ? "Annuler l'abonnement"
+              : 'Premium actif'
+          }
           containerStyle={{margin: 20}}
           onPress={() => {
-            if (isPremium) {
-              cancelPrenium();
+            if (isPremium && cancelAtPeriodEnd == false) {
+              AlertCancelPrenium();
             } else {
-              navigation.navigate('Prenium');
+              AlertAlreadyPrenium();
             }
           }}
         />

@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction, CaseReducerActions} from '@reduxjs/toolkit';
 import {UserType} from '../../types/UserType';
 
 type UserState = {user: UserType | null; rememberMe: boolean};
@@ -22,9 +22,18 @@ const userSlice = createSlice({
     setPrenium: (state, action: PayloadAction<boolean>) => {
       state.user!.isPremium = action.payload;
     },
+    setCancelAtPeriodEnd: (state, action: PayloadAction<boolean>) => {
+      state.user!.cancelAtPeriodEnd = action.payload;
+    },
   },
 });
 
-export const {setUser, logOut, setRememberMe, setPrenium} = userSlice.actions;
+export const {
+  setUser,
+  logOut,
+  setRememberMe,
+  setPrenium,
+  setCancelAtPeriodEnd,
+} = userSlice.actions;
 
 export {userSlice};

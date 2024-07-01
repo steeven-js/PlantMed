@@ -29,6 +29,12 @@ const Prenium: React.FC = () => {
   const navigation = hooks.useAppNavigation();
 
   const user = hooks.useAppSelector(state => state.userSlice.user);
+  const isPremium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPremium,
+  );
+  const cancelAtPeriodEnd = hooks.useAppSelector(
+    state => state.userSlice.user?.cancelAtPeriodEnd,
+  );
   const email = user?.email || '';
 
   const renderHeader = (): JSX.Element => {
@@ -101,6 +107,21 @@ const Prenium: React.FC = () => {
     }
   };
 
+  const AlertAlreadyPrenium = () => {
+    return Alert.alert(
+      'Prenium actif',
+      'Vous avez déjà un abonnement prenium actif',
+      [
+        {
+          text: 'ok',
+          onPress: () => {
+            navigation.reset({index: 0, routes: [{name: 'TabNavigator'}]});
+          },
+        },
+      ],
+    );
+  };
+
   const renderContent = (): JSX.Element => {
     return (
       <ScrollView
@@ -152,17 +173,39 @@ const Prenium: React.FC = () => {
             title="S'abonner maintenant"
             containerStyle={{margin: 20}}
             onPress={() => {
-              subscribe();
+              if (isPremium && cancelAtPeriodEnd == false) {
+                subscribe();
+              } else {
+                AlertAlreadyPrenium();
+              }
             }}
           />
-          <View style={{marginTop: 20}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 20,
+            }}
+          >
             <TouchableOpacity onPress={openPrivacyPolicy}>
-              <Text style={{color: 'blue', textDecorationLine: 'underline'}}>
+              <Text
+                style={{
+                  fontSize: 12,
+                  color: 'blue',
+                  textDecorationLine: 'underline',
+                }}
+              >
                 Politique de confidentialité
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={openTermsOfUse} style={{marginTop: 10}}>
-              <Text style={{color: 'blue', textDecorationLine: 'underline'}}>
+            <TouchableOpacity onPress={openTermsOfUse}>
+              <Text
+                style={{
+                  fontSize: 12,
+                  color: 'blue',
+                  textDecorationLine: 'underline',
+                }}
+              >
                 Conditions d'utilisation
               </Text>
             </TouchableOpacity>

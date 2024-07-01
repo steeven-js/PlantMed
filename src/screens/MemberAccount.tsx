@@ -6,6 +6,7 @@ import {utils} from '../utils';
 import {hooks} from '../hooks';
 import {theme} from '../constants';
 import {components} from '../components';
+import {getFormatDate} from '../utils/getFormatDate';
 
 const MemberAccount: React.FC = () => {
   const navigation = hooks.useAppNavigation();
@@ -13,18 +14,6 @@ const MemberAccount: React.FC = () => {
   const isPremium = hooks.useAppSelector(
     state => state.userSlice.user?.isPremium,
   );
-
-  const formatDate = (dateString: string | number | Date | undefined) => {
-    if (!dateString) {
-      return '';
-    }
-    const date = new Date(dateString);
-    return date.toLocaleDateString('fr-FR', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
-  };
 
   const renderHeader = (): JSX.Element => {
     return (
@@ -109,7 +98,7 @@ const MemberAccount: React.FC = () => {
               Votre compte est actuellement Premium
             </text.H3>
             <text.T16 style={{marginBottom: 20}}>
-              Membre Premium jusqu'au {formatDate(user?.premiumExpiresAt)}
+              Membre Premium jusqu'au {getFormatDate(user?.premiumExpiresAt)}
             </text.T16>
             <text.T16 style={{marginBottom: 10}}>
               Vous bénéficiez de tous les avantages Premium :
@@ -121,7 +110,7 @@ const MemberAccount: React.FC = () => {
           </View>
           <text.T16 style={{marginBottom: 20}}>
             Votre abonnement se renouvellera automatiquement le{' '}
-            {formatDate(user?.premiumExpiresAt)} pour 1,99 €.
+            {getFormatDate(user?.premiumExpiresAt)} pour 1,99 €.
           </text.T16>
           <components.Button
             title="Gérer l'abonnement"

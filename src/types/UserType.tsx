@@ -13,6 +13,7 @@ export type UserType = {
   premiumExpiresAt?: string;
   stripeCustomerId?: string;
   stripeSubscriptionId?: string;
+  cancelAtPeriodEnd?: boolean;
   stripe?: {
     id?: string;
     status?: string;

@@ -24,6 +24,7 @@ import {setSelectedRatings} from '../slices/filterSlice';
 import {setCardHolderName} from '../slices/paymentSlice';
 import {removePromocode} from '../slices/promocodeSlice';
 import {setSelectedPotTypes} from '../slices/filterSlice';
+import {setCancelAtPeriodEnd} from '../slices/userSlice';
 import {removeFromWishlist} from '../slices/wishlistSlice';
 import {setSelectedPlantTypes} from '../slices/filterSlice';
 import {setSelectedCategories} from '../slices/filterSlice';
@@ -61,6 +62,7 @@ export const actions = {
   removeFromWishlist,
   setSelectedRatings,
   setSelectedPotTypes,
+  setCancelAtPeriodEnd,
   setSelectedCategories,
   setSelectedPlantTypes,
   addToPlantMedWishlist,

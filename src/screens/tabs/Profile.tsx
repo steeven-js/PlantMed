@@ -16,10 +16,6 @@ const Profile: React.FC = () => {
     state => state.userSlice.user?.isPremium,
   );
 
-  console.log('isPrenium', isPrenium);
-
-  console.log('user', JSON.stringify(user, null, 2));
-
   const renderUserInfo = (): JSX.Element => {
     return (
       <components.UserData
