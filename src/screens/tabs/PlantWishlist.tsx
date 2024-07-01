@@ -76,10 +76,10 @@ const PlantWishlist: React.FC = () => {
             numberOfLines={1}
             style={{marginBottom: utils.responsiveHeight(14)}}
           >
-            Your wishlist is empty!
+            Votre liste de souhaits est vide!
           </text.H2>
           <text.T16 numberOfLines={2}>
-            Looks like you haven't chosen the {'\n'}items you like.
+            Parcourez notre liste de plantes et {'\n'}ajoutez vos préférées.
           </text.T16>
         </ScrollView>
       );

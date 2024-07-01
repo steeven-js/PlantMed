@@ -17,7 +17,7 @@ const H2: React.FC<Props> = ({children, style, numberOfLines}): JSX.Element => {
         ...theme.fonts.Inter_700Bold,
         fontSize: Platform.OS === 'ios' ? 22 : 20,
         lineHeight: Platform.OS === 'ios' ? 22 * 1.4 : 20 * 1.4,
-        textTransform: 'capitalize',
+        // textTransform: 'capitalize',
         ...style,
       }}
       numberOfLines={numberOfLines}

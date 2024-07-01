@@ -204,10 +204,23 @@ const Header: React.FC<HeaderType> = ({
                       ...theme.fonts.DM_Sans_400Regular,
                       color: theme.colors.textColor,
                       fontSize: Platform.OS === 'ios' ? 14 : 12,
+                      marginBottom: 4,
                     }}
                     numberOfLines={1}
                   >
                     {user?.email || ''}
+                  </Text>
+                  <Text
+                    style={{
+                      color: theme.colors.mainColor,
+                      ...theme.fonts.Inter_600SemiBold,
+                      fontSize: Platform.OS === 'ios' ? 14 : 12,
+                      textTransform: 'capitalize',
+                      marginBottom: 4,
+                    }}
+                    numberOfLines={1}
+                  >
+                    {user?.isPremium ? 'Membre Premium' : 'Membre Standard'}
                   </Text>
                 </View>
               </TouchableOpacity>
