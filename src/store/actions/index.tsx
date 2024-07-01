@@ -7,6 +7,7 @@ import {resetCart} from '../slices/cartSlice';
 import {setStart} from '../slices/startSlice';
 import {setCvv} from '../slices/paymentSlice';
 import {modifyItem} from '../slices/cartSlice';
+import {setPrenium} from '../slices/userSlice';
 import {setName} from '../slices/paymentSlice';
 import {setDiscount} from '../slices/cartSlice';
 import {setPromoCode} from '../slices/cartSlice';
@@ -42,6 +43,7 @@ export const actions = {
   addToCart,
   modifyItem,
   setAddress,
+  setPrenium,
   setDiscount,
   resetFilters,
   setPromoCode,

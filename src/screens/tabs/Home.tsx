@@ -68,12 +68,6 @@ const Home: React.FC = () => {
     setActiveIndex(index);
   }).current;
 
-  const isPremium = hooks.useAppSelector(
-    state => state.userSlice.user?.isPremium,
-  );
-
-  console.log('isPremium', isPremium);
-
   let bestSellers =
     plantsData?.plantmed.filter(item => item.is_best_seller == true) || [];
 

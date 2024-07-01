@@ -20,12 +20,15 @@ import {queryHooks} from '../store/slices/apiSlice';
 const TabNavigator: React.FC = () => {
   const dispatch = hooks.useAppDispatch();
   const user = hooks.useAppSelector(state => state.userSlice.user);
+  const isPrenium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPremium,
+  );
   const currentTabScreen = hooks.useAppSelector(state => state.tabSlice.screen);
 
   const tabs = getTabs();
 
   console.log('user', JSON.stringify(user, null, 2));
-
+  console.log('isPrenium', isPrenium);
   const {
     data: userData,
     error: userError,

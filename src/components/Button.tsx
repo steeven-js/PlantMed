@@ -55,7 +55,7 @@ const Button: React.FC<Props> = ({
         {!loading && (
           <Text
             style={{
-              textTransform: 'capitalize',
+              // textTransform: 'capitalize',
               fontSize: Platform.OS === 'ios' ? 14 : 12,
               color: transparent ? theme.colors.white : theme.colors.white,
               ...textStyle,
