@@ -6,6 +6,7 @@ import {hooks} from '../hooks';
 import {custom} from '../custom';
 import {theme} from '../constants';
 import {PlantMedType, SymptomType} from '../types';
+import PreniumSvg from '../assets/svg/PreniumSvg';
 
 type Props = {
   qty: number;
@@ -16,13 +17,25 @@ type Props = {
 
 const SymptomItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
   const navigation = hooks.useAppNavigation();
+  const isPremium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPremium,
+  );
 
   const onPress = () => {
     if (qty > 0) {
-      navigation.navigate('PlantMedList', {
-        title: item.name,
-        products: dataFilter ?? [],
-      });
+      if (isPremium) {
+        navigation.navigate('PlantMedList', {
+          title: item.name,
+          products: dataFilter ?? [],
+        });
+      } else if (!isPremium && item.is_premium == false) {
+        navigation.navigate('PlantMedList', {
+          title: item.name,
+          products: dataFilter ?? [],
+        });
+      } else {
+        navigation.navigate('PreniumContent');
+      }
     }
     if (qty === 0) {
       Alert.alert('No data', 'No data available for this category');
@@ -32,8 +45,8 @@ const SymptomItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
   return (
     <TouchableOpacity
       style={{
-        width: utils.responsiveWidth(120, true),
-        height: utils.responsiveWidth(120, true),
+        width: utils.responsiveWidth(130, true),
+        height: utils.responsiveWidth(130, true),
         marginRight: isLast ? 20 : 14,
       }}
       onPress={onPress}
@@ -47,6 +60,7 @@ const SymptomItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
           paddingHorizontal: 10,
           paddingTop: 10,
           paddingBottom: 8,
+          justifyContent: 'space-between',
         }}
         imageStyle={{
           borderRadius: 10,
@@ -84,30 +98,32 @@ const SymptomItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
               {qty}
             </Text>
           </View>
+
           <View
             style={{
-              backgroundColor: '#CFF5CE',
               alignSelf: 'flex-start',
               paddingHorizontal: 9,
               paddingVertical: 1,
-              borderRadius: 50,
               minWidth: 23,
               height: 23,
               justifyContent: 'center',
               alignItems: 'center',
             }}
           >
-            <Text
-              numberOfLines={1}
-              style={{
-                fontSize: Platform.OS === 'ios' ? 16 : 14,
-                color: '#50858B',
-                // textTransform: 'capitalize',
-                ...theme.fonts.DM_Sans_500Medium,
-              }}
-            >
-              {item.is_premium ? 'P' : 'F'}
-            </Text>
+            <PreniumSvg
+              width='30px'
+              height='30px'
+              fillColor={
+                item.is_premium
+                  ? theme.colors.yellowStar
+                  : theme.colors.pastelMint
+              }
+              strokeColor={
+                item.is_premium
+                  ? theme.colors.yellowStar
+                  : theme.colors.pastelMint
+              }
+            />
           </View>
         </View>
 
