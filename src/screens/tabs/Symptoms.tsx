@@ -15,6 +15,7 @@ import {custom} from '../../custom';
 import {theme} from '../../constants';
 import {components} from '../../components';
 import {queryHooks} from '../../store/slices/apiSlice';
+import PreniumSvg from '../../assets/svg/PreniumSvg';
 
 const Symptoms: React.FC = () => {
   const navigation = hooks.useAppNavigation();
@@ -84,8 +85,8 @@ const Symptoms: React.FC = () => {
               <TouchableOpacity
                 key={index}
                 style={{
-                  width: utils.responsiveWidth(120, true),
-                  height: utils.responsiveWidth(120, true),
+                  width: utils.responsiveWidth(150, true),
+                  height: utils.responsiveWidth(150, true),
                   marginBottom: 40,
                   justifyContent: 'space-around',
                 }}
@@ -133,17 +134,16 @@ const Symptoms: React.FC = () => {
                     style={{
                       flexDirection: 'row',
                       justifyContent: 'space-between',
+                      paddingHorizontal: 10,
                     }}
                   >
                     <View
                       style={{
                         backgroundColor: '#CFF5CE',
                         alignSelf: 'flex-start',
-                        paddingHorizontal: 9,
-                        paddingVertical: 1,
-                        borderRadius: 50,
-                        minWidth: 23,
-                        height: 23,
+                        width: 40,
+                        height: 40,
+                        borderRadius: 40 / 2,
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
@@ -151,7 +151,7 @@ const Symptoms: React.FC = () => {
                       <Text
                         numberOfLines={1}
                         style={{
-                          fontSize: Platform.OS === 'ios' ? 16 : 14,
+                          fontSize: Platform.OS === 'ios' ? 20 : 18,
                           color: '#50858B',
                           // textTransform: 'capitalize',
                           ...theme.fonts.DM_Sans_500Medium,
@@ -163,38 +163,37 @@ const Symptoms: React.FC = () => {
 
                     <View
                       style={{
-                        backgroundColor: '#CFF5CE',
-                        alignSelf: 'flex-end',
-                        paddingHorizontal: 9,
-                        paddingVertical: 1,
-                        borderRadius: 50,
-                        minWidth: 23,
-                        height: 23,
+                        alignSelf: 'flex-start',
+                        width: 40,
+                        height: 40,
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
                     >
-                      <Text
-                        numberOfLines={1}
-                        style={{
-                          fontSize: Platform.OS === 'ios' ? 16 : 14,
-                          color: '#50858B',
-                          // textTransform: 'capitalize',
-                          ...theme.fonts.DM_Sans_500Medium,
-                        }}
-                      >
-                        {item.is_premium ? 'P' : 'F'}
-                      </Text>
+                      <PreniumSvg
+                        width='40px'
+                        height='40px'
+                        fillColor={
+                          item.is_premium
+                            ? theme.colors.yellowStar
+                            : theme.colors.steelTeal
+                        }
+                        strokeColor={
+                          item.is_premium
+                            ? theme.colors.yellowStar
+                            : theme.colors.steelTeal
+                        }
+                      />
                     </View>
                   </View>
                   <Text
                     numberOfLines={2}
                     style={{
-                      fontSize: Platform.OS === 'ios' ? 16 : 14,
+                      fontSize: Platform.OS === 'ios' ? 20 : 18,
                       // textTransform: 'capitalize',
                       backgroundColor: 'rgba(255, 255, 255, 0.9)',
                       color: theme.colors.mainColor,
-                      ...theme.fonts.DM_Sans_700Bold,
+                      ...theme.fonts.DM_Sans_500Medium,
                     }}
                   >
                     {item.name}

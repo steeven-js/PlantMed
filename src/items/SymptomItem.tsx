@@ -77,11 +77,9 @@ const SymptomItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
             style={{
               backgroundColor: '#CFF5CE',
               alignSelf: 'flex-start',
-              paddingHorizontal: 9,
-              paddingVertical: 1,
-              borderRadius: 50,
-              minWidth: 23,
-              height: 23,
+              width: 40,
+              height: 40,
+              borderRadius: 40 / 2,
               justifyContent: 'center',
               alignItems: 'center',
             }}
@@ -102,26 +100,24 @@ const SymptomItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
           <View
             style={{
               alignSelf: 'flex-start',
-              paddingHorizontal: 9,
-              paddingVertical: 1,
-              minWidth: 23,
-              height: 23,
+              width: 40,
+              height: 40,
               justifyContent: 'center',
               alignItems: 'center',
             }}
           >
             <PreniumSvg
-              width='30px'
-              height='30px'
+              width='40px'
+              height='40px'
               fillColor={
                 item.is_premium
                   ? theme.colors.yellowStar
-                  : theme.colors.pastelMint
+                  : theme.colors.steelTeal
               }
               strokeColor={
                 item.is_premium
                   ? theme.colors.yellowStar
-                  : theme.colors.pastelMint
+                  : theme.colors.steelTeal
               }
             />
           </View>
