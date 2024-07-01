@@ -17,24 +17,24 @@ type Props = {
 
 const SymptomItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
   const navigation = hooks.useAppNavigation();
-  const isPremium = hooks.useAppSelector(
-    state => state.userSlice.user?.isPremium,
+  const isPrenium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPrenium,
   );
 
   const onPress = () => {
     if (qty > 0) {
-      if (isPremium) {
+      if (isPrenium) {
         navigation.navigate('PlantMedList', {
           title: item.name,
           products: dataFilter ?? [],
         });
-      } else if (!isPremium && item.is_prenium == false) {
+      } else if (!isPrenium && item.is_prenium == false) {
         navigation.navigate('PlantMedList', {
           title: item.name,
           products: dataFilter ?? [],
         });
       } else {
-        navigation.navigate('PreniumContent');
+        navigation.navigate('IsPreniumContent');
       }
     }
     if (qty === 0) {

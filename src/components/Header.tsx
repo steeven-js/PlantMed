@@ -220,7 +220,7 @@ const Header: React.FC<HeaderType> = ({
                     }}
                     numberOfLines={1}
                   >
-                    {user?.isPremium ? 'Membre Premium' : 'Membre Standard'}
+                    {user?.isPrenium ? 'Membre Premium' : 'Membre Standard'}
                   </Text>
                 </View>
               </TouchableOpacity>

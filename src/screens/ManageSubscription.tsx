@@ -13,8 +13,8 @@ const ManageSubscription: React.FC = () => {
   const navigation = hooks.useAppNavigation();
   const [loading, setLoading] = useState(false);
   const user = hooks.useAppSelector(state => state.userSlice.user);
-  const isPremium = hooks.useAppSelector(
-    state => state.userSlice.user?.isPremium,
+  const isPrenium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPrenium,
   );
   const cancelAtPeriodEnd = hooks.useAppSelector(
     state => state.userSlice.user?.cancelAtPeriodEnd,
@@ -90,7 +90,7 @@ const ManageSubscription: React.FC = () => {
   const renderHeader = (): JSX.Element => {
     return (
       <components.Header
-        title={isPremium ? 'Compte Premium' : 'Compte Gratuit'}
+        title={isPrenium ? 'Compte Premium' : 'Compte Gratuit'}
         goBackIcon={true}
       />
     );
@@ -100,7 +100,7 @@ const ManageSubscription: React.FC = () => {
     return (
       <View style={{flex: 1, justifyContent: 'center'}}>
         <text.T16 style={{marginBottom: 20, textAlign: 'center'}}>
-          {isPremium && cancelAtPeriodEnd == false
+          {isPrenium && cancelAtPeriodEnd == false
             ? 'Voulez-vous annuler votre abonnement Premium ?'
             : `Membre Premium jusqu'au ${getFormatDate(
                 user?.premiumExpiresAt,
@@ -109,13 +109,13 @@ const ManageSubscription: React.FC = () => {
         <components.Button
           loading={loading}
           title={
-            isPremium && cancelAtPeriodEnd == false
+            isPrenium && cancelAtPeriodEnd == false
               ? "Annuler l'abonnement"
               : 'Premium actif'
           }
           containerStyle={{margin: 20}}
           onPress={() => {
-            if (isPremium && cancelAtPeriodEnd == false) {
+            if (isPrenium && cancelAtPeriodEnd == false) {
               AlertCancelPrenium();
             } else {
               AlertAlreadyPrenium();

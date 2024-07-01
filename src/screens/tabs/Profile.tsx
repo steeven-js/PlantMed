@@ -13,7 +13,7 @@ const Profile: React.FC = () => {
 
   const user = hooks.useAppSelector(state => state.userSlice.user);
   const isPrenium = hooks.useAppSelector(
-    state => state.userSlice.user?.isPremium,
+    state => state.userSlice.user?.isPrenium,
   );
 
   const renderUserInfo = (): JSX.Element => {

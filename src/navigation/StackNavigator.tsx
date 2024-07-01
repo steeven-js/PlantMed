@@ -245,8 +245,8 @@ const StackNavigator: React.FC = () => {
             options={{headerShown: false}}
           />
           <RootStack.Screen
-            name='PreniumContent'
-            component={screens.PreniumContent}
+            name='IsPreniumContent'
+            component={screens.IsPreniumContent}
             options={{headerShown: false}}
           />
         </RootStack.Group>

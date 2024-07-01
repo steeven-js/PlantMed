@@ -17,17 +17,17 @@ const PlantmedCard: React.FC<Props> = ({
   isLast,
 }): JSX.Element | null => {
   const navigation = hooks.useAppNavigation();
-  const isPremium = hooks.useAppSelector(
-    state => state.userSlice.user?.isPremium,
+  const isPrenium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPrenium,
   );
 
   const onPress = () => {
-    if (isPremium) {
+    if (isPrenium) {
       navigation.navigate('PlantMed', {item});
-    } else if (!isPremium && item.is_prenium == false) {
+    } else if (!isPrenium && item.is_prenium == false) {
       navigation.navigate('PlantMed', {item});
     } else {
-      navigation.navigate('PreniumContent');
+      navigation.navigate('IsPreniumContent');
     }
   };
 

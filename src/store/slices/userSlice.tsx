@@ -20,7 +20,7 @@ const userSlice = createSlice({
       state.rememberMe = action.payload;
     },
     setPrenium: (state, action: PayloadAction<boolean>) => {
-      state.user!.isPremium = action.payload;
+      state.user!.isPrenium = action.payload;
     },
     setCancelAtPeriodEnd: (state, action: PayloadAction<boolean>) => {
       state.user!.cancelAtPeriodEnd = action.payload;

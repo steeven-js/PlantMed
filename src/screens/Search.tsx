@@ -24,8 +24,8 @@ const Search: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const user = hooks.useAppSelector(state => state.userSlice.user);
-  const isPremium = hooks.useAppSelector(
-    state => state.userSlice.user?.isPremium,
+  const isPrenium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPrenium,
   );
 
   const {
@@ -118,12 +118,12 @@ const Search: React.FC = () => {
           alignItems: 'center',
         }}
         onPress={() => {
-          if (isPremium) {
+          if (isPrenium) {
             navigation.navigate('PlantMed', {item});
-          } else if (!isPremium && item.is_prenium == false) {
+          } else if (!isPrenium && item.is_prenium == false) {
             navigation.navigate('PlantMed', {item});
           } else {
-            navigation.navigate('PreniumContent');
+            navigation.navigate('IsPreniumContent');
           }
         }}
       >

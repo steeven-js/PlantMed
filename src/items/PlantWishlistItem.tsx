@@ -17,8 +17,8 @@ const PlantWishlistItem: React.FC<Props> = ({
 }): JSX.Element => {
   const navigation = hooks.useAppNavigation();
 
-  const isPremium = hooks.useAppSelector(
-    state => state.userSlice.user?.isPremium,
+  const isPrenium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPrenium,
   );
 
   return (
@@ -29,12 +29,12 @@ const PlantWishlistItem: React.FC<Props> = ({
         marginBottom: isLast ? 0 : utils.responsiveHeight(14),
       }}
       onPress={() => {
-        if (isPremium) {
+        if (isPrenium) {
           navigation.navigate('PlantMed', {item});
-        } else if (!isPremium && item.is_prenium == false) {
+        } else if (!isPrenium && item.is_prenium == false) {
           navigation.navigate('PlantMed', {item});
         } else {
-          navigation.navigate('PreniumContent');
+          navigation.navigate('IsPreniumContent');
         }
       }}
     >

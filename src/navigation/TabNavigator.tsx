@@ -21,7 +21,7 @@ const TabNavigator: React.FC = () => {
   const dispatch = hooks.useAppDispatch();
   const user = hooks.useAppSelector(state => state.userSlice.user);
   const isPrenium = hooks.useAppSelector(
-    state => state.userSlice.user?.isPremium,
+    state => state.userSlice.user?.isPrenium,
   );
   const currentTabScreen = hooks.useAppSelector(state => state.tabSlice.screen);
 

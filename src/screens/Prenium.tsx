@@ -29,8 +29,8 @@ const Prenium: React.FC = () => {
   const navigation = hooks.useAppNavigation();
 
   const user = hooks.useAppSelector(state => state.userSlice.user);
-  const isPremium = hooks.useAppSelector(
-    state => state.userSlice.user?.isPremium,
+  const isPrenium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPrenium,
   );
   const cancelAtPeriodEnd = hooks.useAppSelector(
     state => state.userSlice.user?.cancelAtPeriodEnd,
@@ -158,10 +158,6 @@ const Prenium: React.FC = () => {
             - Mises à jour régulières avec de nouvelles informations et plantes
             ajoutées chaque mois.
           </Text>
-          <Text style={{fontSize: 16, marginBottom: 20}}>
-            - Accès à des vidéos et des tutoriels exclusifs pour approfondir vos
-            connaissances.
-          </Text>
           <Text style={{fontSize: 16, fontWeight: 'bold', marginBottom: 10}}>
             Durée de l'abonnement : 1 mois
           </Text>
@@ -173,7 +169,7 @@ const Prenium: React.FC = () => {
             title="S'abonner maintenant"
             containerStyle={{margin: 20}}
             onPress={() => {
-              if (isPremium && cancelAtPeriodEnd == false) {
+              if (isPrenium == false && cancelAtPeriodEnd == true) {
                 subscribe();
               } else {
                 AlertAlreadyPrenium();

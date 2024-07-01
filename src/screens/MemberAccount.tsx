@@ -11,14 +11,14 @@ import {getFormatDate} from '../utils/getFormatDate';
 const MemberAccount: React.FC = () => {
   const navigation = hooks.useAppNavigation();
   const user = hooks.useAppSelector(state => state.userSlice.user);
-  const isPremium = hooks.useAppSelector(
-    state => state.userSlice.user?.isPremium,
+  const isPrenium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPrenium,
   );
 
   const renderHeader = (): JSX.Element => {
     return (
       <components.Header
-        title={isPremium ? 'Compte Premium' : 'Compte Gratuit'}
+        title={isPrenium ? 'Compte Premium' : 'Compte Gratuit'}
         goBackIcon={true}
       />
     );
@@ -49,10 +49,21 @@ const MemberAccount: React.FC = () => {
             <text.H4 style={{marginBottom: 10}}>
               Avantages du compte Premium :
             </text.H4>
-            <text.T16>• Accès illimité à toutes les fiches de plantes</text.T16>
-            <text.T16>• Guides thérapeutiques détaillés</text.T16>
-            <text.T16>• Conseils d'experts personnalisés</text.T16>
-            <text.T16>• Suppression des publicités</text.T16>
+            <text.T16>
+              • Accès à des fiches détaillées sur plus de 100 plantes
+              médicinales.
+            </text.T16>
+            <text.T16>
+              • Recettes exclusives pour préparer des remèdes maison.
+            </text.T16>
+            <text.T16>
+              • Conseils personnalisés pour utiliser les plantes selon vos
+              besoins.
+            </text.T16>
+            <text.T16>
+              • Mises à jour régulières avec de nouvelles informations et
+              plantes ajoutées chaque mois.
+            </text.T16>
           </View>
           <text.T16 style={{marginBottom: 20}}>
             Prix de l'abonnement Premium : 1,99 € / mois
@@ -140,7 +151,7 @@ const MemberAccount: React.FC = () => {
         containerStyle={{backgroundColor: theme.colors.transparent}}
       >
         {renderHeader()}
-        {isPremium ? renderContentPremium() : renderContentFree()}
+        {isPrenium ? renderContentPremium() : renderContentFree()}
       </custom.SafeAreaView>
     </custom.ImageBackground>
   );

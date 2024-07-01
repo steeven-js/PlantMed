@@ -25,7 +25,7 @@ import PlantMedList from './PlantMedList';
 import PrivacyPolicy from './PrivacyPolicy';
 import DeleteAccount from './DeleteAccount';
 import MemberAccount from './MemberAccount';
-import PreniumContent from './PreniumContent';
+import IsPreniumContent from './IsPreniumContent';
 import OrderSuccessful from './OrderSuccessful';
 import PremiumActivated from './PremiumActivated';
 import VerifyEmail from './verification/VerifyEmail';
@@ -77,7 +77,7 @@ export const screens = {
   DeleteAccount,
   PrivacyPolicy,
   MemberAccount,
-  PreniumContent,
+  IsPreniumContent,
   OrderSuccessful,
   PremiumActivated,
   VerifyEmailForgot,
