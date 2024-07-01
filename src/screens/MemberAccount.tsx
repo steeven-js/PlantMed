@@ -114,15 +114,28 @@ const MemberAccount: React.FC = () => {
             <text.T16 style={{marginBottom: 10}}>
               Vous bénéficiez de tous les avantages Premium :
             </text.T16>
-            <text.T16>• Accès illimité à toutes les fiches de plantes</text.T16>
-            <text.T16>• Guides thérapeutiques détaillés</text.T16>
-            <text.T16>• Conseils d'experts personnalisés</text.T16>
-            <text.T16>• Suppression des publicités</text.T16>
+            <text.T16>
+              • Accès à des fiches détaillées sur plus de 100 plantes
+              médicinales.
+            </text.T16>
+            <text.T16>
+              • Recettes exclusives pour préparer des remèdes maison.
+            </text.T16>
+            <text.T16>
+              • Conseils personnalisés pour utiliser les plantes selon vos
+              besoins.
+            </text.T16>
+            <text.T16>
+              • Mises à jour régulières avec de nouvelles informations et
+              plantes ajoutées chaque mois.
+            </text.T16>
           </View>
-          <text.T16 style={{marginBottom: 20}}>
-            Votre abonnement se renouvellera automatiquement le{' '}
-            {getFormatDate(user?.premiumExpiresAt)} pour 1,99 €.
-          </text.T16>
+          {user?.cancelAtPeriodEnd == false && (
+            <text.T16 style={{marginBottom: 20}}>
+              Votre abonnement se renouvellera automatiquement le{' '}
+              {getFormatDate(user?.premiumExpiresAt)} pour 1,99 €.
+            </text.T16>
+          )}
           <components.Button
             title="Gérer l'abonnement"
             onPress={() => {
