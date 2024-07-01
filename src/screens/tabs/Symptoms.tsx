@@ -18,6 +18,9 @@ import {queryHooks} from '../../store/slices/apiSlice';
 
 const Symptoms: React.FC = () => {
   const navigation = hooks.useAppNavigation();
+  const isPremium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPremium,
+  );
 
   const {
     data: plantsData,
@@ -88,10 +91,19 @@ const Symptoms: React.FC = () => {
                 }}
                 onPress={() => {
                   if (qty > 0) {
-                    navigation.navigate('PlantMedList', {
-                      title: item.name,
-                      products: dataFilter ?? [],
-                    });
+                    if (isPremium) {
+                      navigation.navigate('PlantMedList', {
+                        title: item.name,
+                        products: dataFilter ?? [],
+                      });
+                    } else if (!isPremium && item.is_premium == false) {
+                      navigation.navigate('PlantMedList', {
+                        title: item.name,
+                        products: dataFilter ?? [],
+                      });
+                    } else {
+                      navigation.navigate('PreniumContent');
+                    }
                   }
                   if (qty === 0) {
                     Alert.alert(
@@ -119,28 +131,61 @@ const Symptoms: React.FC = () => {
                 >
                   <View
                     style={{
-                      backgroundColor: '#CFF5CE',
-                      alignSelf: 'flex-start',
-                      paddingHorizontal: 9,
-                      paddingVertical: 1,
-                      borderRadius: 50,
-                      minWidth: 23,
-                      height: 23,
-                      justifyContent: 'center',
-                      alignItems: 'center',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
                     }}
                   >
-                    <Text
-                      numberOfLines={1}
+                    <View
                       style={{
-                        fontSize: Platform.OS === 'ios' ? 16 : 14,
-                        color: '#50858B',
-                        // textTransform: 'capitalize',
-                        ...theme.fonts.DM_Sans_500Medium,
+                        backgroundColor: '#CFF5CE',
+                        alignSelf: 'flex-start',
+                        paddingHorizontal: 9,
+                        paddingVertical: 1,
+                        borderRadius: 50,
+                        minWidth: 23,
+                        height: 23,
+                        justifyContent: 'center',
+                        alignItems: 'center',
                       }}
                     >
-                      {qty}
-                    </Text>
+                      <Text
+                        numberOfLines={1}
+                        style={{
+                          fontSize: Platform.OS === 'ios' ? 16 : 14,
+                          color: '#50858B',
+                          // textTransform: 'capitalize',
+                          ...theme.fonts.DM_Sans_500Medium,
+                        }}
+                      >
+                        {qty}
+                      </Text>
+                    </View>
+
+                    <View
+                      style={{
+                        backgroundColor: '#CFF5CE',
+                        alignSelf: 'flex-end',
+                        paddingHorizontal: 9,
+                        paddingVertical: 1,
+                        borderRadius: 50,
+                        minWidth: 23,
+                        height: 23,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Text
+                        numberOfLines={1}
+                        style={{
+                          fontSize: Platform.OS === 'ios' ? 16 : 14,
+                          color: '#50858B',
+                          // textTransform: 'capitalize',
+                          ...theme.fonts.DM_Sans_500Medium,
+                        }}
+                      >
+                        {item.is_premium ? 'P' : 'F'}
+                      </Text>
+                    </View>
                   </View>
                   <Text
                     numberOfLines={2}

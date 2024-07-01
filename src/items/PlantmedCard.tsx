@@ -4,6 +4,7 @@ import React from 'react';
 import {hooks} from '../hooks';
 import {utils} from '../utils';
 import {custom} from '../custom';
+import {svg} from '../assets/svg';
 import {theme} from '../constants';
 import {plantmed} from '../plantmed';
 import {PlantMedType} from '../types';
@@ -16,12 +17,21 @@ const PlantmedCard: React.FC<Props> = ({
   isLast,
 }): JSX.Element | null => {
   const navigation = hooks.useAppNavigation();
+  const isPremium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPremium,
+  );
 
   const onPress = () => {
-    navigation.navigate('PlantMed', {item});
+    if (isPremium) {
+      navigation.navigate('PlantMed', {item});
+    } else if (!isPremium && item.is_premium == false) {
+      navigation.navigate('PlantMed', {item});
+    } else {
+      navigation.navigate('PreniumContent');
+    }
   };
 
-  // ############ SHOP > PRODUCTS ############ //
+  // ############ SHOP > PLANTS ############ //
   if (version === 1) {
     return (
       <TouchableOpacity
@@ -36,9 +46,10 @@ const PlantmedCard: React.FC<Props> = ({
           source={{uri: item.image}}
           style={{
             width: '100%',
+            flexDirection: 'row',
             aspectRatio: 160 / 200,
             marginBottom: 14,
-            alignItems: 'flex-end',
+            justifyContent: 'space-between',
           }}
           imageStyle={{
             borderRadius: 10,
@@ -46,6 +57,10 @@ const PlantmedCard: React.FC<Props> = ({
           }}
           resizeMode='cover'
         >
+          <plantmed.PlantPrenium
+            item={item}
+            containerStyle={{marginBottom: 'auto', padding: 10}}
+          />
           <plantmed.PlantmedInWishlist
             item={item}
             version={1}
@@ -63,7 +78,7 @@ const PlantmedCard: React.FC<Props> = ({
     );
   }
 
-  // ############ HOME > FEATURED PRODUCTS ############ //
+  // ############ HOME > FEATURED PLANTS ############ //
   if (version === 2) {
     return (
       <TouchableOpacity onPress={onPress}>

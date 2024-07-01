@@ -244,6 +244,11 @@ const StackNavigator: React.FC = () => {
             component={screens.ManageSubscription}
             options={{headerShown: false}}
           />
+          <RootStack.Screen
+            name='PreniumContent'
+            component={screens.PreniumContent}
+            options={{headerShown: false}}
+          />
         </RootStack.Group>
       )}
     </RootStack.Navigator>

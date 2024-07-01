@@ -17,6 +17,10 @@ const PlantWishlistItem: React.FC<Props> = ({
 }): JSX.Element => {
   const navigation = hooks.useAppNavigation();
 
+  const isPremium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPremium,
+  );
+
   return (
     <TouchableOpacity
       style={{
@@ -25,7 +29,13 @@ const PlantWishlistItem: React.FC<Props> = ({
         marginBottom: isLast ? 0 : utils.responsiveHeight(14),
       }}
       onPress={() => {
-        navigation.navigate('PlantMed', {item});
+        if (isPremium) {
+          navigation.navigate('PlantMed', {item});
+        } else if (!isPremium && item.is_premium == false) {
+          navigation.navigate('PlantMed', {item});
+        } else {
+          navigation.navigate('PreniumContent');
+        }
       }}
     >
       {/* IMAGE */}

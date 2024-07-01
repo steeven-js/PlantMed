@@ -8,6 +8,7 @@ export const colors = {
   imageBackground: '#FAFAFA',
   transparent: 'transparent',
   whiteTransparent: 'rgba(255, 255, 255, 0.9)',
+  yellowStar: '#FFD700',
 
   red: '#FF0000',
 };

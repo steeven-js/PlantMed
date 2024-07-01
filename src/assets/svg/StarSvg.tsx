@@ -11,7 +11,7 @@ const StarSvg: React.FC<Props> = ({
   strokeColor = '#4A6973',
 }) => {
   return (
-    <Svg width={8} height={8} fill='none'>
+    <Svg width={32} height={32} fill='none'>
       <G clipPath='url(#a)'>
         <Path
           fill={fillColor}

@@ -25,6 +25,7 @@ import GoBackSvg from './GoBackSvg';
 import EyeOffSvg from './EyeOffSvg';
 import GoogleSvg from './GoogleSvg';
 import LogOutSvg from './SignOutSvg';
+import PreniumSvg from './PreniumSvg';
 import ViewAllSvg from './ViewAllSvg';
 import HomeTabSvg from './HomeTabSvg';
 import SignOutSvg from './SignOutSvg';
@@ -94,6 +95,7 @@ export const svg = {
   DoctorSvg,
   OnlineSvg,
   SearchSvg,
+  PreniumSvg,
   SignOutSvg,
   HomeTabSvg,
   ViewAllSvg,

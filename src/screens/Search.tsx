@@ -12,7 +12,7 @@ import {hooks} from '../hooks';
 import {custom} from '../custom';
 import {svg} from '../assets/svg';
 import {theme} from '../constants';
-import {ProductType} from '../types';
+import {PlantMedType} from '../types';
 import {components} from '../components';
 import {queryHooks} from '../store/slices/apiSlice';
 import {handleTextChange} from '../utils/handleTextChange';
@@ -23,6 +23,9 @@ const Search: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const user = hooks.useAppSelector(state => state.userSlice.user);
+  const isPremium = hooks.useAppSelector(
+    state => state.userSlice.user?.isPremium,
+  );
 
   const {
     data: userData,
@@ -34,7 +37,7 @@ const Search: React.FC = () => {
     data: plantsData,
     error: plantsError,
     isLoading: plantsLoading,
-  } = queryHooks.useGetPlantsQuery();
+  } = queryHooks.useGetPlantmedQuery();
 
   const ref = useRef<TextInput>(null);
 
@@ -102,7 +105,7 @@ const Search: React.FC = () => {
     );
   };
 
-  const renderItem = ({item, index}: {item: ProductType; index: number}) => {
+  const renderItem = ({item, index}: {item: PlantMedType; index: number}) => {
     return (
       <TouchableOpacity
         style={{
@@ -114,7 +117,13 @@ const Search: React.FC = () => {
           alignItems: 'center',
         }}
         onPress={() => {
-          navigation.navigate('Product', {item: item});
+          if (isPremium) {
+            navigation.navigate('PlantMed', {item});
+          } else if (!isPremium && item.is_premium == false) {
+            navigation.navigate('PlantMed', {item});
+          } else {
+            navigation.navigate('PreniumContent');
+          }
         }}
       >
         <svg.SearchSmallSvg />
@@ -156,14 +165,14 @@ const Search: React.FC = () => {
   };
 
   const renderSearchResults = () => {
-    const filteredProducts = plantsData?.plants.filter(item => {
+    const filteredProducts = plantsData?.plantmed.filter(item => {
       return item.name.toLowerCase().includes(searchQuery.toLowerCase());
     });
 
     return (
       <FlatList
         data={filteredProducts}
-        keyExtractor={(item: ProductType) => item.id.toString()}
+        keyExtractor={(item: PlantMedType) => item.id.toString()}
         contentContainerStyle={{flexGrow: 1}}
         keyboardShouldPersistTaps='handled' // when user taps on the screen, the keyboard will be hidden
         keyboardDismissMode='on-drag' // when user drags the screen, the keyboard will be hidden

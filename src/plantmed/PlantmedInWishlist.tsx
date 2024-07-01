@@ -31,16 +31,16 @@ const PlantmedInWishlist: React.FC<Props> = ({
 
   const itemExistMessage = () => {
     return Alert.alert(
-      'Product already in wishlist',
-      'Are you sure you want to delete from wishlist ?',
+      'Supprimer de la liste de souhaits',
+      'Etes-vous sûr de vouloir supprimer cette plante de la liste de souhaits ?',
       [
         {
-          text: 'Cancel',
+          text: 'Annuler',
           onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
         {
-          text: 'OK',
+          text: 'Oui',
           onPress: () => dispatch(actions.removeFromPlantMedWishlist(item)),
         },
       ],
