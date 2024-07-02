@@ -31,6 +31,8 @@ end
 target 'PlantMed' do
   config = use_native_modules!
 
+  pod 'RevenueCat'
+
   use_react_native!(
     :path => config[:reactNativePath],
     # Enables Flipper.

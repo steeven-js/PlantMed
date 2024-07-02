@@ -1133,6 +1133,7 @@ PODS:
     - React-jsi (= 0.73.2)
     - React-logger (= 0.73.2)
     - React-perflogger (= 0.73.2)
+  - RevenueCat (5.0.0)
   - RNCAsyncStorage (1.23.1):
     - React-Core
   - RNCClipboard (1.14.1):
@@ -1272,6 +1273,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RevenueCat
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - RNFastImage (from `../node_modules/react-native-fast-image`)
@@ -1296,6 +1298,7 @@ SPEC REPOS:
     - libevent
     - libwebp
     - OpenSSL-Universal
+    - RevenueCat
     - SDWebImage
     - SDWebImageWebPCoder
     - SocketRocket
@@ -1494,6 +1497,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: df8945a656356ff10f58f65a70820478bfcf33ad
   React-utils: f5bc61e7ea3325c0732ae2d755f4441940163b85
   ReactCommon: 45b5d4f784e869c44a6f5a8fad5b114ca8f78c53
+  RevenueCat: 25a8c35da45d7a6d463ac8ed62aa52b25cfe5c87
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
   RNCClipboard: 0a720adef5ec193aa0e3de24c3977222c7e52a37
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
@@ -1514,6 +1518,6 @@ SPEC CHECKSUMS:
   StripeUICore: 879bbf5889265db13f52fac8aad7a176ba62481f
   Yoga: 13c8ef87792450193e117976337b8527b49e8c03
 
-PODFILE CHECKSUM: dfa029425b7efaa6b23dfe6b1a7130bd4bd5a538
+PODFILE CHECKSUM: 1b06b661aee6d865f1b959b15ea283b8431e99c7
 
 COCOAPODS: 1.15.2

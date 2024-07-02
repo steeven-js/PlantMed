@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
-import * as Iap from 'react-native-iap';
+import React, {useCallback, useEffect, useState} from 'react';
+import {View, Text, ScrollView, TouchableOpacity, Platform} from 'react-native';
+import Purchases from 'react-native-purchases';
 
 import {custom} from '../custom';
 import {theme} from '../constants';
@@ -8,39 +8,11 @@ import {components} from '../components';
 import {utils} from '../utils';
 import {hooks} from '../hooks';
 
-const subscriptionId = 'P_199_1m';
-
 const Prenium: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState<Iap.Subscription[]>([]);
   const navigation = hooks.useAppNavigation();
 
-  useEffect(() => {
-    const initializeIap = async () => {
-      if (!Iap || typeof Iap.initConnection !== 'function') {
-        console.log('Iap is not defined or initConnection is not a function');
-        return;
-      }
-
-      try {
-        await Iap.initConnection();
-        console.log('connected to store');
-        try {
-          const res = await Iap.getSubscriptions({skus: [subscriptionId]});
-          console.log('got subscriptions');
-          console.log(res);
-          setProducts(res);
-          console.log(products);
-        } catch (error) {
-          console.log('error getting subscriptions', error);
-        }
-      } catch (error) {
-        console.log('error connecting to store', error);
-      }
-    };
-
-    initializeIap();
-  }, []);
+  const productIds = ['P_199_1m'];
 
   const openPrivacyPolicy = () => {
     navigation.navigate('PrivacyPolicy');
