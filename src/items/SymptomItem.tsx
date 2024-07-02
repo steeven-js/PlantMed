@@ -99,16 +99,18 @@ const SymptomItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
 
           <View
             style={{
+              backgroundColor: '#CFF5CE',
               alignSelf: 'flex-start',
               width: 40,
               height: 40,
+              borderRadius: 40 / 2,
               justifyContent: 'center',
               alignItems: 'center',
             }}
           >
             <PreniumSvg
-              width='40px'
-              height='40px'
+              width='20px'
+              height='20px'
               fillColor={
                 item.is_prenium
                   ? theme.colors.yellowStar
@@ -130,7 +132,8 @@ const SymptomItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
             // textTransform: 'capitalize',
             backgroundColor: 'rgba(255, 255, 255, 0.9)',
             color: theme.colors.mainColor,
-            ...theme.fonts.DM_Sans_700Bold,
+            ...theme.fonts.DM_Sans_500Medium,
+            padding: 5,
           }}
         >
           {item.name}
