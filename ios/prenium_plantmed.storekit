@@ -1,0 +1,104 @@
+{
+  "identifier" : "1E0DB32D",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6503098172",
+    "_developerTeamID" : "7Q6MN7W987",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 741595961.26507699,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21506043",
+      "localizations" : [
+
+      ],
+      "name" : "Prenium",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "1.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6505093996",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Acces au contenu prenium",
+              "displayName" : "Abonnement Plantmed",
+              "locale" : "fr"
+            }
+          ],
+          "productID" : "P_199_1m",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Prenium Plantmed",
+          "subscriptionGroupID" : "21506043",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
