@@ -1197,7 +1197,7 @@
   resolved "https://registry.npmjs.org/@babel/regjsgen/-/regjsgen-0.8.0.tgz"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.20.0", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.20.0", "@babel/runtime@^7.20.6", "@babel/runtime@^7.8.4":
   version "7.24.7"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.24.7.tgz"
   integrity sha512-UwgBRMjJP+xv857DCngvqXI3Iq6J4v0wXmwc6sapg+zyhbwmQX67LUEFrkK5tbyJ30jGuG3ZvWpBiB9LCy1kWw==
@@ -3758,6 +3758,11 @@ domutils@^3.0.1:
     dom-serializer "^2.0.0"
     domelementtype "^2.3.0"
     domhandler "^5.0.3"
+
+dotenv@^16.4.5:
+  version "16.4.5"
+  resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.4.5.tgz"
+  integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -6745,6 +6750,13 @@ react-native-collapsible@^1.6.1:
   resolved "https://registry.npmjs.org/react-native-collapsible/-/react-native-collapsible-1.6.1.tgz"
   integrity sha512-orF4BeiXd2hZW7fu9YcqIJXzN6TJcFcddY807D3MAOVktLuW9oQ+RIkrTJ5DR3v9ZOFfREkOjEmS79qeUTvkBQ==
 
+react-native-dotenv@^3.4.11:
+  version "3.4.11"
+  resolved "https://registry.npmjs.org/react-native-dotenv/-/react-native-dotenv-3.4.11.tgz"
+  integrity sha512-6vnIE+WHABSeHCaYP6l3O1BOEhWxKH6nHAdV7n/wKn/sciZ64zPPp2NUdEUf1m7g4uuzlLbjgr+6uDt89q2DOg==
+  dependencies:
+    dotenv "^16.4.5"
+
 react-native-eject@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/react-native-eject/-/react-native-eject-0.2.0.tgz"
@@ -6762,6 +6774,11 @@ react-native-flash-message@^0.4.2:
   dependencies:
     prop-types "^15.8.1"
     react-native-iphone-screen-helper "^2.0.2"
+
+react-native-iap@^12.15.1:
+  version "12.15.1"
+  resolved "https://registry.npmjs.org/react-native-iap/-/react-native-iap-12.15.1.tgz"
+  integrity sha512-NhGqXJb76BnDbbtXIsnRcal/4IWcfXn7sNjoqXoDXfZQkLHPw0WYG1E4S8U0kIV3khw0MZcUcNQbH0UzPVjokQ==
 
 react-native-image-progress@^1.2.0:
   version "1.2.0"
@@ -6931,7 +6948,7 @@ react-native-webview@^13.6.4:
     ws "^6.2.2"
     yargs "^17.6.2"
 
-react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@^0.61.5 || ^0.62.3 || ^0.63.2 || ^0.64.2 || ^0.65.0 || ^0.66.0 || ^0.67.0 || ^0.68.0 || ^0.69.0 || ^0.70.0 || ^0.71.0 || ^0.72.0 || ^0.73.0", react-native@^0.73.0, react-native@>=0.42.0, react-native@>=0.44.1, react-native@>=0.48.4, react-native@>=0.57.0, react-native@>=0.60.0, react-native@>=0.63.2, react-native@>=0.65.0, react-native@0.73.2:
+react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@^0.61.5 || ^0.62.3 || ^0.63.2 || ^0.64.2 || ^0.65.0 || ^0.66.0 || ^0.67.0 || ^0.68.0 || ^0.69.0 || ^0.70.0 || ^0.71.0 || ^0.72.0 || ^0.73.0", react-native@^0.73.0, react-native@>=0.42.0, react-native@>=0.44.1, react-native@>=0.48.4, react-native@>=0.57.0, react-native@>=0.60.0, react-native@>=0.63.2, react-native@>=0.65.0, react-native@>=0.65.1, react-native@0.73.2:
   version "0.73.2"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.73.2.tgz"
   integrity sha512-7zj9tcUYpJUBdOdXY6cM8RcXYWkyql4kMyGZflW99E5EuFPoC7Ti+ZQSl7LP9ZPzGD0vMfslwyDW0I4tPWUCFw==

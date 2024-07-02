@@ -1141,6 +1141,8 @@ PODS:
     - React-Core
     - SDWebImage (~> 5.11.1)
     - SDWebImageWebPCoder (~> 0.8.4)
+  - RNIap (12.15.1):
+    - React-Core
   - RNScreens (3.32.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1273,6 +1275,7 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - RNFastImage (from `../node_modules/react-native-fast-image`)
+  - RNIap (from `../node_modules/react-native-iap`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - "stripe-react-native (from `../node_modules/@stripe/stripe-react-native`)"
@@ -1415,6 +1418,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-clipboard/clipboard"
   RNFastImage:
     :path: "../node_modules/react-native-fast-image"
+  RNIap:
+    :path: "../node_modules/react-native-iap"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -1492,6 +1497,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
   RNCClipboard: 0a720adef5ec193aa0e3de24c3977222c7e52a37
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
+  RNIap: 17583f958d35788a87948e94072ff6edd3580497
   RNScreens: f0edd01b3ab160acc31fb056622a1d7c2909a0a5
   RNSVG: 963a95f1f5d512a13d11ffd50d351c87fb5c6890
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d

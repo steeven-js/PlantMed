@@ -16,6 +16,8 @@
 		47A09BBFE51B43EB8CB8E3A4 /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16747A17898E47D9847F32DB /* DMSans-Regular.ttf */; };
 		5D260B3E9EF046C8BA14DAA6 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82B0349E156F4A5AB2978096 /* Inter-Medium.ttf */; };
 		5E3C23772C2DE96700B2B06A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3C23762C2DE96700B2B06A /* StoreKit.framework */; };
+		5EB33C282C33BBED0051F101 /* subscription_plantmed.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5EB33C272C33BBED0051F101 /* subscription_plantmed.storekit */; };
+		5EB33C292C33BBED0051F101 /* subscription_plantmed.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5EB33C272C33BBED0051F101 /* subscription_plantmed.storekit */; };
 		7699B88040F8A987B510C191 /* libPods-PlantMed-PlantMedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-PlantMed-PlantMedTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D3D3DEE7E79347CF9879EDE1 /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16D99C13CE934C209704B855 /* DMSans-Bold.ttf */; };
@@ -53,6 +55,7 @@
 		5B7EB9410499542E8C5724F5 /* Pods-PlantMed-PlantMedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlantMed-PlantMedTests.debug.xcconfig"; path = "Target Support Files/Pods-PlantMed-PlantMedTests/Pods-PlantMed-PlantMedTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-PlantMed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PlantMed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E3C23762C2DE96700B2B06A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5EB33C272C33BBED0051F101 /* subscription_plantmed.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = subscription_plantmed.storekit; sourceTree = "<group>"; };
 		6046B5AC043C472F9E868C07 /* Inter-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Bold.ttf"; path = "../src/assets/fonts/Inter-Bold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PlantMed/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82B0349E156F4A5AB2978096 /* Inter-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Medium.ttf"; path = "../src/assets/fonts/Inter-Medium.ttf"; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		13B07FAE1A68108700A75B9A /* PlantMed */ = {
 			isa = PBXGroup;
 			children = (
+				5EB33C272C33BBED0051F101 /* subscription_plantmed.storekit */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -264,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EB33C292C33BBED0051F101 /* subscription_plantmed.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +283,7 @@
 				47A09BBFE51B43EB8CB8E3A4 /* DMSans-Regular.ttf in Resources */,
 				0AA46DDB7C134045AE19D41F /* Inter-Bold.ttf in Resources */,
 				5D260B3E9EF046C8BA14DAA6 /* Inter-Medium.ttf in Resources */,
+				5EB33C282C33BBED0051F101 /* subscription_plantmed.storekit in Resources */,
 				F91506B4D8A44673BBD91EBF /* Inter-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

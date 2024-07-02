@@ -1,0 +1,141 @@
+{
+  "identifier" : "BAC181C1",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6503098172",
+    "_askToBuyEnabled" : true,
+    "_billingGracePeriodEnabled" : true,
+    "_billingIssuesEnabled" : true,
+    "_developerTeamID" : "7Q6MN7W987",
+    "_failTransactionsEnabled" : true,
+    "_lastSynchronizedDate" : 741587952.96278596,
+    "_locale" : "fr",
+    "_renewalBillingIssuesEnabled" : true,
+    "_storefront" : "FRA",
+    "_storeKitErrors" : [
+      {
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
+        "enabled" : true,
+        "name" : "Load Products"
+      },
+      {
+        "current" : {
+          "index" : 1,
+          "type" : "purchase"
+        },
+        "enabled" : true,
+        "name" : "Purchase"
+      },
+      {
+        "current" : {
+          "index" : 0,
+          "type" : "verification"
+        },
+        "enabled" : true,
+        "name" : "Verification"
+      },
+      {
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
+        "enabled" : true,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
+        "enabled" : true,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : {
+          "index" : 3,
+          "type" : "generic"
+        },
+        "enabled" : true,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : {
+          "index" : 3,
+          "type" : "generic"
+        },
+        "enabled" : true,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : {
+          "index" : 0,
+          "type" : "refund request"
+        },
+        "enabled" : true,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : {
+          "index" : 4,
+          "type" : "generic"
+        },
+        "enabled" : true,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ],
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21502462",
+      "localizations" : [
+
+      ],
+      "name" : "PlantMed Premium",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "1.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6504687544",
+          "introductoryOffer" : {
+            "internalID" : "06A8D45E",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "Guide complet des plantes médicinales.",
+              "displayName" : "PlantMed: Plantes Médicinales",
+              "locale" : "fr"
+            }
+          ],
+          "productID" : "com.plantmed.botanica",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "PlantMed Botanica",
+          "subscriptionGroupID" : "21502462",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
