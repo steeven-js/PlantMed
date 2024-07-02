@@ -34,7 +34,7 @@ const SymptomItem: React.FC<Props> = ({item, isLast, qty, dataFilter}) => {
           products: dataFilter ?? [],
         });
       } else {
-        navigation.navigate('IsPreniumContent');
+        navigation.navigate('Prenium');
       }
     }
     if (qty === 0) {

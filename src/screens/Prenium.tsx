@@ -42,11 +42,11 @@ const Prenium: React.FC = () => {
   };
 
   const openPrivacyPolicy = () => {
-    Linking.openURL('https://votreapp.com/privacy-policy');
+    navigation.navigate('PrivacyPolicy');
   };
 
   const openTermsOfUse = () => {
-    Linking.openURL('https://votreapp.com/terms-of-use');
+    navigation.navigate('TermsOfUse');
   };
 
   const subscribe = async () => {
@@ -183,23 +183,39 @@ const Prenium: React.FC = () => {
               marginTop: 20,
             }}
           >
-            <TouchableOpacity onPress={openPrivacyPolicy}>
+            <TouchableOpacity
+              style={{
+                paddingHorizontal: 10,
+                borderWidth: 1,
+                paddingVertical: 20,
+                borderRadius: 10,
+                borderColor: theme.colors.steelTeal,
+              }}
+              onPress={openPrivacyPolicy}
+            >
               <Text
                 style={{
                   fontSize: 12,
-                  color: 'blue',
-                  textDecorationLine: 'underline',
+                  color: 'gray',
                 }}
               >
                 Politique de confidentialité
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={openTermsOfUse}>
+            <TouchableOpacity
+              style={{
+                paddingHorizontal: 10,
+                borderWidth: 1,
+                paddingVertical: 20,
+                borderRadius: 10,
+                borderColor: theme.colors.steelTeal,
+              }}
+              onPress={openTermsOfUse}
+            >
               <Text
                 style={{
                   fontSize: 12,
-                  color: 'blue',
-                  textDecorationLine: 'underline',
+                  color: 'gray',
                 }}
               >
                 Conditions d'utilisation

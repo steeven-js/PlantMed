@@ -27,7 +27,7 @@ const PlantmedCard: React.FC<Props> = ({
     } else if (!isPrenium && item.is_prenium == false) {
       navigation.navigate('PlantMed', {item});
     } else {
-      navigation.navigate('IsPreniumContent');
+      navigation.navigate('Prenium');
     }
   };
 

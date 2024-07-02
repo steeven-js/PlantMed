@@ -103,7 +103,7 @@ const Symptoms: React.FC = () => {
                         products: dataFilter ?? [],
                       });
                     } else {
-                      navigation.navigate('IsPreniumContent');
+                      navigation.navigate('Prenium');
                     }
                   }
                   if (qty === 0) {
