@@ -11,8 +11,8 @@
     "_developerTeamID" : "7Q6MN7W987",
     "_failTransactionsEnabled" : false,
     "_lastSynchronizedDate" : 741595961.26507699,
-    "_locale" : "en_US",
-    "_storefront" : "USA",
+    "_locale" : "fr",
+    "_storefront" : "FRA",
     "_storeKitErrors" : [
       {
         "current" : null,
